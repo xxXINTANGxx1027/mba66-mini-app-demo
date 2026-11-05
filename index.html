@@ -19,7 +19,7 @@
   --r-ctl:10px;--r-card:14px;--r-panel:20px;
   /* Jost 只覆盖拉丁与数字，中文自动落到苹方 / 鸿蒙 / 冬青，Noto Sans SC 仅作网络兜底 */
   --sans:"Jost","PingFang SC","HarmonyOS Sans SC","Hiragino Sans GB","Noto Sans SC",system-ui,-apple-system,sans-serif;
-  --e:cubic-bezier(.22,.61,.36,1);--e2:cubic-bezier(.32,.72,0,1);
+  --e:cubic-bezier(.22,.61,.36,1);--e2:cubic-bezier(.32,.72,0,1);--e3:cubic-bezier(.2,.7,.2,1);
 }
 html,body{height:100%}
 body{
@@ -70,11 +70,11 @@ body{
 #stage{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
   -webkit-overflow-scrolling:touch;scrollbar-width:none}
 #stage::-webkit-scrollbar{display:none}
-.scr{padding:0 18px 26px;animation:scrIn .34s var(--e) both}
+.scr{padding:0 18px 26px;animation:scrIn .4s var(--e3) backwards}
 .scr.flush{padding:0 0 26px}
-@keyframes scrIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes scrIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 /* ---------- tabbar ---------- */
-#tabs{flex:0 0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:6px 8px 20px;
+#tabs{position:relative;flex:0 0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:6px 8px 20px;
   background:linear-gradient(180deg,rgba(6,12,28,.4),rgba(6,12,28,.96));border-top:1px solid var(--line-2);
   position:relative;z-index:30}
 #tabs a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 0 7px;min-height:52px;
@@ -98,7 +98,7 @@ body{
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;gap:10px}
 .gold{color:var(--gold)}.rose{color:var(--rose)}
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;
   border-radius:999px;border:1px solid transparent;font-family:var(--sans);font-size:14px;font-weight:400;
   letter-spacing:0;font-weight:500;cursor:pointer;text-decoration:none;transition:background .2s var(--e),color .2s var(--e),border-color .2s var(--e),transform .12s var(--e)}
 .btn:active{transform:scale(.975)}
@@ -138,7 +138,7 @@ body{
 .row-m{flex:1 1 auto;min-width:0}
 .row-t{font-size:14px;font-weight:400;line-height:1.5}
 .row-s{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
-.lrow{display:flex;align-items:center;gap:12px;width:100%;padding:15px 16px;background:rgba(242,237,227,.035);
+.lrow{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;width:100%;padding:15px 16px;background:rgba(242,237,227,.035);
   border:1px solid var(--line-2);border-radius:var(--r-ctl);color:var(--fg);font-family:var(--sans);font-size:14px;
   font-weight:400;text-align:left;text-decoration:none;cursor:pointer;min-height:50px;
   transition:background .18s var(--e),border-color .18s var(--e)}
@@ -164,7 +164,7 @@ body{
 .ptchip .ic{width:14px;height:14px}
 .ptchip b{font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 /* ---------- toast ---------- */
-#toast{position:absolute;z-index:70;left:0;right:0;bottom:96px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 20px}
+#toast{position:absolute;z-index:70;left:0;right:0;top:88px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 20px}
 .tst{max-width:100%;display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:999px;
   background:rgba(8,15,36,.94);border:1px solid var(--line);color:var(--fg);font-size:13px;line-height:1.4;
   font-weight:500;box-shadow:0 14px 34px -10px rgba(0,0,0,.8);animation:tstIn .3s var(--e2) both}
@@ -174,8 +174,8 @@ body{
 .tst-r b.xp{display:inline-flex;align-items:center;gap:4px;color:var(--rose)}
 .tst-r b.xp .ic{width:12px;height:12px;color:var(--rose)}
 .tst.out{animation:tstOut .3s var(--e) both}
-@keyframes tstIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes tstOut{to{opacity:0;transform:translateY(-8px)}}
+@keyframes tstIn{from{opacity:0;transform:translateY(-18px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes tstOut{to{opacity:0;transform:translateY(-12px) scale(.98)}}
 /* ---------- sheet ---------- */
 #veil{position:absolute;inset:0;z-index:50;background:rgba(4,8,20,.72);backdrop-filter:blur(3px);
   opacity:0;pointer-events:none;transition:opacity .28s var(--e)}
@@ -212,7 +212,7 @@ body{
 .hero-c{position:absolute;z-index:3;left:18px;right:18px;bottom:16px}
 /* ---------- quick entries ---------- */
 .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.quick a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;min-height:76px;
+.quick a{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;min-height:76px;
   border-radius:var(--r-ctl);border:1px solid var(--line-2);background:rgba(242,237,227,.035);
   text-decoration:none;color:var(--fg);font-size:13px;font-weight:500;transition:background .2s var(--e),border-color .2s var(--e)}
 .quick a:hover{background:rgba(226,187,106,.1);border-color:var(--line)}
@@ -227,7 +227,7 @@ body{
   position:relative;z-index:1;scrollbar-width:none}
 .chat-sc::-webkit-scrollbar{display:none}
 .msg{max-width:78%;padding:11px 14px;font-size:14.5px;line-height:1.6;border-radius:16px;animation:msgIn .3s var(--e) both}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .msg.her{align-self:flex-start;background:rgba(19,33,74,.92);color:var(--fg);
   border:1px solid rgba(226,187,106,.16);border-bottom-left-radius:5px;
   box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
@@ -273,8 +273,8 @@ body{
 .hbtn svg{width:38px;height:38px;fill:var(--rose);filter:drop-shadow(0 4px 12px rgba(240,122,154,.5))}
 .hbtn.gold svg{fill:var(--gold);filter:drop-shadow(0 4px 12px rgba(226,187,106,.5))}
 @keyframes hPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
-.hbtn.pop{animation:hGo .3s var(--e) forwards;pointer-events:none}
-@keyframes hGo{to{opacity:0;transform:scale(1.9)}}
+.hbtn.pop{animation:hGo .34s var(--e3) forwards;pointer-events:none}
+@keyframes hGo{0%{transform:scale(1)}30%{transform:scale(1.18,.86)}60%{opacity:1;transform:scale(.9,1.12)}100%{opacity:0;transform:scale(1.5)}}
 .hbtn.fade{animation:hFade .3s var(--e) forwards;pointer-events:none}
 @keyframes hFade{to{opacity:0;transform:scale(.6)}}
 .gstat{display:flex;gap:10px;align-items:stretch;margin-bottom:12px}
@@ -304,7 +304,7 @@ body{
 .unmute::after{content:"";position:absolute;inset:-4px}
 .unmute .ic{width:15px;height:15px;color:var(--gold)}
 .epgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.ep{position:relative;display:flex;flex-direction:column;gap:5px;padding:11px 12px;min-height:66px;border-radius:var(--r-ctl);
+.ep{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:5px;padding:11px 12px;min-height:66px;border-radius:var(--r-ctl);
   border:1px solid var(--line-2);background:rgba(242,237,227,.035);color:var(--fg);font-family:var(--sans);
   font-size:13px;font-weight:400;text-align:left;cursor:pointer;transition:background .18s var(--e),border-color .18s var(--e)}
 .ep:hover{background:rgba(226,187,106,.1);border-color:var(--line)}
@@ -361,7 +361,7 @@ body{
 .chip.lk:hover{background:rgba(242,237,227,.1);border-color:var(--faint);color:var(--fg)}
 /* ---------- 礼物 ---------- */
 .gifts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.gift{display:flex;flex-direction:column;align-items:center;gap:8px;padding:15px 8px 13px;border-radius:var(--r-card);
+.gift{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:8px;padding:15px 8px 13px;border-radius:var(--r-card);
   border:1px solid var(--line-2);background:rgba(242,237,227,.035);color:var(--fg);font-family:var(--sans);
   font-size:13px;font-weight:500;cursor:pointer;transition:background .18s var(--e),border-color .18s var(--e)}
 .gift:hover{background:rgba(226,187,106,.12);border-color:rgba(226,187,106,.45)}
@@ -390,6 +390,188 @@ body{
   #phone::before{display:none}
   #bar{padding-top:max(16px,env(safe-area-inset-top))}
   #tabs{padding-bottom:max(14px,env(safe-area-inset-bottom))}
+}
+
+/* ============================================================
+   MOTION LAYER · 只动 transform / opacity / filter
+   ============================================================ */
+/* 1. 列表与卡片错峰进场（backwards：动画结束后交还给 hover 等正常样式） */
+.rv{animation:rvUp .42s var(--e3) backwards}
+@keyframes rvUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 特效层：所有飞行物、粒子、涟漪都画在这里，不参与布局 */
+#fx{position:absolute;inset:0;z-index:65;pointer-events:none;overflow:hidden}
+#fx>*{position:absolute;will-change:transform,opacity}
+.fly{padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap;
+  background:rgba(8,14,34,.92);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.fly.gold{color:var(--gold)}
+.fly.rose{color:var(--rose);border-color:rgba(240,122,154,.4)}
+.spark{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  transform:translate(-50%,-50%);animation:sparkGo .74s var(--e3) both}
+.spark.r{background:var(--rose)}
+.spark.hrt{width:14px;height:14px;background:none;border-radius:0}
+.spark.hrt svg{width:14px;height:14px;fill:var(--rose)}
+.spark.hrt.g svg{fill:var(--gold)}
+@keyframes sparkGo{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}
+  18%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) translate(var(--x),var(--y)) scale(.65)}}
+.splash{width:18px;height:18px;border-radius:50%;border:2px solid var(--rose);
+  transform:translate(-50%,-50%);animation:splashGo .45s var(--e3) both}
+.splash.g{border-color:var(--gold)}
+@keyframes splashGo{from{opacity:.9;transform:translate(-50%,-50%) scale(.3)}
+  to{opacity:0;transform:translate(-50%,-50%) scale(5)}}
+.pop-n{font-size:15px;font-weight:600;color:var(--gold);transform:translate(-50%,-50%);
+  font-variant-numeric:tabular-nums;text-shadow:0 2px 10px rgba(0,0,0,.6);
+  animation:popUp 1s var(--e3) both}
+.pop-n.r{color:var(--rose)}
+@keyframes popUp{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+  16%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+  30%{transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) translateY(-60px) scale(.95)}}
+.ghost-card{border-radius:12px;overflow:hidden;box-shadow:0 14px 34px -12px rgba(0,0,0,.8);
+  transform:translate(-50%,-50%);background:var(--navy-3)}
+.ghost-card img{display:block;width:100%;height:100%;object-fit:cover}
+.flyico{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(8,14,34,.94);border:1px solid var(--line);transform:translate(-50%,-50%)}
+.flyico .ic{width:17px;height:17px;color:var(--gold)}
+
+/* 13. 按压涟漪 */
+.rip{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(226,187,106,.5),rgba(226,187,106,0) 70%);
+  transform:translate(-50%,-50%) scale(0);pointer-events:none;animation:ripGo .5s var(--e3) forwards}
+@keyframes ripGo{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+
+/* 2. 首页主视觉：缓慢 Ken-Burns + 漂浮气泡 + 名字光扫 */
+.hero .ph>img,.hero .ph>video{animation:kbHero 11s var(--e3) infinite alternate}
+@keyframes kbHero{from{transform:scale(1.015)}to{transform:scale(1.1)}}
+.floaters{position:absolute;inset:0;z-index:3;pointer-events:none}
+.flo{position:absolute;display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;
+  font-size:11.5px;font-weight:500;white-space:nowrap;color:var(--fg);
+  background:rgba(8,14,34,.82);border:1px solid var(--line);box-shadow:0 8px 20px -10px rgba(0,0,0,.7);
+  opacity:0;animation:floUp 3.8s var(--e3) infinite}
+.flo .ic{width:12px;height:12px;color:var(--gold)}
+.flo.r{color:var(--rose);border-color:rgba(240,122,154,.38)}
+.flo.r .ic{color:var(--rose)}
+.flo.f1{left:16px;top:120px;animation-delay:.3s}
+.flo.f2{right:18px;top:170px;animation-delay:1.5s}
+.flo.f3{right:54px;top:238px;padding:6px;animation-delay:2.4s}
+.flo.f3 .ic{width:15px;height:15px;fill:var(--rose);stroke:none;color:var(--rose)}
+@keyframes floUp{
+  0%{opacity:0;transform:translateY(8px) scale(.84)}
+  12%{opacity:1;transform:translateY(0) scale(1)}
+  62%{opacity:1;transform:translateY(-9px) scale(1)}
+  100%{opacity:0;transform:translateY(-16px) scale(.96)}}
+.sweep{background:linear-gradient(100deg,var(--fg) 0 40%,#FFF0C8 47%,var(--gold) 53%,var(--fg) 62% 100%);
+  background-size:300% 100%;background-position:120% 0;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:nameSweep 6s linear infinite}
+@keyframes nameSweep{0%,70%{background-position:120% 0}100%{background-position:-60% 0}}
+
+/* 3. 悬浮陪伴头像 */
+#fab{position:absolute;z-index:28;right:16px;bottom:calc(94px + env(safe-area-inset-bottom));
+  width:54px;height:54px;border-radius:50%;padding:0;border:1px solid rgba(226,187,106,.5);
+  background:var(--navy-3);cursor:pointer;display:none;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.85);animation:bob 2.2s ease-in-out infinite}
+#fab.on{display:block}
+#fab .ph{width:100%;height:100%;border-radius:50%;overflow:hidden}
+#fab .ph::after{font-size:20px}
+#fab .dot{position:absolute;z-index:3;right:2px;bottom:2px;width:11px;height:11px;border-radius:50%;
+  background:#58C98B;border:2px solid #0B1735}
+#fab .ring{position:absolute;inset:-1px;border-radius:50%;border:1.5px solid var(--gold);
+  animation:ringPulse 2s var(--e3) infinite;pointer-events:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes ringPulse{0%{opacity:.85;transform:scale(.95)}100%{opacity:0;transform:scale(1.32)}}
+#fab:hover{border-color:var(--gold)}
+#fab:active{transform:scale(.94)}
+
+/* 4. 积分芯片脉冲 */
+.ptchip.pulse{animation:chipPulse .62s var(--e3)}
+@keyframes chipPulse{0%{transform:scale(1)}36%{transform:scale(1.14);border-color:var(--gold)}100%{transform:scale(1)}}
+
+/* 5. 可领取的按钮 / 任务入口 */
+.claim{animation:claimPulse 1.6s var(--e3) infinite}
+@keyframes claimPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(226,187,106,0))}
+  55%{transform:scale(1.035);filter:drop-shadow(0 0 7px rgba(226,187,106,.55))}}
+.nudge{animation:nudge 1.9s var(--e3) infinite}
+@keyframes nudge{0%,72%,100%{transform:translateX(0)}80%{transform:translateX(3px)}88%{transform:translateX(0)}}
+.flip{animation:flipY .42s var(--e3)}
+@keyframes flipY{0%{transform:rotateY(0)}50%{transform:rotateY(84deg) scale(.97)}100%{transform:rotateY(0)}}
+.chk-draw{stroke-dasharray:26;animation:drawChk .52s var(--e3) both}
+@keyframes drawChk{from{stroke-dashoffset:26}to{stroke-dashoffset:0}}
+
+/* 6. 亲密度条扫光 */
+.bond-t{position:relative}
+.bond-t.swept::after{content:"";position:absolute;inset:0;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(255,240,200,.85),transparent);
+  transform:translateX(-100%);animation:barSweep .9s var(--e3) both}
+@keyframes barSweep{to{transform:translateX(100%)}}
+.lvup .ph{animation:popOver .6s var(--e3) both}
+@keyframes popOver{0%{opacity:0;transform:scale(.84)}60%{opacity:1;transform:scale(1.045)}100%{transform:scale(1)}}
+.rollN{display:inline-block;height:1.2em;overflow:hidden;vertical-align:-.18em}
+.rollN i{display:block;font-style:normal;animation:rollUp .7s var(--e3) .18s both}
+@keyframes rollUp{from{transform:translateY(0)}to{transform:translateY(-1.2em)}}
+
+/* 7. 女友卡：当前卡抬起，人像轻微呼吸 */
+.gcard.cur{border-color:rgba(226,187,106,.45);transform:translateY(-2px) scale(1.012);
+  box-shadow:0 20px 46px -20px rgba(226,187,106,.45)}
+.gcard.cur:hover{transform:translateY(-4px) scale(1.012)}
+.gcard .ph>img,.dcard .ph>img{animation:swayIdle 7.5s ease-in-out infinite alternate}
+@keyframes swayIdle{from{transform:scale(1.01)}to{transform:scale(1.055) translate3d(-1%,-.8%,0)}}
+
+/* 9. 游戏 */
+.hbtn{animation:hPop .26s var(--e3) both,hWob 2.6s ease-in-out .26s infinite}
+@keyframes hWob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(4deg)}}
+.combo.hit{animation:comboHit .42s var(--e3)}
+@keyframes comboHit{0%{transform:translateX(-50%) scale(1)}40%{transform:translateX(-50%) scale(1.3);filter:drop-shadow(0 0 10px rgba(226,187,106,.8))}100%{transform:translateX(-50%) scale(1)}}
+.tbar.low i{background:linear-gradient(90deg,var(--rose),#FF9CB4)}
+.tbar.low{animation:lowPulse 1s var(--e3) infinite}
+@keyframes lowPulse{0%,100%{opacity:1}50%{opacity:.45}}
+.gstat .low{color:var(--rose)}
+.react.k-hit .av{animation:smileBounce .5s var(--e3)}
+.react.k-combo .av{animation:winkTilt .6s var(--e3)}
+.react.k-win .av{animation:celebrate .75s var(--e3)}
+@keyframes smileBounce{0%,100%{transform:translateY(0)}45%{transform:translateY(-5px) scale(1.08)}}
+@keyframes winkTilt{0%,100%{transform:rotate(0) scale(1)}35%{transform:rotate(-6deg) scale(1.06)}70%{transform:rotate(4deg) scale(1.03)}}
+@keyframes celebrate{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-9px) rotate(-5deg) scale(1.1)}55%{transform:translateY(0) rotate(5deg)}80%{transform:translateY(-4px) rotate(0)}}
+.seq{animation:seqPop .44s var(--e3) backwards}
+@keyframes seqPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+
+/* 10. 短剧：锁抖动 + 解锁扫光 + 进度条 */
+.shake{animation:shakeX .42s var(--e3)}
+@keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.shimmer::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+  background:linear-gradient(104deg,transparent 38%,rgba(255,240,200,.42) 50%,transparent 62%);
+  transform:translateX(-110%);animation:shimGo 1.05s var(--e3) both}
+@keyframes shimGo{to{transform:translateX(110%)}}
+.pprog{position:absolute;z-index:4;left:0;right:0;bottom:0;height:3px;background:rgba(242,237,227,.16);display:block}
+.pprog b{display:block;height:100%;background:linear-gradient(90deg,var(--gold-d),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform .25s linear}
+
+/* 11. 奖励：飞入收藏 */
+.collect{position:absolute;z-index:66;left:50%;top:150px;transform:translateX(-50%) translateY(-14px);
+  display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;
+  background:rgba(8,14,34,.94);border:1px solid var(--line);color:var(--gold);font-size:12.5px;font-weight:500;
+  opacity:0;animation:collectIn 2.1s var(--e3) both;pointer-events:none}
+.collect .ic{width:14px;height:14px}
+@keyframes collectIn{0%{opacity:0;transform:translateX(-50%) translateY(-14px)}
+  12%,78%{opacity:1;transform:translateX(-50%) translateY(0)}
+  100%{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+.collect.hitnow{animation:collectIn 2.1s var(--e3) both,collectPop .4s var(--e3) .62s}
+@keyframes collectPop{0%,100%{scale:1}45%{scale:1.12}}
+
+/* 12. tab 指示条 + 图标弹跳 */
+#tabInd{position:absolute;top:3px;left:0;width:26px;height:2px;border-radius:2px;background:var(--gold);
+  opacity:0;transform:translateX(0);transition:transform .36s var(--e3),opacity .2s linear}
+#tabs a.on .ic{animation:tabPop .44s var(--e3)}
+@keyframes tabPop{0%{transform:scale(1)}40%{transform:scale(1.18)}70%{transform:scale(.96)}100%{transform:scale(1)}}
+
+/* 规则：降级时关掉所有循环与装饰粒子，状态仍然瞬时可见 */
+@media (prefers-reduced-motion:reduce){
+  .flo,#fab .ring,#fx>*{display:none !important}
+  #fab{animation:none !important}
+  .sweep{background:none;color:inherit;-webkit-text-fill-color:currentColor}
+  .hero .ph>img,.hero .ph>video,.gcard .ph>img,.dcard .ph>img,.hbtn{animation:none !important}
+  .claim,.nudge,.tbar.low{animation:none !important}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -449,7 +631,10 @@ body{
       <a href="#drama" data-tab="drama"><svg class="ic"><use href="#i-film"/></svg><span>短剧</span></a>
       <a href="#rewards" data-tab="rewards"><svg class="ic"><use href="#i-gift"/></svg><span>奖励</span></a>
       <a href="#me" data-tab="me"><svg class="ic"><use href="#i-user"/></svg><span>我的</span></a>
+      <i id="tabInd" aria-hidden="true"></i>
     </nav>
+    <button id="fab" aria-label="和她聊天"></button>
+    <div id="fx" aria-hidden="true"></div>
     <div id="veil"></div>
     <section id="sheet" role="dialog" aria-modal="true" aria-hidden="true"></section>
     <div id="toast" role="status" aria-live="polite"></div>
@@ -706,6 +891,7 @@ function reward(label, pts, xp, gid){
     if(lvOf(g.id) > before) up = LEVELS[lvOf(g.id) - 1];
   }
   save(); bumpChips(); bumpBonds();
+  flyReward(pts, xp);
   rewardToast(label, pts, xp, g);
   if(up) setTimeout(() => levelSheet(g, up), 820);
   return up;
@@ -720,7 +906,7 @@ function bumpBonds(){
     if(lb) lb.textContent = "Lv." + b.lv;
     if(st) st.textContent = b.name;
     if(nm) nm.textContent = b.max ? "已满级" : `${b.xp} / ${b.next}`;
-    if(fi) fi.style.transform = `scaleX(${b.pct})`;
+    if(fi){ fi.style.transform = `scaleX(${b.pct})`; pulseOnce(fi.parentElement, "swept", 980); }
   });
 }
 function bondBar(gid, cls = ""){
@@ -732,8 +918,9 @@ function bondBar(gid, cls = ""){
   </div>`;
 }
 function levelSheet(g, lv){
-  sheet({
-    title:`亲密度升到 Lv.${lv.lv}`, sub:`${g.name} · ${lv.name}`,
+  const sh = sheet({
+    title:`亲密度升到 Lv.<span class="rollN"><i>${Math.max(1, lv.lv - 1)}</i><i>${lv.lv}</i></span>`,
+    sub:`${g.name} · ${lv.name}`,
     body:`<div class="lvup">
         ${phImg(outfitImg(g), g.initial, g.name + " 形象")}
         <div class="cap">
@@ -759,6 +946,7 @@ function levelSheet(g, lv){
     foot:`<a class="btn btn-pri btn-w" href="#chat" onclick="closeSheet()">${ico("i-chat")}去找${esc(g.name)}</a>
           <button class="btn btn-qt btn-w" onclick="closeSheet()">知道了</button>`
   });
+  setTimeout(() => confetti(sh.querySelector(".lvup")), 320);
 }
 function bumpChips(){
   $$("[data-pts]").forEach(el => {
@@ -798,6 +986,211 @@ function rewardToast(label, pts, xp, g){
   setTimeout(() => { d.classList.add("out"); setTimeout(() => d.remove(), 320); }, 2500);
 }
 
+
+/* ============================================================
+   动效引擎 · 只写 transform / opacity，不碰布局
+   ============================================================ */
+const RMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+const rm = () => RMQ.matches;
+const HRT = `<svg viewBox="0 0 24 24"><path d="M12 21S3 15.3 3 9.3A4.9 4.9 0 0 1 12 6.5a4.9 4.9 0 0 1 9 2.8C21 15.3 12 21 12 21z"/></svg>`;
+
+/* 最后一次按下的位置：飞行物从这里出发 */
+let lastTap = null;
+const RIP = ".btn,.quick a,.lrow,.ep,.item,.gift";
+document.addEventListener("pointerdown", e => {
+  const t = e.target.closest("button,a,[data-gift],[data-rw],[data-pick],[data-ep]");
+  lastTap = t ? t.getBoundingClientRect()
+              : { left:e.clientX - 1, top:e.clientY - 1, width:2, height:2 };
+  if(rm()) return;
+  const host = e.target.closest(RIP);
+  if(!host) return;
+  const r = host.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2;
+  const i = document.createElement("i");
+  i.className = "rip";
+  i.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - r.left}px;top:${e.clientY - r.top}px`;
+  host.appendChild(i);
+  setTimeout(() => i.remove(), 520);
+}, true);
+
+const fxBox = () => $("#fx").getBoundingClientRect();
+function fxAt(r){
+  if(!r) return null;
+  const b = fxBox();
+  return { x:r.left - b.left + (r.width || 0) / 2, y:r.top - b.top + (r.height || 0) / 2 };
+}
+function fxAdd(el, ms){ $("#fx").appendChild(el); setTimeout(() => el.remove(), ms); return el; }
+const rectOf = sel => { const e = typeof sel === "string" ? $(sel) : sel; return e ? e.getBoundingClientRect() : null; };
+
+/* 4. 「+10 积分 / +5 亲密」沿弧线飞向积分芯片 */
+function flyReward(pts, xp, from){
+  const chip = $(".ptchip");
+  if(rm() || !chip) return;
+  const a = fxAt(from || lastTap) || { x:195, y:400 };
+  const b = fxAt(chip.getBoundingClientRect());
+  const items = [];
+  if(pts) items.push([`${pts > 0 ? "+" : ""}${pts} 积分`, "gold"]);
+  if(xp)  items.push([`+${xp} 亲密`, "rose"]);
+  items.forEach(([txt, cls], i) => arcFly(txt, cls, a, b, i * 120));
+  setTimeout(() => { chip.classList.add("pulse"); setTimeout(() => chip.classList.remove("pulse"), 660); }, 640);
+}
+function arcFly(txt, cls, a, b, delay){
+  const el = document.createElement("div");
+  el.className = "fly " + cls; el.textContent = txt; el.style.opacity = "0";
+  fxAdd(el, delay + 1100);
+  const cx = (a.x + b.x) / 2, cy = Math.min(a.y, b.y) - 72;
+  const t0 = performance.now() + delay, dur = 800;
+  (function step(now){
+    if(!el.isConnected) return;
+    const k = (now - t0) / dur;
+    if(k < 0) return requestAnimationFrame(step);
+    const p = Math.min(1, k), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    const x = (1 - e) * (1 - e) * a.x + 2 * (1 - e) * e * cx + e * e * b.x;
+    const y = (1 - e) * (1 - e) * a.y + 2 * (1 - e) * e * cy + e * e * b.y;
+    el.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%) scale(${1 - .42 * e})`;
+    el.style.opacity = p < .1 ? p / .1 : p > .85 ? (1 - p) / .15 : 1;
+    if(p < 1) requestAnimationFrame(step);
+  })(performance.now());
+}
+
+/* 粒子：金色小点或心形，只用这两种颜色 */
+function burst(r, { n = 12, kind = "dot", spread = 46 } = {}){
+  const p = fxAt(r); if(rm() || !p) return;
+  for(let i = 0; i < n; i++){
+    const el = document.createElement("div");
+    const rose = kind === "heart" ? i % 3 !== 0 : i % 4 === 0;
+    el.className = "spark" + (kind === "heart" ? " hrt" + (rose ? "" : " g") : rose ? " r" : "");
+    if(kind === "heart") el.innerHTML = HRT;
+    const ang = (Math.PI * 2 * i) / n + Math.random() * .6, dist = spread * (.55 + Math.random() * .7);
+    el.style.left = p.x + "px"; el.style.top = p.y + "px";
+    el.style.setProperty("--x", (Math.cos(ang) * dist).toFixed(1) + "px");
+    el.style.setProperty("--y", (Math.sin(ang) * dist - 14).toFixed(1) + "px");
+    el.style.animationDelay = Math.round(Math.random() * 110) + "ms";
+    fxAdd(el, 1000);
+  }
+}
+function splash(r, gold){
+  const p = fxAt(r); if(rm() || !p) return;
+  const el = document.createElement("div");
+  el.className = "splash" + (gold ? " g" : "");
+  el.style.left = p.x + "px"; el.style.top = p.y + "px";
+  fxAdd(el, 520);
+}
+function popNum(r, txt, rose){
+  const p = fxAt(r); if(rm() || !p) return;
+  const el = document.createElement("div");
+  el.className = "pop-n" + (rose ? " r" : ""); el.textContent = txt;
+  el.style.left = p.x + "px"; el.style.top = p.y + "px";
+  fxAdd(el, 1050);
+}
+/* 一个小图标从 A 飞到 B（送礼物用） */
+function flyIcon(from, to, icon, done){
+  const a = fxAt(from), b = fxAt(to);
+  if(rm() || !a || !b){ if(done) done(); return; }
+  const el = document.createElement("div");
+  el.className = "flyico"; el.innerHTML = ico(icon);
+  fxAdd(el, 760);
+  const cx = (a.x + b.x) / 2, cy = Math.min(a.y, b.y) - 56, t0 = performance.now(), dur = 620;
+  (function step(now){
+    if(!el.isConnected) return;
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    const x = (1 - e) * (1 - e) * a.x + 2 * (1 - e) * e * cx + e * e * b.x;
+    const y = (1 - e) * (1 - e) * a.y + 2 * (1 - e) * e * cy + e * e * b.y;
+    el.style.transform = `translate3d(${x}px,${y}px,0) translate(-50%,-50%) scale(${1 - .3 * e}) rotate(${e * 200}deg)`;
+    el.style.opacity = p > .88 ? (1 - p) / .12 : 1;
+    if(p < 1) requestAnimationFrame(step); else if(done) done();
+  })(performance.now());
+}
+/* 11. 卡片飞进「已加入收藏」药丸 */
+function flyToCollect(fromEl, label){
+  if(rm()){ toast(label, "i-star"); return; }   // 降级时特效层是隐藏的，确认信息必须换回 toast
+  const pill = document.createElement("div");
+  pill.className = "collect hitnow";
+  pill.innerHTML = ico("i-star") + esc(label);
+  $("#fx").appendChild(pill);
+  setTimeout(() => pill.remove(), 2200);
+  if(rm() || !fromEl) return;
+  const img = fromEl.querySelector("img");
+  const a = fxAt(fromEl.getBoundingClientRect());
+  requestAnimationFrame(() => {
+    const b = fxAt(pill.getBoundingClientRect());
+    if(!a || !b) return;
+    const el = document.createElement("div");
+    el.className = "ghost-card";
+    el.style.cssText = `width:62px;height:46px;left:0;top:0`;
+    if(img) el.innerHTML = `<img src="${img.getAttribute("src")}" alt="">`;
+    fxAdd(el, 700);
+    const t0 = performance.now(), dur = 560;
+    (function step(now){
+      if(!el.isConnected) return;
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.style.transform = `translate3d(${a.x + (b.x - a.x) * e}px,${a.y + (b.y - a.y) * e}px,0) translate(-50%,-50%) scale(${1 - .62 * e})`;
+      el.style.opacity = p > .8 ? (1 - p) / .2 : 1;
+      if(p < 1) requestAnimationFrame(step); else burst(pill.getBoundingClientRect(), { n:8, spread:26 });
+    })(performance.now());
+  });
+}
+/* 6. 升级庆祝：金 / 玫瑰两色心形飘落 */
+function confetti(host){
+  if(rm() || !host) return;
+  const b = host.getBoundingClientRect(), f = fxBox();
+  for(let i = 0; i < 16; i++){
+    const el = document.createElement("div");
+    el.className = "spark hrt" + (i % 2 ? "" : " g");
+    el.innerHTML = HRT;
+    el.style.left = (b.left - f.left + 20 + Math.random() * (b.width - 40)) + "px";
+    el.style.top = (b.top - f.top + b.height * .35) + "px";
+    el.style.setProperty("--x", (Math.random() * 70 - 35).toFixed(0) + "px");
+    el.style.setProperty("--y", (-70 - Math.random() * 70).toFixed(0) + "px");
+    el.style.animationDelay = Math.round(Math.random() * 420) + "ms";
+    el.style.animationDuration = "1.25s";
+    fxAdd(el, 1800);
+  }
+}
+const pulseOnce = (el, cls, ms) => { if(!el || rm()) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms); };
+
+/* 1. 重复卡片错峰进场 */
+function stagger(scr){
+  if(rm()) return;
+  const seen = new Map();
+  scr.querySelectorAll(".gcard,.dcard,.item,.quick a,.ep,.lrow,.gift").forEach(el => {
+    const k = el.parentElement, i = seen.get(k) || 0;
+    seen.set(k, i + 1);
+    el.classList.add("rv");
+    el.style.animationDelay = Math.min(i * 40, 240) + "ms";
+  });
+}
+/* 5. 已完成任务的对勾描线 */
+function drawChecks(scr){
+  if(rm()) return;
+  scr.querySelectorAll('.pill.ok .ic,.row .ic').forEach(el => {
+    if(el.querySelector('use[href="#i-check"]')) el.classList.add("chk-draw");
+  });
+}
+/* 12. tab 指示条滑动 */
+function moveTabInd(){
+  const a = $("#tabs a.on"), ind = $("#tabInd"), bar = $("#tabs");
+  if(!a || !ind) return;
+  const r = a.getBoundingClientRect(), p = bar.getBoundingClientRect();
+  ind.style.transform = `translateX(${(r.left - p.left + r.width / 2 - 13).toFixed(1)}px)`;
+  ind.style.opacity = bar.style.display === "none" ? "0" : "1";
+}
+/* 3. 悬浮陪伴头像：只在首页 / 短剧 / 奖励 / 我的出现 */
+const FAB_ON = ["home", "drama", "rewards", "me"];
+function syncFab(name){
+  const f = $("#fab"); if(!f) return;
+  const show = FAB_ON.includes(name);
+  f.classList.toggle("on", show);
+  if(!show){ f.innerHTML = ""; return; }
+  const g = girl();
+  f.setAttribute("aria-label", `和${g.name}聊天`);
+  f.innerHTML = `${phImg(outfitImg(g), g.initial, "", "", AV)}<span class="dot"></span><span class="ring"></span>`;
+}
+
+function afterRender(scr, name){
+  stagger(scr); drawChecks(scr); syncFab(name);
+  requestAnimationFrame(moveTabInd);
+}
+
 /* ---------- 底部抽屉 ---------- */
 let sheetOpen = false;
 function sheet({ title, sub, body, foot }){
@@ -833,7 +1226,7 @@ function react(host, kind="idle", gid){
   const say = pool[Math.floor(Math.random() * pool.length)];
   host.querySelectorAll(".react").forEach(n => n.remove());
   const d = document.createElement("div");
-  d.className = "react";
+  d.className = "react k-" + kind;
   d.style.cssText = host.dataset.reactPos || "right:12px;bottom:12px";
   d.innerHTML = `<div class="av">${phImg(outfitImg(g), g.initial, "", "", AV)}</div><span>${esc(g.name)} · ${esc(say)}</span>`;
   host.appendChild(d);
@@ -872,6 +1265,7 @@ function render(){
   const tab = out.tab || current.name;
   $$("#tabs a").forEach(a => a.classList.toggle("on", a.dataset.tab === tab));
   $("#tabs").style.display = out.noTabs ? "none" : "";
+  afterRender($(".scr", st), current.name);
   if(out.after) out.after($(".scr", st));
   leaveHook = out.leave || null;
 }
@@ -903,9 +1297,14 @@ ROUTES.home = { view(){
     <section class="hero" data-od-id="home-hero" id="heroBox" data-react-pos="right:14px;bottom:128px">
       ${phVid(g.video, outfitImg(g), g.initial, g.name + " 问候短片")}
       <div class="scrim"></div>
+      <div class="floaters" aria-hidden="true">
+        <span class="flo f1">${ico("i-sparkle")}她在线 · 想你了</span>
+        <span class="flo f2 r">${ico("i-heart")}+${XPR.checkin} 亲密</span>
+        <span class="flo f3">${ico("i-heart","ic f")}</span>
+      </div>
       <div class="hero-c">
         <div class="lbl">${esc(g.type)}</div>
-        <h1 class="h1" style="margin-top:6px">${esc(g.name)}<span class="en">${esc(g.en)}</span></h1>
+        <h1 class="h1" style="margin-top:6px"><span class="sweep">${esc(g.name)}</span><span class="en">${esc(g.en)}</span></h1>
         <p class="p" style="margin-top:6px;color:rgba(242,237,227,.8);max-width:19em">${esc(g.line)}</p>
         <div style="margin-top:13px;max-width:17em">${bondBar(g.id, "onimg")}</div>
         <div style="display:flex;gap:9px;margin-top:15px;flex-wrap:wrap">
@@ -961,14 +1360,25 @@ ROUTES.home = { view(){
       <p class="sm" style="margin-top:22px;text-align:center">演示数据保存在本机浏览器 · 可在「我的」重置</p>
     </div>`,
     after(root){
+      const btn = $("#btnCheck", root);
+      if(!S.checkedIn) btn.classList.add("claim");
+      const firstGo = root.querySelector(".row .tbtn");
+      if(firstGo) firstGo.classList.add("nudge");
       const doCheck = () => {
         if(S.checkedIn){ toast("今天已经签到过了"); return; }
         S.checkedIn = true; S.tasks.checkin = true; save();
+        burst(lastTap || btn.getBoundingClientRect(), { n:14, spread:54 });
+        btn.classList.remove("claim");
+        pulseOnce(btn, "flip", 440);
+        setTimeout(() => {
+          btn.classList.remove("btn-go"); btn.classList.add("btn-qt");
+          btn.innerHTML = ico("i-check") + "已签到";
+        }, 200);
         reward("每日签到", RULES.checkin, XPR.checkin);
         react($("#heroBox"), "win");
-        setTimeout(render, 720);
+        setTimeout(render, 900);
       };
-      $("#btnCheck", root).onclick = doCheck;
+      btn.onclick = doCheck;
       const tc = $("#taskCheck", root); if(tc) tc.onclick = doCheck;
       $("#homeGift", root).onclick = () => giftSheet(g.id);
       const hero = $("#heroBox", root);
@@ -1006,7 +1416,7 @@ ROUTES.girls = { view(){
     <p class="p" data-od-id="girls-intro">三位成年虚拟角色，性格与说话方式不同。随时可以更换，已解锁的内容不会消失。</p>
     <div style="display:flex;flex-direction:column;gap:13px;margin-top:20px">
       ${GIRLS.map(g => `
-        <div class="gcard" data-od-id="girl-card-${g.id}">
+        <div class="gcard ${S.girl === g.id ? "cur" : ""}" data-od-id="girl-card-${g.id}">
           <a href="#girl/${g.id}" style="display:block;position:relative;text-decoration:none;color:inherit"
              aria-label="${esc(g.name)} 角色详情">
             ${phImg(outfitImg(g), g.initial, g.name + " 形象")}
@@ -1034,9 +1444,12 @@ ROUTES.girls = { view(){
     after(root){
       $$("[data-pick]", root).forEach(b => b.onclick = () => {
         const g = girl(b.dataset.pick);
+        burst(b.getBoundingClientRect(), { n:10, kind:"heart", spread:56 });
+        pulseOnce(b.closest(".gcard"), "flip", 460);
         S.girl = g.id;
         if(!S.owned.vid.includes(g.id)) S.owned.vid.push(g.id);
-        save(); toast(`已选择 ${g.name} · 问候短片已加入视频收藏`, "i-heart"); render();
+        save(); toast(`已选择 ${g.name} · 问候短片已加入视频收藏`, "i-heart");
+        setTimeout(render, 430);
       });
     }
   };
@@ -1302,7 +1715,7 @@ ROUTES.wardrobe = { view(){
       $$("[data-outfit]", root).forEach(b => b.onclick = () => {
         const v = b.dataset.outfit;
         if(v === "alt" && !S.owned.outfit.includes(g.id)){
-          return buy({ cost:PRICE.outfit, title:"一套角色服装", sub:`${g.name} · ${g.outfit2}`,
+          return buy({ cost:PRICE.outfit, title:"一套角色服装", sub:`${g.name} · ${g.outfit2}`, fromEl:b,
             cond:["解锁后永久可切换","仅对该角色生效"],
             done(){ S.owned.outfit.push(g.id); S.outfit[g.id] = "alt"; } });
         }
@@ -1311,7 +1724,7 @@ ROUTES.wardrobe = { view(){
       $$("[data-bg]", root).forEach(b => b.onclick = () => {
         const bg = BGS.find(x => x.id === b.dataset.bg);
         if(!S.owned.bg.includes(bg.id)){
-          return buy({ cost:PRICE.bg, title:"一个角色背景", sub:bg.name,
+          return buy({ cost:PRICE.bg, title:"一个角色背景", sub:bg.name, fromEl:b,
             cond:["解锁后永久可用","所有角色通用"],
             done(){ S.owned.bg.push(bg.id); S.bg = bg.id; } });
         }
@@ -1320,7 +1733,7 @@ ROUTES.wardrobe = { view(){
       $$("[data-act]", root).forEach(b => b.onclick = () => {
         const a = ACTS.find(x => x.id === b.dataset.act);
         if(S.owned.act.includes(a.id)){ toast(`「${a.name}」已拥有，在角色页可触发`); return; }
-        buy({ cost:PRICE.act, title:"一个专属动作/语音", sub:a.name,
+        buy({ cost:PRICE.act, title:"一个专属动作/语音", sub:a.name, fromEl:b,
           cond:["解锁后永久可用","在角色页点按触发"],
           done(){ S.owned.act.push(a.id); } });
       });
@@ -1343,7 +1756,7 @@ function balanceRows(cost){
 }
 
 /* 统一的「确认兑换」确认单 */
-function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then }){
+function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then, fromEl }){
   const after = S.pts - cost;
   const ok = after >= 0;
   const sh = sheet({
@@ -1369,9 +1782,11 @@ function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then }){
   const y = sh.querySelector("#yes");
   if(y) y.onclick = () => {
     if(S.pts < cost){ toast("积分不足"); return; }
+    const src = fromEl && fromEl.isConnected ? fromEl : null;
     done(); save(); addPts(-cost, `兑换 ${title}`);
-    closeSheet(); toast(`${title} 已加入收藏`, "i-star");
-    if(then) then(); else setTimeout(render, 700);
+    closeSheet();
+    setTimeout(() => flyToCollect(src, `${title} 已加入收藏`), 220);
+    if(then) then(); else setTimeout(render, 760);
   };
 }
 window.closeSheet = closeSheet; window.nav = nav;
@@ -1394,17 +1809,20 @@ function giftSheet(gid){
       <p class="sm" style="margin-top:14px">选中即送出，她会在聊天里回你一句。礼物为虚拟物品，不可转让、不折现。</p>`,
     foot:`<button class="btn btn-qt btn-w" onclick="closeSheet()">再看看</button>`
   });
-  $$("[data-gift]", sh).forEach(btn => btn.onclick = () => sendGift(g, GIFTS.find(x => x.id === btn.dataset.gift)));
+  $$("[data-gift]", sh).forEach(btn => btn.onclick = () => sendGift(g, GIFTS.find(x => x.id === btn.dataset.gift), btn));
 }
-function sendGift(g, gift){
+function sendGift(g, gift, fromEl){
   if(S.pts < PRICE.gift){ closeSheet(); toast(`积分不足，还差 ${PRICE.gift - S.pts}`, "i-coin"); return; }
   const log = S.chats[g.id] = S.chats[g.id] || [];
   log.push({ r:"me", x:`送你一份${gift.name}` });
   log.push({ r:"her", x:BOND[g.id].thanks[gift.id] });
   S.tasks.gift = true;
+  const from = fromEl ? fromEl.getBoundingClientRect() : lastTap;
   closeSheet();
+  const to = (current.name === "chat" && rectOf(".av-s")) || rectOf("#fab") || rectOf(".ptchip");
+  flyIcon(from, to, gift.icon, () => burst(to, { n:9, kind:"heart", spread:36 }));
   reward(`送出${gift.name}`, -PRICE.gift, XPR.gift, g.id);
-  setTimeout(render, 760);
+  setTimeout(render, 980);
 }
 /* ---------- Lv.3 / Lv.4 内容 ---------- */
 function bondStory(gid, kind){
@@ -1565,10 +1983,13 @@ function startGame(){
   G = { score:0, combo:0, best:0, hits:0, left:GAME.len, scored, celebrated:false, tick:null, spawn:null, arena };
   react(arena, "idle", g.id);
 
+  const bar = host.querySelector(".tbar"), tmEl = $("#tm");
   G.tick = setInterval(() => {
     G.left--;
-    $("#tm").textContent = Math.max(0, G.left);
+    tmEl.textContent = Math.max(0, G.left);
     $("#tb").style.transform = `scaleX(${Math.max(0, G.left / GAME.len)})`;
+    const low = G.left <= 5 && G.left > 0;
+    bar.classList.toggle("low", low); tmEl.classList.toggle("low", low);
     if(G.left <= 0) endGame();
   }, 1000);
   G.spawn = setInterval(pop, 620);
@@ -1596,15 +2017,20 @@ function startGame(){
     b.onclick = () => {
       if(!G) return;
       clearTimeout(life);
-      b.classList.add("pop"); setTimeout(() => b.remove(), 300);
+      const r = b.getBoundingClientRect();
+      b.classList.add("pop"); setTimeout(() => b.remove(), 340);
+      splash(r, gold);
       G.hits++; G.combo++; G.best = Math.max(G.best, G.combo);
       const mult = gold ? 2 : 1;
-      G.score += (GAME.hit + (G.combo >= 5 ? GAME.comboBonus : 0)) * mult;
+      const gain = (GAME.hit + (G.combo >= 5 ? GAME.comboBonus : 0)) * mult;
+      G.score += gain;
+      popNum(r, "+" + gain, !gold);
       $("#sc").textContent = G.score;
       $("#cb").textContent = G.combo;
       const tag = $("#comboTag");
       if(G.combo >= 2){ tag.textContent = `${G.combo} 连击${gold ? " · 双倍" : ""}`; tag.classList.add("on"); }
       else tag.classList.remove("on");
+      if(G.combo === 5 || G.combo === 10 || G.combo === 20) pulseOnce(tag, "hit", 460);
       if(G.score >= GAME.target && !G.celebrated){ G.celebrated = true; react(arena, "win", g.id); }
       else if(G.combo >= 5){ if(G.combo % 3 === 0) react(arena, "combo", g.id); }
       else if(G.hits % 4 === 0) react(arena, "hit", g.id);
@@ -1640,15 +2066,15 @@ function endGame(){
       </div>
     <div style="text-align:center;padding:20px 18px 22px">
       <div class="lbl">${scored ? "本局结果" : "练习结果 · 不计分"}</div>
-      <div class="big xl" style="margin-top:8px;font-size:48px">${score}</div>
+      <div class="big xl" id="finalScore" style="margin-top:8px;font-size:48px">${score}</div>
       <div class="sm" style="margin-top:4px">得分 · 命中 ${hits} 次 · 最高 ${best} 连击</div>
       <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--line-2);display:flex;gap:10px">
         <div style="flex:1"><div class="lbl">获得积分</div>
-          <div class="big" style="font-size:26px;margin-top:5px;color:${earned ? "var(--gold)" : "var(--muted)"}">${scored ? "+" + earned : "0"}</div></div>
+          <div class="big stat-n" style="font-size:26px;margin-top:5px;color:${earned ? "var(--gold)" : "var(--muted)"}">${scored ? "+" + earned : "0"}</div></div>
         <div style="flex:1"><div class="lbl">获得亲密</div>
-          <div class="big" style="font-size:26px;margin-top:5px;color:${scored ? "var(--rose)" : "var(--muted)"}">${scored ? "+" + XPR.game : "0"}</div></div>
+          <div class="big stat-n" style="font-size:26px;margin-top:5px;color:${scored ? "var(--rose)" : "var(--muted)"}">${scored ? "+" + XPR.game : "0"}</div></div>
         <div style="flex:1"><div class="lbl">剩余计分局</div>
-          <div class="big" style="font-size:26px;margin-top:5px">${left}</div></div>
+          <div class="big stat-n" style="font-size:26px;margin-top:5px">${left}</div></div>
       </div>
       <div style="margin-top:16px;text-align:left">${bondBar(g.id)}</div>
       ${score >= GAME.target ? `<p class="sm" style="margin-top:14px">达成目标分 ${GAME.target}</p>` : ""}
@@ -1660,6 +2086,10 @@ function endGame(){
     </div>
   </section>`;
   $("#again").onclick = startGame;
+  if(!rm()){
+    countTo($("#finalScore"), 0, score);
+    $$(".stat-n").forEach((el, i) => { el.classList.add("seq"); el.style.animationDelay = (220 + i * 150) + "ms"; });
+  }
 }
 
 /* ============================================================
@@ -1746,18 +2176,20 @@ ROUTES.show = { view(id){
       </section>
     </div>`,
     after(root){
-      $$("[data-ep]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.ep));
+      $$("[data-ep]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.ep, b));
       $("#shr", root).onclick = () => shareSheet(d);
     }
   };
 }};
 
-function openEp(d, n){
+let justUnlocked = null;
+function openEp(d, n, el){
   const un = S.eps[d.id] || (S.eps[d.id] = []);
   if(un.includes(n)) return nav(`#play/${d.id}/${n}`);
-  buy({ cost:PRICE.ep, title:"一集AI短剧", sub:`${d.title} · 第 ${n} 集 ${d.eps[n - 1]}`,
+  if(el && S.pts < PRICE.ep) pulseOnce(el, "shake", 460);
+  buy({ cost:PRICE.ep, title:"一集AI短剧", sub:`${d.title} · 第 ${n} 集 ${d.eps[n - 1]}`, fromEl:el,
     cond:["解锁后永久可看，不重复扣分","仅解锁本集"],
-    done(){ un.push(n); un.sort((a, b) => a - b); },
+    done(){ un.push(n); un.sort((a, b) => a - b); justUnlocked = `${d.id}-${n}`; },
     then(){ const h = `#play/${d.id}/${n}`; if(location.hash === h) render(); else nav(h); } });
 }
 
@@ -1779,6 +2211,7 @@ ROUTES.play = { view(id, epStr){
       <video src="${d.video}" poster="${d.poster}" data-alt="${esc(d.title)}" controls autoplay muted playsinline
         preload="metadata" onerror="vidFail(this)"></video>
       <button class="unmute" id="unmute" data-od-id="player-unmute">${ico("i-mute")}点击开声音</button>
+      <i class="pprog"><b id="pbar"></b></i>
     </div>
     <div style="padding:16px 18px 0">
       <div style="display:flex;align-items:center;gap:10px">
@@ -1808,7 +2241,7 @@ ROUTES.play = { view(id, epStr){
       </section>
     </div>`,
     after(root){
-      $$("[data-go]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.go));
+      $$("[data-go]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.go, b));
       $("#shr2").onclick = () => shareSheet(d, n);
       const key = `${d.id}-${n}`;
       const credit = () => {
@@ -1819,8 +2252,16 @@ ROUTES.play = { view(id, epStr){
         if(b) b.outerHTML = `<span class="pill ok">${ico("i-check")}已看完</span>`;
       };
       const done = $("#epDone", root); if(done) done.onclick = credit;
+      const player = root.querySelector(".player"), pbar = $("#pbar", root);
+      if(justUnlocked === key && player){
+        justUnlocked = null;
+        pulseOnce(player, "shimmer", 1150);
+      }
       const v = root.querySelector("video"), um = $("#unmute", root);
       if(v){
+        v.addEventListener("timeupdate", () => {
+          if(pbar && v.duration) pbar.style.transform = `scaleX(${(v.currentTime / v.duration).toFixed(4)})`;
+        });
         v.addEventListener("ended", credit);
         v.addEventListener("timeupdate", () => {
           if(v.duration && v.currentTime / v.duration > 0.95) credit();
@@ -1995,7 +2436,7 @@ ROUTES.rewards = { view(){
         }
         if(c.pick) return giftSheet();
         if(!tgt){ toast(c.note); return; }
-        buy({ cost:c.cost, title:c.title, sub:tgt,
+        buy({ cost:c.cost, title:c.title, sub:tgt, fromEl:b,
           cond:["兑换后加入「已解锁内容」", "解锁内容永久可用，不重复扣分"],
           stock:c.stock.replace(/^库存\s*/, ""), limit:c.limit, expiry:c.expiry,
           done(){ c.buy(); } });
@@ -2184,6 +2625,7 @@ function endCoach(finished){
 /* ============================================================
    启动
    ============================================================ */
+$("#fab").onclick = () => nav("#chat");
 if(!location.hash) location.hash = "#home";
 render();
 if(!S.coached){
