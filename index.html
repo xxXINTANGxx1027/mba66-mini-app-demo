@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/logo/mba-app-icon01.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
@@ -27,8 +27,8 @@
   --fg:#FFFFFF;--muted:rgba(226,236,255,.74);--faint:rgba(206,220,255,.66);
   --line:rgba(58,123,255,.38);--line-2:rgba(120,160,255,.2);
   --r-ctl:12px;--r-card:16px;--r-panel:18px;
-  /* Jost 只覆盖拉丁与数字，中文自动落到苹方 / 鸿蒙 / 冬青，Noto Sans SC 仅作网络兜底 */
-  --sans:"Jost","PingFang SC","HarmonyOS Sans SC","Hiragino Sans GB","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  /* 苹方原生：中文苹方，英文数字走系统 SF；非苹果设备落到鸿蒙 / 冬青 / Noto Sans SC */
+  --sans:"PingFang SC",-apple-system,"SF Pro Display","HarmonyOS Sans SC","Hiragino Sans GB","Noto Sans SC",system-ui,sans-serif;
   --e:cubic-bezier(.22,.61,.36,1);--e2:cubic-bezier(.32,.72,0,1);--e3:cubic-bezier(.2,.7,.2,1);
 }
 html,body{height:100%}
@@ -1065,6 +1065,11 @@ body{
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
+</style>
+<style>
+/* 苹方最粗只有 Semibold(600)，标题与大数字统一用 600，避免浏览器假加粗 */
+:is(.h1,.h2,h1,h2,h3,.qt span,.gg,.sweep){font-weight:600}
+.big{font-weight:600}
 </style>
 </head>
 <body>
