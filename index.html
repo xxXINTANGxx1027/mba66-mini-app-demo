@@ -1291,6 +1291,160 @@ body{
 .fogbox canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
 .fogbox .hintf{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:12.5px;font-weight:600;
   color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none;z-index:3}
+
+/* ---------- V8 · 衣柜锁定 + 每张游戏封面各不相同 ---------- */
+.item.tierlk .ph>img{filter:blur(15px) saturate(1.3) brightness(.78);transform:scale(1.14)}
+.item .lkbox{position:absolute;z-index:4;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px}
+.item .lkbox .ic{width:20px;height:20px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.item .shine{position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:linear-gradient(104deg,transparent 38%,rgba(255,235,250,.6) 50%,transparent 62%);
+  transform:translateX(-120%)}
+.item.unl .shine{animation:shimGo 1s var(--e3) both}
+.item.unl{animation:albUnlock .9s var(--e3)}
+
+/* 封面：色调 + 主题图形，彼此拉开差距 */
+.gcardx .cv-tint{position:absolute;inset:0;z-index:1;pointer-events:none}
+.cv-pink  .cv-tint{background:linear-gradient(150deg,rgba(255,79,163,.52),rgba(168,21,94,.26) 58%,transparent)}
+.cv-gold  .cv-tint{background:linear-gradient(150deg,rgba(255,196,80,.5),rgba(224,138,42,.24) 58%,transparent)}
+.cv-violet .cv-tint{background:linear-gradient(150deg,rgba(182,92,255,.52),rgba(122,43,208,.26) 58%,transparent)}
+.cv-frost .cv-tint{background:linear-gradient(176deg,rgba(236,222,240,.6) 0%,rgba(236,222,240,.2) 40%,transparent 60%)}
+.cv-coral .cv-tint{background:linear-gradient(150deg,rgba(255,128,90,.5),rgba(214,31,122,.26) 58%,transparent)}
+.gcardx .cv-fx{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.cv-fx svg{position:absolute}
+/* 猜拳：三只手 */
+.fx-rps b{position:absolute;top:13px;left:11px;display:flex;gap:5px}
+.fx-rps b i{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,214,236,.85));
+  box-shadow:0 2px 7px rgba(0,0,0,.35)}
+.fx-rps b i svg{position:static;width:14px;height:14px;fill:#C2186C}
+/* 写真：取景框 */
+.fx-cam i{position:absolute;width:18px;height:18px;border:2.4px solid rgba(255,255,255,.92)}
+.fx-cam i:nth-child(1){left:10px;top:10px;border-right:0;border-bottom:0}
+.fx-cam i:nth-child(2){right:10px;top:10px;border-left:0;border-bottom:0}
+.fx-cam i:nth-child(3){left:10px;bottom:10px;border-right:0;border-top:0}
+.fx-cam i:nth-child(4){right:10px;bottom:10px;border-left:0;border-top:0}
+.fx-cam b{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:54px;height:40px;
+  border:1.6px solid rgba(255,225,120,.95);border-radius:4px;
+  box-shadow:0 0 12px rgba(255,225,120,.6)}
+/* 防晒：太阳 + 瓶子 */
+.fx-sun svg{right:10px;top:10px;width:30px;height:30px}
+.fx-sun b{position:absolute;right:44px;top:14px;width:15px;height:23px;border-radius:3px 3px 5px 5px;
+  background:linear-gradient(180deg,#fff,#FFD9A8);border:1.4px solid rgba(255,255,255,.9)}
+.fx-sun b::before{content:"";position:absolute;left:50%;top:-6px;transform:translateX(-50%);
+  width:7px;height:6px;border-radius:2px;background:#FF7CC0}
+/* 心跳：心电线 */
+.fx-ecg svg{left:0;right:0;top:34%;width:100%;height:32px}
+/* 雾：磨砂 */
+.fx-fog b{position:absolute;left:0;right:0;top:0;height:62%;
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  -webkit-mask-image:linear-gradient(190deg,#000 0 52%,transparent 96%);
+  mask-image:linear-gradient(190deg,#000 0 52%,transparent 96%);
+  background:rgba(240,228,244,.4)}
+/* 瓶子 */
+.fx-bottle svg{left:50%;top:48%;transform:translate(-50%,-50%) rotate(-22deg);width:46px;height:46px}
+/* 唇印 */
+.fx-lips svg{width:22px;height:22px;fill:rgba(255,79,163,.92);filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.fx-lips svg:nth-child(1){left:12px;top:46%}
+.fx-lips svg:nth-child(2){left:46%;top:24%;width:17px;height:17px;opacity:.85}
+.fx-lips svg:nth-child(3){right:14px;top:56%;width:26px;height:26px}
+/* 气泡 */
+.fx-bub b{position:absolute;right:12px;top:14px;display:grid;place-items:center;width:38px;height:32px;
+  border-radius:12px 12px 12px 3px;background:rgba(255,255,255,.95);color:#C2186C;
+  font-size:19px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+/* 记忆：三张牌扇形 */
+.cv-fan{position:absolute;inset:0;z-index:0;display:grid;place-items:center;background:#5E0F57}
+.cv-fan span{position:absolute;width:46%;aspect-ratio:3/4;border-radius:9px;overflow:hidden;
+  border:1.6px solid rgba(255,214,236,.8);box-shadow:0 6px 16px rgba(0,0,0,.5)}
+.cv-fan span:nth-child(1){transform:rotate(-15deg) translate(-32%,4%)}
+.cv-fan span:nth-child(2){transform:translateY(-4%);z-index:2}
+.cv-fan span:nth-child(3){transform:rotate(15deg) translate(32%,4%)}
+.cv-fan span .ph{width:100%;height:100%}
+/* 落心 */
+.fx-fall svg{width:17px;height:17px;fill:rgba(255,110,176,.95);filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
+.fx-fall svg:nth-child(1){left:16%;top:14%}
+.fx-fall svg:nth-child(2){left:42%;top:30%;width:13px;height:13px}
+.fx-fall svg:nth-child(3){left:66%;top:9%;width:20px;height:20px}
+.fx-fall svg:nth-child(4){left:28%;top:48%;width:12px;height:12px;opacity:.8}
+/* 火热角标 */
+.hotbadge{position:absolute;left:11px;top:11px;z-index:3;display:inline-flex;align-items:center;gap:4px;
+  height:21px;padding:0 9px;border-radius:999px;font-size:10.5px;font-weight:700;color:#fff;
+  background:linear-gradient(180deg,#FF7A3D,#D61F3C);
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 4px 10px -4px rgba(255,80,60,.9)}
+.hotbadge::before{content:"";width:7px;height:9px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:linear-gradient(180deg,#FFD36E,#FF7A3D)}
+.gcardx .newbadge{left:auto;right:11px}
+
+/* ---------- V8 新游戏 ---------- */
+.rhero{position:relative}
+.rhero .cv-tint{position:absolute;inset:0;z-index:1;pointer-events:none}
+.rpsrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rpsbtn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 6px;border-radius:18px;
+  border:1px solid rgba(255,200,230,.4);cursor:pointer;color:#fff;font-family:var(--sans);
+  font-size:13.5px;font-weight:700;background:linear-gradient(170deg,#FF5FA2,#C2186C);
+  box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 10px 24px -12px rgba(255,79,163,.95);
+  transition:transform .18s var(--e3)}
+.rpsbtn:active{transform:scale(.95)}
+.rpsbtn svg{width:34px;height:34px;fill:#fff;filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))}
+.rpsbtn[disabled]{opacity:.5;cursor:default}
+.rpshand{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,214,236,.88));
+  box-shadow:0 8px 20px -8px rgba(0,0,0,.6);perspective:600px}
+.rpshand svg{width:44px;height:44px;fill:#C2186C}
+.rpshand.flip{animation:handFlip .5s var(--e3)}
+@keyframes handFlip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg) scale(.9)}100%{transform:rotateY(0)}}
+.shakeit{animation:shakeX .45s var(--e3)}
+.tryon{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.tryon .ph{width:100%;height:min(32vh,268px)}
+.tryon .cap{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:24px 12px 11px;
+  background:linear-gradient(180deg,rgba(42,10,51,0),rgba(42,10,51,.92));font-size:13px;font-weight:700}
+/* 拍写真 */
+.shootbox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.shootbox .ph{width:100%;height:min(40vh,330px)}
+.shootbox .ph>img{transition:transform .5s var(--e3)}
+.shootbox.z1 .ph>img{transform:scale(1.1) rotate(-1.5deg)}
+.shootbox.z2 .ph>img{transform:scale(1.04) rotate(1.2deg)}
+.vf i{position:absolute;z-index:3;width:20px;height:20px;border:2.4px solid rgba(255,255,255,.9)}
+.vf i:nth-child(1){left:10px;top:10px;border-right:0;border-bottom:0}
+.vf i:nth-child(2){right:10px;top:10px;border-left:0;border-bottom:0}
+.vf i:nth-child(3){left:10px;bottom:10px;border-right:0;border-top:0}
+.vf i:nth-child(4){right:10px;bottom:10px;border-left:0;border-top:0}
+.poselab{position:absolute;z-index:4;left:50%;top:14px;transform:translateX(-50%);padding:6px 14px;
+  border-radius:999px;font-size:13px;font-weight:700;background:rgba(42,10,51,.88);
+  border:1px solid var(--line);white-space:nowrap}
+.poselab.hit{border-color:var(--gold-1);color:var(--gold-1)}
+.flashfx{position:absolute;inset:0;z-index:6;background:#fff;opacity:0;pointer-events:none}
+.flashfx.on{animation:flashGo .34s var(--e3)}
+@keyframes flashGo{0%{opacity:.92}100%{opacity:0}}
+.shutter{display:grid;place-items:center;width:76px;height:76px;margin:14px auto 0;border-radius:50%;
+  border:4px solid rgba(255,255,255,.9);background:linear-gradient(180deg,#FF5FA2,#C2186C);cursor:pointer;
+  box-shadow:0 10px 26px -10px rgba(255,79,163,.95)}
+.shutter:active{transform:scale(.93)}
+.shutter span{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.9)}
+/* 涂防晒 */
+.sunbox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);touch-action:none}
+.sunbox img{display:block;width:100%;height:auto;max-height:52vh;object-fit:cover}
+.spot{position:absolute;width:52px;height:52px;border-radius:50%;transform:translate(-50%,-50%);
+  border:2px solid rgba(255,214,140,.95);background:rgba(255,214,140,.2);
+  box-shadow:0 0 16px rgba(255,214,140,.8);animation:spotPulse 1.5s var(--e3) infinite}
+@keyframes spotPulse{0%,100%{box-shadow:0 0 10px rgba(255,214,140,.6)}55%{box-shadow:0 0 22px rgba(255,214,140,.95)}}
+.spot i{position:absolute;inset:3px;border-radius:50%;background:linear-gradient(180deg,#FFF3D6,#FFD36E);
+  transform:scale(0);transform-origin:center;transition:transform .14s linear}
+.spot.done{animation:none;border-color:#FFF3D6}
+.spot.done i{transform:scale(1)}
+/* 心跳靠近 */
+.closebox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.closebox .ph{width:100%;height:min(40vh,330px)}
+.closebox .ph>img{transition:transform .12s linear;transform-origin:50% 22%}
+.hrbar{position:relative;height:16px;border-radius:9px;margin-top:12px;overflow:hidden;
+  background:linear-gradient(90deg,#5BE3B0 0%,#FFD36E 46%,#FFD36E 62%,#FF5A5A 100%)}
+.hrbar .zone{position:absolute;top:0;bottom:0;left:46%;width:16%;border-left:2px solid rgba(255,255,255,.9);
+  border-right:2px solid rgba(255,255,255,.9)}
+.hrbar .pin{position:absolute;top:-3px;bottom:-3px;width:4px;border-radius:3px;background:#fff;
+  box-shadow:0 0 8px rgba(255,255,255,.9);transform:translateX(-2px)}
+.hrbeat{display:inline-grid;place-items:center;width:22px;height:22px;vertical-align:-5px}
+.hrbeat svg{width:100%;height:100%;fill:var(--pink);animation:beat 1s var(--e3) infinite}
+@keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.26)}}
 /* ---------- 私密相册 ---------- */
 .alb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .albc{position:relative;border:0;padding:0;border-radius:16px;overflow:hidden;cursor:pointer;
@@ -1438,6 +1592,8 @@ const GIRLS = [
   { id:"sweet", name:"小糖", en:"Candy", type:"甜美型", initial:"糖", age:24,
     tags:["活泼","俏皮","亲切"],
     v3:"assets/img/girl-sweet-v3.webp", x:"assets/img/girl-sweet-x.webp",
+    bikini:"assets/img/girl-sweet-bikini.webp",
+    sun:"assets/img/girl-sweet-sun.webp",
     lounge:"assets/img/girl-sweet-lounge.webp", img:"assets/img/girl-sweet.webp", img2:"assets/img/girl-sweet-2.webp",
     video:"assets/video/girl-sweet.mp4",
     line:"今天也想听你讲讲你的事。",
@@ -1466,6 +1622,8 @@ const GIRLS = [
   { id:"queen", name:"薇薇安", en:"Vivian", type:"御姐型", initial:"薇", age:31,
     tags:["成熟","自信","有魅力"],
     v3:"assets/img/girl-queen-v3.webp", x:"assets/img/girl-queen-x.webp",
+    bikini:"assets/img/girl-queen-bikini.webp",
+    sun:"assets/img/girl-queen-sun.webp",
     lounge:"assets/img/girl-queen-lounge.webp", img:"assets/img/girl-queen.webp", img2:"assets/img/girl-queen-2.webp",
     video:"assets/video/girl-queen.mp4",
     line:"坐下吧，今晚不谈工作。",
@@ -1494,6 +1652,7 @@ const GIRLS = [
   { id:"cool", name:"露娜", en:"Luna", type:"冷艳型", initial:"露", age:27,
     tags:["优雅","含蓄","有个性"],
     v3:"assets/img/girl-cool-v3.webp", x:"assets/img/girl-cool-x.webp",
+    bikini:"assets/img/girl-cool-bikini.webp",
     lounge:"assets/img/girl-cool-lounge.webp", img:"assets/img/girl-cool.webp", img2:"assets/img/girl-cool-2.webp",
     video:"assets/video/girl-cool.mp4",
     line:"你来得正好，我刚放完这首。",
@@ -1587,12 +1746,13 @@ function fresh(){
   return {
     pts:0, day:today(), checkedIn:false, rounds:0, invited:0,
     girl:"sweet", bg:"cafe", outfit:{}, nick:"演示用户",
-    owned:{ bg:["cafe"], act:[], outfit:[], outfitC:[], outfitL:[], vid:[], album:{} },
+    owned:{ bg:["cafe"], act:[], outfit:[], outfitC:[], outfitL:[], vid:[], album:{}, tier:{} },
     eps:{ d1:[1,2] }, watched:[], last:{},
     tasks:{ checkin:false, game:false, drama:false, share:false, gift:false },
     streak:0,
     chats:{}, ledger:[], coached:false, booted:false,
     xp:{ sweet:80, queen:0, cool:0 },   // 演示起点：小糖差一步到 Lv.2
+    shots:{},
     chatXp:[], epXp:[], coachXp:false
   };
 }
@@ -1610,6 +1770,8 @@ function load(){
   if(!s.owned.outfitC) s.owned.outfitC = [];
   if(!s.owned.outfitL) s.owned.outfitL = [];
   if(!s.owned.album) s.owned.album = {};
+  if(!s.owned.tier) s.owned.tier = {};
+  if(!s.shots) s.shots = {};
   if(!s.booted){
     s.booted = true; s.pts = RULES.signup;
     s.ledger = [{ t:Date.now(), label:"首次注册奖励", d:RULES.signup }];
@@ -2069,11 +2231,27 @@ function react(host, kind="idle", gid){
   reactTimer = setTimeout(() => { d.classList.add("hide"); setTimeout(() => d.remove(), 300); }, 1800);
 }
 /* 主图 = lounge；经典照与限定照都是可解锁造型 */
-const OWNKEY = { alt:"outfit", classic:"outfitC", lounge:"outfitL" };
-const outfitImg = g => {
-  const o = S.outfit[g.id], k = OWNKEY[o];
-  if(k && (S.owned[k] || []).includes(g.id)) return o === "alt" ? g.img2 : o === "classic" ? g.img : g.lounge;
-  return g.v3;
+/* 五级衣柜：一次性解锁，价格递增；比基尼是顶级，没有内衣级 */
+const TIERS = [
+  { k:"daily",  t:"日常",     price:0,   img:g => g.img },
+  { k:"lounge", t:"酒廊礼服", price:100, img:g => g.lounge },
+  { k:"v3",     t:"性感造型", price:200, img:g => g.v3 },
+  { k:"x",      t:"睡衣",     price:300, img:g => g.x },
+  { k:"bikini", t:"比基尼",   price:500, img:g => g.bikini }
+];
+const tierOf = k => TIERS.find(t => t.k === k) || TIERS[0];
+const tierImg = (g, k) => tierOf(k).img(g);
+const ownTier = (gid, k) => k === "daily" || (gid === "sweet" && k === "v3")
+  || ((S.owned.tier || {})[gid] || []).includes(k);
+const wornTier = gid => {
+  const k = S.outfit[gid];
+  if(k && ownTier(gid, k)) return k;
+  return gid === "sweet" ? "v3" : "daily";
+};
+const outfitImg = g => tierImg(g, wornTier(g.id));
+const TIER_LINE = {
+  lounge:"这条裙子是为今晚挑的。", v3:"好看吗？我特意换的。",
+  x:"……这套只在家里穿。（脸红）", bikini:"第一次穿给你看…不许乱看哦（脸红）"
 };
 /* 私密相册：主图 + 私房照 + 两套旧造型；0 号免费，其余 120 解锁 */
 const albumOf = g => [
@@ -2084,6 +2262,11 @@ const albumOf = g => [
 ];
 const albumOwned = (gid, i) => i === 0 || ((S.owned.album || {})[gid] || []).includes(i);
 const albumCount = gid => albumOf(girl(gid)).filter((_, i) => albumOwned(gid, i)).length;
+const shotsOf = gid => {
+  const n = (S.shots || {})[gid] || 0, g = girl(gid);
+  const pool = [g.v3, g.lounge, g.x, g.bikini].filter(Boolean);
+  return Array.from({ length:n }, (_, i) => ({ img:pool[i % pool.length], t:`写真 · 第 ${i + 1} 张` }));
+};
 const bgOf = () => BGS.find(b => b.id === S.bg) || BGS[0];
 </script>
 <script>
@@ -2347,7 +2530,7 @@ ROUTES.girl = { view(id){
         <div class="sec-h"><h2 class="h2">她的空间</h2></div>
         <div style="display:flex;flex-direction:column;gap:9px">
           <a class="lrow" href="#chat">${ico("i-chat")}<div class="row-m">聊天<div class="row-s">文字对话 · 不消耗积分</div></div><span class="cv">${ico("i-next")}</span></a>
-          <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">服装 ${PRICE.outfit} · 背景 ${PRICE.bg} · 动作 ${PRICE.act}</div></div><span class="cv">${ico("i-next")}</span></a>
+          <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">${TIERS.length} 套造型 · 已解锁 ${TIERS.filter(t => ownTier(g.id, t.k)).length}</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#videos">${ico("i-play")}<div class="row-m">视频收藏<div class="row-s">${ownsVid ? "已解锁 " + g.name + " 的问候短片" : "未解锁"}</div></div><span class="cv">${S.owned.vid.length}/${GIRLS.length}${ico("i-next")}</span></a>
           <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩小游戏<div class="row-s">${GAMES.length} 个游戏 · 今日可计分 ${Math.max(0, RULES.gameRounds - S.rounds)}/${RULES.gameRounds} 局</div></div><span class="cv">${ico("i-next")}</span></a>
         </div>
@@ -2355,7 +2538,7 @@ ROUTES.girl = { view(id){
 
       <section class="sec" data-od-id="girl-album">
         <div class="sec-h"><h2 class="h2">她的私密相册</h2>
-          <span class="sm">${albumCount(g.id)} / 4 已解锁</span></div>
+          <span class="sm">${albumCount(g.id)} / 4 已解锁${shotsOf(g.id).length ? " · 写真 " + shotsOf(g.id).length + " 张" : ""}</span></div>
         ${albumGrid(g.id)}
       </section>
 
@@ -2488,11 +2671,8 @@ ROUTES.chat = { view(){
             <div class="row"><div class="row-m"><div class="row-t">当前场景</div><div class="row-s">${bgOf().name}</div></div><a class="tbtn" href="#wardrobe" onclick="closeSheet()">更换</a></div>
             <div class="row"><div class="row-m"><div class="row-t">对话条数</div><div class="row-s">仅保存在本机</div></div><span class="pill">${chatLog().length}</span></div>
           </div>
-          <p class="sm" style="margin:14px 0 4px">聊天不产生娱乐积分。清除后无法恢复。</p>`,
-        foot:`<button class="btn btn-gh btn-w" id="clr">${ico("i-refresh")}清除聊天记录</button>`
-      }).querySelector("#clr").onclick = () => {
-        S.chats[girl().id] = []; save(); closeSheet(); toast("聊天记录已清除"); render();
-      };
+          <p class="sm" style="margin:14px 0 4px">聊天不产生娱乐积分。</p>`
+      });
     },
     leave(){ $("#stage").style.overflow = ""; }
   };
@@ -2514,27 +2694,23 @@ function answer(g, txt){
    ============================================================ */
 ROUTES.wardrobe = { view(){
   const g = girl();
-  const ownOf = k => k === "base" || (S.owned[OWNKEY[k]] || []).includes(g.id);
-  const cur = ownOf(S.outfit[g.id]) ? (S.outfit[g.id] || "base") : "base";
-  const OUT = [
-    { k:"base",    img:g.v3,     t:"粉色心动",   own:true,             price:0 },
-    { k:"lounge",  img:g.lounge, t:"蓝调沙龙",   own:ownOf("lounge"),  price:PRICE.outfit },
-    { k:"classic", img:g.img,    t:"经典 · 日常", own:ownOf("classic"), price:PRICE.outfit },
-    { k:"alt",     img:g.img2,   t:g.outfit2,     own:ownOf("alt"),     price:PRICE.outfit }
-  ];
+  const cur = wornTier(g.id);
+  const OUT = TIERS.map(t => ({ k:t.k, t:t.t, price:t.price, img:t.img(g), own:ownTier(g.id, t.k) }));
   return {
     tab:"girls",
     bar:barBack("换装与场景", "", `<div style="margin-left:auto">${ptLink()}</div>`),
     html:`
     <section class="sec" style="margin-top:4px" data-od-id="wardrobe-outfits">
-      <div class="sec-h"><h2 class="h2">造型</h2><span class="sm">${OUT.filter(o => o.own).length} / 4 可用</span></div>
+      <div class="sec-h"><h2 class="h2">造型</h2><span class="sm">${OUT.filter(o => o.own).length} / ${TIERS.length} 可用</span></div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-        ${OUT.map(o => `<button class="item tall" data-outfit="${o.k}" data-od-id="outfit-${o.k}">
-          ${phImg(o.img, g.initial, g.name + " " + o.t, "", "50% 22%")}
+        ${OUT.map(o => `<button class="item tall ${o.own ? "" : "tierlk"}" data-outfit="${o.k}" data-od-id="outfit-${o.k}">
+          ${phImg(o.img, g.initial, o.own ? g.name + " " + o.t : "未解锁造型", "", "50% 20%")}
+          <span class="shine"></span>
           ${o.own
-            ? (cur === o.k ? `<span class="pill g badge">${ico("i-check")}使用中</span>` : "")
-            : `<span class="pill badge">${ico("i-lock")}${o.price}</span>`}
-          <div class="item-b"><div class="item-t" style="font-size:12.5px">${esc(o.t)}</div></div>
+            ? (cur === o.k ? `<span class="pill g badge">${ico("i-check")}穿着中</span>` : "")
+            : `<span class="lkbox">${ico("i-lock")}<span class="pill g">${o.price} 积分</span></span>`}
+          <div class="item-b"><div class="item-t" style="font-size:13px">${esc(o.t)}</div>
+            <div class="sm" style="font-size:11px">${o.own ? (cur === o.k ? "穿着中" : "点击换上") : o.price + " 积分解锁"}</div></div>
         </button>`).join("")}
       </div>
     </section>
@@ -2571,15 +2747,21 @@ ROUTES.wardrobe = { view(){
       $$("[data-outfit]", root).forEach(b => b.onclick = () => {
         const v = b.dataset.outfit, o = OUT.find(x => x.k === v);
         if(!o.own){
-          return buy({ cost:PRICE.outfit, title:"一套角色服装", sub:`${g.name} · ${o.t}`, fromEl:b,
+          return buy({ cost:o.price, title:"一套角色服装", sub:`${g.name} · ${o.t}`, fromEl:b,
             cond:["解锁后永久可切换","仅对该角色生效"],
             done(){
-              const key = OWNKEY[v];
-              (S.owned[key] = S.owned[key] || []).push(g.id);
+              const t = S.owned.tier = S.owned.tier || {};
+              (t[g.id] = t[g.id] || []).push(v);
               S.outfit[g.id] = v;
+            },
+            then(){
+              const card = $(`[data-outfit="${v}"]`);
+              if(card){ card.classList.remove("tierlk"); pulseOnce(card, "unl", 1000); }
+              if(TIER_LINE[v]) toast(`${g.name}：${TIER_LINE[v]}`, "i-heart");
+              setTimeout(render, 900);
             } });
         }
-        S.outfit[g.id] = v; save(); toast(`已换上${o.t}`, "i-shirt"); render();
+        S.outfit[g.id] = v; save(); toast(`${g.name} 换上了${o.t}`, "i-shirt"); render();
       });
       $$("[data-bg]", root).forEach(b => b.onclick = () => {
         const bg = BGS.find(x => x.id === b.dataset.bg);
@@ -2694,7 +2876,11 @@ const ALB_LINE = {
 };
 function albumGrid(gid){
   const g = girl(gid), A = albumOf(g);
+  const shots = shotsOf(gid);
   return `<div class="alb" data-od-id="album-${gid}">
+    ${shots.map(sh => `<button class="albc" data-shot="1" data-od-id="shot-${gid}">
+      ${phImg(sh.img, g.initial, g.name + " " + sh.t, "", "50% 18%")}
+      <span class="cap">${esc(sh.t)}</span></button>`).join("")}
     ${A.map((ph, i) => {
       const own = albumOwned(gid, i);
       return `<button class="albc ${own ? "" : "lk"}" data-alb="${i}" data-od-id="alb-${gid}-${i}"
@@ -2709,6 +2895,7 @@ function albumGrid(gid){
   </div>`;
 }
 function bindAlbum(root, gid){
+  $$("[data-shot]", root).forEach(b => b.onclick = () => openViewer(gid, 0));
   $$("[data-alb]", root).forEach(b => b.onclick = () => {
     const i = +b.dataset.alb;
     if(albumOwned(gid, i)) return openViewer(gid, i);
@@ -2858,14 +3045,62 @@ const LIPS = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.4c1.6-2
 const KISS_LINE = { sweet:"这个吻是奖励哦～（脸红）", queen:"拿去。只此一次。", cool:"……闭眼。给你了。" };
 const GAME = { len:30, target:300, hit:10, comboBonus:5 };
 
+/* 封面图形：每张各一套，避免「封面全部太过同意」 */
+const SUN_SVG = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.4" fill="#FFD36E"/><g stroke="#FFD36E" stroke-width="2" stroke-linecap="round"><path d="M12 1.6v3M12 19.4v3M1.6 12h3M19.4 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M19.4 4.6l-2.1 2.1M6.7 17.3l-2.1 2.1"/></g></svg>`;
+const ECG_SVG = `<svg viewBox="0 0 200 34" preserveAspectRatio="none"><path d="M0 22h42l8-14 10 26 9-20 7 8h32l8-12 9 22 8-18 6 8h51"
+  fill="none" stroke="#FF7CC0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+  filter="drop-shadow(0 0 5px rgba(255,124,192,.9))"/></svg>`;
+const BOTTLE_SVG = `<svg viewBox="0 0 24 24"><path d="M10.4 2.6h3.2v3.2c0 .9.4 1.3 1 1.9 1.2 1.2 1.8 2.4 1.8 4.4V20a1.2 1.2 0 0 1-1.2 1.2H8.8A1.2 1.2 0 0 1 7.6 20v-7.9c0-2 .6-3.2 1.8-4.4.6-.6 1-1 1-1.9z" fill="#FF4FA3" stroke="rgba(255,255,255,.85)" stroke-width="1.2"/><rect x="10" y="1.2" width="4" height="2" rx="1" fill="#FFD36E"/></svg>`;
+const HAND_R = `<svg viewBox="0 0 24 24"><path d="M6.4 10.6c0-2.8 2.4-5 5.6-5s5.6 2.2 5.6 5v3c0 2.8-2.4 5-5.6 5s-5.6-2.2-5.6-5z"/></svg>`;
+const HAND_P = `<svg viewBox="0 0 24 24"><rect x="4.6" y="7.4" width="14.8" height="10.4" rx="2"/></svg>`;
+const HAND_S = `<svg viewBox="0 0 24 24"><path d="M7.6 3.4l4 8.4-2.2 1-4-8.4zM16.4 3.4l-4 8.4 2.2 1 4-8.4z"/><circle cx="9" cy="17.6" r="3"/><circle cx="15" cy="17.6" r="3"/></svg>`;
+const FX = {
+  rps:`<div class="cv-fx fx-rps"><b><i>${HAND_R}</i><i>${HAND_P}</i><i>${HAND_S}</i></b></div>`,
+  cam:`<div class="cv-fx fx-cam"><i></i><i></i><i></i><i></i><b></b></div>`,
+  sun:`<div class="cv-fx fx-sun">${SUN_SVG}<b></b></div>`,
+  ecg:`<div class="cv-fx fx-ecg">${ECG_SVG}</div>`,
+  fog:`<div class="cv-fx fx-fog"><b></b></div>`,
+  bottle:`<div class="cv-fx fx-bottle">${BOTTLE_SVG}</div>`,
+  lips:`<div class="cv-fx fx-lips">${LIPS}${LIPS}${LIPS}</div>`,
+  bub:`<div class="cv-fx fx-bub"><b>?</b></div>`,
+  fall:`<div class="cv-fx fx-fall">${HEART}${HEART}${HEART}${HEART}</div>`
+};
+/* cover: 哪位角色、哪套造型、裁切点、色调、主题图形，十张各不相同 */
 const GAMES = [
-  { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",      art:g => g.v3 },
-  { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role", art:g => g.img2 },
-  { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     art:g => g.lounge },
-  { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-4", icon:"gift",      art:g => g.img },
-  { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-5", icon:"chat-role", art:g => g.x,  isNew:true },
-  { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-6", icon:"coin",      art:g => g.x,  isNew:true }
+  { id:"rps",    name:"猜拳换装",     hook:"赢一局，她换一套",   cls:"gx-5", icon:"game",      isNew:true, hot:true,
+    cover:{ gid:"queen", img:g => g.bikini, pos:"50% 16%", tint:"cv-pink",   fx:"rps" } },
+  { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     isNew:true,
+    cover:{ gid:"cool",  img:g => g.v3,     pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
+  { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      isNew:true, hot:true,
+    cover:{ gid:"sweet", img:g => g.sun,    pos:"46% 42%", tint:"cv-gold",   fx:"sun" } },
+  { id:"close",  name:"心跳靠近",     hook:"停在刚刚好的距离",   cls:"gx-1", icon:"chat-role", isNew:true,
+    cover:{ gid:"queen", img:g => g.v3,     pos:"52% 10%", tint:"cv-pink",   fx:"ecg" } },
+  { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",
+    cover:{ gid:"sweet", img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
+  { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
+    cover:{ gid:"cool",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
+  { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
+    cover:{ gid:"sweet", img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
+  { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
+    cover:{ gid:"queen", img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
+  { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",
+    cover:{ fan:true,    tint:"cv-violet" } },
+  { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
+    cover:{ gid:"cool",  img:g => g.bikini, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
 ];
+function gameCover(gm){
+  const c = gm.cover || {};
+  if(c.fan){
+    const FAN = { sweet:g => g.x, queen:g => g.bikini, cool:g => g.lounge };
+    return `<div class="cv-fan">${GIRLS.map(x =>
+      `<span>${phImg(FAN[x.id](x), x.initial, "", "", "50% 16%")}</span>`).join("")}</div>
+      <div class="cv-tint"></div>`;
+  }
+  const x = girl(c.gid);
+  const src = (c.img && c.img(x)) || x.v3;
+  return `${phImg(src, x.initial, "", "", c.pos || "50% 20%")}
+    <div class="cv-tint"></div>${FX[c.fx] || ""}`;
+}
 const gameOf = id => GAMES.find(x => x.id === id) || GAMES[0];
 const scoredLeft = () => Math.max(0, RULES.gameRounds - S.rounds);
 
@@ -2883,10 +3118,11 @@ ROUTES.games = { view(){
       <b class="big" style="font-size:24px;color:${left ? "var(--gold-2)" : "var(--muted)"}">${left}<span style="font-size:14px">/${RULES.gameRounds}</span></b>
     </div>
     <div class="ghub" style="margin-top:12px" data-od-id="games-grid">
-      ${GAMES.map(gm => `<a class="gcardx ${gm.cls}" href="#game/${gm.id}" data-od-id="gcard-${gm.id}">
-        ${phImg(gm.art(g), g.initial, "", "", "50% 20%")}
+      ${GAMES.map(gm => `<a class="gcardx ${gm.cls} ${(gm.cover || {}).tint || ""}" href="#game/${gm.id}" data-od-id="gcard-${gm.id}">
+        ${gameCover(gm)}
         ${i3(gm.icon, 32)}
         ${gm.isNew ? `<span class="newbadge">新</span>` : ""}
+        ${gm.hot ? `<span class="hotbadge">热</span>` : ""}
         <b>${esc(gm.name)}</b><em>${esc(gm.hook)}</em>
         <span class="pill ${left ? "g" : "tbd"}">${left ? `剩余计分 ${left}/${RULES.gameRounds}` : "练习模式"}</span>
       </a>`).join("")}
@@ -2911,8 +3147,9 @@ function gameIntro(gm){
   return `
   <section data-od-id="game-intro">
     <div class="panel" style="padding:0;overflow:hidden">
-      <div class="rhero">
-        ${phImg(gm.art(g), g.initial, g.name + " 形象")}
+      <div class="rhero ${(gm.cover || {}).tint || ""}">
+        ${phImg(outfitImg(g), g.initial, g.name + " 形象", "", "50% 16%")}
+        <div class="cv-tint"></div>
         <div class="scrim"></div>
         <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
           <div class="h1" style="font-size:22px">${esc(gm.name)}</div>
@@ -2942,13 +3179,18 @@ function stopGame(){
   if(G.off) try { G.off(); } catch(e){}
   G = null;
 }
+let settled = false;          /* 一局只能结算一次：超时与手动结束可能同时触发 */
 function startGame(gm){
   stopGame();
+  settled = false;
   const scored = scoredLeft() > 0;
-  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog })[gm.id](gm, scored);
+  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog,
+     rps:playRps, photo:playPhoto, sun:playSun, close:playClose })[gm.id](gm, scored);
 }
 /* 把一局的得分折算成积分并出结算页 */
 function gameFinish(gm, { score, scored, earned, detail }){
+  if(settled) return;
+  settled = true;
   stopGame();
   const g = girl();
   if(scored){
@@ -3193,8 +3435,9 @@ const MEM_LEN = 45;
 function playMemory(gm, scored){
   const g = girl();
   const kinds = [
-    { k:"p1", img:g.v3, her:true }, { k:"p2", img:g.img2, her:true }, { k:"p3", img:g.x, her:true },
-    { k:"lip" }, { k:"rose" }, { k:"heart" }
+    { k:"p1", img:g.v3, her:true }, { k:"p2", img:g.x, her:true },
+    { k:"p3", img:g.bikini, her:true }, { k:"p4", img:g.lounge, her:true },
+    { k:"lip" }, { k:"rose" }
   ];
   const HER_LINE = {
     sweet:["这张是我最喜欢的。","又翻到我啦？","再翻一次试试～"],
@@ -3401,29 +3644,32 @@ const BOTTLE = `<svg viewBox="0 0 120 120"><defs>
 </svg>`;
 const TRUTH = {
   sweet:{
-    t:["我第一次见你那天，回去跟店长说了你三次。","我手机里有一个只放你消息的文件夹。（脸红）",
-       "我睡前会把你最后一条消息再读一遍。","其实我偷偷学过你喜欢的那首歌。","我吃醋的时候会装作在忙。"],
+    t:["你觉得我穿哪套最好看？我猜你会选那套粉的。","我最性感的是哪里？……我自己觉得是锁骨。（脸红）",
+       "我手机里有一个只放你消息的文件夹。","我睡前会把你最后一条消息再读一遍。","我吃醋的时候会装作在忙。"],
     d:[{ k:"tap", t:"连续点我 10 下，我就告诉你一件事" },
        { k:"say", t:"对我说一句情话，挑一个", o:["你笑起来比糖还甜","今天最好的事就是遇到你","以后甜品我只吃你做的"] },
        { k:"heart", t:"给我比个心嘛" },
+       { k:"wear", t:"选一套衣服，我换给你看" },
        { k:"tap", t:"再点我 10 下，这次我数着" },
        { k:"say", t:"再说一句，我要听更好听的", o:["你一出现我就走神","想把今晚存起来","下次换我请你"] }]
   },
   queen:{
-    t:["我挑人很慢。挑中了就不换。","我车里一直放着一张你可能会喜欢的碟。",
+    t:["你觉得我穿哪套最好看？别挑最保守的那套。","我最性感的是哪里？我知道答案，是锁骨。",
        "我说「随便」的时候，其实已经决定了。","有一次我为了等你，把会推到了十一点。","我吃醋不说，我记账。"],
     d:[{ k:"tap", t:"点我 10 下。我看你有多想" },
        { k:"say", t:"说一句，别敷衍我", o:["你比今晚所有的灯都亮","我愿意等你把话讲完","你一进门我就不看别人了"] },
        { k:"heart", t:"比个心。就一次" },
+       { k:"wear", t:"挑一套。我听你的" },
        { k:"tap", t:"再来 10 下，这次快一点" },
        { k:"say", t:"最后一句，好好说", o:["我记住你每一次的停顿","你不用赢我，我已经输了","明晚我还在这里"] }]
   },
   cool:{
-    t:["我弹给你听的那首，是我自己写的。","我手机壁纸换过一次。就一次。",
-       "我不发朋友圈，但我会截你的消息。","凌晨三点我想过给你打电话，没按。","我吃醋的时候只会回一个字。"],
+    t:["你觉得我穿哪套最好看？……别说全部。","我最性感的是哪里？锁骨。别看太久。",
+       "我手机壁纸换过一次。就一次。","凌晨三点我想过给你打电话，没按。","我吃醋的时候只会回一个字。"],
     d:[{ k:"tap", t:"点我 10 下。别出声" },
        { k:"say", t:"说一句。我听着", o:["你安静的样子最好看","我愿意陪你走到海墘街","你弹什么我都听得完"] },
        { k:"heart", t:"比个心。快点" },
+       { k:"wear", t:"你选。我去换" },
        { k:"tap", t:"再 10 下" },
        { k:"say", t:"再一句。然后我就睡了", o:["晚安，明天还想见你","今天因为你变好了","你先睡，我守着"] }]
   }
@@ -3492,6 +3738,28 @@ function playTruth(gm, scored){
       $$("[data-say]").forEach(b => b.onclick = () => {
         toast(`${g.name}：……（脸红）你从哪里学的。`, "i-heart");
         burst(b.getBoundingClientRect(), { n:9, kind:"heart", spread:50 });
+        step(true);
+      });
+      return;
+    }
+    if(d.k === "wear"){
+      const owned = TIERS.filter(t => ownTier(g.id, t.k));
+      body.innerHTML = `<div class="tdcard">
+        <span class="kind d">大冒险</span>
+        <p class="p" style="margin-top:10px;color:#fff;font-size:15px">${esc(d.t)}</p>
+        <div style="display:grid;grid-template-columns:repeat(${Math.min(3, owned.length)},1fr);gap:9px;margin-top:12px">
+          ${owned.map(t => `<button class="item tall" data-wear="${t.k}" style="min-height:0">
+            ${phImg(t.img(g), g.initial, t.t, "", "50% 18%")}
+            <div class="item-b"><div class="item-t" style="font-size:12px">${esc(t.t)}</div></div>
+          </button>`).join("")}
+        </div>
+        ${owned.length < TIERS.length ? `<p class="sm" style="margin-top:9px">想看更多？<a class="tbtn" href="#wardrobe">去衣柜解锁</a></p>` : ""}
+      </div>`;
+      $$("[data-wear]").forEach(b => b.onclick = () => {
+        const k = b.dataset.wear;
+        S.outfit[g.id] = k; save();
+        burst(b.getBoundingClientRect(), { n:9, kind:"heart", spread:48 });
+        toast(`${g.name} 换上了${tierOf(k).t}`, "i-shirt");
         step(true);
       });
       return;
@@ -3565,7 +3833,7 @@ function playFog(gm, scored){
   <section data-od-id="game-run">
     ${gstat([["擦开","fp","0%"],["剩余","tm",FOG_LEN],["目标","fg","80%"]], scored)}
     <div class="fogbox" id="fogbox">
-      <img src="${g.x}" alt="${esc(g.name)} 私房照">
+      <img src="${ownTier(g.id, "bikini") ? g.bikini : g.x}" alt="${esc(g.name)} 私房照">
       <canvas id="fog"></canvas>
       <div class="hintf" id="fhint">用手指擦掉雾气</div>
     </div>
@@ -3650,6 +3918,348 @@ function playFog(gm, scored){
     toast(`${g.name}：被你看到了啦～（脸红）`, "i-heart");
     setTimeout(() => gameFinish(gm, { score, scored, earned,
       detail: won ? `${used} 秒擦开 ${pct}%` : `只擦开 ${pct}% · 时间到` }), rm() ? 0 : 700);
+  }
+}
+
+/* ============================================================
+   游戏 7 · 猜拳换装（赢了她换下一套，顶到比基尼为止）
+   ============================================================ */
+const RPS = [
+  { k:"rock",  t:"石头", svg:HAND_R },
+  { k:"paper", t:"布",   svg:HAND_P },
+  { k:"sci",   t:"剪刀", svg:HAND_S }
+];
+const RPS_BEATS = { rock:"sci", paper:"rock", sci:"paper" };
+const RPS_WEAR = ["lounge", "x", "bikini"];     // 游戏里最多试穿到比基尼
+const RPS_LINE = {
+  sweet:{ win:["那…我去换一套。", "说好只看一眼哦。（脸红）", "最后一套了，不许笑我。"],
+          lose:["哼～弹你额头。", "笨手笨脚的。", "再来呀，我可不让。"] },
+  queen:{ win:["说话算话。等我两分钟。", "你赢了。看仔细了。", "这是最后一套。"],
+          lose:["弹一下。记住这感觉。", "太急了。", "再来。我还没尽兴。"] },
+  cool:{ win:["……行。我去换。", "嗯。看吧。", "就这一套了。"],
+         lose:["弹你。", "输了。", "再来。"] }
+};
+const RPS_ROUNDS = 5, RPS_PT = 6;
+function playRps(gm, scored){
+  const g = girl();
+  G = { i:0, win:0, lose:0, wear:-1, lock:false };
+  paint();
+  function wornSrc(){ return G.wear < 0 ? outfitImg(g) : tierImg(g, RPS_WEAR[G.wear]); }
+  function wornName(){ return G.wear < 0 ? "现在的样子" : tierOf(RPS_WEAR[G.wear]).t; }
+  function paint(){
+    if(!G) return;
+    $("#gameHost").innerHTML = `
+    <section data-od-id="game-run">
+      <div class="qprog">${Array.from({length:RPS_ROUNDS}, (_, i) =>
+        `<i class="${i < G.i ? "on" : i === G.i ? "cur" : ""}"></i>`).join("")}</div>
+      <div class="tryon" id="tryon" data-react-pos="right:12px;bottom:66px">
+        ${phImg(wornSrc(), g.initial, g.name + " " + wornName(), "", "50% 16%")}
+        <div class="scrim"></div>
+        <div class="cap">${esc(g.name)} · ${esc(wornName())}
+          <span class="pill g" style="margin-left:8px">赢 ${G.win} · 输 ${G.lose}</span></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px">
+        <div class="rpshand" id="herHand">${HAND_R}</div>
+        <div class="row-m" style="flex:0 0 auto;text-align:center">
+          <div class="lbl">她出</div>
+          <div class="h3" id="herTxt" style="margin-top:2px">准备</div></div>
+      </div>
+      <div class="rpsrow" style="margin-top:14px" id="rpsrow">
+        ${RPS.map(r => `<button class="rpsbtn" data-rps="${r.k}" data-od-id="rps-${r.k}">
+          ${r.svg}<span>${r.t}</span></button>`).join("")}
+      </div>
+      ${modeBar(scored)}
+      <p class="sm" style="margin-top:10px;text-align:center">游戏里的造型只是试穿 ·
+        <a class="tbtn" href="#wardrobe">去衣柜永久解锁</a></p>
+    </section>`;
+    $("#quit").onclick = done;
+    $$("[data-rps]").forEach(b => b.onclick = () => throwHand(b.dataset.rps));
+  }
+  function throwHand(mine){
+    if(!G || G.lock) return;
+    G.lock = true;
+    $$("[data-rps]").forEach(b => b.setAttribute("disabled", ""));
+    const hers = RPS[(Math.random() * 3) | 0];
+    const hand = $("#herHand");
+    pulseOnce(hand, "flip", 520);
+    setTimeout(() => {
+      if(!G) return;
+      hand.innerHTML = hers.svg;
+      $("#herTxt").textContent = hers.t;
+      const L = RPS_LINE[g.id];
+      if(mine === hers.k){
+        toast(`${g.name}：平手，再来一次。`, "i-heart");
+      } else if(RPS_BEATS[mine] === hers.k){
+        G.win++;
+        if(G.wear < RPS_WEAR.length - 1) G.wear++;
+        burst(hand.getBoundingClientRect(), { n:10, kind:"heart", spread:54 });
+        toast(`${g.name}：${L.win[Math.min(G.wear, L.win.length - 1)]}`, "i-heart");
+        react($("#tryon"), "win", g.id);
+      } else {
+        G.lose++;
+        pulseOnce($("#gameHost"), "shakeit", 470);
+        toast(`${g.name}：${L.lose[G.lose % L.lose.length]}`, "i-heart");
+      }
+      G.i++;
+      setTimeout(() => {
+        if(!G) return;
+        G.lock = false;
+        if(G.i >= RPS_ROUNDS) return done();
+        paint();
+      }, 900);
+    }, 540);
+  }
+  function done(){
+    const win = G ? G.win : 0, lose = G ? G.lose : 0, wear = G ? G.wear : -1;
+    const score = win * RPS_PT;
+    const earned = scored ? Math.min(RULES.gameMax, score) : 0;
+    gameFinish(gm, { score, scored, earned,
+      detail:`赢 ${win} · 输 ${lose}${wear >= 0 ? " · 试穿到" + tierOf(RPS_WEAR[wear]).t : ""}` });
+  }
+}
+
+/* ============================================================
+   游戏 8 · 帮她拍写真（抓拍指定姿势）
+   ============================================================ */
+const POSES = [
+  { k:"hair",  t:"撩头发" }, { k:"wink", t:"抛媚眼" },
+  { k:"kiss",  t:"飞吻"   }, { k:"smile", t:"回眸笑" }
+];
+const SHOT_N = 5;
+function playPhoto(gm, scored){
+  const g = girl();
+  const frames = [g.v3, g.lounge, g.x, g.bikini].filter(Boolean);
+  G = { shot:0, hit:0, cur:0, target:0, lock:false };
+  pick();
+  render2();
+  G.spawn = setInterval(() => {
+    if(!G || G.lock) return;
+    G.cur = (G.cur + 1) % POSES.length;
+    const box = $("#shootbox"), img = box && box.querySelector("img"), lab = $("#poselab");
+    if(img) img.setAttribute("src", frames[G.cur % frames.length]);
+    if(box){ box.classList.remove("z1", "z2"); box.classList.add(G.cur % 2 ? "z1" : "z2"); }
+    if(lab){
+      lab.textContent = POSES[G.cur].t;
+      lab.classList.toggle("hit", G.cur === G.target);
+    }
+  }, 900);
+  function pick(){ G.target = (Math.random() * POSES.length) | 0; }
+  function render2(){
+    if(!G) return;
+    $("#gameHost").innerHTML = `
+    <section data-od-id="game-run">
+      ${gstat([["已拍","sp",`0 / ${SHOT_N}`],["抓准","sh",0],["目标","st",POSES[G.target].t]], scored)}
+      <div class="shootbox vf z2" id="shootbox" data-react-pos="right:12px;bottom:12px">
+        ${phImg(frames[0], g.initial, g.name + " 写真", "", "50% 14%")}
+        <i></i><i></i><i></i><i></i>
+        <div class="poselab" id="poselab">${POSES[0].t}</div>
+        <div class="flashfx" id="flash"></div>
+      </div>
+      <button class="shutter" id="shutter" aria-label="按下快门"><span></span></button>
+      <p class="sm" style="margin-top:9px;text-align:center">目标姿势亮起时按快门</p>
+      ${modeBar(scored)}
+    </section>`;
+    $("#quit").onclick = done;
+    $("#shutter").onclick = shoot;
+  }
+  function shoot(){
+    if(!G || G.lock) return;
+    G.lock = true;
+    const ok = G.cur === G.target;
+    const fl = $("#flash"); if(fl){ fl.classList.remove("on"); void fl.offsetWidth; fl.classList.add("on"); }
+    G.shot++;
+    if(ok){
+      G.hit++;
+      const box = $("#shootbox");
+      burst(box.getBoundingClientRect(), { n:10, kind:"heart", spread:56 });
+      popNum(box.getBoundingClientRect(), "+6");
+      react(box, "win", g.id);
+      const sc = S.shots = S.shots || {};
+      sc[g.id] = (sc[g.id] || 0) + 1; save();
+      toast(`抓到了！已存进她的相册 · 写真 · 第 ${sc[g.id]} 张`, "i-star");
+    } else {
+      toast(`${g.name}：这张我不要，重拍。`, "i-heart");
+    }
+    $("#sp").textContent = `${G.shot} / ${SHOT_N}`;
+    $("#sh").textContent = G.hit;
+    setTimeout(() => {
+      if(!G) return;
+      G.lock = false;
+      if(G.shot >= SHOT_N) return done();
+      pick();
+      const st = $("#st"); if(st) st.textContent = POSES[G.target].t;
+    }, 520);
+  }
+  function done(){
+    const hit = G ? G.hit : 0, shot = G ? G.shot : 0;
+    const score = hit * 6;
+    const earned = scored ? Math.min(RULES.gameMax, score) : 0;
+    gameFinish(gm, { score, scored, earned, detail:`抓准 ${hit} / ${shot} 张 · 已存进相册` });
+  }
+}
+
+/* ============================================================
+   游戏 9 · 帮她涂防晒（只在肩膀 / 上背 / 手臂）
+   ============================================================ */
+const SUN_SPOTS = [          /* 只在肩膀、上背与手臂，避开脸与腰 */
+  { x:39, y:54 }, { x:56, y:51 }, { x:48, y:58 },
+  { x:61, y:55 }, { x:33, y:60 }, { x:26, y:67 }
+];
+const SUN_SAY = ["凉凉的～", "左边一点…对，就是那里", "你手好暖", "嗯……再轻一点", "这里晒到了", "好了，谢谢你～"];
+const SUN_LEN = 20;
+function playSun(gm, scored){
+  let g = girl();
+  let note = "";
+  if(!g.sun){                                   // 露娜没有这张图，换薇薇安顶上
+    note = "露娜去换衣服了，薇薇安来陪你";
+    g = girl("queen");
+  }
+  G = { left:SUN_LEN, done:0, drag:false };
+  $("#gameHost").innerHTML = `
+  <section data-od-id="game-run">
+    ${gstat([["已涂","sd","0 / 6"],["剩余","tm",SUN_LEN],["当前","sg",esc(g.name)]], scored)}
+    ${note ? `<p class="sm" style="margin:-4px 0 10px;text-align:center">${esc(note)}</p>` : ""}
+    <div class="sunbox" id="sunbox" data-react-pos="right:12px;bottom:12px">
+      <img src="${g.sun}" alt="${esc(g.name)} 在沙滩椅上">
+      ${SUN_SPOTS.map((p, i) => `<span class="spot" data-spot="${i}"
+        style="left:${p.x}%;top:${p.y}%"><i></i></span>`).join("")}
+    </div>
+    <p class="sm" style="margin-top:9px;text-align:center">在发光的圈上来回涂抹</p>
+    ${modeBar(scored)}
+  </section>`;
+  const box = $("#sunbox");
+  const fill = {};
+  const touch = e => {
+    if(!G || !G.drag) return;
+    const r = box.getBoundingClientRect();
+    const cx = e.clientX - r.left, cy = e.clientY - r.top;
+    $$("[data-spot]", box).forEach(sp => {
+      const i = sp.dataset.spot;
+      if(sp.classList.contains("done")) return;
+      const sr = sp.getBoundingClientRect();
+      const dx = cx - (sr.left - r.left + sr.width / 2), dy = cy - (sr.top - r.top + sr.height / 2);
+      if(dx * dx + dy * dy > 34 * 34) return;
+      fill[i] = (fill[i] || 0) + .14;
+      sp.querySelector("i").style.transform = `scale(${Math.min(1, fill[i])})`;
+      if(fill[i] >= 1){
+        sp.classList.add("done");
+        G.done++;
+        $("#sd").textContent = `${G.done} / 6`;
+        burst(sp.getBoundingClientRect(), { n:7, spread:30 });
+        toast(`${g.name}：${SUN_SAY[(G.done - 1) % SUN_SAY.length]}`, "i-heart");
+        react(box, G.done >= 5 ? "win" : "hit", g.id);
+        if(G.done >= 6) done();
+      }
+    });
+  };
+  const down = e => { if(G){ G.drag = true; touch(e); } };
+  const up = () => { if(G) G.drag = false; };
+  box.addEventListener("pointerdown", down);
+  box.addEventListener("pointermove", touch);
+  window.addEventListener("pointerup", up);
+  G.off = () => { window.removeEventListener("pointerup", up); };
+  G.tick = setInterval(() => {
+    if(!G) return;
+    G.left--;
+    $("#tm").textContent = Math.max(0, G.left);
+    $("#tb").style.transform = `scaleX(${Math.max(0, G.left / SUN_LEN)})`;
+    const low = G.left <= 5 && G.left > 0;
+    $(".tbar").classList.toggle("low", low); $("#tm").classList.toggle("low", low);
+    if(G.left <= 0) done();
+  }, 1000);
+  $("#quit").onclick = done;
+  function done(){
+    const d = G ? G.done : 0, used = SUN_LEN - (G ? G.left : 0);
+    const score = d * 5;
+    const earned = scored ? Math.min(RULES.gameMax, score) : 0;
+    gameFinish(gm, { score, scored, earned, detail:`涂好 ${d} / 6 处 · 用时 ${used} 秒` });
+  }
+}
+
+/* ============================================================
+   游戏 10 · 心跳靠近（停在刚刚好的距离）
+   ============================================================ */
+const CLOSE_TRIES = 3;
+const ZONE_A = 0.46, ZONE_B = 0.62;
+function playClose(gm, scored){
+  const g = girl();
+  G = { tries:0, best:0, score:0, p:0, holding:false, lock:false };
+  paint();
+  function paint(){
+    if(!G) return;
+    $("#gameHost").innerHTML = `
+    <section data-od-id="game-run">
+      ${gstat([["第几次","ct",`${G.tries + 1} / ${CLOSE_TRIES}`],["得分","cs",G.score],["最好","cb",`${Math.round(G.best * 100)}%`]], scored)}
+      <div class="closebox" id="closebox" data-react-pos="right:12px;bottom:12px">
+        ${phImg(outfitImg(g), g.initial, g.name, "", "50% 18%")}
+        <div class="lipstamp" id="lipst" style="display:none">${LIPS}</div>
+      </div>
+      <div class="hrbar"><div class="zone"></div><div class="pin" id="pin" style="left:0%"></div></div>
+      <p class="sm" style="margin-top:9px;text-align:center">
+        <span class="hrbeat">${HEART}</span> 按住靠近 · 停在金色区间最好</p>
+      <button class="btn btn-pri btn-w claim" id="holdBtn" style="margin-top:10px">按住靠近她</button>
+      ${modeBar(scored)}
+    </section>`;
+    $("#quit").onclick = finish;
+    const btn = $("#holdBtn"), img = $("#closebox").querySelector("img"), pin = $("#pin");
+    const start = e => {
+      if(!G || G.lock) return;
+      e.preventDefault();
+      G.holding = true; G.p = 0;
+      const t0 = performance.now();
+      const step = now => {
+        if(!G || !G.holding) return;
+        G.p = Math.min(1, (now - t0) / 2600);
+        if(img) img.style.transform = `scale(${1 + G.p * .5})`;
+        if(pin) pin.style.left = (G.p * 100) + "%";
+        if(G.p >= 1) return release();
+        G.raf = requestAnimationFrame(step);
+      };
+      G.raf = requestAnimationFrame(step);
+    };
+    const release = () => {
+      if(!G || !G.holding || G.lock) return;
+      G.holding = false; G.lock = true;
+      if(G.raf) cancelAnimationFrame(G.raf);
+      const p = G.p;
+      G.best = Math.max(G.best, p >= ZONE_A && p <= ZONE_B ? 1 : p);
+      const box = $("#closebox");
+      if(p > ZONE_B){
+        pulseOnce($("#gameHost"), "shakeit", 470);
+        if(img) img.style.transform = "scale(1)";
+        toast(`${g.name}：太近啦！`, "i-heart");
+      } else if(p >= ZONE_A){
+        G.score += 10;
+        const st = $("#lipst");
+        if(st && !rm()){ st.style.display = ""; st.style.animation = "none"; void st.offsetWidth;
+          st.style.animation = "lipGo 1.5s var(--e3) both"; }
+        burst(box.getBoundingClientRect(), { n:12, kind:"heart", spread:62 });
+        toast(`${g.name}：啾～刚刚好。`, "i-heart");
+        react(box, "win", g.id);
+      } else {
+        G.score += Math.round(p * 8);
+        toast(`${g.name}：还差一点点呢。`, "i-heart");
+      }
+      $("#cs").textContent = G.score;
+      G.tries++;
+      setTimeout(() => {
+        if(!G) return;
+        G.lock = false;
+        if(G.tries >= CLOSE_TRIES) return finish();
+        paint();
+      }, 1100);
+    };
+    btn.addEventListener("pointerdown", start);
+    btn.addEventListener("pointerup", release);
+    btn.addEventListener("pointerleave", release);
+    btn.addEventListener("keydown", e => { if(e.key === " " || e.key === "Enter"){ e.preventDefault(); start(e); } });
+    btn.addEventListener("keyup", e => { if(e.key === " " || e.key === "Enter"){ e.preventDefault(); release(); } });
+    G.off = () => {};
+  }
+  function finish(){
+    const sc = G ? G.score : 0, best = G ? G.best : 0;
+    const earned = scored ? Math.min(RULES.gameMax, sc) : 0;
+    gameFinish(gm, { score:sc, scored, earned, detail:`${CLOSE_TRIES} 次尝试 · 最近 ${Math.round(best * 100)}%` });
   }
 }
 
@@ -3964,6 +4574,13 @@ const CATALOG = [
     target(){ return `${girl().name} · 玫瑰 / 咖啡 / 小蛋糕`; }, note:"",
     pick:true },
 
+  { id:"tier", title:"一套新造型", cat:"换装衣柜", cost:null, stock:"每位角色 4 套", limit:"解锁后永久可穿", expiry:"2027-03-31",
+    img:() => girl().bikini, initial:() => girl().initial,
+    target(){ const g = girl(), t = TIERS.find(t => !ownTier(g.id, t.k));
+      return t ? `${g.name} · ${t.t} · ${t.price} 积分` : null; },
+    note:"当前角色全部造型已解锁",
+    pickWardrobe:true },
+
   { id:"album", title:"一张私密照片", cat:"私密相册", cost:PRICE.album, stock:"每位角色 3 张", limit:"每张仅需解锁一次", expiry:"2027-03-31",
     img:() => girl().x, initial:() => girl().initial,
     target(){ const g = girl(), A = albumOf(g);
@@ -4056,6 +4673,7 @@ ROUTES.rewards = { view(){
                   <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
           });
         }
+        if(c.pickWardrobe) return nav("#wardrobe");
         if(c.pick) return giftSheet();
         if(!tgt){ toast(c.note); return; }
         buy({ cost:c.cost, title:c.title, sub:tgt, fromEl:b,
@@ -4089,10 +4707,11 @@ function unlockedThumbs(){
     out.push({ img:outfitImg(x), ini:x.initial, cap:`${x.name} 问候短片`, href:"#videos" }); });
   GIRLS.forEach(x => ((S.owned.album || {})[x.id] || []).forEach(i =>
     out.push({ img:albumOf(x)[i].img, ini:x.initial, cap:`${x.name} · ${albumOf(x)[i].t}`, href:`#girl/${x.id}` })));
-  S.owned.outfit.forEach(id => { const x = girl(id);
-    out.push({ img:x.img2, ini:x.initial, cap:`${x.name} ${x.outfit2}`, href:"#wardrobe" }); });
-  (S.owned.outfitL || []).forEach(id => { const x = girl(id);
-    out.push({ img:x.lounge, ini:x.initial, cap:`${x.name} 蓝调沙龙`, href:"#wardrobe" }); });
+  GIRLS.forEach(x => ((S.owned.tier || {})[x.id] || []).forEach(k =>
+    out.push({ img:tierImg(x, k), ini:x.initial, cap:`${x.name} · ${tierOf(k).t}`, href:"#wardrobe" })));
+  GIRLS.forEach(x => shotsOf(x.id).forEach(sh =>
+    out.push({ img:sh.img, ini:x.initial, cap:`${x.name} · ${sh.t}`, href:`#girl/${x.id}` })));
+
   S.owned.bg.filter(b => b !== "cafe").forEach(b => { const bg = BGS.find(z => z.id === b);
     out.push({ img:bg.img, ini:bg.initial, cap:`背景 · ${bg.name}`, href:"#wardrobe" }); });
   return out;
@@ -4232,7 +4851,6 @@ ROUTES.me = { view(){
         <button class="lrow" id="editNick2">${ico("i-user")}<div class="row-m">昵称<div class="row-s">仅保存在本机</div></div><span class="cv">${esc(S.nick)}${ico("i-next")}</span></button>
         <a class="lrow" href="#girls">${ico("i-heart")}<div class="row-m">陪伴角色<div class="row-s">随时可更换</div></div><span class="cv">${esc(g.name)}${ico("i-next")}</span></a>
         <a class="lrow" href="#wardrobe">${ico("i-star")}<div class="row-m">当前场景<div class="row-s">用于聊天背景</div></div><span class="cv">${esc(bgOf().name)}${ico("i-next")}</span></a>
-        <button class="lrow" id="clrChat">${ico("i-chat")}<div class="row-m">清除聊天记录<div class="row-s">清除全部角色的对话</div></div><span class="cv">${GIRLS.reduce((a, x) => a + ((S.chats[x.id] || []).length), 0)} 条${ico("i-next")}</span></button>
         <button class="lrow" id="guide">${ico("i-sparkle")}<div class="row-m">重看新手引导<div class="row-s">3 步说明</div></div><span class="cv">${ico("i-next")}</span></button>
         <button class="lrow" id="reset">${ico("i-refresh")}<div class="row-m">重置演示数据<div class="row-s">积分、解锁、记录全部恢复初始</div></div><span class="cv">${ico("i-next")}</span></button>
       </div>
@@ -4260,7 +4878,6 @@ ROUTES.me = { view(){
       };
       $("#editNick", root).onclick = nickSheet;
       $("#editNick2", root).onclick = nickSheet;
-      $("#clrChat", root).onclick = () => { S.chats = {}; save(); toast("全部聊天记录已清除"); render(); };
       $("#guide", root).onclick = () => startCoach(true);
       $("#reset", root).onclick = () => {
         const sh = sheet({ title:"重置演示数据", sub:"此操作不可撤销",
