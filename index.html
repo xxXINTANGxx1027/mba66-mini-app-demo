@@ -16,20 +16,20 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  /* 深宝蓝底 */
-  --navy:#0A1A5C;--navy-2:#0C2378;--navy-3:#14306F;--ink:#05102F;
-  --bg-1:#07154A;--bg-2:#0C2378;
-  /* 电光蓝 */
-  --blue:#2F6BFF;--blue-2:#1E50FF;--blue-hi:#3A7BFF;--blue-btn:#2E66F5;--blue-btn-2:#1736BE;
-  --glow:rgba(47,107,255,.45);
+  /* 玫瑰 → 洋红 → 梅子，亮而不黑 */
+  --navy:#6E1455;--navy-2:#8C1A62;--navy-3:#A02570;--ink:#2A0A33;
+  --bg-1:#5E0F57;--bg-2:#B0186A;
+  /* 霓虹粉（沿用 --blue* 变量名，全站规则自动换肤） */
+  --blue:#FF4FA3;--blue-2:#E62E8C;--blue-hi:#FF7CC0;--blue-btn:#F03E96;--blue-btn-2:#A8155E;
+  --glow:rgba(255,79,163,.5);
   /* 金 */
-  --gold-1:#FFE59A;--gold-2:#F2C25B;--gold-3:#C98A2B;
-  --gold:#F2C25B;--gold-d:#C98A2B;--rose:#FF6E9C;
-  --purple-1:#7A45F0;--purple-2:#5329C8;--orange-1:#F08A4B;--orange-2:#C9552A;
-  --pink:#FF4D8D;
-  --card:rgba(16,36,110,.72);--card-2:rgba(10,24,78,.88);
-  --fg:#FFFFFF;--muted:rgba(226,236,255,.74);--faint:rgba(206,220,255,.66);
-  --line:rgba(58,123,255,.38);--line-2:rgba(120,160,255,.2);
+  --gold-1:#FFD36E;--gold-2:#F2B648;--gold-3:#C98A2B;
+  --gold:#F2B648;--gold-d:#C98A2B;--rose:#FF6EB0;
+  --purple-1:#B65CFF;--purple-2:#7A2BD0;--orange-1:#FFB45A;--orange-2:#F06A4A;
+  --pink:#FF4FA3;--pink-2:#FF7CC0;
+  --card:rgba(255,255,255,.10);--card-2:rgba(42,10,51,.62);
+  --fg:#FFFFFF;--muted:rgba(255,238,248,.82);--faint:rgba(255,226,242,.74);
+  --line:rgba(255,124,192,.45);--line-2:rgba(255,200,230,.22);
   --r-ctl:12px;--r-card:16px;--r-panel:18px;
   /* 苹方原生：中文苹方，英文数字走系统 SF；非苹果设备落到鸿蒙 / 冬青 / Noto Sans SC */
   --sans:"PingFang SC",-apple-system,"SF Pro Display","HarmonyOS Sans SC","Hiragino Sans GB","Noto Sans SC",system-ui,sans-serif;
@@ -234,7 +234,7 @@ body{
 /* ---------- chat ---------- */
 .chat-wrap{position:relative;height:100%;display:flex;flex-direction:column}
 .chat-bg{position:absolute;inset:0;z-index:0}
-.chat-bg>.ph{position:absolute;inset:0}
+.chat-bg>.ph{position:absolute;inset:0;z-index:0}
 .chat-bg::before{content:"";position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(6,12,28,.95) 0%,rgba(6,12,28,.76) 26%,rgba(6,12,28,.78) 60%,rgba(6,12,28,.96) 100%)}
 .chat-sc{flex:1 1 auto;overflow-y:auto;padding:12px 18px 10px;display:flex;flex-direction:column;gap:11px;
@@ -355,6 +355,8 @@ body{
 .bond-t{height:3px;border-radius:2px;background:rgba(242,237,227,.14);overflow:hidden}
 .bond-t i{display:block;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold-d),var(--gold));
   transform-origin:left;transition:transform .62s var(--e2)}
+.bond.sm .bond-h .st{font-size:0}
+.bond.sm .bond-h .st::after{content:"心动值";font-size:11.5px}
 .bond.sm .bond-h{font-size:11.5px}
 .bond.sm .bond-h b{font-size:12px}
 .bond.sm .bond-t{height:2px}
@@ -673,26 +675,6 @@ body{
   background:linear-gradient(180deg,rgba(10,26,92,.9),rgba(7,18,62,.96));
   border:1px solid var(--line);box-shadow:0 14px 34px -14px rgba(0,0,0,.8),0 0 24px -12px var(--glow)}
 .ckwrap h3{font-size:16px;font-weight:700;display:flex;align-items:center;gap:7px}
-.ckdays{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:11px}
-.ckday{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;padding:0;
-  cursor:default;font-family:var(--sans)}
-.ckday i{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:1/1;border-radius:9px;
-  background:linear-gradient(180deg,rgba(47,107,255,.2),rgba(20,48,111,.6));
-  border:1px solid rgba(120,160,255,.26);transition:transform .2s var(--e3),box-shadow .2s var(--e3)}
-.ckday i svg{width:56%;height:56%;stroke:rgba(206,220,255,.5);fill:none;stroke-width:2.4}
-.ckday.on i{background:linear-gradient(180deg,#4D86FF,#1A44D6);border-color:rgba(255,255,255,.3);
-  box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 5px 12px -5px rgba(47,107,255,.95)}
-.ckday.on i svg{stroke:#fff;stroke-width:3}
-.ckday.gift i{background:linear-gradient(180deg,#FF7FB0,#D62E73);border-color:rgba(255,255,255,.3);
-  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 5px 12px -5px rgba(255,77,141,.9)}
-.ckday.gift i svg{stroke:#fff;fill:none;stroke-width:2.6}
-.ckday.today i{border-color:var(--gold-2);box-shadow:0 0 0 2px rgba(242,194,91,.35),0 6px 16px -6px rgba(242,194,91,.8)}
-.ckday.act{cursor:pointer}
-.ckday.act::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;transform:translateY(-50%);height:44px}
-.ckday{position:relative}
-.ckday.act:active i{transform:scale(.93)}
-.ckday b{font-size:10.5px;font-weight:500;color:var(--faint);letter-spacing:0}
-.ckday.on b,.ckday.gift b{color:var(--fg)}
 .ckbar{display:flex;align-items:center;gap:10px;margin-top:12px}
 
 /* ---------- 彩色快捷大块 ---------- */
@@ -896,9 +878,16 @@ body{
 /* 主视觉压到 ~40% 屏高，整屏信息必须在首屏内 */
 .hero{border-radius:0}
 .hero .ph{aspect-ratio:auto;height:clamp(258px,40vh,340px);width:100%}
-.hero .ph>img{--pos:50% 26%}
+.hero .ph>img{--pos:50% 4%;transform-origin:50% 0}
 
 /* 名字 / 等级压在照片左上角，小而不占版面 */
+.seeher{position:absolute;z-index:4;left:14px;top:66px;display:inline-flex;align-items:center;gap:6px;
+  min-height:30px;padding:0 12px;border-radius:999px;cursor:pointer;color:#fff;font-family:var(--sans);
+  font-size:12.5px;font-weight:700;background:rgba(42,10,51,.6);border:1px solid rgba(255,160,210,.46);
+  backdrop-filter:blur(8px)}
+.seeher:hover{background:rgba(255,79,163,.4);border-color:var(--pink-2)}
+.seeher .ic{width:13px;height:13px;color:var(--pink-2)}
+.hero .ph>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
 .heroTag{position:absolute;z-index:4;right:14px;top:66px;display:inline-flex;align-items:center;gap:7px;
   padding:5px 11px 5px 6px;border-radius:999px;text-decoration:none;color:#fff;
   background:rgba(5,14,45,.6);border:1px solid rgba(140,180,255,.3);backdrop-filter:blur(8px)}
@@ -1058,7 +1047,288 @@ body{
 
 /* 结算页 */
 .rhero .ph{aspect-ratio:16/10}
+
+/* ============================================================
+   V7 · 粉 + 金，整体提亮（后置覆盖）
+   ============================================================ */
+#backdrop{background:
+  radial-gradient(58rem 40rem at 18% 4%,rgba(255,95,162,.62) 0%,rgba(255,95,162,0) 62%),
+  radial-gradient(48rem 36rem at 86% 88%,rgba(255,180,90,.34) 0%,rgba(255,180,90,0) 60%),
+  radial-gradient(40rem 30rem at 74% 16%,rgba(255,211,110,.26) 0%,rgba(255,211,110,0) 58%),
+  linear-gradient(165deg,#C11C74 0%,#7A1259 42%,#4A0D45 72%,#28091F 100%)}
+#bd-rule{background:linear-gradient(90deg,var(--gold-1),var(--pink))}
+#phone{background:var(--bg-1);
+  box-shadow:0 0 0 1px var(--pink-2),0 0 0 9px #3A0C33,0 0 0 10px rgba(255,124,192,.6),
+    0 0 46px rgba(255,79,163,.5),0 50px 90px -20px rgba(0,0,0,.7)}
+.app{background:
+  radial-gradient(130% 48% at 50% -6%,rgba(255,95,162,.5) 0%,rgba(255,95,162,0) 70%),
+  radial-gradient(86% 36% at 108% 70%,rgba(255,180,90,.2) 0%,rgba(255,180,90,0) 70%),
+  linear-gradient(180deg,#B0186A 0%,#7A1259 26%,#4F0E48 62%,#2A0A33 100%)}
+#bar.ghost{background:linear-gradient(180deg,rgba(42,10,51,.88) 0%,rgba(42,10,51,.5) 58%,rgba(42,10,51,0) 100%)}
+/* 细闪：固定层、不吃滚动性能 */
+.app::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:
+    radial-gradient(1.6px 1.6px at 18% 12%,rgba(255,235,250,.9),transparent),
+    radial-gradient(1.4px 1.4px at 72% 8%,rgba(255,214,140,.85),transparent),
+    radial-gradient(1.2px 1.2px at 42% 30%,rgba(255,235,250,.7),transparent),
+    radial-gradient(1.6px 1.6px at 88% 42%,rgba(255,214,140,.7),transparent),
+    radial-gradient(1.2px 1.2px at 12% 58%,rgba(255,235,250,.6),transparent),
+    radial-gradient(1.4px 1.4px at 62% 74%,rgba(255,214,140,.6),transparent)}
+#stage{position:relative;z-index:1}   /* 只抬 flex 子元素，绝对定位的浮层保持原样 */
+
+.panel,.card{background:var(--card);border:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 10px 30px -14px rgba(42,10,51,.8)}
+.lrow{background:var(--card);border:1px solid var(--line-2)}
+.lrow:hover{background:rgba(255,79,163,.28);border-color:var(--line)}
+.lrow .ic{color:var(--pink-2)}
+.row{border-bottom:1px solid rgba(255,200,230,.2)}
+
+.btn-pri{background:linear-gradient(180deg,var(--blue-btn) 0%,var(--blue-btn-2) 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 8px 20px -8px rgba(255,79,163,.95)}
+.btn-pri:hover{background:linear-gradient(180deg,#FF57A6 0%,#B81A6B 100%)}
+.btn-gold{background:linear-gradient(180deg,var(--gold-1) 0%,var(--gold-2) 48%,var(--gold-3) 100%);color:#3A0A2E}
+.btn-gold:hover{background:linear-gradient(180deg,#FFE4A0 0%,#FFC963 48%,#D9972F 100%);color:#2E071F}
+.btn-gh:hover{background:rgba(255,79,163,.26);border-color:var(--pink-2)}
+.btn-qt{background:rgba(255,255,255,.12)}
+.btn-qt:hover{background:rgba(255,79,163,.3)}
+.pill{background:rgba(255,255,255,.12)}
+.pill.g{border-color:rgba(242,182,72,.6);color:var(--gold-1);background:rgba(242,182,72,.18)}
+.pill.r{border-color:rgba(255,110,176,.6);color:#FFC2DF;background:rgba(255,110,176,.2)}
+.pill.ok{border-color:rgba(120,235,170,.55);color:#9DF2C4;background:rgba(120,235,170,.16)}
+.pill.badge{background:rgba(42,10,51,.88)}
+.ptchip{border-color:rgba(242,182,72,.6);background:rgba(42,10,51,.6);color:var(--gold-1)}
+.tbtn,.gold{color:var(--gold-1)}
+.tbtn:hover{border-bottom-color:var(--gold-1)}
+
+/* 3D 图标底下垫一层粉光，蓝色图标才压得住粉底 */
+.fabsay{position:absolute;right:62px;top:50%;transform:translateY(-50%) scale(.9);transform-origin:right center;
+  white-space:nowrap;padding:7px 13px;border-radius:999px;font-size:12.5px;font-weight:600;color:#fff;
+  background:rgba(58,12,51,.95);border:1px solid var(--line);box-shadow:0 8px 20px -8px rgba(0,0,0,.7);
+  opacity:0;animation:fabSay 4.4s var(--e3) both;pointer-events:none}
+@keyframes fabSay{0%{opacity:0;transform:translateY(-50%) scale(.86)}
+  10%,74%{opacity:1;transform:translateY(-50%) scale(1)}
+  100%{opacity:0;transform:translateY(-50%) scale(.94)}}
+.i3{position:relative}
+.i3::before{content:"";position:absolute;inset:-14%;border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(255,124,192,.75) 0%,rgba(255,79,163,.3) 46%,rgba(255,79,163,0) 72%)}
+.i3 img,.i3 .i3-fb{position:relative;z-index:1}
+
+/* 打卡格 */
+.ckover{background:linear-gradient(180deg,rgba(42,10,51,0) 0%,rgba(74,13,69,.86) 46%,rgba(58,11,56,.97) 100%)}
+.ckday i{background:linear-gradient(180deg,#FF5FA2 0%,#D61F7A 100%);border-color:rgba(255,255,255,.42)}
+.ckday.on i{background:linear-gradient(180deg,#FF5FA2 0%,#D61F7A 100%);border-color:rgba(255,255,255,.52);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 5px 13px -5px rgba(255,79,163,.95)}
+.ckday.gift i{background:linear-gradient(180deg,var(--gold-1) 0%,var(--gold-3) 100%)}
+.ckday.gift i svg{stroke:#3A0A2E}
+.ckday.today i{border-color:var(--gold-1);animation:ckToday 1.7s var(--e3) infinite}
+@keyframes ckToday{0%,100%{box-shadow:0 0 0 0 rgba(255,211,110,.95),0 1px 0 rgba(255,255,255,.5) inset}
+  55%{box-shadow:0 0 0 3px rgba(255,211,110,.3),0 1px 0 rgba(255,255,255,.5) inset}}
+.ckday b{color:rgba(255,226,242,.86)}
+
+/* 快捷大块 */
+.qt-blue{background:linear-gradient(165deg,#FF5FA2 0%,#D61F7A 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(255,95,162,.95)}
+.qt-purple{background:linear-gradient(165deg,#B65CFF 0%,#7A2BD0 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(182,92,255,.95)}
+.qt-orange{background:linear-gradient(165deg,#FFB45A 0%,#E05A3C 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(255,180,90,.9)}
+.vip{background:linear-gradient(100deg,rgba(255,211,110,.3) 0%,rgba(255,255,255,.1) 58%);
+  border-color:rgba(255,211,110,.55)}
+.vip:hover{background:linear-gradient(100deg,rgba(255,211,110,.44) 0%,rgba(255,79,163,.24) 58%)}
+.vip .cv{color:var(--gold-1)}
+.poster .pbadge{background:linear-gradient(180deg,rgba(255,79,163,.96),rgba(214,31,122,.96))}
+.heroTag{background:rgba(42,10,51,.6);border-color:rgba(255,160,210,.42)}
+.heroTag span{color:var(--gold-1)}
+
+/* 心动值（原亲密度条） */
+.bond-t{background:rgba(255,255,255,.18)}
+.bond-t i{background:linear-gradient(90deg,#FF7CC0,#FF4FA3,var(--gold-1))}
+.bond-h b{color:var(--pink-2)}
+
+/* 聊天 */
+.chat-bg::before{z-index:1;background:linear-gradient(180deg,rgba(42,10,51,.94) 0%,rgba(74,13,69,.78) 24%,
+  rgba(74,13,69,.8) 60%,rgba(42,10,51,.96) 100%)}
+.msg.her{background:rgba(110,20,85,.94);border-color:rgba(255,160,210,.34)}
+.msg.me{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:#3A0A2E}
+.typing{background:rgba(110,20,85,.94);border-color:rgba(255,160,210,.34)}
+.chat-in{background:rgba(42,10,51,.92)}
+.chat-in textarea{background:rgba(255,255,255,.12)}
+.chat-in textarea:focus{border-color:var(--pink-2);box-shadow:0 0 0 3px rgba(255,79,163,.3)}
+.send{background:linear-gradient(180deg,var(--blue-btn),var(--blue-btn-2))}
+.send:hover{background:linear-gradient(180deg,#FF57A6,#B81A6B)}
+.chip{background:rgba(255,255,255,.14)}
+.chip:hover{background:rgba(255,79,163,.36);border-color:var(--pink-2)}
+.chip .ic{color:var(--pink-2)}
+
+/* 其它面 */
+.ph{background:linear-gradient(145deg,#A02570 0%,#6E1455 55%,#8C1A62 100%)}
+.ph::after{color:rgba(255,211,110,.4)}
+.scrim{background:linear-gradient(180deg,rgba(42,10,51,0) 30%,rgba(42,10,51,.52) 62%,rgba(42,10,51,.95) 100%)}
+#sheet{background:linear-gradient(180deg,#8C1A62 0%,#3A0C33 100%);border-top:1px solid var(--line)}
+.tst{background:rgba(58,12,51,.96);border-color:var(--line)}
+.tst .ic,.tst-r b{color:var(--gold-1)}
+.arena,.cstage{background:radial-gradient(70% 55% at 50% 10%,rgba(255,124,192,.34),rgba(94,15,87,0) 70%),
+  linear-gradient(180deg,#8C1A62,#490D43);border-color:var(--line)}
+.mcard .back{background:linear-gradient(165deg,#FF5FA2 0%,#9E1560 100%);border-color:rgba(255,200,230,.5)}
+.mcard .back svg{fill:var(--gold-1)}
+.mcard .front{background:#5E0F57}
+.tbar i{background:linear-gradient(90deg,var(--pink-2),var(--gold-1))}
+.tabs2{background:rgba(42,10,51,.6)}
+.tabs2 button.on{background:linear-gradient(180deg,var(--blue-btn),var(--blue-btn-2))}
+.ep{background:rgba(255,255,255,.1)}
+.ep:hover{background:rgba(255,79,163,.3);border-color:var(--pink-2)}
+.ep.on{border-color:var(--gold-1);background:rgba(242,182,72,.2)}
+.ep .ic{color:#FFC2DF}
+.ep.on .ic{color:var(--gold-1)}
+#tabs{background:linear-gradient(180deg,rgba(42,10,51,.5),rgba(34,8,41,.97));border-top:1px solid var(--line)}
+#tabs a.on{color:var(--pink-2)}
+#tabInd{background:linear-gradient(90deg,var(--gold-1),var(--pink));box-shadow:0 0 10px rgba(255,124,192,.9)}
+#fab{background:var(--navy-3);border-color:var(--pink-2);
+  box-shadow:0 0 20px -2px var(--glow),0 14px 30px -12px rgba(0,0,0,.7)}
+#fab .ring{border-color:var(--pink-2)}
+#fab .dot{background:#6EEBA8;border-color:#5E0F57}
+.ptcard{background:linear-gradient(118deg,rgba(255,211,110,.34) 0%,rgba(255,79,163,.3) 46%,rgba(90,14,74,.9) 100%);
+  border-color:rgba(255,211,110,.6)}
+.gcardx{border-color:rgba(255,200,230,.3)}
+.gcardx::after{background:linear-gradient(180deg,rgba(42,10,51,0),rgba(42,10,51,.58) 42%,rgba(42,10,51,.92))}
+.gx-1{background:linear-gradient(160deg,#FF5FA2 0%,#C2186C 100%)}
+.gx-2{background:linear-gradient(160deg,#B65CFF 0%,#7A2BD0 100%)}
+.gx-3{background:linear-gradient(160deg,#FFB45A 0%,#E05A3C 100%)}
+.gx-4{background:linear-gradient(160deg,#FF7CC0 0%,#A8155E 100%)}
+.gx-5{background:linear-gradient(160deg,#FF9BD0 0%,#D61F7A 100%)}
+.gx-6{background:linear-gradient(160deg,#FFD36E 0%,#E08A2A 100%)}
+.a3-gold{background:linear-gradient(170deg,#7A1259 0%,#3F0B38 100%);border-color:rgba(255,211,110,.7)}
+.a3-blue{background:linear-gradient(170deg,#FF5FA2 0%,#C2186C 100%)}
+.a3-deep{background:linear-gradient(170deg,#C86BFF 0%,#7A2BD0 100%)}
+.qopt{background:rgba(255,255,255,.1)}
+.qopt:hover{border-color:var(--pink-2);background:rgba(255,79,163,.28)}
+.qopt.sel{border-color:var(--gold-1);background:rgba(242,182,72,.22)}
+.qopt.sel .mark{background:linear-gradient(180deg,var(--gold-1),var(--gold-3));border-color:var(--gold-1)}
+.qopt.sel .mark svg{stroke:#3A0A2E}
+.qopt.right{border-color:#6EEBA8;background:rgba(110,235,168,.2)}
+.qopt.right .mark{background:#6EEBA8;border-color:#A6F5CE}
+.qopt.wrong{border-color:var(--rose);background:rgba(255,110,176,.2)}
+.basket .bk{background:linear-gradient(180deg,#FFD36E,#C98A2B)}
+.ichip{background:linear-gradient(180deg,rgba(255,124,192,.34),rgba(214,31,122,.34));
+  border-color:rgba(255,160,210,.5);color:#FFE3F1}
+.agechip{background:linear-gradient(180deg,rgba(255,211,110,.34),rgba(201,138,43,.4));
+  border-color:rgba(255,211,110,.65);color:#FFEFC8}
+.epthumb,.uthumb,.item,.gcard,.sw{border-color:var(--line-2)}
+.item:hover,.gcard:hover,.poster:hover{border-color:var(--pink-2)}
+.gcard.cur{border-color:rgba(255,211,110,.7);box-shadow:0 20px 46px -20px rgba(255,211,110,.55)}
+.sw.on{box-shadow:0 0 0 2px var(--gold-1)}
+.collect{background:rgba(58,12,51,.96);border-color:rgba(255,211,110,.6);color:var(--gold-1)}
+.unmute{background:rgba(58,12,51,.92)}
+.unmute .ic{color:var(--pink-2)}
+.pprog b{background:linear-gradient(90deg,var(--pink-2),var(--gold-1))}
+.flo{background:rgba(58,12,51,.9);border-color:var(--line)}
+.flo .ic{color:var(--pink-2)}
+.fly{background:rgba(58,12,51,.95);border-color:var(--line)}
+.fly.gold{color:var(--gold-1)}
+.spark{background:var(--gold-1)}
+.splash{border-color:var(--pink)}
+.splash.g{border-color:var(--gold-1)}
+.pop-n{color:var(--gold-1)}
+.rip{background:radial-gradient(circle,rgba(255,200,230,.6),rgba(255,200,230,0) 70%)}
+.sweep{background-image:linear-gradient(100deg,#fff 0 40%,var(--gold-1) 47%,#FFC2DF 53%,#fff 62% 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.react{background:rgba(58,12,51,.94);border-color:var(--line)}
+.msg.sys{background:rgba(42,10,51,.76)}
+.empty{border-color:var(--line-2)}
+.lgrow .tile{background:linear-gradient(170deg,rgba(255,124,192,.44),rgba(214,31,122,.5));
+  border-color:var(--line-2)}
+.lgrow .tile svg{color:#FFD9EC}
+.combo{color:var(--gold-1)}
+
+
+/* ---------- V7 游戏 ---------- */
+.newbadge{position:absolute;left:11px;top:11px;z-index:3;display:inline-flex;align-items:center;gap:4px;
+  height:21px;padding:0 9px;border-radius:999px;font-size:10.5px;font-weight:700;color:#3A0A2E;
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-3));
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 10px -4px rgba(242,182,72,.9)}
+.newbadge::before{content:"";width:7px;height:9px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:linear-gradient(180deg,#FF6A3D,#D61F7A)}
+.kiss svg{fill:#FF4FA3}
+.kiss.g svg{fill:var(--gold-1)}
+/* 奖励吻：结束时盖一个唇印 */
+.lipstamp{position:absolute;left:50%;top:46%;width:150px;height:150px;transform:translate(-50%,-50%) scale(.3) rotate(-14deg);
+  opacity:0;animation:lipGo 1.5s var(--e3) both;pointer-events:none;z-index:3}
+.lipstamp svg{width:100%;height:100%;fill:rgba(255,79,163,.86);
+  filter:drop-shadow(0 4px 16px rgba(255,79,163,.8))}
+@keyframes lipGo{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(-14deg)}
+  26%{opacity:1;transform:translate(-50%,-50%) scale(1.12) rotate(-6deg)}
+  40%{transform:translate(-50%,-50%) scale(1) rotate(-8deg)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.06) rotate(-8deg)}}
+/* 真心话大冒险 */
+.bottlebox{position:relative;height:216px;display:grid;place-items:center;border-radius:18px;
+  border:1px solid var(--line);overflow:hidden;
+  background:radial-gradient(60% 60% at 50% 42%,rgba(255,124,192,.34),rgba(94,15,87,0) 72%),
+    linear-gradient(180deg,#8C1A62,#490D43)}
+.bottle{width:124px;height:124px;transition:transform 2.4s cubic-bezier(.17,.89,.3,1)}
+.bottle svg{width:100%;height:100%}
+.tdcard{padding:15px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.tdcard .kind{display:inline-flex;align-items:center;height:24px;padding:0 11px;border-radius:999px;
+  font-size:11.5px;font-weight:700}
+.tdcard .kind.t{background:linear-gradient(180deg,var(--gold-1),var(--gold-3));color:#3A0A2E}
+.tdcard .kind.d{background:linear-gradient(180deg,#FF7CC0,#C2186C);color:#fff}
+.blush{height:8px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden;margin-top:8px}
+.blush i{display:block;height:100%;border-radius:5px;transform-origin:left;transition:transform .5s var(--e3);
+  background:linear-gradient(90deg,#FF9BD0,#FF4FA3,var(--gold-1))}
+.dareopt{display:flex;flex-direction:column;gap:8px}
+.dareopt button{padding:12px 14px;border-radius:13px;background:rgba(255,255,255,.1);
+  border:1px solid var(--line-2);color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;
+  text-align:left;cursor:pointer;transition:background .2s var(--e3),border-color .2s var(--e3)}
+.dareopt button:hover{background:rgba(255,79,163,.3);border-color:var(--pink-2)}
+.tapzone{display:grid;place-items:center;height:150px;border-radius:16px;cursor:pointer;
+  background:rgba(255,255,255,.08);border:1px dashed var(--line);user-select:none}
+.tapzone .ph{width:96px;height:96px;border-radius:50%;overflow:hidden}
+.tapzone.hit{animation:tapHit .3s var(--e3)}
+@keyframes tapHit{0%,100%{transform:scale(1)}45%{transform:scale(1.07)}}
+/* 擦掉雾气 */
+.fogbox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+  aspect-ratio:3/4;max-height:46vh;margin:0 auto;touch-action:none}
+.fogbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.fogbox canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.fogbox .hintf{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:12.5px;font-weight:600;
+  color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none;z-index:3}
+/* ---------- 私密相册 ---------- */
+.alb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.albc{position:relative;border:0;padding:0;border-radius:16px;overflow:hidden;cursor:pointer;
+  background:var(--navy);box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 10px 26px -14px rgba(42,10,51,.9);
+  border:1px solid var(--line-2);transition:transform .22s var(--e3),border-color .22s var(--e3)}
+.albc:hover{transform:translateY(-2px);border-color:var(--pink-2)}
+.albc .ph{aspect-ratio:3/4}
+.albc.lk .ph>img{filter:blur(17px) saturate(1.25) brightness(.82);transform:scale(1.14)}
+.albc .cap{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:20px 9px 9px;font-size:12px;font-weight:600;
+  text-align:left;background:linear-gradient(180deg,rgba(42,10,51,0),rgba(42,10,51,.92))}
+.albc .lkbox{position:absolute;z-index:4;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:9px}
+.albc .lkbox .ic{width:22px;height:22px;color:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.albc.unl{animation:albUnlock .9s var(--e3)}
+@keyframes albUnlock{0%{filter:brightness(1.6)}100%{filter:none}}
+.albc .shine{position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:linear-gradient(104deg,transparent 38%,rgba(255,235,250,.6) 50%,transparent 62%);
+  transform:translateX(-120%)}
+.albc.unl .shine{animation:shimGo 1s var(--e3) both}
+/* 全屏看图 */
+#viewer{position:absolute;inset:0;z-index:80;display:none;background:rgba(26,6,30,.97);
+  flex-direction:column;touch-action:none}
+#viewer.on{display:flex}
+#viewer .vtop{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:28px 16px 10px}
+#viewer .vtop b{font-size:15px;font-weight:700}
+#viewer .vtop .sm{margin-left:auto}
+#viewer .vwrap{flex:1 1 auto;position:relative;overflow:hidden}
+#viewer .vtrack{display:flex;height:100%;transition:transform .34s var(--e3)}
+#viewer .vslide{flex:0 0 100%;display:grid;place-items:center;padding:0 10px}
+#viewer .vslide img{max-width:100%;max-height:100%;object-fit:contain;border-radius:14px;
+  box-shadow:0 20px 50px -18px rgba(0,0,0,.8)}
+#viewer .vbot{flex:0 0 auto;padding:12px 16px 26px;text-align:center}
+#viewer .vdots{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+#viewer .vdots i{width:20px;height:3px;border-radius:2px;background:rgba(255,226,242,.3)}
+#viewer .vdots i.on{background:linear-gradient(90deg,var(--gold-1),var(--pink))}
+#viewer .vline{font-size:13.5px;font-weight:600;color:#FFD9EC;min-height:1.4em}
 @media (prefers-reduced-motion:reduce){
+  .app::after{display:none}
   .ckday.today i,.gcardx{animation:none !important}
   .flo,#fab .ring,#fx>*{display:none !important}
   #fab{animation:none !important}
@@ -1133,6 +1403,7 @@ body{
     </nav>
     <button id="fab" aria-label="和她聊天"></button>
     <div id="fx" aria-hidden="true"></div>
+    <div id="viewer" role="dialog" aria-modal="true" aria-hidden="true"></div>
     <div id="veil"></div>
     <section id="sheet" role="dialog" aria-modal="true" aria-hidden="true"></section>
     <div id="toast" role="status" aria-live="polite"></div>
@@ -1147,7 +1418,7 @@ body{
 "use strict";
 
 /* ---------- 数据 ---------- */
-const PRICE = { ep:20, bg:100, act:150, outfit:300, gift:20 };
+const PRICE = { ep:20, bg:100, act:150, outfit:300, gift:20, album:120 };
 const RULES = { signup:100, checkin:10, gameMax:30, gameRounds:3, invite:20, inviteMax:5 };
 /* 亲密经验：只累积、不消耗、不折现 */
 const XPR = { checkin:5, chat:10, game:5, drama:10, coach:20, gift:10 };
@@ -1166,6 +1437,7 @@ const GIFTS = [
 const GIRLS = [
   { id:"sweet", name:"小糖", en:"Candy", type:"甜美型", initial:"糖", age:24,
     tags:["活泼","俏皮","亲切"],
+    v3:"assets/img/girl-sweet-v3.webp", x:"assets/img/girl-sweet-x.webp",
     lounge:"assets/img/girl-sweet-lounge.webp", img:"assets/img/girl-sweet.webp", img2:"assets/img/girl-sweet-2.webp",
     video:"assets/video/girl-sweet.mp4",
     line:"今天也想听你讲讲你的事。",
@@ -1173,21 +1445,27 @@ const GIRLS = [
     outfit2:"限定 · 莓果午后",
     react:{ hit:["微笑","比心","开心"], combo:["眨眼","加油","好厉害"], win:["庆祝","抱抱","太棒了"], idle:["在听","想你了","嘿"] },
     reply:{
-      "你好|嗨|hi|hello|在吗":["在的在的，刚还在想你会不会来。","嗨～你一出现我这边就亮了一下。"],
-      "名字|叫什么":["我叫小糖，朋友都这样喊我。","小糖呀，甜的那个糖。"],
+      "你好|嗨|hi|hello|在吗":["在的在的，刚还在想你会不会来呢～","嗨～你一出现，我这边就亮了一下。（脸红）"],
+      "名字|叫什么":["我叫小糖呀，甜的那个糖，你尝过就知道了。","小糖～叫一声来听听？"],
+      "想你|在干嘛|干嘛呢":["刚还在偷偷看你的头像，被你抓到了。（脸红）","想你了呀，你怎么才来。"],
+      "穿|衣服|睡衣":["今天是粉色的针织，领口有个小蝴蝶结……要看吗？","睡衣是草莓色的呀，别问那么细啦。"],
+      "给我看看|照片|相册":["相册里有几张不太好意思给别人看的……只给你看哦～","你去我的私密相册翻翻嘛，我偷偷放了一张。"],
+      "晚安吻|亲|吻":["唔……那就隔着屏幕一下下。（脸红）","闭眼，数到三。一、二……不说了。"],
+      "夸|好看|可爱":["再说一次，刚才没听清。","你这样夸我，我会得意一整天的。"],
       "吃|饭|饿|宵夜":["我刚试做了椰糖布丁，下次给你留一份。","别饿着，吉隆坡这个点还有好多宵夜摊。"],
       "累|好累|加班|困":["那先把肩膀放下来，我陪你坐一会儿就好。","累就什么都别想，听我说点没用的。"],
-      "喜欢|爱|想你":["这种话不能一次说完，要留着慢慢讲。","我也想你，所以你来了我才这么吵。"],
+      "喜欢|爱":["这种话不能一次说完，要留着慢慢讲嘛。","我也喜欢你呀……说出来了，不许笑我。（脸红）"],
       "做什么|在干|忙吗":["在等你，顺便把今天的糖浆熬好了。","发呆，还有把你上次说的歌听了三遍。"],
       "晚安|睡|再见|拜":["晚安，明天记得来找我。","去睡吧，我把灯留着。"],
       "积分|奖励|兑换":["积分在首页看得到，签到和心动挑战都能拿。","攒够了可以换背景和服装，我想看你给我选哪套。"],
       "游戏|挑战|玩":["心动挑战我站在角落给你喊加油。","去玩一局，我看着你。"],
       "短剧|剧|看剧":["短剧那边我追到第三集了，你陪我看完好不好。","我喜欢第二部，结尾有点想哭。"]
     },
-    fallback:["这个我要想一下，你先别走。","嗯……然后呢？我想听完整的。","你讲话的方式我有点喜欢。","好，记下了，下次我自己提。","你这样说我会当真的。"]
+    fallback:["这个我要想一下，你先别走嘛。","嗯……然后呢？我想听完整的。","你讲话的方式我有点喜欢。（脸红）","好，记下了，下次我自己提。","你这样说我会当真的哦。"]
   },
   { id:"queen", name:"薇薇安", en:"Vivian", type:"御姐型", initial:"薇", age:31,
     tags:["成熟","自信","有魅力"],
+    v3:"assets/img/girl-queen-v3.webp", x:"assets/img/girl-queen-x.webp",
     lounge:"assets/img/girl-queen-lounge.webp", img:"assets/img/girl-queen.webp", img2:"assets/img/girl-queen-2.webp",
     video:"assets/video/girl-queen.mp4",
     line:"坐下吧，今晚不谈工作。",
@@ -1195,11 +1473,16 @@ const GIRLS = [
     outfit2:"限定 · 午夜缎面",
     react:{ hit:["微笑","比心","不错"], combo:["眨眼","继续","有意思"], win:["庆祝","干得好","我喜欢"], idle:["看着你","说吧","嗯"] },
     reply:{
-      "你好|嗨|hi|hello|在吗":["来了。坐这边，灯没那么晃。","在。今晚我把手机关了。"],
-      "名字|叫什么":["Vivian。中文叫薇薇安，你选顺口的那个。","叫我 Vivian 就好。"],
+      "你好|嗨|hi|hello|在吗":["来了。坐这边，灯没那么晃。","在。今晚我把手机关了，只留你一个。"],
+      "名字|叫什么":["Vivian。中文叫薇薇安，你选顺口的那个。","叫我 Vivian 就好。晚一点可以换个叫法。"],
+      "想你|在干嘛|干嘛呢":["刚换了条裙子，红的。你来得正是时候。","在等。等一个不太守时的人。"],
+      "穿|衣服|睡衣":["红色真丝的吊带裙。细节不告诉你。","睡衣是黑的。再问我就不说了。"],
+      "给我看看|照片|相册":["相册里那几张，我只给一个人开权限。","想看就去解锁。别让我说第二次。"],
+      "晚安吻|亲|吻":["这种事不在聊天框里做。","靠过来一点……算了，今晚先欠着。"],
+      "夸|好看|漂亮":["我知道。但从你嘴里说出来不一样。","继续。我难得想听。"],
       "吃|饭|饿|宵夜":["楼下那家还开着，我请。","别用咖啡顶着当饭吃。"],
       "累|好累|加班|困":["把没做完的留到明天，世界不会塌。","累就承认累，这不丢人。"],
-      "喜欢|爱|想你":["这句话你说得太轻，再说一遍。","我不太会回这种话，但我记住了。"],
+      "喜欢|爱":["这句话你说得太轻，再说一遍。","我不太会回这种话，但我记住了。整晚。"],
       "做什么|在干|忙吗":["刚推掉一个会，现在很闲。","在喝第二杯，等一个人说话。"],
       "晚安|睡|再见|拜":["晚安。明天别起太晚。","去吧。门我留着。"],
       "积分|奖励|兑换":["积分别乱花，先换你真的会用的。","奖励页我看过，背景比服装划算。"],
@@ -1210,6 +1493,7 @@ const GIRLS = [
   },
   { id:"cool", name:"露娜", en:"Luna", type:"冷艳型", initial:"露", age:27,
     tags:["优雅","含蓄","有个性"],
+    v3:"assets/img/girl-cool-v3.webp", x:"assets/img/girl-cool-x.webp",
     lounge:"assets/img/girl-cool-lounge.webp", img:"assets/img/girl-cool.webp", img2:"assets/img/girl-cool-2.webp",
     video:"assets/video/girl-cool.mp4",
     line:"你来得正好，我刚放完这首。",
@@ -1217,11 +1501,16 @@ const GIRLS = [
     outfit2:"限定 · 青瓷长裙",
     react:{ hit:["微笑","比心","嗯"], combo:["眨眼","别停","可以"], win:["庆祝","漂亮","服了你"], idle:["在","听着","抬头"] },
     reply:{
-      "你好|嗨|hi|hello|在吗":["在。","嗯，你来了。"],
+      "你好|嗨|hi|hello|在吗":["在。等很久了。","嗯，你来了。我把灯调暗了一点。"],
       "名字|叫什么":["Luna。露娜也行。","名字不重要，你记住就好。"],
+      "想你|在干嘛|干嘛呢":["在镜子前面站了很久。没别的意思。","想了。不常说这两个字。"],
+      "穿|衣服|睡衣":["银色的，背后开得有点低。","白色。再问就不答了。"],
+      "给我看看|照片|相册":["有一张，我自己都很少看。解锁了就给你。","相册里第二张……你最好一个人看。"],
+      "晚安吻|亲|吻":["……闭眼。","别出声。"],
+      "夸|好看|漂亮":["嗯。","你再说一次我就当真。"],
       "吃|饭|饿|宵夜":["我一天只认真吃一顿，剩下随便。","你去吃，我等你回来。"],
       "累|好累|加班|困":["那就不说话，坐一会儿。","累的时候别做决定。"],
-      "喜欢|爱|想你":["……我听见了。","别一次说完。"],
+      "喜欢|爱":["……我听见了。（脸红）","别一次说完。留一点给明天。"],
       "做什么|在干|忙吗":["在调弦。","看窗外，没什么好看的。"],
       "晚安|睡|再见|拜":["晚安。","嗯，走吧。"],
       "积分|奖励|兑换":["积分够了换背景，夜景那张像槟城。","我不挑，你决定。"],
@@ -1249,10 +1538,10 @@ const BOND = {
     cheer:{ win:"这就是我说的那种厉害。今天的布丁我请。", ok:"接住这么多，手不酸吗？", low:"没关系，我刚才一直在旁边喊你。" },
     thanks:{ rose:"玫瑰我收下了，等会儿压进笔记本里。", coffee:"这杯我慢慢喝，喝完再讲今天的事给你听。", cake:"蛋糕……你怎么知道我今天正想吃甜的。" },
     topics:[
-      { id:"day",  lv:1, label:"今天过得怎么样", q:"你今天过得怎么样？", a:"早上揉了三盘面，中午偷吃了一块。现在在等你问我这句。" },
-      { id:"me",   lv:1, label:"说说你自己",     q:"说说你自己吧。",     a:"十七岁来的吉隆坡，先在后厨洗盘子，现在能自己出两款甜点了。" },
-      { id:"week", lv:2, label:"周末想做什么",   q:"周末你想做什么？",   a:"想去 Bangsar 那条街乱逛，看到什么买什么，你负责拎袋子。" },
-      { id:"1st",  lv:2, label:"我们第一次见面", q:"还记得我们第一次见面吗？", a:"记得啊。你在柜台前站了很久，最后点了最便宜的那杯。" }
+      { id:"miss", lv:1, label:"想你了",     q:"想你了。",       a:"才说一句我耳朵就热了。（脸红）那你今晚别走好不好。" },
+      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？",   a:"粉色的针织，领口有个小蝴蝶结。好看的话你要夸我。" },
+      { id:"show", lv:2, label:"给我看看",   q:"给我看看嘛。",   a:"相册里那几张……只给你看哦～别截图。" },
+      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",       a:"唔……闭上眼。（脸红）好了，这个只有今晚有。" }
     ],
     scene:{ t:"雨天的后厨", x:"那天雨下得很大，店里没客人。她把烤箱门打开一条缝取暖，让你坐在面粉袋上，说这是全店最好的位置。你们一句话没说，听了四十分钟的雨。" },
     story:{ t:"她没讲完的那一年", x:"她第一年没考上甜点师执照，瞒了家里八个月。每天照常出门，在店里多站三小时。她说这件事只讲给两个人听过，你是第二个。" }
@@ -1261,10 +1550,10 @@ const BOND = {
     cheer:{ win:"干得漂亮。这种手速我给满分。", ok:"稳。再快一点会更好看。", low:"别急。我见过更差的，那个人是我。" },
     thanks:{ rose:"你知道我不收花。这次算例外。", coffee:"加了两份浓缩。你记得。", cake:"我不吃甜的。但这块我会吃完。" },
     topics:[
-      { id:"day",  lv:1, label:"今晚怎么样",     q:"今晚怎么样？",       a:"推了两个饭局，剩下的时间都空着。" },
-      { id:"me",   lv:1, label:"说说你自己",     q:"说说你自己。",       a:"做品牌顾问第九年。我擅长让对方把话讲完，再决定信不信。" },
-      { id:"week", lv:2, label:"你的周末",       q:"你周末都在做什么？", a:"睡到自然醒，然后一个人开车去海边。不拍照。" },
-      { id:"1st",  lv:2, label:"我们第一次见面", q:"还记得我们第一次见面吗？", a:"记得。你当时话很少，我以为你在端着。后来发现不是。" }
+      { id:"miss", lv:1, label:"想你了",     q:"想你了。",     a:"我知道。所以我把今晚空出来了。" },
+      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？", a:"红色真丝的吊带裙。细节自己想。" },
+      { id:"show", lv:2, label:"给我看看",   q:"给我看看。",   a:"相册的权限我只开给一个人。你去看吧。" },
+      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",     a:"靠过来。……行了，剩下的留到见面。" }
     ],
     scene:{ t:"谈判桌之后", x:"会开到十点半，对方全程没让步。走出电梯她才把高跟鞋脱下来提在手里，光脚走过停车场，回头问你：刚才我凶吗。" },
     story:{ t:"她不接的那通电话", x:"有一个号码她从不接，但每次响完都会盯着屏幕几秒。她说那是她第一个客户，也是教会她把价格说出口的人。后来那家公司倒了。" }
@@ -1273,10 +1562,10 @@ const BOND = {
     cheer:{ win:"漂亮。我没想到你能到这个分。", ok:"可以。节奏比上一局准。", low:"嗯。下一局我还在。" },
     thanks:{ rose:"……放窗台上了。", coffee:"这个点不该喝的。谢谢。", cake:"甜的我吃一半，剩下的归你。" },
     topics:[
-      { id:"day",  lv:1, label:"今天还好吗",     q:"今天还好吗？",       a:"还好。改了两段指法，没改好。" },
-      { id:"me",   lv:1, label:"说说你自己",     q:"说说你自己。",       a:"教吉他六年。学生记不住的段落，我会弹到他们记住为止。" },
-      { id:"week", lv:2, label:"你的周末",       q:"你周末做什么？",     a:"走路。从家走到海墘街，再走回来。不听歌。" },
-      { id:"1st",  lv:2, label:"我们第一次见面", q:"还记得我们第一次见面吗？", a:"记得。你没说话，站着听完了一整首。" }
+      { id:"miss", lv:1, label:"想你了",     q:"想你了。",     a:"……嗯。我也是。（脸红）" },
+      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？", a:"银色的，背后开得有点低。别问了。" },
+      { id:"show", lv:2, label:"给我看看",   q:"给我看看。",   a:"第二张你最好一个人看。看完告诉我一句话。" },
+      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",     a:"闭眼。别出声。……晚安。" }
     ],
     scene:{ t:"琴房最后一盏灯", x:"学生都走了，她没开大灯，只留谱架上那一盏。她把琴递过来，说你按住这里，我来拨。那是你第一次听见自己弹出的声音。" },
     story:{ t:"她弹给谁听", x:"她十九岁在槟城街头弹过半年。只有一个人每周三晚上都来，站在同一棵树下，从不鼓掌。后来那个人没再出现，她把那首曲子封存了四年。" }
@@ -1298,7 +1587,7 @@ function fresh(){
   return {
     pts:0, day:today(), checkedIn:false, rounds:0, invited:0,
     girl:"sweet", bg:"cafe", outfit:{}, nick:"演示用户",
-    owned:{ bg:["cafe"], act:[], outfit:[], outfitC:[], vid:[] },
+    owned:{ bg:["cafe"], act:[], outfit:[], outfitC:[], outfitL:[], vid:[], album:{} },
     eps:{ d1:[1,2] }, watched:[], last:{},
     tasks:{ checkin:false, game:false, drama:false, share:false, gift:false },
     streak:0,
@@ -1319,6 +1608,8 @@ function load(){
     s.tasks = { checkin:false, game:false, drama:false, share:false, gift:false };
   }
   if(!s.owned.outfitC) s.owned.outfitC = [];
+  if(!s.owned.outfitL) s.owned.outfitL = [];
+  if(!s.owned.album) s.owned.album = {};
   if(!s.booted){
     s.booted = true; s.pts = RULES.signup;
     s.ledger = [{ t:Date.now(), label:"首次注册奖励", d:RULES.signup }];
@@ -1384,7 +1675,7 @@ const posOf = src => /\/(bg-|drama-|logo|mba-app)/.test(src) ? "50% 50%" : "50% 
 function phImg(src, initial, alt, cls="", pos){
   return `<div class="ph ${cls}" style="--pos:${pos || posOf(src)}" data-initial="${esc(initial)}"><img src="${src}" alt="${esc(alt)}" loading="lazy" onerror="imgFail(this)"></div>`;
 }
-const AV = "50% 20%";   // 1:1 圆形头像：lounge 新图脸在 20–30% 高度，配合下方 CSS 放大到脸部
+const AV = "50% 20%";   // 1:1 圆形头像：v3 新图脸在 22-30% 高度，配合下方 CSS 放大到脸部
 function phVid(src, poster, initial, alt, cls="", attrs="autoplay muted loop playsinline"){
   return `<div class="ph ${cls}" style="--pos:${posOf(poster)}" data-initial="${esc(initial)}"><video src="${src}" poster="${poster}" data-alt="${esc(alt)}" ${attrs} preload="metadata" onerror="vidFail(this)"></video></div>`;
 }
@@ -1437,7 +1728,7 @@ function bumpBonds(){
 function bondBar(gid, cls = ""){
   const b = bondOf(gid);
   return `<div class="bond ${cls}" data-bond="${gid}">
-    <div class="bond-h"><b>Lv.${b.lv}</b><span class="st">${esc(b.name)}</span>
+    <div class="bond-h"><b>Lv.${b.lv}</b><span class="st">心动值 · ${esc(b.name)}</span>
       <span class="nm">${b.max ? "已满级" : b.xp + " / " + b.next}</span></div>
     <div class="bond-t"><i style="transform:scaleX(${b.pct})"></i></div>
   </div>`;
@@ -1701,14 +1992,29 @@ function moveTabInd(){
 }
 /* 3. 悬浮陪伴头像：只在首页 / 短剧 / 奖励 / 我的出现 */
 const FAB_ON = ["drama", "rewards", "me", "points", "games"];
+const FAB_SAY = ["在吗～", "想你了", "来陪我玩嘛", "偷偷看你一眼", "今天想我没"];
+let fabTimer = null;
 function syncFab(name){
   const f = $("#fab"); if(!f) return;
+  clearTimeout(fabTimer);
   const show = FAB_ON.includes(name);
   f.classList.toggle("on", show);
   if(!show){ f.innerHTML = ""; return; }
   const g = girl();
   f.setAttribute("aria-label", `和${g.name}聊天`);
   f.innerHTML = `${phImg(outfitImg(g), g.initial, "", "", AV)}<span class="dot"></span><span class="ring"></span>`;
+  if(rm()) return;
+  const pop = () => {
+    if(!f.classList.contains("on")) return;
+    f.querySelectorAll(".fabsay").forEach(x => x.remove());
+    const b = document.createElement("span");
+    b.className = "fabsay";
+    b.textContent = FAB_SAY[(Math.random() * FAB_SAY.length) | 0];
+    f.appendChild(b);
+    setTimeout(() => b.remove(), 4600);
+    fabTimer = setTimeout(pop, 9000 + Math.random() * 6000);
+  };
+  fabTimer = setTimeout(pop, 2600);
 }
 
 function afterRender(scr, name){
@@ -1740,7 +2046,11 @@ function closeSheet(){
   $("#veil").classList.remove("on"); sheetOpen = false;
 }
 $("#veil").addEventListener("click", closeSheet);
-document.addEventListener("keydown", e => { if(e.key === "Escape" && sheetOpen) closeSheet(); });
+document.addEventListener("keydown", e => {
+  if(e.key !== "Escape") return;
+  if(typeof VW !== "undefined" && VW) return closeViewer();
+  if(sheetOpen) closeSheet();
+});
 
 /* ---------- 反应气泡（角落） ---------- */
 let reactTimer = null;
@@ -1759,12 +2069,21 @@ function react(host, kind="idle", gid){
   reactTimer = setTimeout(() => { d.classList.add("hide"); setTimeout(() => d.remove(), 300); }, 1800);
 }
 /* 主图 = lounge；经典照与限定照都是可解锁造型 */
+const OWNKEY = { alt:"outfit", classic:"outfitC", lounge:"outfitL" };
 const outfitImg = g => {
-  const o = S.outfit[g.id];
-  if(o === "alt" && S.owned.outfit.includes(g.id)) return g.img2;
-  if(o === "classic" && (S.owned.outfitC || []).includes(g.id)) return g.img;
-  return g.lounge;
+  const o = S.outfit[g.id], k = OWNKEY[o];
+  if(k && (S.owned[k] || []).includes(g.id)) return o === "alt" ? g.img2 : o === "classic" ? g.img : g.lounge;
+  return g.v3;
 };
+/* 私密相册：主图 + 私房照 + 两套旧造型；0 号免费，其余 120 解锁 */
+const albumOf = g => [
+  { img:g.v3,     t:"主形象",   free:true },
+  { img:g.x,      t:"私房照",   free:false },
+  { img:g.lounge, t:"蓝调沙龙", free:false },
+  { img:g.img2,   t:g.outfit2,  free:false }
+];
+const albumOwned = (gid, i) => i === 0 || ((S.owned.album || {})[gid] || []).includes(i);
+const albumCount = gid => albumOf(girl(gid)).filter((_, i) => albumOwned(gid, i)).length;
 const bgOf = () => BGS.find(b => b.id === S.bg) || BGS[0];
 </script>
 <script>
@@ -1817,21 +2136,22 @@ ROUTES.home = { view(){
   const streak = S.streak || 0;
   const todayIdx = S.checkedIn ? streak : streak + 1;
   const feed = [{ img:d.poster, ini:d.initial, cap:d.title, href:`#show/${d.id}`, play:true }]
-    .concat(GIRLS.map(x => ({ img:x.lounge, ini:x.initial, cap:x.name, href:`#girl/${x.id}`, play:false })));
+    .concat(GIRLS.map(x => ({ img:x.v3, ini:x.initial, cap:x.name, href:`#girl/${x.id}`, play:false })));
   return {
     ghost:true, flush:true, tab:"home",
-    bar:`<img src="assets/logo/logo-hg.png" alt="MBA66" style="height:17px" onerror="this.outerHTML='<div class=\\'bar-t\\'>MBA66</div>'">
+    bar:`<img src="assets/logo/logo-hg.png" alt="MBA66" style="height:17px;filter:drop-shadow(0 2px 6px rgba(42,10,51,.9))" onerror="this.outerHTML='<div class=\\'bar-t\\'>MBA66</div>'">
          <div style="margin-left:auto">${ptLink()}</div>`,
     html:`
     <section class="hero" data-od-id="home-hero" id="heroBox" data-react-pos="right:14px;bottom:150px">
-      ${phImg(g.lounge, g.initial, g.name + " 形象")}
+      ${phImg(outfitImg(g), g.initial, g.name + " 形象")}
       <a class="heroTag" href="#girl/${g.id}" data-od-id="home-herotag">
-        <span class="av-s">${phImg(g.lounge, g.initial, "", "", AV)}</span>
+        <span class="av-s">${phImg(outfitImg(g), g.initial, "", "", AV)}</span>
         <b>${esc(g.name)}</b><span>Lv.${bd.lv} ${esc(bd.name)}</span></a>
       <div class="floaters" aria-hidden="true">
         <span class="flo f1">${ico("i-sparkle")}她在线 · 想你了</span>
-        <span class="flo f2 r">${ico("i-heart")}+${XPR.checkin} 亲密</span>
+        <span class="flo f2 r">${ico("i-heart")}+${XPR.checkin} 心动</span>
       </div>
+      <button class="seeher" id="seeHer" data-od-id="home-seeher">${ico("i-play")}看她</button>
       <div class="ckover" data-od-id="home-checkin">
         <div class="ckhead">${i3("checkin", 24)}<h3>今日打卡</h3>
           <span class="pill g">${S.checkedIn ? "今日已打卡" : "+" + RULES.checkin + " 积分"}</span></div>
@@ -1902,9 +2222,22 @@ ROUTES.home = { view(){
       const firstGo = root.querySelector(".row .tbtn");
       if(firstGo) firstGo.classList.add("nudge");
       const hero = $("#heroBox", root);
+      const playClip = () => {
+        const ph = hero.querySelector(".ph");
+        if(!ph || ph.querySelector("video")) return;
+        const v = document.createElement("video");
+        v.src = g.video; v.poster = outfitImg(g);
+        v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
+        v.setAttribute("playsinline", ""); v.setAttribute("data-alt", g.name);
+        v.onerror = () => { v.remove(); toast("短片还没准备好", "i-play"); };
+        ph.appendChild(v);
+        try { v.play(); } catch(e){}
+        toast(`${g.name} 在看你`, "i-heart");
+      };
+      $("#seeHer", root).onclick = e => { e.stopPropagation(); playClip(); };
       hero.addEventListener("click", e => {
         if(e.target.closest("a,button")) return;
-        react(hero, "idle");
+        playClip(); react(hero, "idle");
       });
     }
   };
@@ -2016,8 +2349,14 @@ ROUTES.girl = { view(id){
           <a class="lrow" href="#chat">${ico("i-chat")}<div class="row-m">聊天<div class="row-s">文字对话 · 不消耗积分</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">服装 ${PRICE.outfit} · 背景 ${PRICE.bg} · 动作 ${PRICE.act}</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#videos">${ico("i-play")}<div class="row-m">视频收藏<div class="row-s">${ownsVid ? "已解锁 " + g.name + " 的问候短片" : "未解锁"}</div></div><span class="cv">${S.owned.vid.length}/${GIRLS.length}${ico("i-next")}</span></a>
-          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">30秒心动挑战<div class="row-s">今日可计分 ${Math.max(0, RULES.gameRounds - S.rounds)}/${RULES.gameRounds} 局 · 每局 +${XPR.game} 亲密</div></div><span class="cv">${ico("i-next")}</span></a>
+          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩小游戏<div class="row-s">${GAMES.length} 个游戏 · 今日可计分 ${Math.max(0, RULES.gameRounds - S.rounds)}/${RULES.gameRounds} 局</div></div><span class="cv">${ico("i-next")}</span></a>
         </div>
+      </section>
+
+      <section class="sec" data-od-id="girl-album">
+        <div class="sec-h"><h2 class="h2">她的私密相册</h2>
+          <span class="sm">${albumCount(g.id)} / 4 已解锁</span></div>
+        ${albumGrid(g.id)}
       </section>
 
       <section class="sec" data-od-id="girl-bond">
@@ -2051,6 +2390,7 @@ ROUTES.girl = { view(id){
         react(hero, "win", g.id); toast(`${g.name} 回应了「${a.name}」`, a.icon);
       });
       $("#girlGift").onclick = () => giftSheet(g.id);
+      bindAlbum(root, g.id);
       $$("[data-bond-open]", root).forEach(b => b.onclick = () => bondStory(g.id, b.dataset.bondOpen));
     }
   };
@@ -2174,22 +2514,21 @@ function answer(g, txt){
    ============================================================ */
 ROUTES.wardrobe = { view(){
   const g = girl();
-  const altOwned = S.owned.outfit.includes(g.id);
-  const clOwned = (S.owned.outfitC || []).includes(g.id);
-  const cur = (S.outfit[g.id] === "alt" && altOwned) ? "alt"
-            : (S.outfit[g.id] === "classic" && clOwned) ? "classic" : "base";
+  const ownOf = k => k === "base" || (S.owned[OWNKEY[k]] || []).includes(g.id);
+  const cur = ownOf(S.outfit[g.id]) ? (S.outfit[g.id] || "base") : "base";
   const OUT = [
-    { k:"base",    img:g.lounge, t:"蓝调沙龙",  own:true,     price:0 },
-    { k:"classic", img:g.img,    t:"经典 · 日常", own:clOwned,  price:PRICE.outfit },
-    { k:"alt",     img:g.img2,   t:g.outfit2,    own:altOwned, price:PRICE.outfit }
+    { k:"base",    img:g.v3,     t:"粉色心动",   own:true,             price:0 },
+    { k:"lounge",  img:g.lounge, t:"蓝调沙龙",   own:ownOf("lounge"),  price:PRICE.outfit },
+    { k:"classic", img:g.img,    t:"经典 · 日常", own:ownOf("classic"), price:PRICE.outfit },
+    { k:"alt",     img:g.img2,   t:g.outfit2,     own:ownOf("alt"),     price:PRICE.outfit }
   ];
   return {
     tab:"girls",
     bar:barBack("换装与场景", "", `<div style="margin-left:auto">${ptLink()}</div>`),
     html:`
     <section class="sec" style="margin-top:4px" data-od-id="wardrobe-outfits">
-      <div class="sec-h"><h2 class="h2">造型</h2><span class="sm">${OUT.filter(o => o.own).length} / 3 可用</span></div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px">
+      <div class="sec-h"><h2 class="h2">造型</h2><span class="sm">${OUT.filter(o => o.own).length} / 4 可用</span></div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
         ${OUT.map(o => `<button class="item tall" data-outfit="${o.k}" data-od-id="outfit-${o.k}">
           ${phImg(o.img, g.initial, g.name + " " + o.t, "", "50% 22%")}
           ${o.own
@@ -2235,8 +2574,8 @@ ROUTES.wardrobe = { view(){
           return buy({ cost:PRICE.outfit, title:"一套角色服装", sub:`${g.name} · ${o.t}`, fromEl:b,
             cond:["解锁后永久可切换","仅对该角色生效"],
             done(){
-              if(v === "alt") S.owned.outfit.push(g.id);
-              else (S.owned.outfitC = S.owned.outfitC || []).push(g.id);
+              const key = OWNKEY[v];
+              (S.owned[key] = S.owned[key] || []).push(g.id);
               S.outfit[g.id] = v;
             } });
         }
@@ -2297,7 +2636,7 @@ function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then, fr
     foot: ok
       ? `<button class="btn btn-pri btn-w" id="yes">确认兑换 · ${cost} 积分</button>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">再想想</button>`
-      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去心动挑战赚积分</a>
+      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去玩小游戏赚积分</a>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
   });
   const y = sh.querySelector("#yes");
@@ -2346,6 +2685,95 @@ function sendGift(g, gift, fromEl){
   reward(`送出${gift.name}`, -PRICE.gift, XPR.gift, g.id);
   setTimeout(render, 980);
 }
+
+/* ---------- 私密相册：解锁 + 全屏看图 ---------- */
+const ALB_LINE = {
+  sweet:["这张是我最喜欢的一张。","只给你看哦～（脸红）","那天房间里只开了串灯……","这套是我自己挑的，好看吗？"],
+  queen:["看吧。我允许了。","这张我删过一次，又找回来了。","别传出去。","你眼神有点不老实。"],
+  cool:["……别看太久。","就一眼。","这张是凌晨拍的。","嗯。现在你知道了。"]
+};
+function albumGrid(gid){
+  const g = girl(gid), A = albumOf(g);
+  return `<div class="alb" data-od-id="album-${gid}">
+    ${A.map((ph, i) => {
+      const own = albumOwned(gid, i);
+      return `<button class="albc ${own ? "" : "lk"}" data-alb="${i}" data-od-id="alb-${gid}-${i}"
+        aria-label="${esc(ph.t)}${own ? "" : " 未解锁"}">
+        ${phImg(ph.img, g.initial, own ? g.name + " " + ph.t : "未解锁照片", "", "50% 22%")}
+        <span class="shine"></span>
+        ${own ? "" : `<span class="lkbox">${ico("i-lock")}
+          <span class="pill g">${PRICE.album} 积分解锁</span></span>`}
+        <span class="cap">${own ? esc(ph.t) : "私密照片"}</span>
+      </button>`;
+    }).join("")}
+  </div>`;
+}
+function bindAlbum(root, gid){
+  $$("[data-alb]", root).forEach(b => b.onclick = () => {
+    const i = +b.dataset.alb;
+    if(albumOwned(gid, i)) return openViewer(gid, i);
+    const g = girl(gid), ph = albumOf(g)[i];
+    buy({ cost:PRICE.album, title:"一张私密照片", sub:`${g.name} · ${ph.t}`, fromEl:b,
+      cond:["解锁后永久可看","仅解锁这一张"],
+      done(){
+        const a = S.owned.album = S.owned.album || {};
+        (a[gid] = a[gid] || []).push(i);
+      },
+      then(){
+        const card = $(`[data-alb="${i}"]`);
+        if(card){ card.classList.remove("lk"); pulseOnce(card, "unl", 1000); }
+        toast(`${g.name}：${ALB_LINE[gid][i] || "只给你看哦～"}`, "i-heart");
+        setTimeout(render, 900);
+      } });
+  });
+}
+let VW = null;
+function openViewer(gid, i){
+  const g = girl(gid), A = albumOf(g);
+  const idx = A.map((_, k) => k).filter(k => albumOwned(gid, k));
+  let at = Math.max(0, idx.indexOf(i));
+  const v = $("#viewer");
+  v.innerHTML = `
+    <div class="vtop">
+      <button class="ibtn hit" id="vClose" aria-label="关闭">${ico("i-close")}</button>
+      <b>${esc(g.name)} · 私密相册</b>
+      <span class="sm" id="vNum"></span>
+    </div>
+    <div class="vwrap"><div class="vtrack" id="vTrack">
+      ${idx.map(k => `<div class="vslide"><img src="${A[k].img}" alt="${esc(g.name)} ${esc(A[k].t)}"></div>`).join("")}
+    </div></div>
+    <div class="vbot">
+      <div class="vdots">${idx.map(() => `<i></i>`).join("")}</div>
+      <div class="vline" id="vLine"></div>
+    </div>`;
+  v.classList.add("on"); v.setAttribute("aria-hidden", "false");
+  VW = { gid, idx, at };
+  paint();
+  $("#vClose").onclick = closeViewer;
+  const wrap = v.querySelector(".vwrap");
+  let x0 = null;
+  wrap.addEventListener("pointerdown", e => { x0 = e.clientX; });
+  wrap.addEventListener("pointerup", e => {
+    if(x0 == null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if(Math.abs(dx) < 40) return;
+    VW.at = Math.max(0, Math.min(VW.idx.length - 1, VW.at + (dx < 0 ? 1 : -1)));
+    paint();
+  });
+  function paint(){
+    $("#vTrack").style.transform = `translateX(${-VW.at * 100}%)`;
+    $("#vNum").textContent = `${VW.at + 1} / ${VW.idx.length}`;
+    $("#vLine").textContent = ALB_LINE[gid][VW.idx[VW.at]] || "";
+    $$("#viewer .vdots i").forEach((d, k) => d.classList.toggle("on", k === VW.at));
+  }
+}
+function closeViewer(){
+  const v = $("#viewer");
+  v.classList.remove("on"); v.setAttribute("aria-hidden", "true"); v.innerHTML = "";
+  VW = null;
+}
+window.closeViewer = closeViewer;
+
 /* ---------- Lv.3 / Lv.4 内容 ---------- */
 function bondStory(gid, kind){
   const g = girl(gid), b = bondOf(g.id);
@@ -2425,13 +2853,18 @@ ROUTES.videos = { view(){
    30秒心动挑战
    ============================================================ */
 const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21S3 15.3 3 9.3A4.9 4.9 0 0 1 12 6.5a4.9 4.9 0 0 1 9 2.8C21 15.3 12 21 12 21z"/></svg>`;
+/* 唇印：心动挑战 / 接住飞吻 共用 */
+const LIPS = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.4c1.6-2 3.6-2.8 5.4-2.2 2 .7 2.9 2.7 2.3 4.6-.9 2.8-4 5.9-7.7 8.8-3.7-2.9-6.8-6-7.7-8.8-.6-1.9.3-3.9 2.3-4.6 1.8-.6 3.8.2 5.4 2.2z"/><path d="M4.6 9.6c2.4.9 4.9 1.3 7.4 1.3s5-.4 7.4-1.3c-2.2 2.6-4.7 5-7.4 7.2-2.7-2.2-5.2-4.6-7.4-7.2z" opacity=".45"/></svg>`;
+const KISS_LINE = { sweet:"这个吻是奖励哦～（脸红）", queen:"拿去。只此一次。", cool:"……闭眼。给你了。" };
 const GAME = { len:30, target:300, hit:10, comboBonus:5 };
 
 const GAMES = [
-  { id:"heart",  name:"30秒心动挑战", hook:"点中心形就得分", cls:"gx-1", icon:"game",      art:g => g.lounge },
-  { id:"quiz",   name:"默契问答",     hook:"5 道关于她的题", cls:"gx-2", icon:"chat-role", art:g => g.img2 },
-  { id:"memory", name:"记忆翻翻乐",   hook:"6 对卡片，越快越高",     cls:"gx-3", icon:"crown",     art:g => g.img },
-  { id:"catch",  name:"接住礼物",     hook:"接住礼物，躲开乌云",    cls:"gx-4", icon:"gift",      art:g => g.lounge }
+  { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",      art:g => g.v3 },
+  { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role", art:g => g.img2 },
+  { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     art:g => g.lounge },
+  { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-4", icon:"gift",      art:g => g.img },
+  { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-5", icon:"chat-role", art:g => g.x,  isNew:true },
+  { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-6", icon:"coin",      art:g => g.x,  isNew:true }
 ];
 const gameOf = id => GAMES.find(x => x.id === id) || GAMES[0];
 const scoredLeft = () => Math.max(0, RULES.gameRounds - S.rounds);
@@ -2446,15 +2879,16 @@ ROUTES.games = { view(){
     <div class="panel" style="display:flex;align-items:center;gap:12px;padding:13px 15px" data-od-id="games-pool">
       ${i3("game", 34)}
       <div class="row-m"><b style="font-size:15px;font-weight:700">今日计分局</b>
-        <div class="sm" style="margin-top:2px">4 个游戏共用 · 每局最多 +${RULES.gameMax} 积分</div></div>
+        <div class="sm" style="margin-top:2px">${GAMES.length} 个游戏共用 · 每局最多 +${RULES.gameMax} 积分</div></div>
       <b class="big" style="font-size:24px;color:${left ? "var(--gold-2)" : "var(--muted)"}">${left}<span style="font-size:14px">/${RULES.gameRounds}</span></b>
     </div>
     <div class="ghub" style="margin-top:12px" data-od-id="games-grid">
       ${GAMES.map(gm => `<a class="gcardx ${gm.cls}" href="#game/${gm.id}" data-od-id="gcard-${gm.id}">
-        ${phImg(gm.art(g), g.initial, "", "", "50% 24%")}
-        ${i3(gm.icon, 34)}
+        ${phImg(gm.art(g), g.initial, "", "", "50% 20%")}
+        ${i3(gm.icon, 32)}
+        ${gm.isNew ? `<span class="newbadge">新</span>` : ""}
         <b>${esc(gm.name)}</b><em>${esc(gm.hook)}</em>
-        <span class="pill ${left ? "g" : "tbd"}">${left ? `今日剩余计分 ${left}/${RULES.gameRounds}` : "练习模式"}</span>
+        <span class="pill ${left ? "g" : "tbd"}">${left ? `剩余计分 ${left}/${RULES.gameRounds}` : "练习模式"}</span>
       </a>`).join("")}
     </div>`
   };
@@ -2511,7 +2945,7 @@ function stopGame(){
 function startGame(gm){
   stopGame();
   const scored = scoredLeft() > 0;
-  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch })[gm.id](gm, scored);
+  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog })[gm.id](gm, scored);
 }
 /* 把一局的得分折算成积分并出结算页 */
 function gameFinish(gm, { score, scored, earned, detail }){
@@ -2602,15 +3036,24 @@ function playHeart(gm, scored){
   function done(){
     const { score, best, hits } = G;
     const earned = scored ? Math.min(RULES.gameMax, Math.round(score / 10)) : 0;
-    gameFinish(gm, { score, scored, earned, detail:`命中 ${hits} 次 · 最高 ${best} 连击` });
+    const host = $("#gameHost");
+    if(!rm() && host){                       // 奖励吻：唇印盖在屏幕中间
+      const st = document.createElement("div");
+      st.className = "lipstamp"; st.innerHTML = LIPS;
+      host.appendChild(st); setTimeout(() => st.remove(), 1600);
+    }
+    toast(`${g.name}：${KISS_LINE[g.id]}`, "i-heart");
+    setTimeout(() => gameFinish(gm, { score, scored, earned,
+      detail:`接住 ${hits} 次 · 最高 ${best} 连击` }), rm() ? 0 : 900);
   }
   function pop(){
     if(!G) return;
     const w = arena.clientWidth || 320, h = arena.clientHeight || 396;
     const b = document.createElement("button");
     const gold = Math.random() < 0.14;
-    b.className = "hbtn" + (gold ? " gold" : "");
-    b.type = "button"; b.setAttribute("aria-label", "点击心形"); b.innerHTML = HEART;
+    b.className = "hbtn kiss" + (gold ? " gold" : "");
+    b.type = "button"; b.setAttribute("aria-label", gold ? "点击飞吻" : "点击心形");
+    b.innerHTML = gold ? LIPS : HEART;
     b.style.left = (18 + Math.random() * Math.max(10, w - 92)) + "px";
     b.style.top  = (18 + Math.random() * Math.max(10, h - 92)) + "px";
     arena.appendChild(b);
@@ -2633,7 +3076,10 @@ function playHeart(gm, scored){
       const tag = $("#comboTag");
       if(G.combo >= 2){ tag.textContent = `${G.combo} 连击${gold ? " · 双倍" : ""}`; tag.classList.add("on"); }
       else tag.classList.remove("on");
-      if(G.combo === 5 || G.combo === 10 || G.combo === 20) pulseOnce(tag, "hit", 460);
+      if(G.combo === 5 || G.combo === 10 || G.combo === 20){
+        pulseOnce(tag, "hit", 460);
+        burst(r, { n:7, kind:"heart", spread:48 });   // 连击时她送一串飞吻
+      }
       if(G.score >= GAME.target && !G.celebrated){ G.celebrated = true; react(arena, "win", g.id); }
       else if(G.combo >= 5){ if(G.combo % 3 === 0) react(arena, "combo", g.id); }
       else if(G.hits % 4 === 0) react(arena, "hit", g.id);
@@ -2647,25 +3093,25 @@ function playHeart(gm, scored){
 const SCENE = { cafe:BGS[0], beach:BGS[1], night:BGS[2] };
 const QUIZ = {
   sweet:[
-    { q:"她最喜欢哪种约会？", pic:1, o:[["咖啡馆","cafe"],["海边散步","beach"],["看电影","night"]], a:0 },
-    { q:"她最拿手的是什么？", o:[["做甜点"],["调酒"],["摄影"]], a:0 },
-    { q:"她周末最想去哪里？", o:["Bangsar 逛街","在家睡一天","去爬山"].map(x=>[x]), a:0 },
-    { q:"她几岁来的吉隆坡？", o:["十七岁","二十岁","二十五岁"].map(x=>[x]), a:0 },
-    { q:"她最常为你做的小事是？", o:["记住你随口说过的话","每天发长语音","帮你写日记"].map(x=>[x]), a:0 }
+    { q:"她最想你陪她做什么？", pic:1, o:[["在家看电影","night"],["泡温泉","cafe"],["看夜景","beach"]], a:0 },
+    { q:"她最喜欢你夸她哪里？", o:["笑起来的酒窝","手艺好","个子高"].map(x=>[x]), a:0 },
+    { q:"她吃醋的时候会？", o:["突然不说话，然后问你在看谁","直接骂人","假装没看见"].map(x=>[x]), a:0 },
+    { q:"她的睡衣是什么颜色？", o:["草莓粉","纯黑","army 绿"].map(x=>[x]), a:0 },
+    { q:"约会到一半下雨了，她会？", o:["拉你躲进店里，说这样更好","立刻回家","怪你没看天气"].map(x=>[x]), a:0 }
   ],
   queen:[
-    { q:"她最喜欢哪种约会？", pic:1, o:[["海边散步","beach"],["咖啡馆","cafe"],["看电影","night"]], a:0 },
-    { q:"她做哪一行？", o:["品牌顾问","律师","医生"].map(x=>[x]), a:0 },
-    { q:"她周末一个人会做什么？", o:["开车去海边，不拍照","逛一整天街","在家打游戏"].map(x=>[x]), a:0 },
-    { q:"她说话是什么样的？", o:["慢，但不说多余的话","又快又密","基本不开口"].map(x=>[x]), a:0 },
-    { q:"今晚她推掉了什么？", o:["两个饭局","健身课","一场电影"].map(x=>[x]), a:0 }
+    { q:"她最想你陪她做什么？", pic:1, o:[["看夜景","beach"],["泡温泉","cafe"],["在家看电影","night"]], a:0 },
+    { q:"她最喜欢你夸她哪里？", o:["眼神","发型","包好看"].map(x=>[x]), a:0 },
+    { q:"她吃醋的时候会？", o:["语速变慢，叫你全名","摔东西","发十条消息"].map(x=>[x]), a:0 },
+    { q:"她的睡衣是什么颜色？", o:["黑色真丝","卡通图案","白棉 T"].map(x=>[x]), a:0 },
+    { q:"你迟到半小时，她会？", o:["已经点好你爱吃的，不提这件事","转身就走","冷战三天"].map(x=>[x]), a:0 }
   ],
   cool:[
-    { q:"她最喜欢哪种约会？", pic:1, o:[["看电影","night"],["咖啡馆","cafe"],["海边散步","beach"]], a:0 },
-    { q:"她教什么？", o:["古典吉他","钢琴","声乐"].map(x=>[x]), a:0 },
-    { q:"她周末怎么过？", o:["从家走到海墘街","整天宅着","去爬山"].map(x=>[x]), a:0 },
-    { q:"她一天认真吃几顿？", o:["一顿","三顿","五顿"].map(x=>[x]), a:0 },
-    { q:"十九岁那年她在哪里弹琴？", o:["槟城街头","吉隆坡酒吧","新加坡剧院"].map(x=>[x]), a:0 }
+    { q:"她最想你陪她做什么？", pic:1, o:[["泡温泉","cafe"],["看夜景","beach"],["在家看电影","night"]], a:0 },
+    { q:"她最喜欢你夸她哪里？", o:["手","声音","衣品"].map(x=>[x]), a:0 },
+    { q:"她吃醋的时候会？", o:["只回一个「嗯」","直接问清楚","当场离开"].map(x=>[x]), a:0 },
+    { q:"她的睡衣是什么颜色？", o:["白色","酒红","没有，T恤"].map(x=>[x]), a:0 },
+    { q:"你盯着她看太久，她会？", o:["把头发拨到一边，说「看够了没」","叫你别看","也盯回来"].map(x=>[x]), a:0 }
   ]
 };
 const QUIZ_PT = 6;
@@ -2736,6 +3182,8 @@ function playQuiz(gm, scored){
    ============================================================ */
 const CROWN_SVG = `<svg viewBox="0 0 24 24"><path d="M2.6 7.2 7 11l5-6.6 5 6.6 4.4-3.8-1.8 11.4H4.4z"/><rect x="4.4" y="19" width="15.2" height="1.8" rx=".9"/></svg>`;
 const MEM_GLYPH = {
+  lip:LIPS,
+  rose:`<svg viewBox="0 0 24 24"><path d="M12 11.4c2.4 0 4.2-1.7 4.2-3.9S14.4 3.4 12 3.4 7.8 5.3 7.8 7.5s1.8 3.9 4.2 3.9z"/><path d="M12 11.4V21M12 15.6c-2.2 0-3.6-1.1-4.3-2.9 2.1-.5 3.6.4 4.3 1.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>`,
   coin:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 6.6 1.7 3.5 3.8.6-2.8 2.7.7 3.8-3.4-1.8-3.4 1.8.7-3.8-2.8-2.7 3.8-.6z" fill="#0C1F63"/></svg>`,
   gift:`<svg viewBox="0 0 24 24"><path d="M3.4 10.6h17.2V20a1 1 0 0 1-1 1H4.4a1 1 0 0 1-1-1z"/><rect x="2" y="6.6" width="20" height="4.2" rx="1.4"/><path d="M12 6.6S10.4 3 8.2 3a2.1 2.1 0 0 0 0 3.6zm0 0S13.6 3 15.8 3a2.1 2.1 0 0 1 0 3.6z"/></svg>`,
   heart:`<svg viewBox="0 0 24 24"><path d="M12 21S3 15.3 3 9.3A4.9 4.9 0 0 1 12 6.5a4.9 4.9 0 0 1 9 2.8C21 15.3 12 21 12 21z"/></svg>`,
@@ -2745,9 +3193,14 @@ const MEM_LEN = 45;
 function playMemory(gm, scored){
   const g = girl();
   const kinds = [
-    { k:"p1", img:g.lounge }, { k:"p2", img:g.img2 },
-    { k:"coin" }, { k:"gift" }, { k:"heart" }, { k:"crown" }
+    { k:"p1", img:g.v3, her:true }, { k:"p2", img:g.img2, her:true }, { k:"p3", img:g.x, her:true },
+    { k:"lip" }, { k:"rose" }, { k:"heart" }
   ];
+  const HER_LINE = {
+    sweet:["这张是我最喜欢的。","又翻到我啦？","再翻一次试试～"],
+    queen:["眼光不错。","记性挺好。","continue。"],
+    cool:["……找到了。","嗯。","再来。"]
+  }[g.id];
   const deck = kinds.concat(kinds).map(c => ({ ...c, id:Math.random() }));
   for(let i = deck.length - 1; i > 0; i--){ const j = (Math.random() * (i + 1)) | 0; [deck[i], deck[j]] = [deck[j], deck[i]]; }
   $("#gameHost").innerHTML = `
@@ -2762,7 +3215,7 @@ function playMemory(gm, scored){
     ${modeBar(scored)}
   </section>`;
   const grid = $("#mgrid");
-  G = { open:[], pairs:0, flips:0, t:0, lock:false };
+  G = { open:[], pairs:0, flips:0, t:0, lock:false, herPairs:0 };
   G.tick = setInterval(() => {
     if(!G) return;
     G.t++;
@@ -2787,7 +3240,9 @@ function playMemory(gm, scored){
       G.pairs++; $("#mp").textContent = `${G.pairs} / 6`;
       setTimeout(() => {
         x.b.classList.add("done"); y.b.classList.add("done");
-        burst(y.b.getBoundingClientRect(), { n:8, spread:34 });
+        const her = deck[x.i].her;
+        burst(y.b.getBoundingClientRect(), { n:her ? 9 : 8, kind:her ? "heart" : "dot", spread:36 });
+        if(her) toast(`${g.name}：${HER_LINE[G.herPairs++ % HER_LINE.length]}`, "i-heart");
         react(grid, G.pairs >= 5 ? "win" : "hit", g.id);
         G.open = []; G.lock = false;
         if(G.pairs === 6) done(true);
@@ -2813,10 +3268,10 @@ function playMemory(gm, scored){
    游戏 4 · 接住礼物
    ============================================================ */
 const FALL = {
-  gift:{ v:3, svg:`<svg viewBox="0 0 24 24"><path d="M3.4 10.6h17.2V20a1 1 0 0 1-1 1H4.4a1 1 0 0 1-1-1z" fill="#FF7FB0"/><rect x="2" y="6.6" width="20" height="4.2" rx="1.4" fill="#FF9EC6"/><path d="M10.8 6.6V21h2.4V6.6z" fill="#D62E73"/></svg>` },
-  heart:{ v:2, svg:`<svg viewBox="0 0 24 24"><path d="M12 21S3 15.3 3 9.3A4.9 4.9 0 0 1 12 6.5a4.9 4.9 0 0 1 9 2.8C21 15.3 12 21 12 21z" fill="#FF6E9C"/></svg>` },
-  coin:{ v:4, svg:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#F2C25B"/><circle cx="12" cy="12" r="6" fill="#FFE59A"/></svg>` },
-  cloud:{ v:-1, svg:`<svg viewBox="0 0 24 24"><path d="M6.5 18h11a4 4 0 0 0 .4-8 5.6 5.6 0 0 0-10.7-1A3.9 3.9 0 0 0 6.5 18z" fill="#8894B5"/></svg>` }
+  kiss:{ v:4, n:"飞吻", svg:`<svg viewBox="0 0 24 24"><path d="M12 7.4c1.6-2 3.6-2.8 5.4-2.2 2 .7 2.9 2.7 2.3 4.6-.9 2.8-4 5.9-7.7 8.8-3.7-2.9-6.8-6-7.7-8.8-.6-1.9.3-3.9 2.3-4.6 1.8-.6 3.8.2 5.4 2.2z" fill="#FF4FA3"/><path d="M4.6 9.6c2.4.9 4.9 1.3 7.4 1.3s5-.4 7.4-1.3c-2.2 2.6-4.7 5-7.4 7.2-2.7-2.2-5.2-4.6-7.4-7.2z" fill="#FF8FC8"/></svg>` },
+  heart:{ v:2, n:"心", svg:`<svg viewBox="0 0 24 24"><path d="M12 21S3 15.3 3 9.3A4.9 4.9 0 0 1 12 6.5a4.9 4.9 0 0 1 9 2.8C21 15.3 12 21 12 21z" fill="#FF6EB0"/></svg>` },
+  rose:{ v:3, n:"玫瑰", svg:`<svg viewBox="0 0 24 24"><path d="M12 11.4c2.4 0 4.2-1.7 4.2-3.9S14.4 3.4 12 3.4 7.8 5.3 7.8 7.5s1.8 3.9 4.2 3.9z" fill="#FF4FA3"/><path d="M11.2 11.4h1.6V21h-1.6z" fill="#4AA86A"/><path d="M11.2 15.4c-2 0-3.3-1-4-2.6 2-.5 3.4.4 4 1.5z" fill="#4AA86A"/></svg>` },
+  rival:{ v:-1, n:"情敌的白眼", svg:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#9A8CA8"/><path d="M7 10.4h3.4M13.6 10.4H17" stroke="#3A2E44" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M8.4 16c1.6-1.2 5.6-1.2 7.2 0" stroke="#3A2E44" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="9.3" cy="12.6" r="1.1" fill="#3A2E44"/><circle cx="14.7" cy="12.6" r="1.1" fill="#3A2E44"/></svg>` }
 };
 const CATCH_LEN = 30;
 function playCatch(gm, scored){
@@ -2826,7 +3281,7 @@ function playCatch(gm, scored){
     ${gstat([["得分","sc",0],["连击","cb",0],["剩余","tm",CATCH_LEN]], scored)}
     <div class="cstage" id="stage2" data-react-pos="right:10px;bottom:52px">
       <div class="basket" id="basket"><div class="bk"></div></div>
-      <div class="chint">拖动或点击左右移动篮子 · 躲开乌云</div>
+      <div class="chint">拖动或点击左右移动篮子 · 躲开情敌的白眼</div>
     </div>
     ${modeBar(scored)}
   </section>`;
@@ -2884,7 +3339,7 @@ function playCatch(gm, scored){
       if(it.y > H - 48 && it.y < H - 6 && it.x + 17 > G.x && it.x + 17 < G.x + 76){
         hit(it); G.items.splice(i, 1); continue;
       }
-      if(it.y > H){ it.el.remove(); G.items.splice(i, 1); if(it.k !== "cloud") breakCombo(); }
+      if(it.y > H){ it.el.remove(); G.items.splice(i, 1); if(it.k !== "rival") breakCombo(); }
     }
     G.raf = requestAnimationFrame(step);
   };
@@ -2894,7 +3349,7 @@ function playCatch(gm, scored){
     if(!G) return;
     W = st.clientWidth || W;
     const roll = Math.random();
-    const k = roll < .22 ? "cloud" : roll < .46 ? "coin" : roll < .74 ? "heart" : "gift";
+    const k = roll < .2 ? "rival" : roll < .5 ? "kiss" : roll < .76 ? "heart" : "rose";
     const el = document.createElement("div");
     el.className = "falling"; el.innerHTML = FALL[k].svg;
     st.appendChild(el);
@@ -2904,7 +3359,7 @@ function playCatch(gm, scored){
   function hit(it){
     const r = it.el.getBoundingClientRect();
     it.el.remove();
-    if(it.k === "cloud"){
+    if(it.k === "rival"){
       G.combo = 0; $("#cb").textContent = 0;
       G.score = Math.max(0, G.score - 4);
       $("#sc").textContent = G.score;
@@ -2917,8 +3372,8 @@ function playCatch(gm, scored){
     const gain = FALL[it.k].v * (G.combo >= 5 ? 2 : 1);
     G.score += gain;
     $("#sc").textContent = G.score; $("#cb").textContent = G.combo;
-    popNum(r, "+" + gain, it.k !== "coin");
-    splash(r, it.k === "coin");
+    popNum(r, "+" + gain, it.k !== "rose");
+    splash(r, it.k === "rose");
     if(G.combo === 5 || G.combo === 10 || G.combo === 20) react(st, "combo", g.id);
     else if(G.caught % 5 === 0) react(st, "hit", g.id);
   }
@@ -2926,9 +3381,276 @@ function playCatch(gm, scored){
   function done(){
     const { score, caught, best } = G;
     const earned = scored ? Math.min(RULES.gameMax, Math.round(score / 4)) : 0;
-    gameFinish(gm, { score, scored, earned, detail:`接住 ${caught} 个 · 最高 ${best} 连击` });
+    gameFinish(gm, { score, scored, earned, detail:`接住 ${caught} 个飞吻 · 最高 ${best} 连击` });
   }
   $("#quit").onclick = done;
+}
+
+/* ============================================================
+   游戏 5 · 真心话大冒险（转瓶子）
+   ============================================================ */
+const BOTTLE = `<svg viewBox="0 0 120 120"><defs>
+  <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#FFB6DC"/><stop offset=".5" stop-color="#FF4FA3"/><stop offset="1" stop-color="#A8155E"/>
+  </linearGradient></defs>
+  <path d="M52 16h16v16c0 4 2 6 5 9 6 6 9 12 9 22v41a6 6 0 0 1-6 6H44a6 6 0 0 1-6-6V63c0-10 3-16 9-22 3-3 5-5 5-9z"
+    fill="url(#bg1)" stroke="rgba(255,255,255,.65)" stroke-width="2"/>
+  <rect x="50" y="10" width="20" height="9" rx="3" fill="#FFD36E"/>
+  <ellipse cx="54" cy="72" rx="5" ry="17" fill="rgba(255,255,255,.4)"/>
+  <path d="M60 96l3.4 6.9 7.6 1.1-5.5 5.3 1.3 7.5-6.8-3.5-6.8 3.5 1.3-7.5-5.5-5.3 7.6-1.1z" fill="#FFD36E" opacity=".9"/>
+</svg>`;
+const TRUTH = {
+  sweet:{
+    t:["我第一次见你那天，回去跟店长说了你三次。","我手机里有一个只放你消息的文件夹。（脸红）",
+       "我睡前会把你最后一条消息再读一遍。","其实我偷偷学过你喜欢的那首歌。","我吃醋的时候会装作在忙。"],
+    d:[{ k:"tap", t:"连续点我 10 下，我就告诉你一件事" },
+       { k:"say", t:"对我说一句情话，挑一个", o:["你笑起来比糖还甜","今天最好的事就是遇到你","以后甜品我只吃你做的"] },
+       { k:"heart", t:"给我比个心嘛" },
+       { k:"tap", t:"再点我 10 下，这次我数着" },
+       { k:"say", t:"再说一句，我要听更好听的", o:["你一出现我就走神","想把今晚存起来","下次换我请你"] }]
+  },
+  queen:{
+    t:["我挑人很慢。挑中了就不换。","我车里一直放着一张你可能会喜欢的碟。",
+       "我说「随便」的时候，其实已经决定了。","有一次我为了等你，把会推到了十一点。","我吃醋不说，我记账。"],
+    d:[{ k:"tap", t:"点我 10 下。我看你有多想" },
+       { k:"say", t:"说一句，别敷衍我", o:["你比今晚所有的灯都亮","我愿意等你把话讲完","你一进门我就不看别人了"] },
+       { k:"heart", t:"比个心。就一次" },
+       { k:"tap", t:"再来 10 下，这次快一点" },
+       { k:"say", t:"最后一句，好好说", o:["我记住你每一次的停顿","你不用赢我，我已经输了","明晚我还在这里"] }]
+  },
+  cool:{
+    t:["我弹给你听的那首，是我自己写的。","我手机壁纸换过一次。就一次。",
+       "我不发朋友圈，但我会截你的消息。","凌晨三点我想过给你打电话，没按。","我吃醋的时候只会回一个字。"],
+    d:[{ k:"tap", t:"点我 10 下。别出声" },
+       { k:"say", t:"说一句。我听着", o:["你安静的样子最好看","我愿意陪你走到海墘街","你弹什么我都听得完"] },
+       { k:"heart", t:"比个心。快点" },
+       { k:"tap", t:"再 10 下" },
+       { k:"say", t:"再一句。然后我就睡了", o:["晚安，明天还想见你","今天因为你变好了","你先睡，我守着"] }]
+  }
+};
+const TD_ROUNDS = 5, TD_PT = 6;
+function playTruth(gm, scored){
+  const g = girl(), D = TRUTH[g.id];
+  G = { i:0, done:0, blush:0, phase:"spin" };
+  paint();
+  function paint(){
+    if(!G) return;
+    const isTruth = G.i % 2 === 0;
+    $("#gameHost").innerHTML = `
+    <section data-od-id="game-run">
+      <div class="qprog">${Array.from({length:TD_ROUNDS}, (_, i) =>
+        `<i class="${i < G.i ? "on" : i === G.i ? "cur" : ""}"></i>`).join("")}</div>
+      <div class="panel" style="display:flex;align-items:center;gap:12px;padding:12px 14px">
+        <span class="av-s">${phImg(outfitImg(g), g.initial, "", "", AV)}</span>
+        <div class="row-m"><b style="font-size:15.5px;font-weight:700">${esc(g.name)} 的脸红度</b>
+          <div class="blush"><i id="blush" style="transform:scaleX(${G.blush / TD_ROUNDS})"></i></div></div>
+        <span class="pill g">第 ${G.i + 1} / ${TD_ROUNDS} 轮</span>
+      </div>
+      <div class="bottlebox" style="margin-top:12px">
+        <div class="bottle" id="bottle">${BOTTLE}</div>
+      </div>
+      <div id="tdBody" style="margin-top:12px"></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:13px">
+        <span class="pill ${scored ? "g" : "tbd"}">${scored ? "本局计分" : "练习模式 · 不计分"}</span>
+        <button class="tbtn" id="quit" style="margin-left:auto">结束本局</button>
+      </div>
+    </section>`;
+    $("#quit").onclick = finish;
+    const body = $("#tdBody");
+    body.innerHTML = `<button class="btn btn-pri btn-w claim" id="spin">${ico("i-sparkle")}转瓶子</button>`;
+    $("#spin").onclick = () => {
+      const bot = $("#bottle");
+      const turns = 3 + Math.random() * 2;
+      const land = isTruth ? 0 : 180;
+      if(!rm()) bot.style.transform = `rotate(${turns * 360 + land}deg)`;
+      $("#spin").setAttribute("aria-disabled", "true");
+      setTimeout(() => show(isTruth), rm() ? 0 : 2500);
+    };
+  }
+  function show(isTruth){
+    if(!G) return;
+    const body = $("#tdBody");
+    if(isTruth){
+      const line = D.t[(G.i / 2) | 0] || D.t[0];
+      body.innerHTML = `<div class="tdcard">
+        <span class="kind t">真心话</span>
+        <p class="p" style="margin-top:10px;color:#fff;font-size:15px">「${esc(line)}」</p>
+        <button class="btn btn-pri btn-w claim" id="nextT" style="margin-top:13px">${ico("i-heart")}我收下了</button>
+      </div>`;
+      react($("#gameHost"), "hit", g.id);
+      $("#nextT").onclick = () => step(true);
+      return;
+    }
+    const d = D.d[G.i] || D.d[0];
+    if(d.k === "say"){
+      body.innerHTML = `<div class="tdcard">
+        <span class="kind d">大冒险</span>
+        <p class="p" style="margin-top:10px;color:#fff;font-size:15px">${esc(d.t)}</p>
+        <div class="dareopt" style="margin-top:12px">
+          ${d.o.map((o, i) => `<button data-say="${i}">${esc(o)}</button>`).join("")}
+        </div></div>`;
+      $$("[data-say]").forEach(b => b.onclick = () => {
+        toast(`${g.name}：……（脸红）你从哪里学的。`, "i-heart");
+        burst(b.getBoundingClientRect(), { n:9, kind:"heart", spread:50 });
+        step(true);
+      });
+      return;
+    }
+    if(d.k === "heart"){
+      body.innerHTML = `<div class="tdcard">
+        <span class="kind d">大冒险</span>
+        <p class="p" style="margin-top:10px;color:#fff;font-size:15px">${esc(d.t)}</p>
+        <div class="tapzone" id="tz" style="margin-top:12px" role="button" tabindex="0" aria-label="比心">
+          <span style="font-size:52px;line-height:1;color:var(--pink)">${HEART}</span></div>
+      </div>`;
+      const tz = $("#tz");
+      tz.querySelector("svg").style.cssText = "width:62px;height:62px;fill:var(--pink)";
+      const fire = () => {
+        burst(tz.getBoundingClientRect(), { n:12, kind:"heart", spread:60 });
+        toast(`${g.name}：收到了。（脸红）`, "i-heart");
+        step(true);
+      };
+      tz.onclick = fire;
+      tz.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); fire(); } };
+      return;
+    }
+    // tap：连点 10 下
+    let c = 0;
+    body.innerHTML = `<div class="tdcard">
+      <span class="kind d">大冒险</span>
+      <p class="p" style="margin-top:10px;color:#fff;font-size:15px">${esc(d.t)}</p>
+      <div class="tapzone" id="tz" style="margin-top:12px" role="button" tabindex="0" aria-label="连续点她">
+        <span class="ph" style="width:96px;height:96px">${phImg(outfitImg(g), g.initial, "", "", AV).replace('<div class="ph "', '<div class="ph" style="width:100%;height:100%"')}</span>
+      </div>
+      <p class="sm" style="margin-top:9px;text-align:center" id="tapN">0 / 10</p>
+    </div>`;
+    const tz = $("#tz");
+    const tap = () => {
+      if(!G) return;
+      c++; $("#tapN").textContent = `${Math.min(10, c)} / 10`;
+      pulseOnce(tz, "hit", 320);
+      if(c % 3 === 0) popNum(tz.getBoundingClientRect(), "♥", true);
+      if(c >= 10){
+        tz.onclick = null;
+        burst(tz.getBoundingClientRect(), { n:12, kind:"heart", spread:58 });
+        toast(`${g.name}：好啦好啦，我认输。（脸红）`, "i-heart");
+        step(true);
+      }
+    };
+    tz.onclick = tap;
+    tz.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); tap(); } };
+  }
+  function step(ok){
+    if(!G) return;
+    if(ok){ G.done++; G.blush++; }
+    G.i++;
+    if(G.i >= TD_ROUNDS) return finish();
+    setTimeout(paint, 520);
+  }
+  function finish(){
+    const done = G ? G.done : 0;
+    const score = done * TD_PT;
+    const earned = scored ? Math.min(RULES.gameMax, score) : 0;
+    gameFinish(gm, { score, scored, earned, detail:`完成 ${done} / ${TD_ROUNDS} 轮 · 脸红度 ${done * 20}%` });
+  }
+}
+
+/* ============================================================
+   游戏 6 · 擦掉雾气（canvas destination-out）
+   ============================================================ */
+const FOG_LEN = 20, FOG_GOAL = 0.8;
+function playFog(gm, scored){
+  const g = girl();
+  $("#gameHost").innerHTML = `
+  <section data-od-id="game-run">
+    ${gstat([["擦开","fp","0%"],["剩余","tm",FOG_LEN],["目标","fg","80%"]], scored)}
+    <div class="fogbox" id="fogbox">
+      <img src="${g.x}" alt="${esc(g.name)} 私房照">
+      <canvas id="fog"></canvas>
+      <div class="hintf" id="fhint">用手指擦掉雾气</div>
+    </div>
+    ${modeBar(scored)}
+  </section>`;
+  const box = $("#fogbox"), cv = $("#fog"), ctx = cv.getContext("2d");
+  const W = Math.max(60, box.clientWidth || 300), H = Math.max(80, box.clientHeight || 400);
+  cv.width = W; cv.height = H;
+  G = { pct:0, left:FOG_LEN, wiping:false, won:false };
+
+  const fog = () => {
+    const gr = ctx.createLinearGradient(0, 0, W, H);
+    gr.addColorStop(0, "rgba(236,214,232,.97)");
+    gr.addColorStop(.5, "rgba(248,228,242,.95)");
+    gr.addColorStop(1, "rgba(226,204,226,.97)");
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
+  };
+  fog();
+  // 雾慢慢回来：每 1.4s 补一层很淡的雾
+  G.spawn = setInterval(() => {
+    if(!G || G.won) return;
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "rgba(244,224,240,.1)";
+    ctx.fillRect(0, 0, W, H);
+    measure();
+  }, 1400);
+
+  const wipe = (x, y) => {
+    ctx.globalCompositeOperation = "destination-out";
+    const r = Math.max(22, Math.min(W, H) * .11);
+    const gr = ctx.createRadialGradient(x, y, 0, x, y, r);
+    gr.addColorStop(0, "rgba(0,0,0,1)");
+    gr.addColorStop(.6, "rgba(0,0,0,.85)");
+    gr.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = gr;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+  };
+  function measure(){
+    if(!G) return 0;
+    let clear = 0, total = 0;
+    try {
+      const d = ctx.getImageData(0, 0, W, H).data;
+      for(let i = 3; i < d.length; i += 4 * 97){ total++; if(d[i] < 120) clear++; }
+    } catch(e){ return G.pct; }
+    G.pct = total ? clear / total : 0;
+    const el = $("#fp"); if(el) el.textContent = Math.round(G.pct * 100) + "%";
+    if(G.pct >= FOG_GOAL && !G.won){ G.won = true; done(true); }
+    return G.pct;
+  }
+  const at = e => {
+    const r = cv.getBoundingClientRect();
+    const cx = e.clientX != null ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+    const cy = e.clientY != null ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+    return [(cx - r.left) * (W / (r.width || W)), (cy - r.top) * (H / (r.height || H))];
+  };
+  const down = e => { G && (G.wiping = true); const [x, y] = at(e); wipe(x, y); measure();
+    const h = $("#fhint"); if(h) h.style.display = "none"; };
+  const move = e => { if(!G || !G.wiping) return; const [x, y] = at(e); wipe(x, y); };
+  const up = () => { if(G){ G.wiping = false; measure(); } };
+  cv.addEventListener("pointerdown", down);
+  cv.addEventListener("pointermove", move);
+  window.addEventListener("pointerup", up);
+  G.off = () => { window.removeEventListener("pointerup", up); };
+
+  G.tick = setInterval(() => {
+    if(!G) return;
+    G.left--;
+    $("#tm").textContent = Math.max(0, G.left);
+    $("#tb").style.transform = `scaleX(${Math.max(0, G.left / FOG_LEN)})`;
+    const low = G.left <= 5 && G.left > 0;
+    $(".tbar").classList.toggle("low", low); $("#tm").classList.toggle("low", low);
+    if(G.left <= 0) done(false);
+  }, 1000);
+  $("#quit").onclick = () => done(false);
+
+  function done(won){
+    const pct = G ? Math.round(G.pct * 100) : 0;
+    const used = FOG_LEN - (G ? G.left : 0);
+    const score = won ? Math.max(10, Math.min(30, Math.round(30 - used * .6))) : Math.round(pct * .25);
+    const earned = scored ? Math.min(RULES.gameMax, score) : 0;
+    toast(`${g.name}：被你看到了啦～（脸红）`, "i-heart");
+    setTimeout(() => gameFinish(gm, { score, scored, earned,
+      detail: won ? `${used} 秒擦开 ${pct}%` : `只擦开 ${pct}% · 时间到` }), rm() ? 0 : 700);
+  }
 }
 
 /* ============================================================
@@ -3242,6 +3964,17 @@ const CATALOG = [
     target(){ return `${girl().name} · 玫瑰 / 咖啡 / 小蛋糕`; }, note:"",
     pick:true },
 
+  { id:"album", title:"一张私密照片", cat:"私密相册", cost:PRICE.album, stock:"每位角色 3 张", limit:"每张仅需解锁一次", expiry:"2027-03-31",
+    img:() => girl().x, initial:() => girl().initial,
+    target(){ const g = girl(), A = albumOf(g);
+      const i = A.findIndex((_, k) => !albumOwned(g.id, k));
+      return i < 0 ? null : `${g.name} · ${A[i].t}`; },
+    note:"当前角色已全部解锁",
+    buy(){ const g = girl(), A = albumOf(g);
+      const i = A.findIndex((_, k) => !albumOwned(g.id, k));
+      const a = S.owned.album = S.owned.album || {};
+      (a[g.id] = a[g.id] || []).push(i); } },
+
   { id:"vid", title:"角色短视频", cat:"限定内容", cost:null, stock:"库存待定", limit:"每人 1 次", expiry:"待定",
     img:() => outfitImg(girl()), initial:() => girl().initial,
     target(){ return `${girl().name} · 限定短片`; }, note:"积分待确认" },
@@ -3354,8 +4087,12 @@ function unlockedThumbs(){
     out.push({ img:d.poster, ini:d.initial, cap:`${d.title} 第${ep}集`, href:`#play/${d.id}/${ep}` }));
   S.owned.vid.forEach(id => { const x = girl(id);
     out.push({ img:outfitImg(x), ini:x.initial, cap:`${x.name} 问候短片`, href:"#videos" }); });
+  GIRLS.forEach(x => ((S.owned.album || {})[x.id] || []).forEach(i =>
+    out.push({ img:albumOf(x)[i].img, ini:x.initial, cap:`${x.name} · ${albumOf(x)[i].t}`, href:`#girl/${x.id}` })));
   S.owned.outfit.forEach(id => { const x = girl(id);
     out.push({ img:x.img2, ini:x.initial, cap:`${x.name} ${x.outfit2}`, href:"#wardrobe" }); });
+  (S.owned.outfitL || []).forEach(id => { const x = girl(id);
+    out.push({ img:x.lounge, ini:x.initial, cap:`${x.name} 蓝调沙龙`, href:"#wardrobe" }); });
   S.owned.bg.filter(b => b !== "cafe").forEach(b => { const bg = BGS.find(z => z.id === b);
     out.push({ img:bg.img, ini:bg.initial, cap:`背景 · ${bg.name}`, href:"#wardrobe" }); });
   return out;
