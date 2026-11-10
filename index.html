@@ -2107,6 +2107,13 @@ body{
 .panel::before,.panel::after,.lrow::before,.lrow::after,.vip::before,.vip::after,.ptcard::after{display:none !important}
 .mgrow,.gframe,.gpanel{box-shadow:none !important}
 .gpanel::after,.gpanel::before{display:none !important}
+/* 剧集：右上角显眼分享按钮 */
+.topshare{position:relative;display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 12px 0 10px;border:0;border-radius:99px;cursor:pointer;
+  background:var(--au-g);color:#1B1206;font:800 13px var(--sans);box-shadow:0 6px 18px -6px rgba(233,196,106,.7);white-space:nowrap}
+.topshare .ic{width:15px;height:15px}
+.topshare em{font-style:normal;font-size:10.5px;font-weight:900;padding:1px 5px;border-radius:6px;background:#E5383B;color:#fff}
+@media (prefers-reduced-motion:no-preference){.topshare{animation:shPulse 2.2s ease-in-out infinite}}
+@keyframes shPulse{0%,100%{box-shadow:0 6px 18px -6px rgba(233,196,106,.7)}50%{box-shadow:0 0 0 6px rgba(233,196,106,.18),0 6px 18px -6px rgba(233,196,106,.9)}}
 </style>
 </head>
 <body>
@@ -2202,7 +2209,7 @@ const GIRLS = [
   { id:"bunny", name:"兔兔", en:"Bunny", type:"兔女郎", initial:"兔", age:22,
     tags:["爱逗人","腿长","会撒野"],
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
-    bikini:"assets/img/girl-bunny-bikini.webp",
+    bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
     lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
     video:"assets/video/girl-bunny.mp4",
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
@@ -2213,7 +2220,7 @@ const GIRLS = [
   { id:"neko", name:"喵喵", en:"Mimi", type:"猫女郎", initial:"喵", age:21,
     tags:["黏人","爱蹭","小脾气"],
     v3:"assets/img/girl-neko-v3.webp", x:"assets/img/girl-neko-x.webp",
-    bikini:"assets/img/girl-neko-bikini.webp",
+    bikini:"assets/img/girl-neko-bikini.webp", sun:"assets/img/girl-neko-sun.webp",
     lounge:"assets/img/girl-neko-lounge.webp", img:"assets/img/girl-neko.webp", img2:"assets/img/girl-neko-2.webp",
     video:"assets/video/girl-neko.mp4",
     line:"喵～你手给我，我要蹭一下。",
@@ -2235,7 +2242,7 @@ const GIRLS = [
   { id:"maid", name:"奈奈", en:"Nana", type:"女仆", initial:"奈", age:21,
     tags:["乖","会照顾人","叫你主人"],
     v3:"assets/img/girl-maid-v3.webp", x:"assets/img/girl-maid-x.webp",
-    bikini:"assets/img/girl-maid-bikini.webp",
+    bikini:"assets/img/girl-maid-bikini.webp", sun:"assets/img/girl-maid-sun.webp",
     lounge:"assets/img/girl-maid-lounge.webp", img:"assets/img/girl-maid.webp", img2:"assets/img/girl-maid-2.webp",
     video:"assets/video/girl-maid.mp4",
     line:"主人，今天也要我陪着吗？",
@@ -2910,7 +2917,7 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
 const ADS = [
   { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
   { gid:"maid",   tag:"今日提醒",   h:"美女，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"美女，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
-  { gid:"summer", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 14%", act:"topup" },
+  { gid:"summer", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 42%", act:"topup" },
   { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
 let adStop = null, bnStop = null;
@@ -2949,7 +2956,7 @@ ROUTES.home = { view(){
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
-              <span class="ad-ph">${phImg(x.v3, x.initial, x.name, "", a.pos || "50% 18%")}</span>
+              <span class="ad-ph">${phImg(x.bikini || x.v3, x.initial, x.name, "", a.pos || "50% 18%")}</span>
               <span class="ad-shade"></span><span class="ad-streak"></span>
               <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
               <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
@@ -5012,7 +5019,7 @@ ROUTES.show = { view(id){
     tab:"drama", ghost:true, flush:true,
     bar:`<button class="ibtn hit" onclick="history.length>1?history.back():nav('#drama')" aria-label="返回">${ico("i-back")}</button>
       <div class="row-m" style="text-align:center"><div class="bar-t gg" style="letter-spacing:.04em">AI DRAMA</div></div>
-      <span style="width:38px"></span>`,
+      <button class="topshare" data-share="1" aria-label="分享给好友，好友观看 +20 积分">${ico("i-share")}分享<em>+20</em></button>`,
     html:`
     <div style="position:relative" data-od-id="show-poster">
       ${phImg(d.poster, d.initial, d.title + " 海报")}
@@ -5028,7 +5035,6 @@ ROUTES.show = { view(id){
         <p class="p" style="margin-top:8px;color:var(--muted)">${esc(d.desc)}</p>
       </section>
 
-      ${shareBanner()}
       <div class="acts3" style="margin-top:14px" data-od-id="show-actions">
         <button class="act3 a3-gold" id="a-unlock" ${nextLocked ? "" : 'aria-disabled="true"'}>
           ${i3("coin", 40)}<span>${nextLocked ? "积分解锁" : "全部已解锁"}</span></button>
@@ -5056,6 +5062,7 @@ ROUTES.show = { view(id){
       $$("[data-ep]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.ep, b));
       const doShare = () => shareSheet(d);
       $$("[data-share]", root).forEach(b => b.onclick = doShare);
+      $$("#bar [data-share]").forEach(b => b.onclick = doShare);
       $("#a-share", root).onclick = doShare;
       const au = $("#a-unlock", root);
       au.onclick = () => nextLocked ? openEp(d, nextLocked, au) : toast("全部剧集已解锁", "i-check");
@@ -5127,7 +5134,7 @@ ROUTES.play = { view(id, epStr){
   const prev = n > 1 ? n - 1 : null, next = n < 6 ? n + 1 : null;
   return {
     tab:"drama", flush:true, noTabs:true,
-    bar:barBack(`${d.title} · 第 ${n} 集`, esc(d.eps[n - 1]), `<span style="width:38px"></span>`),
+    bar:barBack(`${d.title} · 第 ${n} 集`, esc(d.eps[n - 1]), `<button class="topshare" data-share="1" aria-label="分享给好友，好友观看 +20 积分">${ico("i-share")}分享<em>+20</em></button>`),
     html:`
     <div style="padding:12px 14px 0">${shareBanner()}</div>
     <div class="player ph" style="--pos:50% 50%" data-initial="${esc(d.initial)}" data-od-id="player-${d.id}-${n}">
@@ -5166,6 +5173,7 @@ ROUTES.play = { view(id, epStr){
     after(root){
       $$("[data-go]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.go, b));
       $$("[data-share]", root).forEach(b => b.onclick = () => shareSheet(d, n));
+      $$("#bar [data-share]").forEach(b => b.onclick = () => shareSheet(d, n));
       const key = `${d.id}-${n}`;
       const credit = () => {
         if(S.epXp.includes(key)) return;
