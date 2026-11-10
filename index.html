@@ -2302,6 +2302,8 @@ body{
 .chiprow{gap:8px !important;margin:22px 0 4px !important}
 .catchip{padding:0 14px !important;height:34px !important}
 #sheet{background:linear-gradient(180deg,#17161B,#0E0E12) !important;border-top:1px solid rgba(233,196,106,.25) !important}
+.stg-act>*:active{transform:scale(.94)}
+.stg-act>*{transition:transform .12s}
 </style>
 </head>
 <body>
@@ -3080,6 +3082,7 @@ function parse(){
 function render(){
   if(leaveHook){ try { leaveHook(); } catch(e){} leaveHook = null; }
   if(sheetOpen) closeSheet();
+  { const cv = document.getElementById("clipView"); if(cv && cv.classList.contains("on")){ const vv = cv.querySelector("video"); if(vv) vv.pause(); cv.classList.remove("on"); cv.innerHTML = ""; } }
   current = parse();
   const r = ROUTES[current.name];
   const out = r.view(...current.args);
@@ -3271,7 +3274,7 @@ ROUTES.home = { view(){
           const R = (g.react && [...(g.react.hit || []), ...(g.react.win || [])]) || ["讨厌～"];
           return setSay(R[Math.floor(Math.random() * R.length)] + "（脸红）"); }
         if(k === "bikini"){
-          if(!g.bkv){ return toast(`${g.name} 现在穿的就是比基尼哦～`, "i-sparkle"); }
+          if(!g.bkv){ return playClip(g, clipsOf(g)[0]); }
           bk = !bk; sv.src = bk ? g.bkv : g.video; sv.play().catch(() => {});
           b.querySelector("b").textContent = bk ? "换回来" : "比基尼";
           setSay(bk ? "这套只穿给你看哦～" : g.line);
@@ -3584,11 +3587,13 @@ ROUTES.girl = { view(id){
       $$("[data-gd]", root).forEach(b => b.onclick = () => {
         if(b.dataset.gd === "gift") return giftSheet(g.id);
         const v = $("#gVid", root);
-        if(!g.bkv || !v) return toast(`${g.name} 现在穿的就是比基尼哦～`, "i-sparkle");
+        if(!g.bkv || !v) return playClip(g, clipsOf(g)[0]);
         const on = b.dataset.on !== "1";
         b.dataset.on = on ? "1" : "0";
         v.loop = true; v.src = on ? g.bkv : (g.videos || [g.video])[0]; v.play().catch(() => {});
         b.querySelector("b").textContent = on ? "换回来" : "比基尼";
+        const st = $("#stage"); if(st) st.scrollTo({ top:0, behavior:"smooth" });
+        toast(on ? `${g.name} 换上比基尼了～` : `${g.name} 换回来了`, "i-sparkle");
       });
       const gv = $("#gVid", root), list = g.videos || [g.video];
       if(gv && list.length > 1){        // 多段视频：播完一段接下一段，循环
