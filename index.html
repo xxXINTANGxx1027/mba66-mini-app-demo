@@ -2020,6 +2020,54 @@ body{
 .cv-pink .cv-tint,.cv-gold .cv-tint,.cv-violet .cv-tint,.cv-coral .cv-tint{display:none !important}
 .gcardx:not(.cv-frost) .cv-fx{display:none !important}
 .gcardx{border-color:var(--bd) !important}
+/* ===== v14 · 奖励页：VIP 会员卡 + 官方周边 ===== */
+.vipc{position:relative;display:block;aspect-ratio:1.7/1;padding:16px 18px;border-radius:18px;overflow:hidden;text-decoration:none;color:var(--tx);
+  background:radial-gradient(120% 90% at 100% 0%,rgba(233,196,106,.22),transparent 55%),
+             repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 2px,transparent 2px 6px),
+             linear-gradient(150deg,#1D1B21 0%,#0C0B0F 60%,#141217 100%);
+  border:1px solid rgba(233,196,106,.45);box-shadow:inset 0 1px 0 rgba(255,236,190,.18),0 18px 40px -20px rgba(233,196,106,.35)}
+.vipc-sheen{position:absolute;top:-60%;left:-30%;width:40%;height:220%;transform:rotate(25deg);pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,236,190,.08),transparent)}
+.vipc-top{position:relative;display:flex;align-items:center;justify-content:space-between}
+.vipc-top img{height:22px}
+.vipc-top em{display:flex;flex-direction:column;align-items:flex-end;font-style:normal;font-size:13px;font-weight:800;color:var(--au)}
+.vipc-top em small{font-size:9px;letter-spacing:.2em;color:rgba(233,196,106,.6)}
+.vipc-mid{position:relative;display:flex;flex-direction:column;margin-top:12px}
+.vipc-mid small{font-size:11.5px;color:var(--tx2)}
+.vipc-mid b{font-size:40px;font-weight:900;line-height:1.05;letter-spacing:-.01em;font-variant-numeric:tabular-nums;
+  background:linear-gradient(180deg,#FFF6DA,#E9C46A 60%,#B8862B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.vipc-bot{position:absolute;left:18px;right:18px;bottom:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.vipc-prog{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.vipc-prog i{display:block;height:4px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.vipc-prog u{display:block;height:100%;background:var(--au-g)}
+.vipc-prog small{font-size:10.5px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vipc-link{display:inline-flex;align-items:center;gap:2px;font-size:12px;font-weight:800;color:var(--au);white-space:nowrap}
+.vipc-link .ic{width:14px;height:14px}
+.vipc-no{position:absolute;right:18px;top:50%;font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.22);font-variant-numeric:tabular-nums}
+.mx{margin-top:var(--sec)}
+.mx-note{font-size:12px;color:var(--tx2)}
+.mx-img{position:relative;display:block;overflow:hidden;background:#0B0B0E}
+.mx-img img{width:100%;height:100%;object-fit:cover;display:block}
+.mx-feat{display:flex;width:100%;padding:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--bd);background:var(--sf);color:var(--tx);
+  text-align:left;font-family:var(--sans);cursor:pointer}
+.mx-feat .mx-img{flex:0 0 46%;aspect-ratio:1}
+.mx-ft{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px;min-width:0}
+.mx-tag{font-style:normal;font-size:10px;font-weight:900;letter-spacing:.06em;padding:2px 7px;border-radius:5px;background:#E5383B;color:#fff;margin-bottom:3px}
+.mx-ft b{font-size:16px;font-weight:800}
+.mx-ft small{font-size:11.5px;color:var(--tx2)}
+.mx-price{display:inline-flex;align-items:center;gap:4px;margin-top:auto;font-size:18px;font-weight:900;color:var(--au);font-variant-numeric:tabular-nums}
+.mx-price small{font-size:11px;font-weight:700;color:var(--tx2);margin-left:1px}
+.mx-btn{display:inline-grid;place-items:center;height:32px;padding:0 16px;margin-top:8px;border-radius:9px;background:var(--au-g);color:#1B1206;font-size:12.5px;font-weight:800}
+.mx-btn.sm{height:28px;width:100%;padding:0;font-size:12px;margin-top:8px}
+.mx-btn.own{background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+.mx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.mx-it{display:flex;flex-direction:column;align-items:flex-start;padding:0 0 8px;border-radius:var(--r-s);overflow:hidden;border:1px solid var(--bd);
+  background:var(--sf);color:var(--tx);font-family:var(--sans);text-align:left;cursor:pointer}
+.mx-it .mx-img{width:100%;aspect-ratio:1}
+.mx-it b{font-size:13px;font-weight:800;margin:8px 8px 0}
+.mx-it .mx-price{font-size:14px;margin:2px 8px 0}
+.mx-it .mx-btn{margin:8px 8px 0;width:calc(100% - 16px)}
+.mx-foot{margin-top:10px;font-size:11px;color:var(--tx2);text-align:center}
 </style>
 </head>
 <body>
@@ -5253,35 +5301,39 @@ ROUTES.rewards = { view(){
     tab:"rewards",
     bar:`<div class="row-m"><div class="bar-t">积分奖励</div></div>${ptLink()}`,
     html:`
-    <div class="ptcard" data-od-id="rewards-balance">
-      ${i3("coin", 52)}
-      <div class="row-m" style="position:relative;z-index:2">
-        <div class="sm" style="color:rgba(255,255,255,.82)">可用娱乐积分</div>
-        <div class="n gg"><span data-pts>${S.pts}</span></div>
-      </div>
-      <a class="tbtn" href="#points" style="position:relative;z-index:2;white-space:nowrap">积分记录${ico("i-next")}</a>
-    </div>
+    ${(() => { const M = memberLv(); return `
+    <a class="vipc" href="#points" data-od-id="rewards-balance">
+      <span class="vipc-sheen"></span>
+      <span class="vipc-top"><img src="assets/logo/logo-hg.png" alt="MBA66" onerror="logoFail(this,18)">
+        <em>${esc(M.t)}<small>${esc(M.en.toUpperCase())}</small></em></span>
+      <span class="vipc-mid"><small>可用娱乐积分</small><b data-pts>${S.pts}</b></span>
+      <span class="vipc-bot">
+        <span class="vipc-prog"><i><u style="width:${Math.round(M.pct * 100)}%"></u></i>
+          <small>${M.next ? `再获得 ${M.need} 积分升级${esc(M.next.t)}` : "已是最高等级"}</small></span>
+        <span class="vipc-link">积分记录${ico("i-next")}</span>
+      </span>
+      <span class="vipc-no">MBA66 ···· 0066</span>
+    </a>`; })()}
 
-    <section class="mhero gframe" data-od-id="rewards-merch-hero">
-      <div class="mhero-h">
-        <img class="mhero-logo" src="assets/logo/logo-hg.png" alt="MBA66"
-          onerror="logoFail(this,20)">
-        <div class="row-m"><b>MBA66 周边</b><em>品牌实物 · 门店核销</em></div>
-        ${i3("crown", 32)}
+    <section class="mx" data-od-id="rewards-merch-hero">
+      <div class="h-sec"><h2>MBA66 官方周边</h2><span class="mx-note">积分兑换 · 门店核销</span></div>
+      ${(() => { const f = MERCH.find(m => m.id === "bag"), own = (S.owned.merch || []).includes(f.id); return `
+      <button class="mx-feat" data-merch="${f.id}" data-od-id="merch-${f.id}">
+        <span class="mx-img"><img src="assets/img/merch-${f.id}.webp" alt="${esc(f.t)}" loading="lazy"></span>
+        <span class="mx-ft"><em class="mx-tag">限量联名</em><b>${esc(f.t)}</b><small>${esc(f.sub)}</small>
+          <span class="mx-price">${i3("coin", 18)}${f.cost}<small>积分</small></span>
+          <span class="mx-btn ${own ? "own" : ""}">${own ? "已兑换" : "立即兑换"}</span></span>
+      </button>`; })()}
+      <div class="mx-grid">
+        ${MERCH.filter(m => m.id !== "bag").map(m => { const own = (S.owned.merch || []).includes(m.id); return `
+        <button class="mx-it" data-merch="${m.id}" data-od-id="merch-${m.id}">
+          <span class="mx-img"><img src="assets/img/merch-${m.id}.webp" alt="${esc(m.t)}" loading="lazy"></span>
+          <b>${esc(m.t.replace("MBA66 ", ""))}</b>
+          <span class="mx-price">${i3("coin", 14)}${m.cost}</span>
+          <span class="mx-btn sm ${own ? "own" : ""}">${own ? "已兑换" : "兑换"}</span>
+        </button>`; }).join("")}
       </div>
-      <div class="mgrid">
-        ${MERCH.map(m => {
-          const own = (S.owned.merch || []).includes(m.id);
-          return `<button class="mtile" data-merch="${m.id}" data-od-id="merch-${m.id}">
-            <span class="mtile-art">${MERCH_ART[m.id] || MERCH_ART.tee}<em>MBA66</em></span>
-            <b>${esc(m.t)}</b>
-            <span class="mtile-s">${esc(m.sub)}</span>
-            <span class="mtile-f"><i>${m.cost} 积分</i>
-              <span class="pill ${own ? "ok" : "g"}">${own ? "已兑换" : "兑换"}</span></span>
-          </button>`;
-        }).join("")}
-      </div>
-      <p class="sm" style="margin-top:11px">实物以门店实际发放为准，演示中用线稿占位。</p>
+      <p class="mx-foot">实物以门店实际发放为准</p>
     </section>
 
     <div class="chiprow" data-od-id="rewards-cats">
