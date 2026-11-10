@@ -2206,6 +2206,36 @@ body{
 /* 女友详情：视频下方的毛玻璃互动栏 */
 .gd-act{position:relative !important;left:auto !important;right:auto !important;bottom:auto !important;margin:-30px 14px 0;z-index:5}
 #gHero .hero-c{bottom:46px !important}
+#winpop{z-index:90 !important}
+/* ===== 会员福利：做成真正的优惠券（左侧礼物券根 + 撕线 + 右侧信息） ===== */
+.vxlist{display:flex;flex-direction:column;gap:12px}
+.vx{position:relative;display:flex;min-height:104px;border-radius:16px;overflow:hidden;background:#15151B;
+  --c1:#FBE7A6;--c2:#C9952E}
+.vx-free{--c1:#FF8A7A;--c2:#C2182B}
+.vx-comeback{--c1:#FFB3D1;--c2:#C2457A}
+.vx-x2{--c1:#C9B6FF;--c2:#6B46D6}
+.vx-birthday{--c1:#8E8A96;--c2:#4B4852}
+.vx-stub{position:relative;flex:0 0 104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:radial-gradient(120% 90% at 30% 20%,rgba(255,255,255,.35),transparent 60%),linear-gradient(150deg,var(--c1),var(--c2))}
+.vx-stub img{width:62px;height:62px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));animation:vxBob 2.8s ease-in-out infinite}
+.vx-stub em{font-style:normal;font-size:10px;font-weight:900;letter-spacing:.22em;color:rgba(0,0,0,.55)}
+@keyframes vxBob{50%{transform:translateY(-3px) rotate(-4deg)}}
+/* 撕线 + 上下半圆缺口 */
+.vx-stub::after{content:"";position:absolute;top:10px;bottom:10px;right:-1px;border-right:2px dashed rgba(255,255,255,.18)}
+.vx::before,.vx::after{content:"";position:absolute;left:94px;width:20px;height:20px;border-radius:50%;background:#07070A;z-index:2}
+.vx::before{top:-10px}.vx::after{bottom:-10px}
+.vx-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:12px 14px 12px 18px}
+.vx-body b{font-size:17px;font-weight:900;color:#fff}
+.vx-en{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--c1)}
+.vx-sub{margin-top:3px;font-size:11.5px;color:var(--tx2)}
+.vx-f{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.vx-c{display:inline-flex;align-items:center;gap:4px;font-size:16px;font-weight:900;color:var(--au);font-variant-numeric:tabular-nums}
+.vx-c .ic{width:15px;height:15px}
+.vx .vb{height:30px;padding:0 16px;border:0;border-radius:99px;background:linear-gradient(180deg,var(--c1),var(--c2));color:#1B1206;font:800 12.5px var(--sans);cursor:pointer}
+.vx-free .vb,.vx-comeback .vb,.vx-x2 .vb{color:#fff}
+.vx.off{opacity:.55}
+.vx.off .vb{background:#2A2A33;color:var(--tx2)}
+@media (prefers-reduced-motion:reduce){.vx-stub img{animation:none}}
 </style>
 </head>
 <body>
@@ -2625,6 +2655,8 @@ function countTo(el, from, to){
 }
 function toast(msg, icon="i-check"){
   const box = $("#toast");
+  if($("#winpop.on")) return;              /* 弹窗开着时不再冒气泡 */
+  box.querySelectorAll(".tst").forEach(x => x.remove());   /* 一次只留一条 */
   const d = document.createElement("div");
   d.className = "tst";
   d.innerHTML = `${ico(icon)}<span>${esc(msg)}</span>`;
@@ -2639,6 +2671,7 @@ function winPop(pts, sub){
     <div class="coin">${i3("coin", 74)}</div>
     <div class="num">+${pts}<small>积分</small></div><div class="sub">${esc(sub)}</div>
     <button class="btn btn-gold btn-w" data-wpok>立即收下</button></div>`;
+  $("#toast").innerHTML = "";
   w.classList.add("on");
   const close = () => w.classList.remove("on");
   w.querySelector("[data-wpok]").onclick = close;
@@ -2646,6 +2679,8 @@ function winPop(pts, sub){
 }
 function rewardToast(label, pts, xp, g){
   const box = $("#toast");
+  if($("#winpop.on")) return;
+  box.querySelectorAll(".tst").forEach(x => x.remove());
   const d = document.createElement("div");
   d.className = "tst";
   d.innerHTML = `${ico(!pts ? "i-heart" : pts < 0 ? "i-gift" : "i-coin")}<span>${esc(label)}</span>
@@ -5578,18 +5613,20 @@ ROUTES.rewards = { view(){
     <div id="rwBody" data-od-id="rewards-body">
       ${cat === "merch" ? `<p class="sm" style="margin-top:4px">上面的 ${MERCH.length} 件周边都可以用娱乐积分兑换，兑换后在「我的 · 兑换记录」里查看核销码。</p>`
       : cat === "vip" ? `
-        <div class="vgrid">
+        <div class="vxlist">
           ${VOUCHERS.map(v => {
             const off = v.cost === null || (v.once && vs.some(x => x.id === v.id));
-            return `<div class="vcard ${off ? "off" : ""}" data-od-id="voucher-${v.id}">
-              ${i3(v.icon, 30)}
-              <div class="vt">${esc(v.title)}</div>
-              <div class="vs">${esc(v.sub)}</div>
-              <div class="vdash"></div>
-              <div class="vf">
-                <span class="vc">${v.cost === null ? "敬请期待" : v.cost + " 积分"}</span>
-                <button class="vb" data-vc="${v.id}" ${off ? 'aria-disabled="true"' : ""}>${
-                  v.cost === null ? "待开放" : (v.once && vs.some(x => x.id === v.id)) ? "已兑换" : "兑换"}</button>
+            return `<div class="vx vx-${v.id} ${off ? "off" : ""}" data-od-id="voucher-${v.id}">
+              <div class="vx-stub"><img src="assets/icons/${v.icon}.webp" alt="" onerror="this.remove()"><em>BONUS</em></div>
+              <div class="vx-body">
+                <b>${esc(v.short || v.title)}</b>
+                <small class="vx-en">${esc(v.en || "")}</small>
+                <small class="vx-sub">${esc(v.sub)}</small>
+                <div class="vx-f">
+                  <span class="vx-c">${v.cost === null ? "敬请期待" : `${ico("i-coin")}${v.cost}`}</span>
+                  <button class="vb" data-vc="${v.id}" ${off ? 'aria-disabled="true"' : ""}>${
+                    v.cost === null ? "待开放" : (v.once && vs.some(x => x.id === v.id)) ? "已兑换" : "兑换"}</button>
+                </div>
               </div>
             </div>`;
           }).join("")}
@@ -5758,11 +5795,11 @@ ROUTES.points = { view(){
    会员福利兑换
    ============================================================ */
 const VOUCHERS = [
-  { id:"welcome",  title:"Welcome Bonus 新人礼",   sub:"首次兑换专享",        cost:300, icon:"crown", once:true },
-  { id:"free",     title:"Free Bonus 免费礼金",    sub:"每周一次",            cost:500, icon:"coin" },
-  { id:"comeback", title:"回归礼 Comeback Bonus",  sub:"7 天未登录后可领",     cost:200, icon:"gift" },
-  { id:"x2",       title:"双倍积分卡",             sub:"下一局亲密游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
-  { id:"birthday", title:"生日礼",                 sub:"生日月专享 · 敬请期待", cost:null, icon:"gift" }
+  { id:"welcome",  short:"新人礼", en:"WELCOME BONUS", title:"Welcome Bonus 新人礼",   sub:"首次兑换专享",        cost:300, icon:"crown", once:true },
+  { id:"free",     short:"免费礼金", en:"FREE BONUS", title:"Free Bonus 免费礼金",    sub:"每周一次",            cost:500, icon:"coin" },
+  { id:"comeback", short:"回归礼", en:"COMEBACK BONUS", title:"回归礼 Comeback Bonus",  sub:"7 天未登录后可领",     cost:200, icon:"gift" },
+  { id:"x2",       short:"双倍积分卡", en:"DOUBLE POINTS", title:"双倍积分卡",             sub:"下一局亲密游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
+  { id:"birthday", short:"生日礼", en:"BIRTHDAY GIFT", title:"生日礼",                 sub:"生日月专享 · 敬请期待", cost:null, icon:"gift" }
 ];
 const vcOf = id => VOUCHERS.find(v => v.id === id);
 const newCode = () => "MB66-" + Array.from({ length:4 },
