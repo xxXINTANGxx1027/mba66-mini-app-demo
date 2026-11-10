@@ -2068,6 +2068,9 @@ body{
 .mx-it .mx-price{font-size:14px;margin:2px 8px 0}
 .mx-it .mx-btn{margin:8px 8px 0;width:calc(100% - 16px)}
 .mx-foot{margin-top:10px;font-size:11px;color:var(--tx2);text-align:center}
+/* 角色详情：顶部改成循环视频 */
+.gvid video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.gvid img{animation:none !important}
 </style>
 </head>
 <body>
@@ -2187,7 +2190,7 @@ const GIRLS = [
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
     bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
-    video:"assets/video/girl-summer.mp4",
+    video:"assets/video/girl-summer.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-2.mp4"],
     line:"今天这套红色的，好看吗？只给你看哦～",
     about:"23 岁，最爱穿比基尼对着镜头撒娇的辣妹，你一来她就舍不得下线。",
     outfit2:"限定 · 红色比基尼",
@@ -3120,8 +3123,10 @@ ROUTES.girl = { view(id){
       <button class="ibtn hit" id="girlGift" aria-label="送礼物">${ico("i-gift")}</button>`,
     html:`
     <section class="hero" id="gHero" style="border-radius:0" data-react-pos="right:14px;bottom:170px" data-od-id="girl-hero-${g.id}">
-      <div class="ph" style="--pos:50% 24%;height:clamp(330px,52vh,430px)">
-        <img src="${outfitImg(g)}" alt="${esc(g.name)} 形象" onerror="imgFail(this)"></div>
+      <div class="ph gvid" style="--pos:50% 24%;height:clamp(380px,60vh,500px)">
+        <img src="${outfitImg(g)}" alt="${esc(g.name)} 形象" onerror="imgFail(this)">
+        <video id="gVid" src="${(g.videos || [g.video])[0]}" poster="${outfitImg(g)}" muted autoplay loop playsinline
+          preload="auto" aria-label="${esc(g.name)} 动态形象" onerror="this.remove()"></video></div>
       <div class="scrim"></div>
       <div class="hero-c" style="bottom:14px">
         <h1 class="h1" style="font-size:28px">${esc(g.name)}<span class="agechip">${g.age}岁 ${ico("i-heart","ic f")}</span></h1>
@@ -3177,6 +3182,12 @@ ROUTES.girl = { view(id){
       </section>
     </div>`,
     after(root){
+      const gv = $("#gVid", root), list = g.videos || [g.video];
+      if(gv && list.length > 1){        // 多段视频：播完一段接下一段，循环
+        let vi = 0; gv.loop = false;
+        gv.addEventListener("ended", () => { vi = (vi + 1) % list.length; gv.src = list[vi]; gv.play().catch(() => {}); });
+      }
+      if(gv) gv.play().catch(() => {});
       const hero = $("#gHero", root);
       hero.addEventListener("click", () => react(hero, "idle", g.id));
       const p = $("#pick", root);
