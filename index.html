@@ -2325,6 +2325,9 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .ptchip img.gi,.vx-c img.gi,.mx-price img.gi{width:16px !important;height:16px !important}
 .tst img.gi{width:18px;height:18px}
 .vx-stub img{width:68px !important;height:68px !important}
+.rhero .lv{z-index:1}
+.rhero .cv-tint{z-index:1}
+.rhero .scrim{z-index:2}
 </style>
 </head>
 <body>
@@ -3698,7 +3701,7 @@ ROUTES.wardrobe = { view(){
           </button>`;
         }).join("")}
       </div>
-      <p class="sm" style="margin-top:10px">场景会用在聊天背景里。</p>
+      <p class="sm" style="margin-top:10px">解锁的场景会永久保存在你的收藏里。</p>
     </section>
 
     <section class="sec" data-od-id="wardrobe-acts">
@@ -3881,7 +3884,11 @@ function sendGift(g, gift, fromEl){
 const ALB_LINE = {
   sweet:["这张是我最喜欢的一张。","只给你看哦～（脸红）","那天房间里只开了串灯……","这套是我自己挑的，好看吗？"],
   queen:["看吧。我允许了。","这张我删过一次，又找回来了。","别传出去。","你眼神有点不老实。"],
-  cool:["……别看太久。","就一眼。","这张是凌晨拍的。","嗯。现在你知道了。"]
+  cool:["……别看太久。","就一眼。","这张是凌晨拍的。","嗯。现在你知道了。"],
+  bunny:["这张兔兔拍了好多次才满意～","只给你看，不许截图哦。","那天穿得有点少…你懂的。","好看吗？说实话！"],
+  neko:["喵～这张是偷偷拍的。","只给主人看喵。","别一直盯着看啦…喵。","还想看更多吗？"],
+  maid:["主人…这张有点害羞。","奈奈只给主人看哦。","那天在酒店拍的…","主人喜欢就好～"],
+  summer:["这张够辣吧？","只给你看哦～","那天太阳好大，我好热…","想看更多？多陪陪我呀。"]
 };
 function albumGrid(gid){
   const g = girl(gid), A = albumOf(g);
@@ -3918,7 +3925,7 @@ function bindAlbum(root, gid){
       then(){
         const card = $(`[data-alb="${i}"]`);
         if(card){ card.classList.remove("lk"); pulseOnce(card, "unl", 1000); }
-        toast(`${g.name}：${ALB_LINE[gid][i] || "只给你看哦～"}`, "i-heart");
+        toast(`${g.name}：${(ALB_LINE[gid] || [])[i] || "只给你看哦～"}`, "i-heart");
         setTimeout(render, 900);
       } });
   });
@@ -3959,7 +3966,7 @@ function openViewer(gid, i){
   function paint(){
     $("#vTrack").style.transform = `translateX(${-VW.at * 100}%)`;
     $("#vNum").textContent = `${VW.at + 1} / ${VW.idx.length}`;
-    $("#vLine").textContent = ALB_LINE[gid][VW.idx[VW.at]] || "";
+    $("#vLine").textContent = (ALB_LINE[gid] || [])[VW.idx[VW.at]] || "";
     $$("#viewer .vdots i").forEach((d, k) => d.classList.toggle("on", k === VW.at));
   }
 }
@@ -4018,7 +4025,7 @@ ROUTES.videos = { view(){
         return `<div class="card" data-od-id="clip-${g.id}">
           <div style="position:relative">
             ${own
-              ? phVid(g.video, outfitImg(g), g.initial, g.name + " 问候短片", "", "controls playsinline")
+              ? phVid(g.video, outfitImg(g), g.initial, g.name + " 问候短片", "", "autoplay muted loop playsinline onclick=\"this.muted=!this.muted\"")
               : phImg(outfitImg(g), g.initial, g.name + " 形象")}
             ${own ? "" : `<div class="scrim"></div>
               <div style="position:absolute;z-index:4;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px">
@@ -4219,7 +4226,7 @@ function gameIntro(gm){
   <section data-od-id="game-intro">
     <div class="panel" style="padding:0;overflow:hidden">
       <div class="rhero ${(gm.cover || {}).tint || ""}">
-        ${phImg(outfitImg(g), g.initial, g.name + " 形象", "", "50% 16%")}
+        ${phImg(outfitImg(g), g.initial, g.name + " 形象", "", "50% 16%")}${liveVid(g, "50% 14%")}
         <div class="cv-tint"></div>
         <div class="scrim"></div>
         <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
@@ -4541,8 +4548,12 @@ function playMemory(gm, scored){
   const HER_LINE = {
     sweet:["这张是我最喜欢的。","又翻到我啦？","再翻一次试试～"],
     queen:["眼光不错。","记性挺好。","continue。"],
-    cool:["……找到了。","嗯。","再来。"]
-  }[g.id];
+    cool:["……找到了。","嗯。","再来。"],
+    bunny:["翻到兔兔啦～","记性不错嘛！","再找一个试试～"],
+    neko:["喵！找到我了～","主人好厉害喵。","继续翻喵～"],
+    maid:["主人找到奈奈了～","主人记性真好。","还有呢，主人加油。"],
+    summer:["被你找到了！","眼力不错嘛～","再来一对！"]
+  }[g.id] || ["找到我啦～","记性真好。","再来～"];
   const deck = kinds.concat(kinds).map(c => ({ ...c, id:Math.random() }));
   for(let i = deck.length - 1; i > 0; i--){ const j = (Math.random() * (i + 1)) | 0; [deck[i], deck[j]] = [deck[j], deck[i]]; }
   $("#gameHost").innerHTML = `
@@ -5040,12 +5051,28 @@ const RPS_LINE = {
           tie:["一样。重来。"] },
   cool:{ win:["……行。我去换。", "嗯。看吧。", "就这一套了。"],
          lose:["弹你。", "输了。", "再来。"],
-         tie:["又一样。"] }
+         tie:["又一样。"] },
+  bunny:{ win:["好吧算你厉害，我去换～", "兔兔说话算话，看好了哦。", "最后一套…你可别眨眼。"],
+          lose:["嘿嘿，弹你额头～", "兔兔赢啦，再来！", "手慢了哦～"],
+          tie:["一样耶，再来！"] },
+  neko:{ win:["喵…输了就换嘛。", "这套给你看，喵～", "最后一套了，不许乱看喵。"],
+         lose:["喵！猫爪弹你～", "主人好弱喵。", "再来喵～"],
+         tie:["喵？平手！"] },
+  maid:{ win:["主人赢了…奈奈这就去换。", "请主人慢慢看。", "这是最后一套了，主人…"],
+         lose:["主人要加油哦～", "奈奈轻轻弹一下～", "再来一次吧主人。"],
+         tie:["和主人出的一样呢～"] },
+  summer:{ win:["行啊，愿赌服输～", "这套够辣吧？", "最后一套，看完要请我喝东西哦。"],
+           lose:["哈！弹你～", "太慢啦～", "再来再来！"],
+           tie:["平手，不算！"] }
 };
 const RPS_SURPRISE = {
   sweet:"被你赢走了…这套只给你看（脸红）",
   queen:"被你赢走了…这套只给你看（脸红）",
-  cool:"被你赢走了…这套只给你看（脸红）"
+  cool:"被你赢走了…这套只给你看（脸红）",
+  bunny:"兔兔认输啦…这套比基尼只给你一个人看哦（脸红）",
+  neko:"喵…被你全部赢走了，这套只给主人看～",
+  maid:"主人好厉害…奈奈的比基尼，只给主人看。",
+  summer:"服了你！这套最辣的，就给你一个人看～"
 };
 const RPS_ROUNDS = 5, RPS_PT = 15, RPS_BONUS = 20;   /* 赢两局到顶 = 30 封顶 + 20 惊喜 */
 const RPS_BEAT = ["石头…", "剪刀…", "布！"];
@@ -5118,7 +5145,7 @@ function playRps(gm, scored){
   }
 
   function settle(mine, hers){
-    const L = RPS_LINE[g.id], beat = $("#rbeat");
+    const L = RPS_LINE[g.id] || RPS_LINE.bunny, beat = $("#rbeat");
     if(mine === hers.k){
       if(beat) beat.textContent = "平手";
       toast(`${g.name}：${L.tie[0]}`, "i-heart");
@@ -5196,7 +5223,7 @@ function playRps(gm, scored){
         <span class="pill g badge" style="position:absolute;top:12px;left:12px;z-index:5">${ico("i-star")}惊喜</span>
         <div class="rcap big-cap">
           <div class="h1" style="font-size:21px">一路赢到比基尼</div>
-          <p class="p" style="margin-top:6px;color:rgba(255,255,255,.93)">「${esc(RPS_SURPRISE[g.id])}」</p>
+          <p class="p" style="margin-top:6px;color:rgba(255,255,255,.93)">「${esc(RPS_SURPRISE[g.id] || RPS_SURPRISE.bunny)}」</p>
         </div>
       </div>
       <div class="panel vhit" style="margin-top:13px;padding:4px 16px" data-od-id="rps-bonus">
