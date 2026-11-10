@@ -2408,10 +2408,10 @@ const RULES = { signup:800, checkin:10, gameMax:30, invite:20, inviteMax:5 };
 /* 亲密经验：只累积、不消耗、不折现 */
 const XPR = { checkin:5, game:5, drama:10, coach:20, gift:10 };
 const LEVELS = [
-  { lv:1, at:0,   name:"初识",     unlock:"基础互动" },
-  { lv:2, at:100, name:"熟悉",     unlock:"更多造型与照片" },
-  { lv:3, at:300, name:"默契",     unlock:"特别互动及剧情" },
-  { lv:4, at:600, name:"专属羁绊", unlock:"专属故事及互动" }
+  { lv:1, at:0,   name:"初识",     unlock:"基础互动 · 1 段招牌视频" },
+  { lv:2, at:100, name:"熟悉",     unlock:"她的比基尼私密视频 + 更多造型" },
+  { lv:3, at:300, name:"默契",     unlock:"更多私密视频 + 特别互动" },
+  { lv:4, at:600, name:"专属羁绊", unlock:"全部私密视频 + 专属故事" }
 ];
 const GIFTS = [
   { id:"rose",   name:"玫瑰",   en:"Rose",   icon:"i-rose" },
@@ -3109,6 +3109,33 @@ function parse(){
   const name = parts.shift() || "home";
   return { name: ROUTES[name] ? name : "home", args: parts };
 }
+/* 只播放屏幕里看得到的视频，滑出去就暂停（手机上更流畅、更省电） */
+let vidIO = null;
+function watchVids(){
+  if(!("IntersectionObserver" in window)) return;
+  if(vidIO) vidIO.disconnect();
+  const root = document.getElementById("stage");
+  vidIO = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if(e.isIntersecting){ if(v.paused) v.play().catch(() => {}); }
+    else { v.autoplay = false; v.pause(); }      /* 还没开始播的也要取消自动播放 */
+  }), { root, threshold:0.15 });
+  const scan = () => document.querySelectorAll("#stage video").forEach(v => vidIO.observe(v));
+  setTimeout(scan, 50); setTimeout(scan, 800); setTimeout(scan, 2000);
+}
+/* 页面里后来才插入的视频也纳入管理 */
+(() => {
+  const st = document.getElementById("stage");
+  if(!st || !("MutationObserver" in window)) return;
+  new MutationObserver(ms => {
+    if(!vidIO) return;
+    for(const m of ms) m.addedNodes.forEach(n => {
+      if(n.nodeType !== 1) return;
+      if(n.tagName === "VIDEO") vidIO.observe(n);
+      else n.querySelectorAll && n.querySelectorAll("video").forEach(v => vidIO.observe(v));
+    });
+  }).observe(st, { childList:true, subtree:true });
+})();
 function render(){
   if(leaveHook){ try { leaveHook(); } catch(e){} leaveHook = null; }
   if(sheetOpen) closeSheet();
@@ -3127,6 +3154,7 @@ function render(){
   afterRender($(".scr", st), current.name);
   if(out.after) out.after($(".scr", st));
   leaveHook = out.leave || null;
+  watchVids();
 }
 window.addEventListener("hashchange", render);
 
@@ -6119,7 +6147,7 @@ function voucherDone(v, code){
         <div class="row"><div class="row-m"><div class="row-t">当前余额</div></div>
           <b class="big" style="font-size:15px;color:var(--gold)">${S.pts}</b></div>
       </div>`,
-    foot:`<button class="btn btn-pri btn-w" id="cpv">${ico("i-share")}复制福利码</button>
+    foot:`<button class="btn btn-pri btn-w" id="cpv">${ico("i-copy")}复制福利码</button>
           <button class="btn btn-qt btn-w" id="okv">知道了</button>`
   });
   sh.querySelector("#cpv").onclick = async () =>
