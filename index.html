@@ -3005,6 +3005,8 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
    首页
    ============================================================ */
 /* 首页广告位：4 张海报，自动轮播 */
+/* 链接带 ?layout=lobby 时，首页用之前的大厅式布局 */
+const LOBBY = new URLSearchParams(location.search).get("layout") === "lobby";
 const ADS = [
   { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
   { gid:"maid",   tag:"今日提醒",   h:"Hi，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"Hi，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
@@ -3037,11 +3039,11 @@ ROUTES.home = { view(){
       <b>${esc(gm.name)}</b></a>`;
   };
   return {
-    flush:true, ghost:true, tab:"home",
+    flush:true, ghost:!LOBBY, tab:"home",
     bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66" onerror="logoFail(this,22)">
          <div class="h-topr">${ptLink()}<button class="h-dep" id="hDep">充值</button></div>`,
     html:`
-    ${(() => { const bd = bondOf(g.id); return `
+    ${LOBBY ? "" : (() => { const bd = bondOf(g.id); return `
     <section class="stg" id="hStage" data-od-id="home-stage">
       <video class="stg-v" id="stgVid" src="${g.video}" poster="${g.v3}" muted autoplay loop playsinline preload="auto" aria-label="${esc(g.name)}"></video>
       <div class="stg-shade"></div>
