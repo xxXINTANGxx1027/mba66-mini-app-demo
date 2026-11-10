@@ -5892,7 +5892,12 @@ ROUTES.rewards = { view(){
       <p class="sm" style="margin-top:12px">亲密经验不可消耗、不可转让，只用于提升与该角色的关系等级。</p>
     </details>`,
     after(root){
-      $$("[data-cat]", root).forEach(b => b.onclick = () => { rwCat = b.dataset.cat; render(); });
+      $$("[data-cat]", root).forEach(b => b.onclick = () => {
+        const st = $("#stage"), y = st ? st.scrollTop : 0;      /* 切分类不跳回顶部 */
+        rwCat = b.dataset.cat; render();
+        const keep = () => { const s2 = $("#stage"); if(s2) s2.scrollTop = y; };
+        keep(); requestAnimationFrame(keep); setTimeout(keep, 60);
+      });
       $$("[data-merch]", root).forEach(b => b.onclick = () =>
         redeemMerch(MERCH.find(m => m.id === b.dataset.merch), b));
       $$("[data-vc]", root).forEach(b => b.onclick = () => redeemVoucher(vcOf(b.dataset.vc), b));
