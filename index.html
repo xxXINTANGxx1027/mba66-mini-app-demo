@@ -5119,7 +5119,7 @@ ROUTES.drama = { view(){
   const un = rows.filter(r => r.ok);
   return {
     tab:"drama",
-    bar:`<div class="row-m"><div class="bar-t">我的剧集</div><div class="bar-s">AI Drama · 本周推荐</div></div>${ptLink()}`,
+    bar:`<div class="row-m"><div class="bar-t">我的剧集</div><div class="bar-s">AI Drama · 本周推荐</div></div><button class="topshare" data-share="1" aria-label="分享给好友，好友观看 +20 积分">${ico("i-share")}分享<em>+20</em></button>`,
     html:`
     <a class="poster" href="#show/${d.id}" style="display:block;border-radius:var(--r-panel)" data-od-id="drama-hero">
       ${phImg(d.poster, d.initial, d.title + " 海报", "", "50% 42%")}<video class="lv" src="${d.video}" poster="${d.poster}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" style="object-position:50% 42%" onerror="this.remove()"></video>
@@ -5142,6 +5142,7 @@ ROUTES.drama = { view(){
     <p class="sm" id="epEmpty" style="margin-top:14px;text-align:center;display:none">这个分类下还没有内容</p>
     <p class="sm" style="margin-top:16px;text-align:center">第 1–${FREE_EPS} 集免费 · 第 ${FREE_EPS + 1} 集起每集 ${PRICE.ep} 积分，解锁后永久可看</p>`,
     after(root){
+      $$("#bar [data-share]").forEach(b => b.onclick = () => shareSheet(d));
       const host = $("#epList", root), empty = $("#epEmpty", root);
       const paint = f => {
         const list = rows.filter(r => f === "all" || (f === "un" ? r.ok : r.seen));
