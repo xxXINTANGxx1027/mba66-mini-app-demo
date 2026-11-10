@@ -1975,6 +1975,8 @@ body{
 .ptcard{background:linear-gradient(120deg,rgba(233,196,106,.18),rgba(21,21,27,.95) 60%) !important;border:1px solid rgba(233,196,106,.3) !important;box-shadow:none !important}
 .gcardx .cv-fx{opacity:.35}
 .gcardx>em.h-badge{position:absolute;left:10px;top:10px;font-style:normal}
+/* 夏夏：竖屏视频截帧，脸在上方，裁切点下移，多露出比基尼 */
+[data-od-id="girl-hero-summer"] .ph>img{--pos:50% 36% !important;object-position:50% 36% !important}
 </style>
 </head>
 <body>
@@ -2090,14 +2092,14 @@ const GIRLS = [
     react:{ hit:["喵～","好耶","蹭一下"], combo:["喵喵喵","再来嘛","好快"], win:["喵！赢了","抱我","最棒的"], idle:["喵……","在这呢","摸摸头"] } },
 
   { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:23,
-    tags:["阳光","大方","身材好"],
+    tags:["性感","爱撒娇","身材火辣"],
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
-    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-v3.webp",
+    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
     video:"assets/video/girl-summer.mp4",
-    line:"防晒我涂不到后面，你来嘛。",
-    about:"23 岁，一年四季都在海边的辣妹，晒得发烫还要拉你下水。",
-    outfit2:"限定 · 落日沙滩",
+    line:"今天这套红色的，好看吗？只给你看哦～",
+    about:"23 岁，最爱穿比基尼对着镜头撒娇的辣妹，你一来她就舍不得下线。",
+    outfit2:"限定 · 红色比基尼",
     react:{ hit:["可以哦","漂亮","就这样"], combo:["越来越顺","别停","帅"], win:["赢得好看","奖励你","过来"], idle:["等你呢","晒着呢","嗨～"] } },
 
   { id:"maid", name:"奈奈", en:"Nana", type:"女仆", initial:"奈", age:21,
