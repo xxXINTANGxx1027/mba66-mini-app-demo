@@ -2071,6 +2071,42 @@ body{
 /* 角色详情：顶部改成循环视频 */
 .gvid video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .gvid img{animation:none !important}
+/* ===== v16 · 去框：靠留白分区，不靠边框 ===== */
+:root{--bd:transparent}
+/* 分类：纯文字，选中的才是金色胶囊 */
+.h-chips a{background:transparent !important;border:0 !important;padding:0 10px !important;color:var(--tx2) !important}
+.h-chips a.on{background:var(--au-g) !important;color:#1B1206 !important;padding:0 14px !important}
+/* 打卡：去掉外框，7 天只留图标 + 文字 */
+.h-ck{background:transparent !important;border:0 !important;padding:0 !important}
+.h-day{background:transparent !important;border:0 !important;padding:4px 0 !important}
+.h-day i{width:38px !important;height:38px !important;border-radius:50%;background:#16161B}
+.h-day.on i{background:rgba(233,196,106,.16)}
+.h-day.today i{box-shadow:0 0 0 2px var(--au)}
+.h-day.today{box-shadow:none !important}
+.h-day.gift{background:transparent !important;color:var(--au) !important}
+.h-day.gift i{background:var(--au-g)}
+/* 「查看全部」：文字链接 */
+.h-sec a,.sec-h .tbtn,.sec-h>a{background:transparent !important;border:0 !important;padding:0 !important;height:auto !important;color:var(--tx2) !important}
+/* 卡片：不描边 */
+.h-card,.h-bn,.h-gt,.hm .adwrap,.panel,.vip,.lrow,.ep,.mtile,.gcardx,.gl2-c,.mx-feat,.mx-it,.rules,.tgbar,.gpanel{border-color:transparent !important}
+.h-gl .ph{border-color:transparent !important}
+.h-gl.cur .ph{border-color:var(--au) !important}
+/* 剧集卡、任务清单：去外框 */
+.h-drama{background:transparent !important;padding:0 !important}
+.h-list{background:transparent !important;padding:0 !important}
+.h-row{border-bottom:1px solid rgba(255,255,255,.06) !important}
+.h-go{border:0 !important;background:transparent !important;padding:0 !important;min-width:0 !important;color:var(--au) !important}
+.h-ri{background:transparent !important}
+/* 积分胶囊：去描边 */
+.ptchip{border:0 !important;background:rgba(255,255,255,.06) !important}
+.pill{border:0 !important}
+.ichip,.tile,.scard,.albc,.catchip,.ptcard,.empty,.uthumb,.poster,.row{border-color:transparent !important}
+.ichip{background:rgba(0,0,0,.45) !important}
+.catchip:not(.on){background:transparent !important;color:var(--tx2) !important}
+.panel,.vip,.lrow,.ep,.gcardx,.ptcard,.gl2-c,.mtile,.scard,.albc,.tile,.gpanel,.tgbar,.mhero,.shbar,.h-bn,.h-card,.mx-feat,.mx-it{box-shadow:none !important}
+.panel::before,.panel::after,.lrow::before,.lrow::after,.vip::before,.vip::after,.ptcard::after{display:none !important}
+.mgrow,.gframe,.gpanel{box-shadow:none !important}
+.gpanel::after,.gpanel::before{display:none !important}
 </style>
 </head>
 <body>
