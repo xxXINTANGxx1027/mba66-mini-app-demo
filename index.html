@@ -2140,6 +2140,51 @@ body{
 .adslide .ad-ph .ph img{animation:adKB 9s ease-in-out infinite alternate;transform-origin:60% 30%}
 @keyframes adKB{from{transform:scale(1)}to{transform:scale(1.08)}}
 @media (prefers-reduced-motion:reduce){.app::before,.adslide .ad-ph .ph img{animation:none}}
+/* ===== v19 · 女友舞台（参考 5100：角色铺满首屏、玻璃 HUD、底部互动） ===== */
+.i3l{display:inline-grid;place-items:center;width:var(--s);height:var(--s);flex:0 0 auto;border-radius:50%;
+  background:radial-gradient(circle at 50% 30%,rgba(233,196,106,.18),rgba(233,196,106,.04) 70%);color:var(--au)}
+.i3l .ic{width:calc(var(--s) * .5);height:calc(var(--s) * .5)}
+.stg{position:relative;width:100%;aspect-ratio:9/15.6;overflow:hidden;background:#000}
+.stg-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;animation:camDrift 14s ease-in-out infinite alternate}
+@keyframes camDrift{from{transform:scale(1.02) translateY(0)}to{transform:scale(1.08) translateY(-1.5%)}}
+.stg-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 58%,rgba(7,7,10,.92) 100%)}
+.glass{background:rgba(18,16,22,.42);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border:1px solid rgba(255,255,255,.12)}
+.stg-hud{position:absolute;z-index:3;left:14px;top:70px;display:flex;align-items:center;gap:9px;padding:6px 14px 6px 6px;border-radius:99px;text-decoration:none;color:#fff;
+  background:rgba(18,16,22,.42);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12)}
+.stg-av{position:relative;width:38px;height:38px;border-radius:50%;overflow:hidden;border:1.5px solid var(--au)}
+.stg-av .ph{position:absolute;inset:0}
+.stg-id{display:flex;flex-direction:column;gap:3px}
+.stg-id b{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
+.stg-id em{font-style:normal;font-size:10px;font-weight:800;color:#1B1206;background:var(--au-g);padding:1px 6px;border-radius:5px}
+.stg-bar{display:flex;align-items:center;gap:6px}
+.stg-bar i{display:block;width:72px;height:4px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+.stg-bar u{display:block;height:100%;background:linear-gradient(90deg,#FF7BB0,#E9C46A)}
+.stg-bar small{font-size:10px;color:rgba(255,255,255,.75)}
+.stg-say{position:absolute;z-index:3;left:18px;top:128px;max-width:62%;padding:9px 13px;border-radius:16px 16px 16px 4px;font-size:13px;font-weight:600;line-height:1.45;color:#fff;
+  background:rgba(18,16,22,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14)}
+.stg-say.in{animation:sayIn .45s cubic-bezier(.2,1.3,.4,1)}
+@keyframes sayIn{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
+.stg-rail{position:absolute;z-index:3;right:12px;top:70px;display:flex;flex-direction:column;gap:12px}
+.stg-rail>*{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;width:48px;padding:0;border:0;background:none;color:#fff;
+  font:700 10.5px var(--sans);text-decoration:none;cursor:pointer;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.stg-rail .ic{width:20px;height:20px;padding:11px;box-sizing:content-box;border-radius:50%;color:var(--au);
+  background:rgba(18,16,22,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.14)}
+.stg-rail .rd{position:absolute;top:0;right:6px;width:9px;height:9px;border-radius:50%;background:#FF3B5C;border:1.5px solid #fff}
+.stg-act{position:absolute;z-index:3;left:14px;right:14px;bottom:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 6px;border-radius:20px;
+  background:rgba(18,16,22,.5);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid rgba(255,255,255,.12)}
+.stg-act>*{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;border:0;background:none;color:#fff;font-family:var(--sans);text-decoration:none;cursor:pointer}
+.stg-act .ic{width:22px;height:22px;padding:9px;box-sizing:content-box;border-radius:14px;color:#1B1206;background:var(--au-g);box-shadow:0 6px 14px -6px rgba(233,196,106,.8)}
+.stg-act b{font-size:12.5px;font-weight:800}
+.stg-act small{font-size:10px;color:rgba(255,255,255,.65)}
+.stg-act>*:active .ic{transform:scale(.92)}
+.stg-more{position:absolute;z-index:3;left:0;right:0;bottom:12px;display:flex;align-items:center;justify-content:center;gap:4px;font-size:11px;color:rgba(255,255,255,.6)}
+.stg-more .ic{width:13px;height:13px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+.hm{padding-top:16px !important}
+@media (prefers-reduced-motion:reduce){.stg-v,.stg-more .ic{animation:none}}
+.stg-say{top:auto !important;bottom:142px !important;max-width:70% !important}
+.stg-v{object-position:50% 12% !important}
+#bar.ghost{background:linear-gradient(180deg,rgba(7,7,10,.95) 0%,rgba(7,7,10,.75) 65%,rgba(7,7,10,0) 100%) !important}
 </style>
 </head>
 <body>
@@ -2259,7 +2304,7 @@ const GIRLS = [
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
     bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
-    video:"assets/video/girl-summer.mp4",
+    video:"assets/video/girl-summer.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-2.mp4"],
     line:"这套桃红色的，是专门穿给你看的哦～",
     about:"22 岁，黑色短发的甜妹，最爱穿比基尼窝在酒店套房等你，嘴甜又会撒娇。",
     outfit2:"限定 · 夜色约会",
@@ -2406,10 +2451,9 @@ const I3FB = {
   share:     `<svg viewBox="0 0 24 24"><path d="M13.4 3.2 21 10l-7.6 6.8v-3.6c-4 .2-6.8 1.6-8.8 4.6.5-5.3 3.6-8.4 8.8-9z"/></svg>`,
   crown:     `<svg viewBox="0 0 24 24"><path d="M2.6 7.2 7 11l5-6.6 5 6.6 4.4-3.8-1.8 11.4H4.4z"/><rect x="4.4" y="19" width="15.2" height="1.8" rx=".9"/></svg>`
 };
+const I3MAP = { coin:"i-coin", crown:"i-crown", drama:"i-film", game:"i-game", gift:"i-gift", share:"i-share", checkin:"i-cal", "chat-role":"i-heart" };
 function i3(name, size = 44, cls = ""){
-  return `<span class="i3 i3-${name} ${cls}" style="--s:${size}px" aria-hidden="true"
-    ><img src="assets/icons/${name}.webp" alt="" onerror="i3Fail(this)"
-    ><i class="i3-fb">${I3FB[name] || ""}</i></span>`;
+  return `<span class="i3l i3-${name} ${cls}" style="--s:${size}px" aria-hidden="true">${ico(I3MAP[name] || "i-star")}</span>`;
 }
 function i3Fail(img){
   const h = img.closest(".i3");
@@ -2972,10 +3016,34 @@ ROUTES.home = { view(){
       <b>${esc(gm.name)}</b></a>`;
   };
   return {
-    flush:true, tab:"home",
+    flush:true, ghost:true, tab:"home",
     bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66" onerror="logoFail(this,22)">
          <div class="h-topr">${ptLink()}<button class="h-dep" id="hDep">充值</button></div>`,
     html:`
+    ${(() => { const bd = bondOf(g.id); return `
+    <section class="stg" id="hStage" data-od-id="home-stage">
+      <video class="stg-v" id="stgVid" src="${g.video}" poster="${g.v3}" muted autoplay loop playsinline preload="auto" aria-label="${esc(g.name)}"></video>
+      <div class="stg-shade"></div>
+      <a class="stg-hud" href="#girl/${g.id}" data-od-id="stage-hud">
+        <span class="stg-av">${phImg(g.v3, g.initial, "", "", "50% 10%")}</span>
+        <span class="stg-id"><b>${esc(g.name)}<em>Lv.${bd.lv} ${esc(bd.name)}</em></b>
+          <span class="stg-bar"><i><u style="width:${Math.round(bd.pct * 100)}%"></u></i><small>亲密 ${bd.xp}</small></span></span>
+      </a>
+      <div class="stg-say" id="stgSay">${esc(g.line)}</div>
+      <nav class="stg-rail" aria-label="快捷入口">
+        <button data-stg="check">${ico("i-cal")}<b>打卡</b>${S.checkedIn ? "" : '<i class="rd"></i>'}</button>
+        <a href="#games">${ico("i-game")}<b>游戏</b></a>
+        <a href="#drama">${ico("i-film")}<b>剧集</b></a>
+        <a href="#rewards">${ico("i-gift")}<b>福利</b></a>
+      </nav>
+      <div class="stg-act">
+        <button data-stg="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
+        <button data-stg="tease">${ico("i-heart")}<b>撩她</b><small>免费</small></button>
+        <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
+        <button data-stg="bikini">${ico("i-sparkle")}<b>比基尼</b><small>看她</small></button>
+      </div>
+      <div class="stg-more">${ico("i-up")}上滑查看更多福利</div>
+    </section>`; })()}
     <div class="hm">
       <div class="adwrap" data-od-id="home-ads">
         <div class="adtrack" id="adTrack">
@@ -3063,6 +3131,27 @@ ROUTES.home = { view(){
       const ck = root.querySelector("[data-ck]"); if(ck) ck.onclick = doCheck;
       const tc = $("#taskCheck", root); if(tc) tc.onclick = doCheck;
       const fr = $("#hFree", root); if(fr) fr.onclick = doCheck;
+      const sv = $("#stgVid", root), say = $("#stgSay", root);
+      const LINES = [g.line, "今天也想见你～", "陪我玩一局嘛，赢了有奖励哦", "打卡了没？我在等你", "你看我今天这样穿，好看吗？", "别走嘛，再陪我一会儿"];
+      let li = 0;
+      const setSay = t => { if(!say) return; say.classList.remove("in"); void say.offsetWidth; say.textContent = t; say.classList.add("in"); };
+      const sayT = setInterval(() => { if(!say || !say.isConnected) return clearInterval(sayT); li = (li + 1) % LINES.length; setSay(LINES[li]); }, 4200);
+      let bk = false;
+      $$("[data-stg]", root).forEach(b => b.onclick = () => {
+        const k = b.dataset.stg;
+        if(k === "check") return doCheck();
+        if(k === "gift") return giftSheet(g.id);
+        if(k === "tease"){ burst(b.getBoundingClientRect(), { n:10, kind:"heart", spread:48 });
+          const R = (g.react && [...(g.react.hit || []), ...(g.react.win || [])]) || ["讨厌～"];
+          return setSay(R[Math.floor(Math.random() * R.length)] + "（脸红）"); }
+        if(k === "bikini"){
+          if(!g.bkv){ return toast(`${g.name} 的比基尼短片马上就好`, "i-sparkle"); }
+          bk = !bk; sv.src = bk ? g.bkv : g.video; sv.play().catch(() => {});
+          b.querySelector("b").textContent = bk ? "换回来" : "比基尼";
+          setSay(bk ? "这套只穿给你看哦～" : g.line);
+        }
+      });
+      if(sv) sv.play().catch(() => {});
       const dep = $("#hDep"); if(dep) dep.onclick = () => toast("跳转 MBA66 充值页（演示）", "i-coin");
       /* 广告轮播：自动播放 + 可拖拽 + 圆点 + 循环 */
       const track = $("#adTrack", root), dots = $$("#adDots button", root);
