@@ -2258,6 +2258,50 @@ body{
 #clipView .cv-top button,#clipView .cv-snd{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;cursor:pointer}
 #clipView .cv-snd{position:absolute;right:16px;bottom:40px}
 #clipView .ic{width:18px;height:18px}
+/* ===== 炫耀我的女友 + 邀请落地页 ===== */
+.stg-show .ic{background:var(--au-g) !important;color:#1B1206 !important;border-color:transparent !important}
+.sho{position:relative;aspect-ratio:9/13.5;border-radius:18px;overflow:hidden;background:#000;border:1px solid rgba(233,196,106,.4)}
+.sho-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.sho-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 48%,rgba(0,0,0,.92))}
+.sho-top{position:absolute;left:14px;right:14px;top:12px;display:flex;align-items:center;justify-content:space-between}
+.sho-top img{height:20px}
+.sho-top em{font-style:normal;font-size:11px;font-weight:900;letter-spacing:.12em;color:#1B1206;background:var(--au-g);padding:3px 9px;border-radius:99px}
+.sho-bot{position:absolute;left:14px;right:14px;bottom:14px;color:#fff}
+.sho-bot>b{display:flex;align-items:baseline;gap:8px;font-size:28px;font-weight:900;
+  background:linear-gradient(180deg,#FFF6DA,#E9C46A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sho-bot>b small{font-size:12px;font-weight:800;-webkit-text-fill-color:#1B1206;background:var(--au-g);padding:1px 7px;border-radius:5px}
+.sho-m{display:block;margin-top:2px;font-size:12px;color:rgba(255,255,255,.8)}
+.sho-inv{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px;border-radius:12px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14)}
+.sho-inv .qr{width:62px;height:62px;border-radius:6px;flex:0 0 auto}
+.sho-inv span{display:flex;flex-direction:column;gap:1px}
+.sho-inv small{font-size:10.5px;color:rgba(255,255,255,.7)}
+.sho-inv b{font-size:18px;font-weight:900;letter-spacing:.06em;color:var(--au)}
+.sho-inv i{font-style:normal;font-size:11px;color:#fff}
+.sho-row{display:grid !important;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:14px}
+.sho-row .shbtn{font-size:10.5px}
+.sho-row .shbtn i{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 5px;border-radius:50%;color:#fff;font-style:normal;font-weight:900;font-size:20px}
+.sho-row .shbtn i .ic{width:20px;height:20px}
+.so-wa{background:#25D366}.so-tg{background:#2AABEE}.so-fb{background:#1877F2}
+.so-ig{background:radial-gradient(circle at 30% 110%,#FDCB52 0%,#FD1D1D 45%,#833AB4 85%)}.so-cp{background:#3A3A44}
+.jn{position:relative;min-height:100%;aspect-ratio:9/19;overflow:hidden;background:#000}
+.jn-c{position:absolute;left:18px;right:18px;bottom:26px;color:#fff}
+.jn-k{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.1em;color:#1B1206;background:var(--au-g);padding:3px 10px;border-radius:99px}
+.jn-c h1{margin-top:8px;font-size:30px;font-weight:900;line-height:1.15}
+.jn-c h1 b{background:linear-gradient(180deg,#FFF6DA,#E9C46A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jn-c p{margin-top:6px;font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}
+.jn-perks{list-style:none;display:flex;flex-direction:column;gap:7px;margin:14px 0}
+.jn-perks li{display:flex;align-items:center;gap:8px;font-size:13.5px}
+.jn-perks li b{color:var(--au)}
+.jn-perks .ic{width:16px;height:16px;color:var(--au)}
+.jn-form{display:flex;flex-direction:column;gap:9px;padding:12px;border-radius:16px;background:rgba(18,16,22,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12)}
+.jn-form input{height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.35);color:#fff;padding:0 14px;font:500 16px var(--sans)}
+.jn-code{font-size:12px;color:rgba(255,255,255,.7)}
+.jn-code b{color:var(--au);letter-spacing:.06em}
+.jn-skip{display:block;margin-top:10px;text-align:center;font-size:12.5px;color:rgba(255,255,255,.65);text-decoration:none}
+.vxlist{margin-top:18px !important;gap:16px !important}
+.chiprow{gap:8px !important;margin:22px 0 4px !important}
+.catchip{padding:0 14px !important;height:34px !important}
+#sheet{background:linear-gradient(180deg,#17161B,#0E0E12) !important;border-top:1px solid rgba(233,196,106,.25) !important}
 </style>
 </head>
 <body>
@@ -3115,6 +3159,7 @@ ROUTES.home = { view(){
         <a href="#games">${ico("i-game")}<b>游戏</b></a>
         <a href="#drama">${ico("i-film")}<b>剧集</b></a>
         <a href="#rewards">${ico("i-gift")}<b>福利</b></a>
+        <button data-stg="show" class="stg-show">${ico("i-share")}<b>炫耀她</b></button>
       </nav>
       <div class="stg-act">
         <button data-stg="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
@@ -3220,6 +3265,7 @@ ROUTES.home = { view(){
       $$("[data-stg]", root).forEach(b => b.onclick = () => {
         const k = b.dataset.stg;
         if(k === "check") return doCheck();
+        if(k === "show") return showOff(g.id);
         if(k === "gift") return giftSheet(g.id);
         if(k === "tease"){ burst(b.getBoundingClientRect(), { n:10, kind:"heart", spread:48 });
           const R = (g.react && [...(g.react.hit || []), ...(g.react.win || [])]) || ["讨厌～"];
@@ -3299,6 +3345,108 @@ ROUTES.home = { view(){
   };
 }};
 
+
+/* ============================================================
+   炫耀我的女友：生成海报 → 分享到社交平台 → 朋友打开链接注册
+   ============================================================ */
+const myInvite = () => "MB66-" + ((S.nick || "demo") + "x").split("").reduce((a, c) => (a * 33 + c.charCodeAt(0)) % 1679616, 9).toString(36).toUpperCase().padStart(4, "7").slice(-4);
+const daysWith = () => Math.max(1, S.streak || 1);
+/* 演示用二维码图案（按邀请码生成的固定花纹，正式版换成真二维码） */
+function fakeQR(seed){
+  let h = 0; for(const c of seed) h = (h * 131 + c.charCodeAt(0)) >>> 0;
+  const N = 21, cells = [];
+  const fin = (x, y) => (x < 7 && y < 7) || (x > 13 && y < 7) || (x < 7 && y > 13);
+  for(let y = 0; y < N; y++) for(let x = 0; x < N; x++){
+    if(fin(x, y)){
+      const fx = x > 13 ? x - 14 : x, fy = y > 13 ? y - 14 : y;
+      const ring = fx === 0 || fy === 0 || fx === 6 || fy === 6, core = fx > 1 && fx < 5 && fy > 1 && fy < 5;
+      if(ring || core) cells.push(`<rect x="${x}" y="${y}" width="1" height="1"/>`);
+      continue;
+    }
+    h = (h * 1103515245 + 12345) >>> 0;
+    if((h >>> 16) & 1) cells.push(`<rect x="${x}" y="${y}" width="1" height="1"/>`);
+  }
+  return `<svg viewBox="-1 -1 23 23" class="qr" aria-hidden="true"><rect x="-1" y="-1" width="23" height="23" fill="#fff"/><g fill="#111">${cells.join("")}</g></svg>`;
+}
+function showOff(gid){
+  const g = girl(gid || S.girl), bd = bondOf(g.id), code = myInvite();
+  const link = `${location.origin}${location.pathname}?inv=${code}&g=${g.id}#join`;
+  const txt = `我在 MBA66 的女友 ${g.name}，羡慕吗？用我的邀请码 ${code} 注册，送你 800 积分，也来认识你的专属女友 👉`;
+  const sh = sheet({
+    title:"炫耀我的女友", sub:"发到朋友圈 / 群组，朋友注册你也得奖励",
+    body:`<div class="sho" data-od-id="showoff-card">
+        <video class="sho-v" src="${g.video}" poster="${g.v3}" muted autoplay loop playsinline></video>
+        <div class="sho-shade"></div>
+        <div class="sho-top"><img src="assets/logo/logo-hg.png" alt="MBA66"><em>我的女友</em></div>
+        <div class="sho-bot">
+          <b>${esc(g.name)}<small>Lv.${bd.lv} ${esc(bd.name)}</small></b>
+          <span class="sho-m">${esc(g.type)} · 已陪伴我 ${daysWith()} 天 · 亲密 ${bd.xp}</span>
+          <div class="sho-inv">${fakeQR(code)}
+            <span><small>扫码 / 用邀请码注册</small><b>${code}</b><i>送你 800 积分 · 认识你的专属女友</i></span></div>
+        </div>
+      </div>
+      <div class="shrow sho-row" data-od-id="showoff-targets">
+        <button class="shbtn" data-so="wa"><i class="so-wa">${ico("i-chat")}</i>WhatsApp</button>
+        <button class="shbtn" data-so="tg"><i class="so-tg">${ico("i-send")}</i>Telegram</button>
+        <button class="shbtn" data-so="fb"><i class="so-fb">f</i>Facebook</button>
+        <button class="shbtn" data-so="ig"><i class="so-ig">${ico("i-star")}</i>Instagram</button>
+        <button class="shbtn" data-so="cp"><i class="so-cp">${ico("i-copy")}</i>复制链接</button>
+      </div>
+      <p class="sm" style="margin-top:10px;text-align:center;color:var(--tx2)">朋友用你的邀请码注册 · 你得 +${RULES.invite} 积分，朋友得 800 积分</p>`,
+    foot:`<button class="btn btn-gold btn-w" data-so="save">${ico("i-up")}保存海报到相册</button>`
+  });
+  const v = sh.querySelector(".sho-v"); if(v) v.play().catch(() => {});
+  const done = msg => { S.tasks.share = true; save(); toast(msg, "i-share"); };
+  $$("[data-so]", sh).forEach(b => b.onclick = async () => {
+    const k = b.dataset.so;
+    if(k === "save") return done("海报已保存到相册（演示）");
+    if(k === "ig") return done("已保存海报，发到 Instagram 快拍即可（演示）");
+    if(k === "cp"){
+      try { await navigator.clipboard.writeText(txt + " " + link); } catch(e){}
+      return done("邀请文字和链接已复制");
+    }
+    const url = k === "wa" ? `https://wa.me/?text=${encodeURIComponent(txt + " " + link)}`
+      : k === "tg" ? `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(txt)}`
+      : `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+    try { window.open(url, "_blank", "noopener"); } catch(e){}
+    done({ wa:"已打开 WhatsApp", tg:"已打开 Telegram", fb:"已打开 Facebook" }[k]);
+  });
+}
+/* 朋友打开邀请链接看到的落地页（演示：不收集、不发送任何资料） */
+ROUTES.join = { view(){
+  const q = new URLSearchParams(location.search);
+  const g = girl(q.get("g") || "bunny"), code = (q.get("inv") || myInvite()).toUpperCase().slice(0, 12);
+  return {
+    flush:true, ghost:true, noTabs:true, tab:"home",
+    bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66" onerror="logoFail(this,22)"><span style="margin-left:auto"></span>`,
+    html:`
+    <section class="jn" data-od-id="join">
+      <video class="stg-v" src="${g.video}" poster="${g.v3}" muted autoplay loop playsinline></video>
+      <div class="stg-shade"></div>
+      <div class="jn-c">
+        <span class="jn-k">你的朋友邀请你</span>
+        <h1>来认识 <b>${esc(g.name)}</b></h1>
+        <p>${esc(g.about)}</p>
+        <ul class="jn-perks">
+          <li>${ico("i-coin")}注册即领 <b>800 积分</b></li>
+          <li>${ico("i-play")}${esc(g.name)} 的专属欢迎视频</li>
+          <li>${ico("i-gift")}每日打卡、亲密游戏赢更多奖励</li>
+        </ul>
+        <form class="jn-form" onsubmit="return false">
+          <input type="tel" inputmode="tel" placeholder="手机号（演示，不会发送）" aria-label="手机号" autocomplete="off">
+          <div class="jn-code">邀请码 <b>${esc(code)}</b></div>
+          <button class="btn btn-gold btn-w" id="jnGo">${ico("i-gift")}注册领取 800 积分</button>
+        </form>
+        <a class="jn-skip" href="#home">先逛逛</a>
+      </div>
+    </section>`,
+    after(root){
+      const v = root.querySelector("video"); if(v) v.play().catch(() => {});
+      $("#jnGo", root).onclick = () => { toast("演示：注册成功，800 积分已到账", "i-coin"); setTimeout(() => nav("#home"), 900); };
+    }
+  };
+}};
+
 /* 每日任务（首页与别处共用） */
 function TASKS(){
   const g = girl();
@@ -3358,7 +3506,7 @@ ROUTES.girl = { view(id){
     tab:"girls", ghost:true, flush:true,
     bar:`<button class="ibtn hit" onclick="history.length>1?history.back():nav('#girls')" aria-label="返回">${ico("i-back")}</button>
       <div class="row-m" style="text-align:center"><div class="bar-t">角色详情</div></div>
-      <button class="ibtn hit" id="girlGift" aria-label="送礼物">${ico("i-gift")}</button>`,
+      <button class="topshare" id="girlShow" aria-label="炫耀她">${ico("i-share")}炫耀她</button>`,
     html:`
     <section class="hero" id="gHero" style="border-radius:0" data-react-pos="right:14px;bottom:170px" data-od-id="girl-hero-${g.id}">
       <div class="ph gvid" style="--pos:50% 24%;height:clamp(380px,60vh,500px)">
@@ -3461,7 +3609,7 @@ ROUTES.girl = { view(id){
         const a = ACTS.find(x => x.id === b.dataset.act);
         react(hero, "win", g.id); toast(`${g.name} 回应了「${a.name}」`, a.icon);
       });
-      $("#girlGift").onclick = () => giftSheet(g.id);
+      $("#girlShow").onclick = () => showOff(g.id);
       bindAlbum(root, g.id);
       $$("[data-bond-open]", root).forEach(b => b.onclick = () => bondStory(g.id, b.dataset.bondOpen));
     }
