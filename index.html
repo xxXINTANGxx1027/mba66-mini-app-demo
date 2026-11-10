@@ -2187,6 +2187,25 @@ body{
 #bar.ghost{background:linear-gradient(180deg,rgba(7,7,10,.95) 0%,rgba(7,7,10,.75) 65%,rgba(7,7,10,0) 100%) !important}
 .ad-ph .ad-v{position:absolute;top:0;right:0;bottom:0;width:64%;height:100%;object-fit:cover;z-index:0}
 .stg-act>*{line-height:1.25}
+/* ===== v20 · 质感：毛玻璃导航、视频卡层级、统一动效 ===== */
+.h-bn-img .lv,.h-dr-img .lv{z-index:0}
+.h-bn-img::after{z-index:1}
+.poster .lv,[data-od-id="show-poster"] .lv{z-index:1}
+.poster .scrim,[data-od-id="show-poster"] .scrim{z-index:2}
+/* 底部导航：毛玻璃 + 选中金色小横条 */
+#tabs{background:rgba(10,10,13,.72) !important;backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  border-top:1px solid rgba(255,255,255,.07) !important}
+#tabs a{position:relative;color:rgba(240,232,214,.55) !important}
+#tabs a.on{color:var(--au) !important}
+#tabs a.on::before{content:"";position:absolute;top:0;left:50%;width:18px;height:3px;margin-left:-9px;border-radius:0 0 3px 3px;background:var(--au-g)}
+/* 卡片按下有反馈，进入有轻微上浮 */
+.h-gt,.h-bn,.gl2-c,.gcardx,.mx-it,.mx-feat,.h-gl{transition:transform .18s ease}
+.h-gt:active,.h-bn:active,.gl2-c:active,.gcardx:active,.mx-it:active,.mx-feat:active,.h-gl:active{transform:scale(.97)}
+/* 标题字重与字距统一 */
+.h-sec h2,.sec-h .h2,.bar-t{letter-spacing:.01em}
+/* 女友详情：视频下方的毛玻璃互动栏 */
+.gd-act{position:relative !important;left:auto !important;right:auto !important;bottom:auto !important;margin:-30px 14px 0;z-index:5}
+#gHero .hero-c{bottom:46px !important}
 </style>
 </head>
 <body>
@@ -3092,7 +3111,7 @@ ROUTES.home = { view(){
           <span class="h-bn-art">${i3("coin", 64)}</span></button>
         <a class="h-bn" href="#girls" data-od-id="bn-new">
           <span class="h-bn-t"><b>新女友上线</b><small>兔女郎 · 猫女郎 · 高叉泳装</small><u>去看看</u></span>
-          <span class="h-bn-img">${phImg(girl("neko").v3, "喵", "新女友", "", "50% 10%")}</span></a>
+          <span class="h-bn-img">${phImg(girl("neko").v3, "喵", "新女友", "", "50% 10%")}${liveVid(girl("neko"), "50% 12%")}</span></a>
         <a class="h-bn" href="#rewards" data-od-id="bn-merch">
           <span class="h-bn-t"><b>MBA66 周边</b><small>积分兑换 T恤 / 帽子 / 水杯</small><u>去兑换</u></span>
           <span class="h-bn-art">${i3("gift", 64)}</span></a>
@@ -3107,7 +3126,7 @@ ROUTES.home = { view(){
 
       <section class="h-block">${secH("AI 剧集", "#drama")}
         <a class="h-card h-drama" href="#show/${d.id}">
-          <span class="h-dr-img">${phImg(d.poster, d.initial, d.title, "", "50% 20%")}</span>
+          <span class="h-dr-img">${phImg(d.poster, d.initial, d.title, "", "50% 20%")}<video class="lv" src="${d.video}" poster="${d.poster}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" style="object-position:50% 20%" onerror="this.remove()"></video></span>
           <span class="h-dr-t"><em>前 3 集免费</em><b>《${esc(d.title)}》</b><small>${esc(d.desc)}</small><u>立即观看</u></span></a></section>
 
       <section class="h-block" data-od-id="home-tasks">${secH(`每日任务 <span class="h-cnt">${TASKS().filter(t => t.done).length}/5</span>`, "")}
@@ -3293,6 +3312,12 @@ ROUTES.girl = { view(id){
         <div class="ichips" style="margin-top:10px">${g.tags.map(t => `<span class="ichip">${esc(t)}</span>`).join("")}</div>
       </div>
     </section>
+    <div class="stg-act gd-act" data-od-id="girl-actions">
+      <button data-gd="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
+      <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
+      <a href="#games">${ico("i-game")}<b>陪她玩</b><small>亲密游戏</small></a>
+      <button data-gd="bikini">${ico("i-sparkle")}<b>比基尼</b><small>看她</small></button>
+    </div>
     <div style="padding:0 14px">
       <section class="panel" style="margin-top:12px" data-od-id="girl-about">
         <div class="h3 gg">角色简介</div>
@@ -3342,6 +3367,15 @@ ROUTES.girl = { view(id){
       </section>
     </div>`,
     after(root){
+      $$("[data-gd]", root).forEach(b => b.onclick = () => {
+        if(b.dataset.gd === "gift") return giftSheet(g.id);
+        const v = $("#gVid", root);
+        if(!g.bkv || !v) return toast(`${g.name} 的比基尼短片马上就好`, "i-sparkle");
+        const on = b.dataset.on !== "1";
+        b.dataset.on = on ? "1" : "0";
+        v.loop = true; v.src = on ? g.bkv : (g.videos || [g.video])[0]; v.play().catch(() => {});
+        b.querySelector("b").textContent = on ? "换回来" : "比基尼";
+      });
       const gv = $("#gVid", root), list = g.videos || [g.video];
       if(gv && list.length > 1){        // 多段视频：播完一段接下一段，循环
         let vi = 0; gv.loop = false;
@@ -5088,7 +5122,7 @@ ROUTES.drama = { view(){
     bar:`<div class="row-m"><div class="bar-t">我的剧集</div><div class="bar-s">AI Drama · 本周推荐</div></div>${ptLink()}`,
     html:`
     <a class="poster" href="#show/${d.id}" style="display:block;border-radius:var(--r-panel)" data-od-id="drama-hero">
-      ${phImg(d.poster, d.initial, d.title + " 海报", "", "50% 42%")}
+      ${phImg(d.poster, d.initial, d.title + " 海报", "", "50% 42%")}<video class="lv" src="${d.video}" poster="${d.poster}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" style="object-position:50% 42%" onerror="this.remove()"></video>
       <div class="scrim"></div>
       <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
         <h1 class="h1" style="font-size:26px"><span class="gg">${esc(d.title)}</span></h1>
@@ -5142,7 +5176,7 @@ ROUTES.show = { view(id){
       <button class="topshare" data-share="1" aria-label="分享给好友，好友观看 +20 积分">${ico("i-share")}分享<em>+20</em></button>`,
     html:`
     <div style="position:relative" data-od-id="show-poster">
-      ${phImg(d.poster, d.initial, d.title + " 海报")}
+      ${phImg(d.poster, d.initial, d.title + " 海报")}<video class="lv" src="${d.video}" poster="${d.poster}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" style="object-position:50% 30%" onerror="this.remove()"></video>
       <div class="scrim"></div>
       <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
         <h1 class="h1" style="font-size:30px;font-weight:700"><span class="sweep">${esc(d.title)}</span></h1>
