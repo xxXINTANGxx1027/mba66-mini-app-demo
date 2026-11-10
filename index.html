@@ -2304,6 +2304,27 @@ body{
 #sheet{background:linear-gradient(180deg,#17161B,#0E0E12) !important;border-top:1px solid rgba(233,196,106,.25) !important}
 .stg-act>*:active{transform:scale(.94)}
 .stg-act>*{transition:transform .12s}
+/* ===== v29 · 整套金色 3D 图标 ===== */
+img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))}
+.i3g{display:inline-grid;place-items:center;width:var(--s);height:var(--s);flex:0 0 auto}
+.i3g img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 10px rgba(233,196,106,.25))}
+/* 底部导航：未选中灰暗、选中亮金 */
+#tabs a img.gi{width:24px !important;height:24px !important;filter:grayscale(1) brightness(.75);opacity:.55;transition:filter .2s,opacity .2s,transform .2s}
+#tabs a.on img.gi{filter:drop-shadow(0 2px 6px rgba(233,196,106,.55));opacity:1;transform:translateY(-1px) scale(1.08)}
+/* 金色按钮上的图标改成深色剪影，避免金上加金看不见 */
+.btn-gold img.gi,.btn-pri img.gi,.topshare img.gi,.h-dep img.gi,.ad-cta img.gi,.mx-btn img.gi,.gl2-btn img.gi,.vb img.gi,.h-bn-t u img.gi{filter:brightness(0) opacity(.72) !important}
+/* 舞台 / 详情互动栏：图标放深色玻璃方块里 */
+.stg-act .gi,.stg-act img.ic{background:rgba(255,255,255,.08) !important;border:1px solid rgba(233,196,106,.35);box-shadow:none !important;padding:7px !important;width:26px !important;height:26px !important}
+.stg-rail img.ic{padding:9px !important;width:24px !important;height:24px !important}
+.stg-show img.ic{background:rgba(18,16,22,.45) !important;border:1px solid rgba(233,196,106,.6) !important}
+.h-chips a .gi{width:22px !important;height:22px !important;padding:11px !important}
+.h-chips a.on .gi{background:rgba(233,196,106,.16) !important;box-shadow:0 0 0 1.5px var(--au) inset}
+.clt-lock img.ic{width:30px !important;height:30px !important;padding:8px !important}
+.clt-play img.ic{width:26px;height:26px}
+.clt-play{background:none !important;width:auto !important;height:auto !important}
+.ptchip img.gi,.vx-c img.gi,.mx-price img.gi{width:16px !important;height:16px !important}
+.tst img.gi{width:18px;height:18px}
+.vx-stub img{width:68px !important;height:68px !important}
 </style>
 </head>
 <body>
@@ -2354,11 +2375,11 @@ body{
     <header id="bar"></header>
     <main id="stage" tabindex="-1"></main>
     <nav id="tabs" aria-label="主导航">
-      <a href="#home" data-tab="home"><svg class="ic"><use href="#i-home"/></svg><span>首页</span></a>
-      <a href="#girls" data-tab="girls"><svg class="ic"><use href="#i-heart"/></svg><span>女友</span></a>
-      <a href="#drama" data-tab="drama"><svg class="ic"><use href="#i-film"/></svg><span>短剧</span></a>
-      <a href="#rewards" data-tab="rewards"><svg class="ic"><use href="#i-gift"/></svg><span>奖励</span></a>
-      <a href="#me" data-tab="me"><svg class="ic"><use href="#i-user"/></svg><span>我的</span></a>
+      <a href="#home" data-tab="home"><img class="ic gi" src="assets/icons/g/home.webp" alt="" aria-hidden="true"><span>首页</span></a>
+      <a href="#girls" data-tab="girls"><img class="ic gi" src="assets/icons/g/heart.webp" alt="" aria-hidden="true"><span>女友</span></a>
+      <a href="#drama" data-tab="drama"><img class="ic gi" src="assets/icons/g/film.webp" alt="" aria-hidden="true"><span>短剧</span></a>
+      <a href="#rewards" data-tab="rewards"><img class="ic gi" src="assets/icons/g/gift.webp" alt="" aria-hidden="true"><span>奖励</span></a>
+      <a href="#me" data-tab="me"><img class="ic gi" src="assets/icons/g/user.webp" alt="" aria-hidden="true"><span>我的</span></a>
       <i id="tabInd" aria-hidden="true"></i>
     </nav>
     <button id="fab" aria-label="亲密游戏"></button>
@@ -2401,7 +2422,7 @@ const GIRLS = [
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
     bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
     lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
-    video:"assets/video/girl-bunny.mp4", sunv:"assets/video/girl-bunny-sun.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-2.mp4"],
+    video:"assets/video/girl-bunny.mp4", sunv:"assets/video/girl-bunny-sun.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-v-img.mp4"],
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
     about:"22 岁，派对场子里最会逗人的兔女郎，专挑你撑不住的时候凑过来。",
     outfit2:"限定 · 午夜兔尾",
@@ -2412,7 +2433,7 @@ const GIRLS = [
     v3:"assets/img/girl-neko-v3.webp", x:"assets/img/girl-neko-x.webp",
     bikini:"assets/img/girl-neko-bikini.webp", sun:"assets/img/girl-neko-sun.webp",
     lounge:"assets/img/girl-neko-lounge.webp", img:"assets/img/girl-neko.webp", img2:"assets/img/girl-neko-2.webp",
-    video:"assets/video/girl-neko.mp4", bkv:"assets/video/girl-neko-bikini.mp4", videos:["assets/video/girl-neko.mp4","assets/video/girl-neko-2.mp4"],
+    video:"assets/video/girl-neko.mp4", bkv:"assets/video/girl-neko-bikini.mp4", videos:["assets/video/girl-neko.mp4","assets/video/girl-neko-v-lounge.mp4"],
     line:"喵～你手给我，我要蹭一下。",
     about:"21 岁，挂在你身上的猫咪系女友，三句话里两句带「喵」，不理她会闹。",
     outfit2:"限定 · 铃铛夜",
@@ -2423,7 +2444,7 @@ const GIRLS = [
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
     bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
-    video:"assets/video/girl-summer.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-2.mp4"],
+    video:"assets/video/girl-summer.mp4", bkv:"assets/video/girl-summer-bikini.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-v-lounge.mp4"],
     line:"这套桃红色的，是专门穿给你看的哦～",
     about:"22 岁，黑色短发的甜妹，最爱穿比基尼窝在酒店套房等你，嘴甜又会撒娇。",
     outfit2:"限定 · 夜色约会",
@@ -2434,7 +2455,7 @@ const GIRLS = [
     v3:"assets/img/girl-maid-v3.webp", x:"assets/img/girl-maid-x.webp",
     bikini:"assets/img/girl-maid-bikini.webp", sun:"assets/img/girl-maid-sun.webp",
     lounge:"assets/img/girl-maid-lounge.webp", img:"assets/img/girl-maid.webp", img2:"assets/img/girl-maid-2.webp",
-    video:"assets/video/girl-maid.mp4", bkv:"assets/video/girl-maid-bikini.mp4", videos:["assets/video/girl-maid.mp4","assets/video/girl-maid-2.mp4"],
+    video:"assets/video/girl-maid.mp4", bkv:"assets/video/girl-maid-bikini.mp4", videos:["assets/video/girl-maid.mp4","assets/video/girl-maid-v-lounge.mp4"],
     line:"主人，今天也要我陪着吗？",
     about:"21 岁，说话轻轻的女仆系女友，什么都帮你记着，只求你多看她两眼。",
     outfit2:"限定 · 蕾丝围裙",
@@ -2557,7 +2578,12 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">
 const girl = id => GIRLS.find(g => g.id === (id || S.girl)) || GIRLS[0];
 const drama = id => DRAMAS.find(d => d.id === id) || DRAMAS[0];
 const nav = h => { location.hash = h; };
-const ico = (n,cls="ic") => `<svg class="${cls}" aria-hidden="true"><use href="#${n}"/></svg>`;
+const GOLD = { "i-home":"home", "i-heart":"heart", "i-film":"film", "i-gift":"gift", "i-user":"user", "i-game":"game",
+  "i-cal":"cal", "i-coin":"coin", "i-crown":"crown", "i-share":"share", "i-rose":"rose", "i-shirt":"dress", "i-lock":"lock",
+  "i-play":"play", "i-sparkle":"crown2", "i-bikini":"bikini", "i-lips":"lips", "i-star":"crown2" };
+const ico = (n,cls="ic") => GOLD[n]
+  ? `<img class="${cls} gi" src="assets/icons/g/${GOLD[n]}.webp" alt="" aria-hidden="true" draggable="false">`
+  : `<svg class="${cls}" aria-hidden="true"><use href="#${n}"/></svg>`;
 
 /* ---------- 3D 光泽图标：PNG 优先，缺文件时回落到 CSS 玻璃砖 ---------- */
 const I3FB = {
@@ -2571,8 +2597,9 @@ const I3FB = {
   crown:     `<svg viewBox="0 0 24 24"><path d="M2.6 7.2 7 11l5-6.6 5 6.6 4.4-3.8-1.8 11.4H4.4z"/><rect x="4.4" y="19" width="15.2" height="1.8" rx=".9"/></svg>`
 };
 const I3MAP = { coin:"i-coin", crown:"i-crown", drama:"i-film", game:"i-game", gift:"i-gift", share:"i-share", checkin:"i-cal", "chat-role":"i-heart" };
+const I3G = { coin:"coin", crown:"crown", drama:"film", game:"game", gift:"gift", share:"share", checkin:"cal", "chat-role":"heart" };
 function i3(name, size = 44, cls = ""){
-  return `<span class="i3l i3-${name} ${cls}" style="--s:${size}px" aria-hidden="true">${ico(I3MAP[name] || "i-star")}</span>`;
+  return `<span class="i3g i3-${name} ${cls}" style="--s:${size}px" aria-hidden="true"><img src="assets/icons/g/${I3G[name] || "crown2"}.webp" alt=""></span>`;
 }
 function i3Fail(img){
   const h = img.closest(".i3");
@@ -3166,9 +3193,9 @@ ROUTES.home = { view(){
       </nav>
       <div class="stg-act">
         <button data-stg="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
-        <button data-stg="tease">${ico("i-heart")}<b>撩她</b><small>免费</small></button>
+        <button data-stg="tease">${ico("i-lips")}<b>撩她</b><small>免费</small></button>
         <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
-        <button data-stg="bikini">${ico("i-sparkle")}<b>比基尼</b><small>看她</small></button>
+        <button data-stg="bikini">${ico("i-bikini")}<b>比基尼</b><small>看她</small></button>
       </div>
       <div class="stg-more">${ico("i-up")}上滑查看更多福利</div>
     </section>`; })()}
@@ -3526,7 +3553,7 @@ ROUTES.girl = { view(id){
       <button data-gd="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
       <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
       <a href="#games">${ico("i-game")}<b>陪她玩</b><small>亲密游戏</small></a>
-      <button data-gd="bikini">${ico("i-sparkle")}<b>比基尼</b><small>看她</small></button>
+      <button data-gd="bikini">${ico("i-bikini")}<b>比基尼</b><small>看她</small></button>
     </div>
     <div style="padding:0 14px">
       <section class="panel" style="margin-top:12px" data-od-id="girl-about">
@@ -3749,7 +3776,7 @@ function clipsOf(g){
     bunny:  [["招牌兔女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边防晒", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["清晨睡衣", V("v-x"), g.x]],
     neko:   [["招牌猫女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["夜色街拍", V("v-night"), g.img2]],
     maid:   [["招牌女仆", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["派对香槟", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
-    summer: [["酒店比基尼", g.video, g.v3], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
+    summer: [["酒店比基尼", g.video, g.v3], ["海边比基尼", g.bkv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
   }[g.id] || [["招牌", g.video, g.v3]];
   return L.map(([t, src, poster], i) => ({ i, t, src, poster, ...CLIP_RULE[Math.min(i, CLIP_RULE.length - 1)] }));
 }
@@ -5841,7 +5868,7 @@ ROUTES.rewards = { view(){
           ${VOUCHERS.map(v => {
             const off = v.cost === null || (v.once && vs.some(x => x.id === v.id));
             return `<div class="vx vx-${v.id} ${off ? "off" : ""}" data-od-id="voucher-${v.id}">
-              <div class="vx-stub"><img src="assets/icons/${v.icon}.webp" alt="" onerror="this.remove()"><em>BONUS</em></div>
+              <div class="vx-stub"><img src="assets/icons/g/${({crown:"crown", coin:"coin", gift:"gift"})[v.icon] || "gift"}.webp" alt="" onerror="this.remove()"><em>BONUS</em></div>
               <div class="vx-body">
                 <b>${esc(v.short || v.title)}</b>
                 <small class="vx-en">${esc(v.en || "")}</small>
