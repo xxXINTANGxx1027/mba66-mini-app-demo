@@ -6,7 +6,7 @@
 <title>MBA66 · 娱乐小程序演示</title>
 <meta name="theme-color" content="#12110E">
 <link rel="icon" href="assets/logo/mba-app-icon01.png">
-<link rel="preload" as="image" href="assets/img/girl-sweet-v3.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/girl-bunny-v3.webp" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/girl-bunny-v3.webp">
 <link rel="preload" as="image" href="assets/img/girl-neko-v3.webp">
 <link rel="preload" as="image" href="assets/img/drama-1.webp">
@@ -1856,6 +1856,126 @@ body{
 @media (prefers-reduced-motion:no-preference){.ad-coin.c1{animation:coinBob 2.6s ease-in-out infinite}.ad-coin.c2{animation:coinBob 3.1s ease-in-out .4s infinite}}
 @keyframes coinBob{50%{transform:translateY(-4px) rotate(8deg)}}
 </style>
+<style>
+/* ===== v12 · 视觉对齐系统（参考 Jackpotter：统一栅格 / 一种卡片 / 金色只给主行动） ===== */
+:root{--g:16px;--sec:24px;--r:14px;--r-s:10px;--sf:#15151B;--sf2:#1D1D25;--bd:rgba(255,255,255,.08);--tx:#F5F3EE;--tx2:#9E9AA6;--au:#E9C46A;
+  --au-g:linear-gradient(180deg,#FBE7A6,#E2B551 48%,#A9741F)}
+.h-topr{margin-left:auto;display:flex;align-items:center;gap:8px}
+.h-dep{height:32px;padding:0 14px;border:0;border-radius:9px;background:var(--au-g);color:#1B1206;font:800 13px var(--sans);cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.hm{padding:4px var(--g) 28px}
+.hm .adwrap{border-radius:var(--r) !important;border:1px solid var(--bd) !important;box-shadow:none !important}
+.hm .adslide{height:150px !important}
+.h-dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.h-dots button{width:6px;height:6px;padding:0;border:0;border-radius:3px;background:rgba(255,255,255,.25);cursor:pointer;transition:width .25s}
+.h-dots button.on{width:18px;background:var(--au)}
+.h-chips{display:flex;gap:8px;margin:16px calc(-1 * var(--g)) 0;padding:0 var(--g);overflow-x:auto;scrollbar-width:none}
+.h-chips::-webkit-scrollbar{display:none}
+.h-chips a{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:10px;
+  background:var(--sf);border:1px solid var(--bd);color:var(--tx2);font:700 13px var(--sans);text-decoration:none}
+.h-chips a .ic{width:15px;height:15px}
+.h-chips a.on{background:var(--au-g);border-color:transparent;color:#1B1206}
+.h-card{display:block;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);text-decoration:none;color:var(--tx)}
+.h-ck{margin-top:var(--sec);padding:14px}
+.h-ckh{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.h-ckh b{font-size:15px;font-weight:800}
+.h-ckh span{font-size:12px;color:var(--tx2)}
+.h-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:12px}
+.h-day{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 0 7px;border-radius:var(--r-s);border:1px solid var(--bd);
+  background:var(--sf2);color:var(--tx2);font-family:var(--sans);cursor:default}
+.h-day i{display:grid;place-items:center;width:20px;height:20px}
+.h-day i svg{width:20px;height:20px}
+.h-day small{font-size:10.5px;font-weight:700}
+.h-day.on{border-color:rgba(233,196,106,.45);background:rgba(233,196,106,.1);color:var(--au)}
+.h-day.on svg{fill:var(--au);stroke:var(--au)}
+.h-day.today{border-color:var(--au);color:var(--tx);cursor:pointer;box-shadow:0 0 0 3px rgba(233,196,106,.15)}
+.h-day.gift{background:var(--au-g);border-color:transparent;color:#1B1206}
+.h-day.gift svg{stroke:#1B1206}
+.h-hs{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--g));padding:0 var(--g);scroll-snap-type:x mandatory}
+.h-hs::-webkit-scrollbar{display:none}
+.h-hs{scroll-padding:0 var(--g)}
+.h-day svg.hl{fill:none;stroke:currentColor;stroke-width:2.1}
+.h-day svg.hf{fill:currentColor;stroke:none}
+.h-day.gift svg{fill:none;stroke:#1B1206;stroke-width:2.2}
+.h-hs>*{scroll-snap-align:start}
+.h-bonus{margin-top:12px}
+.h-bn{position:relative;flex:0 0 76%;height:104px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;padding:0 0 0 14px;
+  border-radius:var(--r);border:1px solid var(--bd);background:linear-gradient(120deg,#1E1C24,#121117);color:var(--tx);text-decoration:none;text-align:left;font-family:var(--sans);cursor:pointer}
+.h-bn-t{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+.h-bn-t b{font-size:16px;font-weight:800}
+.h-bn-t small{font-size:11.5px;color:var(--tx2)}
+.h-bn-t u{margin-top:6px;text-decoration:none;font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:8px;background:var(--au-g);color:#1B1206}
+.h-bn-art{flex:0 0 auto;margin-right:14px;filter:drop-shadow(0 6px 14px rgba(233,196,106,.35))}
+.h-bn-img{position:absolute;right:0;top:0;bottom:0;width:44%}
+.h-bn-img .ph{position:absolute;inset:0}
+.h-bn-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#17161C,rgba(23,22,28,0) 60%)}
+.h-block{margin-top:var(--sec)}
+.h-sec{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.h-sec h2{font-size:17px;font-weight:800;color:var(--tx);display:flex;align-items:center;gap:8px}
+.h-sec a{display:inline-flex;align-items:center;gap:2px;height:28px;padding:0 6px 0 10px;border-radius:8px;background:var(--sf);border:1px solid var(--bd);
+  font-size:12px;font-weight:700;color:var(--tx2);text-decoration:none}
+.h-sec a svg,.h-dr-t u svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2}
+.h-cnt{font-size:12px;font-weight:700;color:var(--tx2)}
+.h-gt{position:relative;flex:0 0 calc((100% - 20px) / 3);aspect-ratio:3/4;border-radius:var(--r-s);overflow:hidden;border:1px solid var(--bd);display:block}
+.h-gt .ph{position:absolute;inset:0}
+.h-gt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.88))}
+.h-gt b{position:absolute;z-index:2;left:8px;right:8px;bottom:8px;font-size:13.5px;font-weight:900;color:#fff;line-height:1.2;text-shadow:0 1px 2px #000}
+.h-badge{position:absolute;z-index:2;left:6px;top:6px;font-style:normal;font-size:9.5px;font-weight:900;letter-spacing:.04em;padding:2px 6px;border-radius:5px;background:var(--au-g);color:#1B1206}
+.h-badge.hot{background:#E5383B;color:#fff}
+.h-gl{position:relative;flex:0 0 calc((100% - 30px) / 4);display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--tx)}
+.h-gl .ph{position:relative;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--bd)}
+.h-gl.cur .ph{border-color:var(--au)}
+.h-gl span{display:flex;flex-direction:column;align-items:center}
+.h-gl b{font-size:13px;font-weight:800}
+.h-gl small{font-size:10.5px;color:var(--tx2)}
+.h-drama{display:flex;gap:12px;padding:10px}
+.h-dr-img{position:relative;flex:0 0 96px;aspect-ratio:3/4;border-radius:var(--r-s);overflow:hidden}
+.h-dr-img .ph{position:absolute;inset:0}
+.h-dr-t{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;padding:2px 0}
+.h-dr-t em{font-style:normal;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:5px;background:rgba(233,196,106,.14);color:var(--au)}
+.h-dr-t b{font-size:16px;font-weight:800}
+.h-dr-t small{font-size:12px;color:var(--tx2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.h-dr-t u{margin-top:auto;display:inline-flex;align-items:center;gap:2px;text-decoration:none;font-size:12px;font-weight:800;padding:6px 10px 6px 12px;border-radius:8px;background:var(--au-g);color:#1B1206}
+.h-list{padding:0 14px}
+.h-row{display:flex;align-items:center;gap:12px;min-height:58px;border-bottom:1px solid var(--bd)}
+.h-row:last-child{border-bottom:0}
+.h-ri{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--sf2);color:var(--tx2)}
+.h-ri .ic{width:15px;height:15px}
+.h-ri.ok{background:rgba(59,227,139,.12);color:#3BE38B}
+.h-rm{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.h-rm b{font-size:14px;font-weight:700}
+.h-rm small{font-size:11.5px;color:var(--tx2)}
+.h-go{height:30px;min-width:56px;padding:0 12px;border-radius:8px;border:1px solid rgba(233,196,106,.5);background:transparent;color:var(--au);
+  font:800 12px var(--sans);display:inline-grid;place-items:center;text-decoration:none;cursor:pointer}
+.h-done{font-size:12px;font-weight:700;color:#3BE38B}
+/* ---- 全站对齐：一种卡片、一种按钮层级、统一间距 ---- */
+.panel,.vip{background:var(--sf) !important;border:1px solid var(--bd) !important;border-radius:var(--r) !important;box-shadow:none !important}
+.pill{background:var(--sf2) !important;border:1px solid var(--bd) !important;color:var(--tx2) !important}
+.pill.g{color:var(--au) !important;border-color:rgba(233,196,106,.35) !important}
+.sec{margin-top:var(--sec) !important}
+.sec-h{margin-bottom:12px !important;align-items:center !important}
+.btn-gh,.btn-qt{background:var(--sf) !important;border:1px solid var(--bd) !important}
+#bar{padding-left:var(--g) !important;padding-right:var(--g) !important}
+.ep,.lrow,.mtile,.mgrow,.gframe,.item,.gpanel,.shbar,.gcard,.tabs2,.tgbar,.mhero,.agechip,.tag,.unmute,.pmcard{border-color:var(--bd) !important}
+.gframe::before,.gframe::after{display:none !important}
+.ep.on,.gcard.cur{border-color:rgba(233,196,106,.6) !important}
+.sec-h .h2{padding-left:0 !important;font-size:17px !important;font-weight:800 !important}
+.sec-h .h2::before{display:none !important}
+.sec-h .tbtn,.sec-h>a{display:inline-flex;align-items:center;gap:2px;height:28px;padding:0 10px;border-radius:8px;background:var(--sf);border:1px solid var(--bd) !important;
+  font-size:12px;font-weight:700;color:var(--tx2) !important;text-decoration:none}
+.sec-h .sm{color:var(--tx2) !important;font-size:12px}
+.ptchip{border:1px solid rgba(233,196,106,.35) !important}
+.ghub>*,.ghub>*>*:first-child{border-color:var(--bd) !important;box-shadow:none !important}
+.gx-1,.gx-2,.gx-3,.gx-4,.gx-5,.gx-6{background:var(--sf) !important}
+.act3{background:var(--sf) !important;border:1px solid var(--bd) !important;box-shadow:none !important;color:var(--tx) !important}
+.act3::after{display:none !important}
+.act3.a3-blue{background:var(--au-g) !important;border-color:transparent !important;color:#1B1206 !important}
+.mtile{background:var(--sf2) !important;border:1px solid var(--bd) !important;box-shadow:none !important}
+.mtile-art{background:#0E0E12 !important}
+.ptcard{background:linear-gradient(120deg,rgba(233,196,106,.18),rgba(21,21,27,.95) 60%) !important;border:1px solid rgba(233,196,106,.3) !important;box-shadow:none !important}
+.gcardx .cv-fx{opacity:.35}
+.gcardx>em.h-badge{position:absolute;left:10px;top:10px;font-style:normal}
+</style>
 </head>
 <body>
 <div id="backdrop" aria-hidden="true"></div>
@@ -1947,21 +2067,10 @@ const GIFTS = [
 ];
 
 const GIRLS = [
-  { id:"sweet", name:"小糖", en:"Candy", type:"甜美型", initial:"糖", age:21,
-    tags:["甜","黏人","爱撒娇"],
-    v3:"assets/img/girl-sweet-v3.webp", x:"assets/img/girl-sweet-x.webp",
-    bikini:"assets/img/girl-sweet-bikini.webp", sun:"assets/img/girl-sweet-sun.webp",
-    lounge:"assets/img/girl-sweet-lounge.webp", img:"assets/img/girl-sweet.webp", img2:"assets/img/girl-sweet-2.webp",
-    video:"assets/video/girl-sweet.mp4",
-    line:"你再不来，我就要把糖都吃光啦。",
-    about:"21 岁，笑点超低的甜妹，赢一局就要抱一下，输了也要抱一下。",
-    outfit2:"限定 · 莓果午后",
-    react:{ hit:["好棒","比心","嘻嘻"], combo:["厉害","再来","加油"], win:["抱抱","最喜欢你","赢啦"], idle:["在等你","想你了","嘿～"] } },
-
   { id:"bunny", name:"兔兔", en:"Bunny", type:"兔女郎", initial:"兔", age:22,
     tags:["爱逗人","腿长","会撒野"],
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
-    bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
+    bikini:"assets/img/girl-bunny-bikini.webp",
     lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
     video:"assets/video/girl-bunny.mp4",
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
@@ -1972,18 +2081,18 @@ const GIRLS = [
   { id:"neko", name:"喵喵", en:"Mimi", type:"猫女郎", initial:"喵", age:21,
     tags:["黏人","爱蹭","小脾气"],
     v3:"assets/img/girl-neko-v3.webp", x:"assets/img/girl-neko-x.webp",
-    bikini:"assets/img/girl-neko-bikini.webp", sun:"assets/img/girl-neko-sun.webp",
+    bikini:"assets/img/girl-neko-bikini.webp",
     lounge:"assets/img/girl-neko-lounge.webp", img:"assets/img/girl-neko.webp", img2:"assets/img/girl-neko-2.webp",
     video:"assets/video/girl-neko.mp4",
     line:"喵～你手给我，我要蹭一下。",
-    about:"20 岁，挂在你身上的猫咪系女友，三句话里两句带「喵」，不理她会闹。",
+    about:"21 岁，挂在你身上的猫咪系女友，三句话里两句带「喵」，不理她会闹。",
     outfit2:"限定 · 铃铛夜",
     react:{ hit:["喵～","好耶","蹭一下"], combo:["喵喵喵","再来嘛","好快"], win:["喵！赢了","抱我","最棒的"], idle:["喵……","在这呢","摸摸头"] } },
 
   { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:23,
     tags:["阳光","大方","身材好"],
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
-    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
+    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-v3.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
     video:"assets/video/girl-summer.mp4",
     line:"防晒我涂不到后面，你来嘛。",
@@ -1994,11 +2103,11 @@ const GIRLS = [
   { id:"maid", name:"奈奈", en:"Nana", type:"女仆", initial:"奈", age:21,
     tags:["乖","会照顾人","叫你主人"],
     v3:"assets/img/girl-maid-v3.webp", x:"assets/img/girl-maid-x.webp",
-    bikini:"assets/img/girl-maid-bikini.webp", sun:"assets/img/girl-maid-sun.webp",
+    bikini:"assets/img/girl-maid-bikini.webp",
     lounge:"assets/img/girl-maid-lounge.webp", img:"assets/img/girl-maid.webp", img2:"assets/img/girl-maid-2.webp",
     video:"assets/video/girl-maid.mp4",
     line:"主人，今天也要我陪着吗？",
-    about:"19 岁，说话轻轻的女仆系女友，什么都帮你记着，只求你多看她两眼。",
+    about:"21 岁，说话轻轻的女仆系女友，什么都帮你记着，只求你多看她两眼。",
     outfit2:"限定 · 蕾丝围裙",
     react:{ hit:["做得好","主人厉害","请继续"], combo:["好顺手","主人加油","再来一次"], win:["赢了呢","恭喜主人","给你奖励"], idle:["在的","主人～","等您"] } }
 ];
@@ -2057,22 +2166,22 @@ function fresh(){
     streak:0,
     ledger:[], coached:false, booted:false,
     vouchers:[], dbl:0, gt:{},                 /* gt: 每个游戏的段位进度 */
-    xp:{ sweet:0, bunny:80, neko:0, summer:0, maid:0 },   // 演示起点：兔兔差一步到 Lv.2
+    xp:{ bunny:80, neko:0, summer:0, maid:0 },   // 演示起点：兔兔差一步到 Lv.2
     shots:{},
     epXp:[], coachXp:false
   };
 }
-const GIDS = ["sweet", "bunny", "neko", "summer", "maid"];
-/* 旧存档里 queen / cool 已下线：按角色存的东西丢弃，当前陪伴回落到小糖 */
+const GIDS = ["bunny", "neko", "summer", "maid"];
+/* 旧存档里 queen / cool / sweet 已下线：按角色存的东西丢弃，当前陪伴回落到兔兔 */
 function migrateGirls(s){
   const ok = id => GIDS.includes(id);
-  if(!ok(s.girl)) s.girl = "sweet";
+  if(!ok(s.girl)) s.girl = "bunny";
   const pick = o => {
     const out = {};
     for(const k in (o || {})) if(ok(k)) out[k] = o[k];
     return out;
   };
-  s.xp = Object.assign({ sweet:0, bunny:0, neko:0, summer:0, maid:0 }, pick(s.xp));
+  s.xp = Object.assign({ bunny:0, neko:0, summer:0, maid:0 }, pick(s.xp));
   s.outfit = pick(s.outfit);
   s.shots  = pick(s.shots);
   s.gt     = s.gt || {};
@@ -2106,7 +2215,7 @@ function load(){
   if(!s.booted){
     s.booted = true; s.pts = RULES.signup;
     s.ledger = [{ t:Date.now(), label:"首次注册奖励", d:RULES.signup }];
-    s.owned.vid = ["sweet"];
+    s.owned.vid = ["bunny"];
   }
   return s;
 }
@@ -2676,53 +2785,33 @@ let adStop = null;
 /* 精彩推荐：卖点卡，各自有去处 */
 const PROMOS = [
   { k:"games", gid:"maid",   img:g => g.v3,     pos:"50% 14%", kick:"GAMES",  t:"与女友互动 · 亲密游戏", sub:"赢积分换奖励 · 段位越高倍率越高", href:"#games" },
-  { k:"drama", gid:"sweet",  img:g => g.lounge, pos:"50% 20%", kick:"DRAMA",  t:"更多更新剧情 · 紧张刺激", sub:"看剧也能累积积分，前 3 集免费", href:"#drama" },
+  { k:"drama", gid:"maid",   img:g => g.lounge, pos:"50% 20%", kick:"DRAMA",  t:"更多更新剧情 · 紧张刺激", sub:"看剧也能累积积分，前 3 集免费", href:"#drama" },
   { k:"girls", gid:"bunny",  img:g => g.v3,     pos:"50% 12%", kick:"NEW",    t:"新女友上线", sub:"兔女郎 / 猫女郎 / 高叉比基尼", href:"#girls" },
   { k:"topup", gid:"summer", img:g => g.bikini, pos:"50% 16%", kick:"MBA66",  t:"充值多多 · 赢奖多多", sub:"MBA66 平台活动，积分与奖品一起拿", href:null }
 ];
 
 ROUTES.home = { view(){
   const g = girl();
-  const bd = bondOf(g.id);
   const d = DRAMAS[0];
   const streak = S.streak || 0;
   const todayIdx = S.checkedIn ? streak : streak + 1;
-  const feed = [{ img:d.poster, ini:d.initial, cap:d.title, href:`#show/${d.id}`, play:true }]
-    .concat(GIRLS.map(x => ({ img:x.v3, ini:x.initial, cap:x.name, href:`#girl/${x.id}`, play:false })));
+  const ARR = '<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+  const secH = (t, href, more = "查看全部") => `<div class="h-sec"><h2>${t}</h2>${href ? `<a href="${href}">${more}${ARR}</a>` : ""}</div>`;
+  const live = GAMES.filter(x => x.live);
+  const gameTile = gm => {
+    const c = gm.cover || {}, x = girl(c.gid || "bunny");
+    const img = c.img ? c.img(x) : x.v3;
+    return `<a class="h-gt" href="#game/${gm.id}" data-od-id="hg-${gm.id}">
+      ${phImg(img, x.initial, gm.name, "", c.pos || "50% 14%")}
+      ${gm.hot ? '<em class="h-badge hot">HOT</em>' : gm.isNew ? '<em class="h-badge">NEW</em>' : ""}
+      <b>${esc(gm.name)}</b></a>`;
+  };
   return {
-    ghost:true, flush:true, tab:"home",
-    bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66"
-           onerror="logoFail(this,22)">
-         <div style="margin-left:auto">${ptLink()}</div>`,
+    flush:true, tab:"home",
+    bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66" onerror="logoFail(this,22)">
+         <div class="h-topr">${ptLink()}<button class="h-dep" id="hDep">充值</button></div>`,
     html:`
-    <section class="hero" data-od-id="home-hero" id="heroBox" data-react-pos="right:14px;bottom:150px">
-      ${phImg(outfitImg(g), g.initial, g.name + " 形象")}
-      <a class="heroTag" href="#girl/${g.id}" data-od-id="home-herotag">
-        <span class="av-s">${phImg(outfitImg(g), g.initial, "", "", AV)}</span>
-        <b>${esc(g.name)}</b><span>Lv.${bd.lv} ${esc(bd.name)}</span></a>
-      <div class="floaters" aria-hidden="true">
-        <span class="flo f1">${ico("i-sparkle")}她在线 · 想你了</span>
-        <span class="flo f2 r">${ico("i-heart")}+${XPR.checkin} 心动</span>
-      </div>
-      <div class="hwho" data-od-id="home-who"><span class="tg"><i></i>在线 · 想你了</span><h1>${esc(g.name)}</h1>
-        <p>Lv.${bd.lv} ${esc(bd.name)} · ${esc(g.type)} · ${g.age} 岁</p></div>
-      <button class="seeher" id="seeHer" data-od-id="home-seeher">${ico("i-play")}看她</button>
-    </section>
-      <div class="ckover" data-od-id="home-checkin">
-        <div class="ckhead">${i3("checkin", 24)}<h3>今日打卡</h3>
-          <span class="pill g">${S.checkedIn ? "今日已打卡" : "+" + RULES.checkin + " 积分"}</span></div>
-        <div class="ckdays">
-          ${[1,2,3,4,5,6,7].map(dn => {
-            const done = dn <= streak, isToday = dn === todayIdx && !S.checkedIn, gift = dn === 7 && !done;
-            return `<button class="ckday ${done ? "on" : ""} ${gift ? "gift" : ""} ${isToday ? "today act" : ""}"
-              ${isToday ? 'data-ck="1"' : "disabled"} data-od-id="ckday-${dn}"
-              aria-label="第 ${dn} 天${done ? " 已打卡" : isToday ? " 今天可打卡" : ""}">
-              <i>${gift ? GIFTLINE : done ? HRT_FILL : HRT_LINE}</i><b>第${dn}天</b></button>`;
-          }).join("")}
-        </div>
-      </div>
-
-    <div style="padding:12px 14px 0">
+    <div class="hm">
       <div class="adwrap" data-od-id="home-ads">
         <div class="adtrack" id="adTrack">
           ${ADS.map((a, i) => {
@@ -2733,55 +2822,67 @@ ROUTES.home = { view(){
               <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
               <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
                 <b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
-                <span class="ad-cta">${esc(a.cta)}<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span>
+                <span class="ad-cta">${esc(a.cta)}${ARR}</span></span>
             </div>`;
           }).join("")}
         </div>
-        <div class="addots" id="adDots">${ADS.map((_, i) =>
-          `<button class="${i ? "" : "on"}" data-dot="${i}" aria-label="第 ${i + 1} 张广告"></button>`).join("")}</div>
       </div>
+      <div class="h-dots" id="adDots">${ADS.map((_, i) =>
+        `<button class="${i ? "" : "on"}" data-dot="${i}" aria-label="第 ${i + 1} 张广告"></button>`).join("")}</div>
 
-      <div class="qtiles" data-od-id="home-quick">
-        <a class="qt qt-purple" href="#games" data-od-id="qt-game">${i3("game", 26)}<span>亲密游戏</span></a>
-        <a class="qt qt-orange" href="#drama" data-od-id="qt-drama">${i3("drama", 26)}<span>AI 剧集</span></a>
-        <a class="qt qt-pink" href="#girls" data-od-id="qt-girls">${i3("crown", 26)}<span>女友</span></a>
-      </div>
+      <nav class="h-chips" aria-label="分类">
+        <a class="on" href="#home">${ico("i-sparkle")}推荐</a>
+        <a href="#games">${ico("i-game")}亲密游戏</a>
+        <a href="#drama">${ico("i-play")}AI 剧集</a>
+        <a href="#girls">${ico("i-heart")}女友</a>
+        <a href="#rewards">${ico("i-gift")}周边</a>
+      </nav>
 
-      <a class="vip" href="#points" style="margin-top:11px" data-od-id="home-vip">${i3("crown", 34)}
-        <div class="row-m"><b>MBA66 会员中心</b></div>
-        <span class="cv"><span data-pts>${S.pts}</span> 积分${ico("i-next")}</span></a>
-
-      <section class="sec" data-od-id="home-promo">
-        <div class="sec-h"><h2 class="h2">精彩推荐</h2><span class="sm">MBA66 专属</span></div>
-        <div style="display:flex;flex-direction:column;gap:10px">
-          ${PROMOS.map(pr => {
-            const x = girl(pr.gid);
-            const inner = `<span class="pm-ph">${phImg(pr.img ? pr.img(x) : x.v3, x.initial, pr.t, "", pr.pos || "50% 16%")}</span>
-              <span class="pm-shade"></span>
-              <span class="pm-c"><em>${esc(pr.kick)}</em><b>${esc(pr.t)}</b>
-                <span class="pm-s">${esc(pr.sub)}</span></span>
-              <span class="pm-go">${ico("i-next")}</span>`;
-            return pr.href
-              ? `<a class="pmcard gframe" href="${pr.href}" data-od-id="promo-${pr.k}">${inner}</a>`
-              : `<button class="pmcard gframe" data-promo="${pr.k}" data-od-id="promo-${pr.k}">${inner}</button>`;
+      <section class="h-card h-ck" data-od-id="home-checkin">
+        <div class="h-ckh"><b>每日打卡</b><span>${S.checkedIn ? "今日已打卡" : "+" + RULES.checkin + " 积分"} · 连续 7 天送大礼</span></div>
+        <div class="h-days">
+          ${[1,2,3,4,5,6,7].map(dn => {
+            const done = dn <= streak, isToday = dn === todayIdx && !S.checkedIn, gift = dn === 7 && !done;
+            return `<button class="h-day ${done ? "on" : ""} ${gift ? "gift" : ""} ${isToday ? "today" : ""}"
+              ${isToday ? 'data-ck="1"' : "disabled"} data-od-id="ckday-${dn}"
+              aria-label="第 ${dn} 天${done ? " 已打卡" : isToday ? " 今天可打卡" : ""}">
+              <i>${gift ? GIFTLINE : done ? HRT_FILL : HRT_LINE}</i><small>${gift ? "大礼" : "第" + dn + "天"}</small></button>`;
           }).join("")}
         </div>
       </section>
 
-      <section class="sec" data-od-id="home-tasks">
-        <div class="sec-h"><h2 class="h2">每日任务</h2><span class="sm">${TASKS().filter(t => t.done).length} / 5</span></div>
-        <div class="panel" style="padding:4px 16px">
-          ${TASKS().map(t => `
-            <div class="row">
-              <span style="width:20px;color:${t.done ? "#5BE3B0" : "var(--faint)"}">${t.done ? ico("i-check") : ico("i-next")}</span>
-              <div class="row-m"><div class="row-t" style="${t.done ? "color:var(--muted)" : ""}">${t.t}</div>
-                <div class="row-s"><span class="gold">${t.p}</span>${t.x ? ` · <span class="rose">${t.x}</span>` : ""}</div></div>
-              ${t.done ? `<span class="pill ok">完成</span>`
-                : t.go ? `<a class="tbtn" href="${t.go}">前往</a>`
-                : `<button class="tbtn" id="taskCheck">打卡</button>`}
-            </div>`).join("")}
-        </div>
-      </section>
+      <div class="h-hs h-bonus">
+        <button class="h-bn" id="hFree" data-od-id="bn-free">
+          <span class="h-bn-t"><b>每日免费积分</b><small>打卡就送，连续 7 天更多</small><u>立即领取</u></span>
+          <span class="h-bn-art">${i3("coin", 64)}</span></button>
+        <a class="h-bn" href="#girls" data-od-id="bn-new">
+          <span class="h-bn-t"><b>新女友上线</b><small>兔女郎 · 猫女郎 · 高叉泳装</small><u>去看看</u></span>
+          <span class="h-bn-img">${phImg(girl("neko").v3, "喵", "新女友", "", "50% 10%")}</span></a>
+        <a class="h-bn" href="#rewards" data-od-id="bn-merch">
+          <span class="h-bn-t"><b>MBA66 周边</b><small>积分兑换 T恤 / 帽子 / 水杯</small><u>去兑换</u></span>
+          <span class="h-bn-art">${i3("gift", 64)}</span></a>
+      </div>
+
+      <section class="h-block">${secH("亲密游戏", "#games")}
+        <div class="h-hs h-games">${live.map(gameTile).join("")}</div></section>
+
+      <section class="h-block">${secH("我的女友", "#girls")}
+        <div class="h-hs h-girls">${GIRLS.map(x => `<a class="h-gl ${x.id === g.id ? "cur" : ""}" href="#girl/${x.id}">
+          ${phImg(x.v3, x.initial, x.name, "", "50% 8%")}<span><b>${esc(x.name)}</b><small>${esc(x.type)}</small></span></a>`).join("")}</div></section>
+
+      <section class="h-block">${secH("AI 剧集", "#drama")}
+        <a class="h-card h-drama" href="#show/${d.id}">
+          <span class="h-dr-img">${phImg(d.poster, d.initial, d.title, "", "50% 20%")}</span>
+          <span class="h-dr-t"><em>前 3 集免费</em><b>《${esc(d.title)}》</b><small>${esc(d.desc)}</small><u>立即观看</u></span></a></section>
+
+      <section class="h-block" data-od-id="home-tasks">${secH(`每日任务 <span class="h-cnt">${TASKS().filter(t => t.done).length}/5</span>`, "")}
+        <div class="h-card h-list">
+          ${TASKS().map(t => `<div class="h-row">
+            <span class="h-ri ${t.done ? "ok" : ""}">${t.done ? ico("i-check") : ico("i-next")}</span>
+            <span class="h-rm"><b>${t.t}</b><small><span class="gold">${t.p}</span>${t.x ? ` · ${t.x}` : ""}</small></span>
+            ${t.done ? `<span class="h-done">完成</span>` : t.go ? `<a class="h-go" href="${t.go}">前往</a>` : `<button class="h-go" id="taskCheck">打卡</button>`}
+          </div>`).join("")}
+        </div></section>
     </div>`,
     after(root){
       const doCheck = () => {
@@ -2792,26 +2893,12 @@ ROUTES.home = { view(){
         const tile = root.querySelector("[data-ck] i") || root;
         burst(lastTap || tile.getBoundingClientRect(), { n:14, spread:54 });
         reward("每日打卡", RULES.checkin, XPR.checkin);
-        react($("#heroBox"), "win");
         setTimeout(() => { render(); winPop(RULES.checkin, `第 ${S.streak} 天打卡 · 连续 7 天送大礼`); }, 820);
       };
       const ck = root.querySelector("[data-ck]"); if(ck) ck.onclick = doCheck;
       const tc = $("#taskCheck", root); if(tc) tc.onclick = doCheck;
-      const firstGo = root.querySelector(".row .tbtn");
-      if(firstGo) firstGo.classList.add("nudge");
-      const hero = $("#heroBox", root);
-      const playClip = () => {
-        const ph = hero.querySelector(".ph");
-        if(!ph || ph.querySelector("video")) return;
-        const v = document.createElement("video");
-        v.src = g.video; v.poster = outfitImg(g);
-        v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true;
-        v.setAttribute("playsinline", ""); v.setAttribute("data-alt", g.name);
-        v.onerror = () => { v.remove(); toast("短片还没准备好", "i-play"); };
-        ph.appendChild(v);
-        try { v.play(); } catch(e){}
-        toast(`${g.name} 在看你`, "i-heart");
-      };
+      const fr = $("#hFree", root); if(fr) fr.onclick = doCheck;
+      const dep = $("#hDep"); if(dep) dep.onclick = () => toast("跳转 MBA66 充值页（演示）", "i-coin");
       /* 广告轮播：自动播放 + 可拖拽 + 圆点 + 循环 */
       const track = $("#adTrack", root), dots = $$("#adDots button", root);
       if(track){
@@ -2824,10 +2911,7 @@ ROUTES.home = { view(){
         const start = () => { if(rm()) return; stop(); atimer = setInterval(() => go(ai + 1), 3600); };
         const stop = () => { if(atimer) clearInterval(atimer); atimer = null; };
         dots.forEach(d => d.onclick = () => { go(+d.dataset.dot); start(); });
-        track.addEventListener("pointerdown", e => {
-          drag = { x:e.clientX, moved:0 }; stop();
-          track.classList.add("grabbing");
-        });
+        track.addEventListener("pointerdown", e => { drag = { x:e.clientX, moved:0 }; stop(); track.classList.add("grabbing"); });
         track.addEventListener("pointermove", e => {
           if(!drag) return;
           drag.moved = e.clientX - drag.x;
@@ -2843,7 +2927,7 @@ ROUTES.home = { view(){
         track.addEventListener("pointerup", endDrag);
         track.addEventListener("pointercancel", endDrag);
         track.addEventListener("pointerleave", endDrag);
-        $$("[data-ad]", root).forEach(el => el.onclick = e => {
+        $$("[data-ad]", root).forEach(el => el.onclick = () => {
           if(Math.abs((drag && drag.moved) || 0) > 6) return;
           const a = ADS[+el.dataset.ad];
           if(a.act === "check") return doCheck();
@@ -2853,13 +2937,6 @@ ROUTES.home = { view(){
         go(0); start();
         adStop = stop;
       }
-      $$("[data-promo]", root).forEach(b => b.onclick = () =>
-        toast("跳转 MBA66 平台活动页（演示）", "i-crown"));
-      $("#seeHer", root).onclick = e => { e.stopPropagation(); playClip(); };
-      hero.addEventListener("click", e => {
-        if(e.target.closest("a,button")) return;
-        playClip(); react(hero, "idle");
-      });
     },
     leave(){ if(adStop){ adStop(); adStop = null; } }
   };
@@ -3409,7 +3486,7 @@ const GAMES = [
   { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
     cover:{ gid:"summer", img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
   { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
-    cover:{ gid:"sweet", img:g => g.sun,    pos:"46% 42%", tint:"cv-gold",   fx:"sun" } },
+    cover:{ gid:"summer", img:g => g.sun,   pos:"50% 16%", tint:"cv-gold",   fx:"sun" } },
   { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
     cover:{ gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
   { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
@@ -3418,7 +3495,7 @@ const GAMES = [
   { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
     cover:{ gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
   { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
-    cover:{ gid:"sweet", img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
+    cover:{ gid:"maid",  img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
   { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
     cover:{ gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
   { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
@@ -3491,9 +3568,7 @@ ROUTES.games = { view(){
     <div class="ghub" style="margin-top:12px" data-od-id="games-grid">
       ${LIVE.map((gm, i) => `<a class="gcardx ${i === 0 ? "wide" : ""} ${gm.cls} ${(gm.cover || {}).tint || ""}" href="#game/${gm.id}" data-od-id="gcard-${gm.id}">
         ${gameCover(gm)}
-        ${i3(gm.icon, 32)}
-        ${(gm.isNew || gm.hot) ? `<span class="badges">${gm.isNew ? `<span class="newbadge">新</span>` : ""}${
-          gm.hot ? `<span class="hotbadge">热</span>` : ""}</span>` : ""}
+        ${gm.hot ? '<em class="h-badge hot">HOT</em>' : gm.isNew ? '<em class="h-badge">NEW</em>' : ""}
         <b>${esc(gm.name)}</b><em>${esc(gm.hook)}</em>
         ${tierBadge(gm.id, "oncard")}
       </a>`).join("")}
@@ -4646,9 +4721,9 @@ const SUN_LEN = 20;
 function playSun(gm, scored){
   let g = girl();
   let note = "";
-  if(!g.sun){                                   // 只有小糖有防晒图，其他人由小糖顶上
-    note = g.name + "去换泳衣了，小糖来陪你";
-    g = girl("sweet");
+  if(!g.sun){                                   // 只有夏夏有海边泳装图，其他人由夏夏顶上
+    note = g.name + "去换泳衣了，夏夏来陪你";
+    g = girl("summer");
   }
   G = { left:SUN_LEN, done:0, drag:false };
   $("#gameHost").innerHTML = `
