@@ -6,9 +6,9 @@
 <title>MBA66 · 娱乐小程序演示</title>
 <meta name="theme-color" content="#0B1735">
 <link rel="icon" href="assets/logo/mba-app-icon01.png">
-<link rel="preload" as="image" href="assets/img/girl-sweet-lounge.webp" fetchpriority="high">
-<link rel="preload" as="image" href="assets/img/girl-queen-lounge.webp">
-<link rel="preload" as="image" href="assets/img/girl-cool-lounge.webp">
+<link rel="preload" as="image" href="assets/img/girl-sweet-v3.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/girl-bunny-v3.webp">
+<link rel="preload" as="image" href="assets/img/girl-neko-v3.webp">
 <link rel="preload" as="image" href="assets/img/drama-1.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -231,41 +231,6 @@ body{
   text-decoration:none;color:var(--fg);font-size:13px;font-weight:500;transition:background .2s var(--e),border-color .2s var(--e)}
 .quick a:hover{background:rgba(226,187,106,.1);border-color:var(--line)}
 .quick .ic{width:20px;height:20px;color:var(--gold)}
-/* ---------- chat ---------- */
-.chat-wrap{position:relative;height:100%;display:flex;flex-direction:column}
-.chat-bg{position:absolute;inset:0;z-index:0}
-.chat-bg>.ph{position:absolute;inset:0;z-index:0}
-.chat-bg::before{content:"";position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(6,12,28,.95) 0%,rgba(6,12,28,.76) 26%,rgba(6,12,28,.78) 60%,rgba(6,12,28,.96) 100%)}
-.chat-sc{flex:1 1 auto;overflow-y:auto;padding:12px 18px 10px;display:flex;flex-direction:column;gap:11px;
-  position:relative;z-index:1;scrollbar-width:none}
-.chat-sc::-webkit-scrollbar{display:none}
-.msg{max-width:78%;padding:11px 14px;font-size:14.5px;line-height:1.6;border-radius:16px;animation:msgIn .3s var(--e) both}
-@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.msg.her{align-self:flex-start;background:rgba(19,33,74,.92);color:var(--fg);
-  border:1px solid rgba(226,187,106,.16);border-bottom-left-radius:5px;
-  box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
-.msg.me{align-self:flex-end;background:var(--gold);color:#11193a;border-bottom-right-radius:5px;font-weight:500;
-  box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
-.msg.sys{align-self:center;background:rgba(6,12,28,.72);color:var(--muted);font-size:11.5px;max-width:94%;
-  text-align:center;line-height:1.6;padding:8px 13px;border-radius:12px}
-.typing{align-self:flex-start;display:flex;gap:4px;padding:14px 15px;background:rgba(19,33,74,.92);
-  border:1px solid rgba(226,187,106,.16);border-radius:16px;border-bottom-left-radius:5px}
-.typing i{width:5px;height:5px;border-radius:50%;background:rgba(242,237,227,.72);animation:tp 1.1s var(--e) infinite}
-.typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
-@keyframes tp{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-.chat-in{flex:0 0 auto;position:relative;z-index:2;display:flex;gap:9px;align-items:flex-end;
-  padding:10px 14px max(18px,env(safe-area-inset-bottom));
-  border-top:1px solid var(--line-2);background:rgba(8,14,34,.86)}
-.chat-in textarea{flex:1 1 auto;min-height:44px;max-height:92px;resize:none;border-radius:22px;padding:12px 16px;
-  background:rgba(242,237,227,.07);border:1px solid var(--line-2);color:var(--fg);font-family:var(--sans);
-  font-size:14.5px;font-weight:400;line-height:1.5}
-.chat-in textarea::placeholder{color:var(--faint)}
-.chat-in textarea:focus{outline:none;border-color:rgba(226,187,106,.5);box-shadow:0 0 0 3px rgba(226,187,106,.12)}
-.send{width:44px;height:44px;min-width:44px;border-radius:50%;border:0;background:var(--gold);color:#11193a;
-  display:grid;place-items:center;cursor:pointer;transition:background .2s var(--e),transform .12s var(--e)}
-.send:hover{background:#EFCD83}.send:active{transform:scale(.93)}
-.send[disabled]{background:rgba(242,237,227,.12);color:var(--faint);cursor:not-allowed}
 /* ---------- reaction bubble ---------- */
 .react{position:absolute;z-index:14;display:flex;align-items:center;gap:9px;padding:7px 13px 7px 7px;
   border-radius:999px;background:rgba(8,14,34,.92);border:1px solid var(--line);font-size:13px;font-weight:500;
@@ -362,19 +327,6 @@ body{
 .bond.sm .bond-t{height:2px}
 .bond.onimg .bond-t{background:rgba(6,12,28,.55)}
 /* ---------- 话题 chips ---------- */
-.chips{flex:0 0 auto;position:relative;z-index:2;display:flex;gap:7px;padding:9px 14px 3px;overflow-x:auto;
-  scrollbar-width:none;background:linear-gradient(180deg,rgba(8,14,34,0),rgba(8,14,34,.86))}
-.chips::-webkit-scrollbar{display:none}
-.chip{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;
-  border:1px solid var(--line-2);background:rgba(242,237,227,.06);color:var(--fg);font-family:var(--sans);
-  font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer;
-  transition:background .18s var(--e),border-color .18s var(--e)}
-.chip:hover{background:rgba(226,187,106,.16);border-color:rgba(226,187,106,.45)}
-.chip::after{content:"";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);height:44px}
-.chip .ic{width:13px;height:13px;color:var(--gold)}
-.chip.lk{color:var(--muted);border-style:dashed}
-.chip.lk .ic{color:var(--muted)}
-.chip.lk:hover{background:rgba(242,237,227,.1);border-color:var(--faint);color:var(--fg)}
 /* ---------- 礼物 ---------- */
 .gifts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .gift{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:8px;padding:15px 8px 13px;border-radius:var(--r-card);
@@ -814,18 +766,6 @@ body{
 #fab .ring{border-color:var(--blue-hi)}
 #fab .dot{background:#4AE07A;border-color:#07154A}
 
-/* ---------- 聊天 ---------- */
-.msg.her{background:rgba(16,38,116,.94);border-color:rgba(120,160,255,.3)}
-.msg.me{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:#0A1A4E}
-.typing{background:rgba(16,38,116,.94);border-color:rgba(120,160,255,.3)}
-.chat-in{background:rgba(5,14,45,.9);border-top-color:var(--line-2)}
-.chat-in textarea{background:rgba(47,107,255,.14);border-color:var(--line-2)}
-.chat-in textarea:focus{border-color:var(--blue-hi);box-shadow:0 0 0 3px rgba(47,107,255,.26)}
-.send{background:linear-gradient(180deg,var(--blue-btn),var(--blue-btn-2));color:#fff}
-.send:hover{background:linear-gradient(180deg,#3F76FF,#1F3FD2)}
-.chip{background:rgba(47,107,255,.2);border-color:var(--line-2)}
-.chip:hover{background:rgba(47,107,255,.36);border-color:var(--blue-hi)}
-.chip .ic{color:var(--blue-hi)}
 
 /* ---------- 其它 ---------- */
 .bond-t i{background:linear-gradient(90deg,var(--gold-3),var(--gold-1))}
@@ -913,8 +853,10 @@ body{
   border:1px solid rgba(255,255,255,.34);opacity:.45;
   box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 4px 10px -5px rgba(0,0,0,.6);
   transition:transform .2s var(--e3),opacity .2s var(--e3)}
-.ckday i svg{width:58%;height:58%;stroke:#fff;fill:none;stroke-width:3.4;opacity:0}
-.ckday.on i{opacity:1;box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 5px 13px -5px rgba(47,107,255,.95)}
+.ckday i svg{width:58%;height:58%;opacity:.8}
+.ckday i svg.hf{fill:#fff;stroke:none;filter:drop-shadow(0 1px 2px rgba(42,10,51,.5))}
+.ckday i svg.hl{fill:none;stroke:rgba(255,255,255,.92);stroke-width:2.1}
+.ckday.on i{opacity:1;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 5px 13px -5px rgba(242,182,72,.95)}
 .ckday.on i svg{opacity:1}
 .ckday.gift i{opacity:1;background:linear-gradient(180deg,#FF6FA8 0%,#D62E73 100%)}
 .ckday.gift i svg{opacity:1;stroke-width:2.4;width:62%;height:62%}
@@ -928,10 +870,11 @@ body{
 .ckday.on b,.ckday.gift b,.ckday.today b{color:#fff}
 
 /* 彩色快捷块：等宽、图标居中、标题居中、无副标题 */
-.qtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.qt{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:7px;min-height:92px;padding:12px 6px;border-radius:18px;text-decoration:none;color:#fff;
-  border:1px solid rgba(255,255,255,.22)}
+.qtiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:11px}
+.qt{position:relative;overflow:hidden;display:flex;flex-direction:row;align-items:center;justify-content:center;
+  gap:6px;min-height:52px;padding:8px 7px;border-radius:999px;text-decoration:none;color:#fff;
+  border:1px solid rgba(255,211,110,.52);
+  box-shadow:0 1px 0 rgba(255,236,190,.42) inset,0 8px 18px -12px rgba(42,10,51,.95)}
 .qt::before{content:"";position:absolute;left:0;right:0;bottom:0;height:58%;
   background:linear-gradient(180deg,rgba(6,16,52,0),rgba(6,16,52,.46));pointer-events:none}
 .qt::after{content:"";position:absolute;left:0;right:0;top:0;height:46%;
@@ -965,7 +908,7 @@ body{
 .poster .pbadge{right:6px;bottom:6px;top:auto;width:26px;height:26px;
   background:linear-gradient(180deg,rgba(47,107,255,.95),rgba(26,68,214,.95));border-color:rgba(255,255,255,.4)}
 
-/* ---------- 小游戏大厅 ---------- */
+/* ---------- 亲密游戏大厅 ---------- */
 .ghub{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .gcardx{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
   min-height:152px;padding:13px;border-radius:18px;text-decoration:none;color:#fff;text-align:left;
@@ -1118,7 +1061,11 @@ body{
 
 /* 打卡格 */
 .ckover{background:linear-gradient(180deg,rgba(42,10,51,0) 0%,rgba(74,13,69,.86) 46%,rgba(58,11,56,.97) 100%)}
-.ckday i{background:linear-gradient(180deg,#FF5FA2 0%,#D61F7A 100%);border-color:rgba(255,255,255,.42)}
+.ckday i{background:linear-gradient(180deg,rgba(255,95,162,.42) 0%,rgba(214,31,122,.5) 100%);
+  border-color:rgba(255,211,110,.4)}
+.ckday.on i{background:linear-gradient(180deg,#FF6FB2 0%,#D61F7A 62%,#B0155F 100%);
+  border-color:rgba(255,211,110,.85)}
+.ckday.on i svg.hf{fill:#FFF3D6}
 .ckday.on i{background:linear-gradient(180deg,#FF5FA2 0%,#D61F7A 100%);border-color:rgba(255,255,255,.52);
   box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 5px 13px -5px rgba(255,79,163,.95)}
 .ckday.gift i{background:linear-gradient(180deg,var(--gold-1) 0%,var(--gold-3) 100%)}
@@ -1135,6 +1082,16 @@ body{
   box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(182,92,255,.95)}
 .qt-orange{background:linear-gradient(165deg,#FFB45A 0%,#E05A3C 100%);
   box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(255,180,90,.9)}
+.qt-pink{background:linear-gradient(165deg,#FF6FB2 0%,#C2186C 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 10px 26px -12px rgba(255,111,178,.95)}
+/* 瘦身后的胶囊：图标在左、文字在右，去掉大块的上下光晕 */
+.qt{flex-direction:row !important}
+.qt::before,.qt::after{display:none}
+.qt span{font-size:12.5px;letter-spacing:0;white-space:nowrap}
+.qt .i3{flex:0 0 auto}
+/* 顶栏品牌 logo：放大 + 柔和金色辉光 */
+.brandlogo{height:29px;width:auto;
+  filter:drop-shadow(0 0 10px rgba(255,211,110,.55)) drop-shadow(0 2px 6px rgba(42,10,51,.95))}
 .vip{background:linear-gradient(100deg,rgba(255,211,110,.3) 0%,rgba(255,255,255,.1) 58%);
   border-color:rgba(255,211,110,.55)}
 .vip:hover{background:linear-gradient(100deg,rgba(255,211,110,.44) 0%,rgba(255,79,163,.24) 58%)}
@@ -1148,20 +1105,6 @@ body{
 .bond-t i{background:linear-gradient(90deg,#FF7CC0,#FF4FA3,var(--gold-1))}
 .bond-h b{color:var(--pink-2)}
 
-/* 聊天 */
-.chat-bg::before{z-index:1;background:linear-gradient(180deg,rgba(42,10,51,.94) 0%,rgba(74,13,69,.78) 24%,
-  rgba(74,13,69,.8) 60%,rgba(42,10,51,.96) 100%)}
-.msg.her{background:rgba(110,20,85,.94);border-color:rgba(255,160,210,.34)}
-.msg.me{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:#3A0A2E}
-.typing{background:rgba(110,20,85,.94);border-color:rgba(255,160,210,.34)}
-.chat-in{background:rgba(42,10,51,.92)}
-.chat-in textarea{background:rgba(255,255,255,.12)}
-.chat-in textarea:focus{border-color:var(--pink-2);box-shadow:0 0 0 3px rgba(255,79,163,.3)}
-.send{background:linear-gradient(180deg,var(--blue-btn),var(--blue-btn-2))}
-.send:hover{background:linear-gradient(180deg,#FF57A6,#B81A6B)}
-.chip{background:rgba(255,255,255,.14)}
-.chip:hover{background:rgba(255,79,163,.36);border-color:var(--pink-2)}
-.chip .ic{color:var(--pink-2)}
 
 /* 其它面 */
 .ph{background:linear-gradient(145deg,#A02570 0%,#6E1455 55%,#8C1A62 100%)}
@@ -1236,7 +1179,6 @@ body{
 .sweep{background-image:linear-gradient(100deg,#fff 0 40%,var(--gold-1) 47%,#FFC2DF 53%,#fff 62% 100%);
   background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 .react{background:rgba(58,12,51,.94);border-color:var(--line)}
-.msg.sys{background:rgba(42,10,51,.76)}
 .empty{border-color:var(--line-2)}
 .lgrow .tile{background:linear-gradient(170deg,rgba(255,124,192,.44),rgba(214,31,122,.5));
   border-color:var(--line-2)}
@@ -1459,6 +1401,174 @@ body{
 .scard em{display:block;padding:2px 9px 9px;font-style:normal;font-size:10px;color:var(--muted)}
 /* ---- 福利券（票形，边缘打孔） ---- */
 .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* ============================================================
+   首页广告轮播
+   ============================================================ */
+.adwrap{position:relative;border-radius:var(--r-panel);overflow:hidden;
+  border:1px solid rgba(255,211,110,.46);
+  box-shadow:0 1px 0 rgba(255,236,190,.4) inset,0 16px 32px -20px rgba(42,10,51,.92)}
+.adtrack{display:flex;width:100%;touch-action:pan-y;cursor:grab;
+  transition:transform .55s var(--e3);will-change:transform}
+.adtrack.grabbing{transition:none;cursor:grabbing}
+.adslide{position:relative;flex:0 0 100%;display:block;height:118px;overflow:hidden;
+  border:0;padding:0;text-align:left;font-family:var(--sans);color:#fff;cursor:pointer}
+.adslide .ad-ph{position:absolute;inset:0;z-index:0;display:block}
+.adslide .ad-ph .ph{position:absolute;inset:0;left:auto;width:48%}
+.adslide .ad-shade{position:absolute;inset:0;z-index:1;pointer-events:none}
+.ad-1 .ad-shade{background:linear-gradient(95deg,#8C1A62 0 42%,rgba(140,26,98,.72) 58%,rgba(140,26,98,0) 88%)}
+.ad-2 .ad-shade{background:linear-gradient(95deg,#A82352 0 42%,rgba(168,35,82,.72) 58%,rgba(168,35,82,0) 88%)}
+.ad-3 .ad-shade{background:linear-gradient(95deg,#8A5410 0 42%,rgba(138,84,16,.74) 58%,rgba(138,84,16,0) 88%)}
+.ad-4 .ad-shade{background:linear-gradient(95deg,#5E1A7A 0 42%,rgba(94,26,122,.72) 58%,rgba(94,26,122,0) 88%)}
+.adslide .ad-c{position:absolute;z-index:2;left:15px;top:0;bottom:0;width:60%;
+  display:flex;flex-direction:column;justify-content:center;gap:9px}
+.adslide .ad-c b{font-size:16px;font-weight:700;line-height:1.42;letter-spacing:0;
+  text-shadow:0 2px 8px rgba(42,10,51,.75)}
+.adslide .ad-cta{display:inline-flex;align-items:center;gap:5px;align-self:flex-start;
+  height:29px;padding:0 12px;border-radius:999px;font-size:11.5px;font-weight:700;color:#2A0A33;
+  background:linear-gradient(180deg,#FFE7A6,var(--gold-2));
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 5px 13px -5px rgba(242,182,72,.9)}
+.adslide .ad-cta svg{width:13px;height:13px;stroke:#2A0A33;fill:none;stroke-width:2.2}
+.addots{position:absolute;z-index:3;right:12px;bottom:10px;display:flex;gap:5px}
+.addots button{width:6px;height:6px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  background:rgba(255,255,255,.42);transition:width .3s var(--e3),background .3s var(--e3)}
+.addots button.on{width:16px;background:linear-gradient(90deg,var(--gold-1),var(--gold-2))}
+.addots button:focus-visible{outline:2px solid var(--gold-1);outline-offset:2px}
+/* ============================================================
+   精彩推荐卡
+   ============================================================ */
+.pmcard{position:relative;display:flex;align-items:center;min-height:86px;padding:0;
+  border-radius:var(--r-card);overflow:hidden;text-decoration:none;color:#fff;cursor:pointer;
+  font-family:var(--sans);text-align:left;width:100%;
+  transition:transform .2s var(--e3)}
+.pmcard:hover{transform:translateY(-2px)}
+.pmcard:focus-visible{outline:2px solid var(--gold-1);outline-offset:2px}
+.pmcard .pm-ph{position:absolute;inset:0;z-index:0;display:block}
+.pmcard .pm-ph .ph{position:absolute;inset:0;left:auto;width:42%}
+.pmcard .pm-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(94deg,rgba(58,10,48,.96) 0 46%,rgba(58,10,48,.74) 62%,rgba(58,10,48,0) 92%)}
+.pmcard .pm-c{position:relative;z-index:2;padding:13px 15px;width:66%}
+.pmcard .pm-c em{display:block;font-style:normal;font-size:9.5px;font-weight:700;
+  letter-spacing:.14em;color:var(--gold-1)}
+.pmcard .pm-c b{display:block;margin-top:5px;font-size:15px;font-weight:700;line-height:1.42}
+.pmcard .pm-s{display:block;margin-top:4px;font-size:11px;color:rgba(255,238,248,.84);line-height:1.5}
+.pmcard .pm-go{position:absolute;z-index:3;right:11px;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,211,110,.2);border:1px solid rgba(255,211,110,.5)}
+.pmcard .pm-go svg{width:13px;height:13px;stroke:var(--gold-1);fill:none;stroke-width:2.4}
+/* ============================================================
+   奖励页：MBA66 周边 hero + 分类 chips
+   ============================================================ */
+.mhero{margin-top:18px;padding:14px;border-radius:var(--r-panel)}
+.mhero-h{display:flex;align-items:center;gap:12px}
+.mhero-logo{height:26px;width:auto;filter:drop-shadow(0 0 8px rgba(255,211,110,.5))}
+.mhero-h b{display:block;font-size:14.5px;font-weight:700;color:#FFF6E2}
+.mhero-h em{display:block;margin-top:2px;font-style:normal;font-size:10.5px;color:var(--gold-1);
+  letter-spacing:.02em}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.mtile{position:relative;display:flex;flex-direction:column;padding:10px 11px 11px;border-radius:14px;
+  text-align:left;cursor:pointer;font-family:var(--sans);
+  border:1px solid rgba(255,211,110,.42);
+  background:linear-gradient(165deg,rgba(255,211,110,.14),rgba(42,10,51,.42));
+  box-shadow:0 1px 0 rgba(255,236,190,.4) inset,0 10px 22px -16px rgba(42,10,51,.95);
+  transition:transform .18s var(--e3)}
+.mtile:hover{transform:translateY(-2px)}
+.mtile:focus-visible{outline:2px solid var(--gold-1);outline-offset:2px}
+.mtile-art{position:relative;display:grid;place-items:center;height:62px;border-radius:10px;overflow:hidden;
+  background:radial-gradient(90% 90% at 50% 18%,rgba(255,211,110,.26),rgba(42,10,51,.6))}
+.mtile-art img{width:38px;height:38px;object-fit:contain;opacity:.95}
+.mtile-art em{position:absolute;bottom:5px;font-style:normal;font-size:8.5px;font-weight:700;
+  letter-spacing:.2em;color:rgba(255,211,110,.8)}
+.mtile b{display:block;margin-top:9px;font-size:13px;font-weight:700;color:var(--fg);line-height:1.4}
+.mtile-s{display:block;margin-top:3px;font-size:10.5px;color:var(--muted);line-height:1.5;min-height:31px}
+.mtile-f{display:flex;align-items:center;gap:7px;margin-top:8px}
+.mtile-f i{font-style:normal;font-family:var(--sans);font-size:12px;font-weight:700;
+  font-variant-numeric:tabular-nums;color:var(--gold-1)}
+.mtile-f .pill{margin-left:auto}
+.chiprow{display:flex;gap:7px;margin-top:20px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.chiprow::-webkit-scrollbar{display:none}
+.catchip{flex:0 0 auto;min-height:36px;padding:0 15px;border-radius:999px;cursor:pointer;
+  font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.01em;
+  color:var(--muted);background:rgba(255,255,255,.07);border:1px solid var(--line-2);
+  transition:color .18s var(--e3),background .18s var(--e3),border-color .18s var(--e3)}
+.catchip:hover{color:#fff;background:rgba(255,255,255,.14)}
+.catchip.on{color:#2A0A33;border-color:rgba(255,236,190,.8);
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-2));
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 14px -7px rgba(242,182,72,.9)}
+.catchip:focus-visible{outline:2px solid var(--gold-1);outline-offset:2px}
+/* ============================================================
+   我的：女友进度行（亲密度环）
+   ============================================================ */
+.mgrow{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--r-card);
+  text-decoration:none;color:inherit;transition:transform .18s var(--e3)}
+.mgrow:hover{transform:translateY(-2px)}
+.mgrow:focus-visible{outline:2px solid var(--gold-1);outline-offset:2px}
+.mgrow.lk{opacity:.62}
+.mgrow .ring{position:relative;flex:0 0 auto;width:50px;height:50px;border-radius:50%;display:grid;
+  place-items:center;
+  background:conic-gradient(var(--gold-1) calc(var(--p) * 1%),rgba(255,255,255,.14) 0)}
+.mgrow .ring .av-s{width:42px;height:42px;min-width:42px;border:2px solid rgba(42,10,51,.9)}
+.mgrow b{display:flex;align-items:baseline;gap:7px;font-size:14.5px;font-weight:700;color:var(--fg)}
+.mgrow b em{font-style:normal;font-size:10.5px;font-weight:500;color:var(--gold-1)}
+.mgrow-r{flex:0 0 auto;margin-left:auto}
+/* ---------- 剧集分享横幅 ---------- */
+.shbar{display:flex;align-items:center;gap:11px;padding:12px 13px;border-radius:var(--r-panel);
+  margin-bottom:12px}
+.shbar .shbar-i{flex:0 0 auto}
+.shbar b{display:block;font-size:13.5px;font-weight:700;color:#FFF6E2;line-height:1.45}
+.shbar em{display:block;margin-top:3px;font-style:normal;font-size:11px;color:var(--gold-1);
+  font-variant-numeric:tabular-nums}
+.shbar-b{flex:0 0 auto;min-height:44px;padding:0 14px;font-size:12.5px;white-space:nowrap}
+@media (max-width:360px){
+  .shbar{flex-wrap:wrap}
+  .shbar-b{width:100%}
+}
+/* ============================================================
+   游戏化金质外壳：斜边金框 + 顶部高光 + 内阴影，取代扁平方块
+   ============================================================ */
+.gframe{position:relative;border:1px solid rgba(255,211,110,.42);
+  background:linear-gradient(168deg,rgba(255,211,110,.11),rgba(255,79,163,.07) 46%,rgba(255,255,255,.05));
+  box-shadow:0 1px 0 rgba(255,236,190,.4) inset,0 -1px 0 rgba(42,10,51,.5) inset,
+    0 16px 34px -22px rgba(42,10,51,.92)}
+.gframe::before{content:"";position:absolute;left:12%;right:12%;top:0;height:1px;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,243,214,.9),transparent)}
+.gpanel{position:relative;display:flex;align-items:center;gap:12px;padding:14px 15px;border-radius:var(--r-panel);
+  border:1px solid rgba(255,211,110,.46);overflow:hidden;
+  background:linear-gradient(150deg,rgba(255,211,110,.17),rgba(255,79,163,.1) 54%,rgba(255,255,255,.05));
+  box-shadow:0 1px 0 rgba(255,236,190,.45) inset,0 -2px 6px rgba(42,10,51,.4) inset,
+    0 14px 30px -20px rgba(42,10,51,.9)}
+.gpanel::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 70% at 18% -10%,rgba(255,243,214,.3),transparent 62%)}
+.gpanel>*{position:relative;z-index:1}
+/* ---------- 段位徽章 ---------- */
+.tgb{display:inline-flex;align-items:center;gap:5px;height:23px;padding:0 9px;border-radius:999px;
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.02em;white-space:nowrap;
+  border:1px solid rgba(255,255,255,.4);color:#2A0A33;
+  box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 4px 10px -5px rgba(42,10,51,.8)}
+.tgb svg{width:12px;height:12px;fill:currentColor;stroke:none}
+.tgb em{font-style:normal;font-weight:600;opacity:.72;font-variant-numeric:tabular-nums}
+.tg-bronze {background:linear-gradient(180deg,#F0B98A,#C9794A)}
+.tg-silver {background:linear-gradient(180deg,#EFF1F6,#AFB7C7)}
+.tg-gold   {background:linear-gradient(180deg,#FFE08A,#E0A32C)}
+.tg-diamond{background:linear-gradient(180deg,#DFF4FF,#8FD3F4);border-color:rgba(255,255,255,.75)}
+.tgb.oncard{position:relative;z-index:2;margin-top:8px;align-self:flex-start}
+/* ---------- 段位进度条 ---------- */
+.tgbar{border:1px solid rgba(255,211,110,.34);border-radius:15px;padding:11px 12px 10px;
+  background:linear-gradient(160deg,rgba(255,211,110,.1),rgba(255,255,255,.04))}
+.tgbar-h{display:flex;align-items:center;gap:9px}
+.tgbar-h .sm{margin-left:auto;text-align:right}
+.tgbar-t{position:relative;height:7px;margin-top:10px;border-radius:999px;overflow:hidden;
+  background:rgba(42,10,51,.55);box-shadow:0 1px 2px rgba(42,10,51,.6) inset}
+.tgbar-t i{display:block;height:100%;transform-origin:left center;border-radius:999px;
+  background:linear-gradient(90deg,var(--gold-3),var(--gold-1) 60%,#FFF3D6);
+  box-shadow:0 0 10px rgba(255,211,110,.7);transition:transform .7s var(--e3)}
+.tgbar-f{display:flex;justify-content:space-between;margin-top:8px}
+.tgbar-f span{font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.02em;
+  color:var(--faint);opacity:.55;font-variant-numeric:tabular-nums}
+.tgbar-f span.on{opacity:1;color:var(--gold-1)}
+/* ---------- 结算明细 ---------- */
+.scorelist{margin-top:16px;padding:2px 14px;text-align:left;border-radius:14px;
+  border:1px solid rgba(255,211,110,.3);background:rgba(42,10,51,.3)}
+.scorelist .row.total{border-top:1px solid rgba(255,211,110,.3)}
 .vcard{position:relative;display:flex;flex-direction:column;padding:13px 13px 12px;border-radius:16px;
   text-align:left;overflow:hidden;
   background:linear-gradient(152deg,rgba(255,211,110,.16),rgba(255,79,163,.14) 62%,rgba(255,255,255,.06));
@@ -1524,18 +1634,6 @@ body{
   transform:scale(0);transform-origin:center;transition:transform .14s linear}
 .spot.done{animation:none;border-color:#FFF3D6}
 .spot.done i{transform:scale(1)}
-/* 心跳靠近 */
-.closebox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
-.closebox .ph{width:100%;height:min(40vh,330px)}
-.closebox .ph>img{transition:transform .12s linear;transform-origin:50% 22%}
-.hrbar{position:relative;height:16px;border-radius:9px;margin-top:12px;overflow:hidden;
-  background:linear-gradient(90deg,#5BE3B0 0%,#FFD36E 46%,#FFD36E 62%,#FF5A5A 100%)}
-.hrbar .zone{position:absolute;top:0;bottom:0;left:46%;width:16%;border-left:2px solid rgba(255,255,255,.9);
-  border-right:2px solid rgba(255,255,255,.9)}
-.hrbar .pin{position:absolute;top:-3px;bottom:-3px;width:4px;border-radius:3px;background:#fff;
-  box-shadow:0 0 8px rgba(255,255,255,.9);transform:translateX(-2px)}
-.hrbeat{display:inline-grid;place-items:center;width:22px;height:22px;vertical-align:-5px}
-.hrbeat svg{width:100%;height:100%;fill:var(--pink);animation:beat 1s var(--e3) infinite}
 @keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.26)}}
 /* ---------- 私密相册 ---------- */
 .alb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -1575,7 +1673,7 @@ body{
 #viewer .vline{font-size:13.5px;font-weight:600;color:#FFD9EC;min-height:1.4em}
 @media (prefers-reduced-motion:reduce){
   .app::after{display:none}
-  .ckday.today i,.gcardx,.rwipe,.rstage.flick,.rhand.flip,.rhand.shakeh,.rbeat.pop{animation:none !important}
+  .ckday.today i,.gcardx,.rwipe,.tgbar-t i,.rstage.flick,.rhand.flip,.rhand.shakeh,.rbeat.pop{animation:none !important}
   .flo,#fab .ring,#fx>*{display:none !important}
   #fab{animation:none !important}
   .sweep{background:none;color:inherit;-webkit-text-fill-color:currentColor}
@@ -1590,6 +1688,108 @@ body{
 /* 苹方最粗只有 Semibold(600)，标题与大数字统一用 600，避免浏览器假加粗 */
 :is(.h1,.h2,h1,h2,h3,.qt span,.gg,.sweep){font-weight:600}
 .big{font-weight:600}
+
+/* ============================================================
+   v10 质感层：把扁平方块升级成「游戏 UI」金质卡
+   一个统一手法：金色斜边 + 顶部一道高光 + 轻内阴影。
+   只给容器加，不动文字颜色，所以对比度不变。
+   ============================================================ */
+.panel,.lrow,.ep,.item,.tabs2,.epthumb{
+  border-color:rgba(255,211,110,.3)}
+.panel{position:relative;
+  background:linear-gradient(170deg,rgba(255,211,110,.075),rgba(255,79,163,.045) 55%,rgba(255,255,255,.025));
+  box-shadow:0 1px 0 rgba(255,236,190,.3) inset,0 -1px 0 rgba(42,10,51,.42) inset,
+    0 14px 30px -24px rgba(42,10,51,.9)}
+.panel::after{content:"";position:absolute;left:14%;right:14%;top:0;height:1px;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,243,214,.7),transparent)}
+.lrow{background:linear-gradient(168deg,rgba(255,211,110,.1),rgba(255,255,255,.04));
+  box-shadow:0 1px 0 rgba(255,236,190,.32) inset,0 -1px 0 rgba(42,10,51,.4) inset}
+.lrow:hover{background:linear-gradient(168deg,rgba(255,211,110,.2),rgba(255,79,163,.1));
+  border-color:rgba(255,211,110,.55)}
+.ep{background:linear-gradient(168deg,rgba(255,211,110,.13),rgba(255,255,255,.05));
+  box-shadow:0 1px 0 rgba(255,236,190,.34) inset,0 -1px 0 rgba(42,10,51,.45) inset,
+    0 8px 18px -14px rgba(42,10,51,.9)}
+.ep:hover{border-color:rgba(255,211,110,.6)}
+.ep.on{border-color:var(--gold-1);
+  background:linear-gradient(168deg,rgba(255,211,110,.3),rgba(255,79,163,.14));
+  box-shadow:0 1px 0 rgba(255,243,214,.55) inset,0 0 0 1px rgba(255,211,110,.3),
+    0 10px 22px -14px rgba(242,182,72,.85)}
+.item{box-shadow:0 1px 0 rgba(255,236,190,.3) inset,0 14px 28px -22px rgba(42,10,51,.92)}
+.tabs2{background:linear-gradient(170deg,rgba(255,211,110,.1),rgba(42,10,51,.6));
+  box-shadow:0 1px 0 rgba(255,236,190,.26) inset}
+.tabs2 button.on{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:#2A0A33;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 14px -7px rgba(242,182,72,.9)}
+/* 主按钮：金色辉光 + 一点点闪光（只跑一次，不循环） */
+.btn-pri,.btn-gold{position:relative;overflow:hidden}
+.btn-pri{box-shadow:0 1px 0 rgba(255,236,190,.45) inset,
+  0 0 0 1px rgba(255,211,110,.34),0 10px 26px -12px rgba(255,79,163,.85)}
+.btn-pri:hover{box-shadow:0 1px 0 rgba(255,243,214,.6) inset,
+  0 0 0 1px rgba(255,211,110,.55),0 12px 30px -12px rgba(255,79,163,.95)}
+.btn-gold{box-shadow:0 1px 0 rgba(255,255,255,.65) inset,
+  0 0 18px -4px rgba(255,211,110,.5),0 10px 24px -10px rgba(242,182,72,.9)}
+.btn-pri.claim::after,.btn-gold.claim::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);
+  background-size:260% 100%;animation:sheen 2.6s var(--e3) 3}
+@keyframes sheen{0%{background-position:150% 0}45%,100%{background-position:-150% 0}}
+/* 段位徽章与金框在动效关闭时保持静态 */
+@media (prefers-reduced-motion:reduce){
+  .btn-pri.claim::after,.btn-gold.claim::after{animation:none;opacity:0}
+  .adtrack{transition:none}
+}
+</style>
+<style>
+/* ===== v10b · 赌场游戏大厅皮肤（Pinterest：slot / casino lobby / VIP） ===== */
+:root{--gd-a:#FFF1C1;--gd-b:#F7C960;--gd-c:#C98A26;--gd-d:#8A5512;--plum:#2A0A2E}
+/* 区块标题 → 粉色缎带 + 金边 */
+.sec-h .h2{position:relative;display:inline-block;padding:5px 18px 6px;color:#fff;font-weight:800;font-size:15.5px;
+  background:linear-gradient(180deg,#FF5FA2 0%,#D61E70 100%);border-radius:4px;
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(90,0,40,.35),0 0 0 1.5px var(--gd-b),0 4px 10px -4px rgba(0,0,0,.6);
+  text-shadow:0 1px 0 rgba(120,0,50,.7);clip-path:polygon(0 0,100% 0,calc(100% - 8px) 50%,100% 100%,0 100%,8px 50%)}
+/* 卡片 → 金色斜面边框 + 顶部高光 */
+.panel,.vip{border:1.5px solid transparent !important;
+  background:linear-gradient(180deg,rgba(74,18,64,.94),rgba(40,8,38,.96)) padding-box,
+             linear-gradient(140deg,var(--gd-a),var(--gd-c) 30%,var(--gd-b) 55%,var(--gd-d) 80%,var(--gd-a)) border-box !important;
+  box-shadow:inset 0 1px 0 rgba(255,236,190,.28),0 10px 24px -14px rgba(0,0,0,.8)}
+/* 主按钮 → 肥厚的金色 3D 按钮 */
+.btn-gold,.btn-pri{background:linear-gradient(180deg,var(--gd-a) 0%,var(--gd-b) 45%,var(--gd-c) 100%) !important;color:#4A1A00 !important;
+  font-weight:800;border:1px solid #FFE9A8 !important;text-shadow:0 1px 0 rgba(255,245,210,.7);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -3px 0 rgba(140,70,0,.45),0 4px 0 #8A5512,0 10px 18px -6px rgba(247,201,96,.55) !important}
+.btn-gold:active,.btn-pri:active{transform:translateY(3px) scale(.98);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 1px 0 #8A5512 !important}
+/* 积分芯片 → 深紫底 HUD 胶囊 + 金色 “+” */
+.ptchip{background:rgba(30,6,30,.82) !important;border:1.5px solid var(--gd-b) !important;color:#FFE6A0 !important;font-weight:800;
+  box-shadow:inset 0 1px 0 rgba(255,230,170,.35),0 4px 12px -4px rgba(0,0,0,.7)}
+.ptchip::after{content:"+";display:inline-grid;place-items:center;width:17px;height:17px;margin-left:6px;border-radius:50%;
+  background:linear-gradient(180deg,var(--gd-a),var(--gd-c));color:#5A2400;font-size:13px;font-weight:900;line-height:1}
+/* 首页右侧竖排功能按钮（游戏大厅常见布局） */
+.siderail{position:absolute;z-index:6;right:10px;top:74px;display:flex;flex-direction:column;gap:9px}
+.siderail a{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;width:50px;text-decoration:none}
+.siderail .ic3{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle at 50% 30%,#5B1A55,#24061F 75%);border:2px solid var(--gd-b);
+  box-shadow:inset 0 2px 0 rgba(255,230,170,.35),0 6px 12px -4px rgba(0,0,0,.7)}
+.siderail .ic3 img,.siderail .ic3 svg{width:28px;height:28px}
+.siderail b{font-size:10.5px;font-weight:800;color:#fff;text-shadow:0 1px 2px #000,0 0 6px rgba(0,0,0,.8)}
+.siderail i.rd{position:absolute;top:0;right:4px;width:10px;height:10px;border-radius:50%;background:#FF2D55;border:1.5px solid #fff}
+/* 恭喜获得 弹窗：旋转光芒 + 缎带标题 + 大数字 */
+#winpop{position:absolute;inset:0;z-index:60;display:none;place-items:center;background:rgba(14,2,16,.72)}
+#winpop.on{display:grid}
+#winpop .wp{position:relative;width:272px;padding:46px 18px 18px;text-align:center;border-radius:22px;
+  background:linear-gradient(180deg,#5C1756,#2B0828) padding-box,linear-gradient(140deg,var(--gd-a),var(--gd-c),var(--gd-a),var(--gd-d)) border-box;
+  border:2.5px solid transparent;box-shadow:0 0 40px rgba(247,201,96,.35);animation:wpIn .45s cubic-bezier(.2,1.4,.4,1)}
+#winpop .rays{position:absolute;left:50%;top:38%;width:520px;height:520px;margin:-260px 0 0 -260px;pointer-events:none;
+  background:repeating-conic-gradient(rgba(255,214,120,.22) 0 9deg,transparent 9deg 22deg);
+  -webkit-mask:radial-gradient(circle,#000 18%,transparent 62%);mask:radial-gradient(circle,#000 18%,transparent 62%);animation:wpSpin 9s linear infinite}
+#winpop .rb{position:absolute;left:50%;top:-16px;transform:translateX(-50%);white-space:nowrap;padding:8px 26px 9px;color:#fff;font-weight:900;font-size:17px;
+  background:linear-gradient(180deg,#FF5FA2,#C8155F);box-shadow:0 0 0 2px var(--gd-b),0 6px 14px -4px rgba(0,0,0,.6);
+  clip-path:polygon(0 0,100% 0,calc(100% - 12px) 50%,100% 100%,0 100%,12px 50%);text-shadow:0 1px 0 #7a0035}
+#winpop .coin{width:74px;height:74px;margin:0 auto 4px;filter:drop-shadow(0 6px 14px rgba(247,201,96,.6))}
+#winpop .num{font-size:46px;font-weight:900;line-height:1.05;letter-spacing:-.5px;
+  background:linear-gradient(180deg,#FFF6D5,#F7C960 55%,#C98A26);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 0 #6B3A08)}
+#winpop .num small{font-size:16px;margin-left:4px}
+#winpop .sub{margin:6px 0 16px;color:#FFD9EC;font-size:13px}
+@keyframes wpSpin{to{transform:rotate(360deg)}}
+@keyframes wpIn{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){#winpop .rays,#winpop .wp{animation:none}}
 </style>
 </head>
 <body>
@@ -1647,7 +1847,7 @@ body{
       <a href="#me" data-tab="me"><svg class="ic"><use href="#i-user"/></svg><span>我的</span></a>
       <i id="tabInd" aria-hidden="true"></i>
     </nav>
-    <button id="fab" aria-label="和她聊天"></button>
+    <button id="fab" aria-label="亲密游戏"></button>
     <div id="fx" aria-hidden="true"></div>
     <div id="viewer" role="dialog" aria-modal="true" aria-hidden="true"></div>
     <div id="veil"></div>
@@ -1665,12 +1865,13 @@ body{
 
 /* ---------- 数据 ---------- */
 const PRICE = { ep:20, bg:100, act:150, outfit:300, gift:20, album:120 };
-const RULES = { signup:800, checkin:10, gameMax:30, gameRounds:3, invite:20, inviteMax:5 };
+const FREE_EPS = 3;                 /* 第 1–3 集免费，第 4 集起用积分解锁 */
+const RULES = { signup:800, checkin:10, gameMax:30, invite:20, inviteMax:5 };
 /* 亲密经验：只累积、不消耗、不折现 */
-const XPR = { checkin:5, chat:10, game:5, drama:10, coach:20, gift:10 };
+const XPR = { checkin:5, game:5, drama:10, coach:20, gift:10 };
 const LEVELS = [
-  { lv:1, at:0,   name:"初识",     unlock:"基础聊天" },
-  { lv:2, at:100, name:"熟悉",     unlock:"更多互动话题" },
+  { lv:1, at:0,   name:"初识",     unlock:"基础互动" },
+  { lv:2, at:100, name:"熟悉",     unlock:"更多造型与照片" },
   { lv:3, at:300, name:"默契",     unlock:"特别互动及剧情" },
   { lv:4, at:600, name:"专属羁绊", unlock:"专属故事及互动" }
 ];
@@ -1681,145 +1882,92 @@ const GIFTS = [
 ];
 
 const GIRLS = [
-  { id:"sweet", name:"小糖", en:"Candy", type:"甜美型", initial:"糖", age:24,
-    tags:["活泼","俏皮","亲切"],
+  { id:"sweet", name:"小糖", en:"Candy", type:"甜美型", initial:"糖", age:21,
+    tags:["甜","黏人","爱撒娇"],
     v3:"assets/img/girl-sweet-v3.webp", x:"assets/img/girl-sweet-x.webp",
-    bikini:"assets/img/girl-sweet-bikini.webp",
-    sun:"assets/img/girl-sweet-sun.webp",
+    bikini:"assets/img/girl-sweet-bikini.webp", sun:"assets/img/girl-sweet-sun.webp",
     lounge:"assets/img/girl-sweet-lounge.webp", img:"assets/img/girl-sweet.webp", img2:"assets/img/girl-sweet-2.webp",
     video:"assets/video/girl-sweet.mp4",
-    line:"今天也想听你讲讲你的事。",
-    about:"在吉隆坡的一家甜品店做学徒，话多、笑点低，会把你随口说过的小事记很久。",
+    line:"你再不来，我就要把糖都吃光啦。",
+    about:"21 岁，笑点超低的甜妹，赢一局就要抱一下，输了也要抱一下。",
     outfit2:"限定 · 莓果午后",
-    react:{ hit:["微笑","比心","开心"], combo:["眨眼","加油","好厉害"], win:["庆祝","抱抱","太棒了"], idle:["在听","想你了","嘿"] },
-    reply:{
-      "你好|嗨|hi|hello|在吗":["在的在的，刚还在想你会不会来呢～","嗨～你一出现，我这边就亮了一下。（脸红）"],
-      "名字|叫什么":["我叫小糖呀，甜的那个糖，你尝过就知道了。","小糖～叫一声来听听？"],
-      "想你|在干嘛|干嘛呢":["刚还在偷偷看你的头像，被你抓到了。（脸红）","想你了呀，你怎么才来。"],
-      "穿|衣服|睡衣":["今天是粉色的针织，领口有个小蝴蝶结……要看吗？","睡衣是草莓色的呀，别问那么细啦。"],
-      "给我看看|照片|相册":["相册里有几张不太好意思给别人看的……只给你看哦～","你去我的私密相册翻翻嘛，我偷偷放了一张。"],
-      "晚安吻|亲|吻":["唔……那就隔着屏幕一下下。（脸红）","闭眼，数到三。一、二……不说了。"],
-      "夸|好看|可爱":["再说一次，刚才没听清。","你这样夸我，我会得意一整天的。"],
-      "吃|饭|饿|宵夜":["我刚试做了椰糖布丁，下次给你留一份。","别饿着，吉隆坡这个点还有好多宵夜摊。"],
-      "累|好累|加班|困":["那先把肩膀放下来，我陪你坐一会儿就好。","累就什么都别想，听我说点没用的。"],
-      "喜欢|爱":["这种话不能一次说完，要留着慢慢讲嘛。","我也喜欢你呀……说出来了，不许笑我。（脸红）"],
-      "做什么|在干|忙吗":["在等你，顺便把今天的糖浆熬好了。","发呆，还有把你上次说的歌听了三遍。"],
-      "晚安|睡|再见|拜":["晚安，明天记得来找我。","去睡吧，我把灯留着。"],
-      "积分|奖励|兑换":["积分在首页看得到，签到和心动挑战都能拿。","攒够了可以换背景和服装，我想看你给我选哪套。"],
-      "游戏|挑战|玩":["心动挑战我站在角落给你喊加油。","去玩一局，我看着你。"],
-      "短剧|剧|看剧":["短剧那边我追到第三集了，你陪我看完好不好。","我喜欢第二部，结尾有点想哭。"]
-    },
-    fallback:["这个我要想一下，你先别走嘛。","嗯……然后呢？我想听完整的。","你讲话的方式我有点喜欢。（脸红）","好，记下了，下次我自己提。","你这样说我会当真的哦。"]
-  },
-  { id:"queen", name:"薇薇安", en:"Vivian", type:"御姐型", initial:"薇", age:31,
-    tags:["成熟","自信","有魅力"],
-    v3:"assets/img/girl-queen-v3.webp", x:"assets/img/girl-queen-x.webp",
-    bikini:"assets/img/girl-queen-bikini.webp",
-    sun:"assets/img/girl-queen-sun.webp",
-    lounge:"assets/img/girl-queen-lounge.webp", img:"assets/img/girl-queen.webp", img2:"assets/img/girl-queen-2.webp",
-    video:"assets/video/girl-queen.mp4",
-    line:"坐下吧，今晚不谈工作。",
-    about:"做品牌顾问，一周有四个晚上在谈判桌上。说话慢，但从不说多余的话。",
-    outfit2:"限定 · 午夜缎面",
-    react:{ hit:["微笑","比心","不错"], combo:["眨眼","继续","有意思"], win:["庆祝","干得好","我喜欢"], idle:["看着你","说吧","嗯"] },
-    reply:{
-      "你好|嗨|hi|hello|在吗":["来了。坐这边，灯没那么晃。","在。今晚我把手机关了，只留你一个。"],
-      "名字|叫什么":["Vivian。中文叫薇薇安，你选顺口的那个。","叫我 Vivian 就好。晚一点可以换个叫法。"],
-      "想你|在干嘛|干嘛呢":["刚换了条裙子，红的。你来得正是时候。","在等。等一个不太守时的人。"],
-      "穿|衣服|睡衣":["红色真丝的吊带裙。细节不告诉你。","睡衣是黑的。再问我就不说了。"],
-      "给我看看|照片|相册":["相册里那几张，我只给一个人开权限。","想看就去解锁。别让我说第二次。"],
-      "晚安吻|亲|吻":["这种事不在聊天框里做。","靠过来一点……算了，今晚先欠着。"],
-      "夸|好看|漂亮":["我知道。但从你嘴里说出来不一样。","继续。我难得想听。"],
-      "吃|饭|饿|宵夜":["楼下那家还开着，我请。","别用咖啡顶着当饭吃。"],
-      "累|好累|加班|困":["把没做完的留到明天，世界不会塌。","累就承认累，这不丢人。"],
-      "喜欢|爱":["这句话你说得太轻，再说一遍。","我不太会回这种话，但我记住了。整晚。"],
-      "做什么|在干|忙吗":["刚推掉一个会，现在很闲。","在喝第二杯，等一个人说话。"],
-      "晚安|睡|再见|拜":["晚安。明天别起太晚。","去吧。门我留着。"],
-      "积分|奖励|兑换":["积分别乱花，先换你真的会用的。","奖励页我看过，背景比服装划算。"],
-      "游戏|挑战|玩":["三十秒而已，你应该拿得下。","去打一局，我在旁边看你手稳不稳。"],
-      "短剧|剧|看剧":["短剧我只看完一部，另一部节奏太急。","挑第一部，前两集免费。"]
-    },
-    fallback:["说下去，我在听。","这个答案我不接受，换一个。","你今天比平时坦白。","有意思。继续。","我记性很好，这句别忘了。"]
-  },
-  { id:"cool", name:"露娜", en:"Luna", type:"冷艳型", initial:"露", age:27,
-    tags:["优雅","含蓄","有个性"],
-    v3:"assets/img/girl-cool-v3.webp", x:"assets/img/girl-cool-x.webp",
-    bikini:"assets/img/girl-cool-bikini.webp", sun:"assets/img/girl-cool-sun.webp",
-    lounge:"assets/img/girl-cool-lounge.webp", img:"assets/img/girl-cool.webp", img2:"assets/img/girl-cool-2.webp",
-    video:"assets/video/girl-cool.mp4",
-    line:"你来得正好，我刚放完这首。",
-    about:"在槟城教古典吉他，习惯晚睡。喜欢的东西从不解释，不喜欢的只说一次。",
-    outfit2:"限定 · 青瓷长裙",
-    react:{ hit:["微笑","比心","嗯"], combo:["眨眼","别停","可以"], win:["庆祝","漂亮","服了你"], idle:["在","听着","抬头"] },
-    reply:{
-      "你好|嗨|hi|hello|在吗":["在。等很久了。","嗯，你来了。我把灯调暗了一点。"],
-      "名字|叫什么":["Luna。露娜也行。","名字不重要，你记住就好。"],
-      "想你|在干嘛|干嘛呢":["在镜子前面站了很久。没别的意思。","想了。不常说这两个字。"],
-      "穿|衣服|睡衣":["银色的，背后开得有点低。","白色。再问就不答了。"],
-      "给我看看|照片|相册":["有一张，我自己都很少看。解锁了就给你。","相册里第二张……你最好一个人看。"],
-      "晚安吻|亲|吻":["……闭眼。","别出声。"],
-      "夸|好看|漂亮":["嗯。","你再说一次我就当真。"],
-      "吃|饭|饿|宵夜":["我一天只认真吃一顿，剩下随便。","你去吃，我等你回来。"],
-      "累|好累|加班|困":["那就不说话，坐一会儿。","累的时候别做决定。"],
-      "喜欢|爱":["……我听见了。（脸红）","别一次说完。留一点给明天。"],
-      "做什么|在干|忙吗":["在调弦。","看窗外，没什么好看的。"],
-      "晚安|睡|再见|拜":["晚安。","嗯，走吧。"],
-      "积分|奖励|兑换":["积分够了换背景，夜景那张像槟城。","我不挑，你决定。"],
-      "游戏|挑战|玩":["三十秒，别分心。","我看着，你打。"],
-      "短剧|剧|看剧":["第二部的配乐做得好。","看完告诉我你想到什么。"]
-    },
-    fallback:["嗯。","你再说一点。","这句我会想很久。","不急，慢慢讲。","我不太说这种话，但你讲得对。"]
-  }
+    react:{ hit:["好棒","比心","嘻嘻"], combo:["厉害","再来","加油"], win:["抱抱","最喜欢你","赢啦"], idle:["在等你","想你了","嘿～"] } },
+
+  { id:"bunny", name:"兔兔", en:"Bunny", type:"兔女郎", initial:"兔", age:22,
+    tags:["爱逗人","腿长","会撒野"],
+    v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
+    bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
+    lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
+    video:"assets/video/girl-bunny.mp4",
+    line:"耳朵戴好了，今晚我负责发牌，你负责输。",
+    about:"22 岁，派对场子里最会逗人的兔女郎，专挑你撑不住的时候凑过来。",
+    outfit2:"限定 · 午夜兔尾",
+    react:{ hit:["这就对了","哦～","不错哦"], combo:["手够快","继续啊","喜欢"], win:["赢了嘛","过来领奖","服了你"], idle:["看着你","别走啊","喂～"] } },
+
+  { id:"neko", name:"喵喵", en:"Mimi", type:"猫女郎", initial:"喵", age:21,
+    tags:["黏人","爱蹭","小脾气"],
+    v3:"assets/img/girl-neko-v3.webp", x:"assets/img/girl-neko-x.webp",
+    bikini:"assets/img/girl-neko-bikini.webp", sun:"assets/img/girl-neko-sun.webp",
+    lounge:"assets/img/girl-neko-lounge.webp", img:"assets/img/girl-neko.webp", img2:"assets/img/girl-neko-2.webp",
+    video:"assets/video/girl-neko.mp4",
+    line:"喵～你手给我，我要蹭一下。",
+    about:"20 岁，挂在你身上的猫咪系女友，三句话里两句带「喵」，不理她会闹。",
+    outfit2:"限定 · 铃铛夜",
+    react:{ hit:["喵～","好耶","蹭一下"], combo:["喵喵喵","再来嘛","好快"], win:["喵！赢了","抱我","最棒的"], idle:["喵……","在这呢","摸摸头"] } },
+
+  { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:23,
+    tags:["阳光","大方","身材好"],
+    v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
+    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
+    lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
+    video:"assets/video/girl-summer.mp4",
+    line:"防晒我涂不到后面，你来嘛。",
+    about:"23 岁，一年四季都在海边的辣妹，晒得发烫还要拉你下水。",
+    outfit2:"限定 · 落日沙滩",
+    react:{ hit:["可以哦","漂亮","就这样"], combo:["越来越顺","别停","帅"], win:["赢得好看","奖励你","过来"], idle:["等你呢","晒着呢","嗨～"] } },
+
+  { id:"maid", name:"奈奈", en:"Nana", type:"女仆", initial:"奈", age:21,
+    tags:["乖","会照顾人","叫你主人"],
+    v3:"assets/img/girl-maid-v3.webp", x:"assets/img/girl-maid-x.webp",
+    bikini:"assets/img/girl-maid-bikini.webp", sun:"assets/img/girl-maid-sun.webp",
+    lounge:"assets/img/girl-maid-lounge.webp", img:"assets/img/girl-maid.webp", img2:"assets/img/girl-maid-2.webp",
+    video:"assets/video/girl-maid.mp4",
+    line:"主人，今天也要我陪着吗？",
+    about:"19 岁，说话轻轻的女仆系女友，什么都帮你记着，只求你多看她两眼。",
+    outfit2:"限定 · 蕾丝围裙",
+    react:{ hit:["做得好","主人厉害","请继续"], combo:["好顺手","主人加油","再来一次"], win:["赢了呢","恭喜主人","给你奖励"], idle:["在的","主人～","等您"] } }
 ];
 
-const BGS = [
-  { id:"cafe",  name:"咖啡馆", en:"Cafe",  img:"assets/img/bg-cafe.webp",  initial:"咖" },
-  { id:"beach", name:"海边",   en:"Beach", img:"assets/img/bg-beach.webp", initial:"海" },
-  { id:"night", name:"夜景",   en:"Night", img:"assets/img/bg-night.webp", initial:"夜" }
-];
-const ACTS = [
-  { id:"heart", name:"比心", en:"Heart",     icon:"i-heart",   say:"比心" },
-  { id:"wave",  name:"挥手", en:"Wave",      icon:"i-sparkle", say:"挥手" },
-  { id:"cheer", name:"庆祝", en:"Celebrate", icon:"i-star",    say:"庆祝" }
-];
-
-/* 按角色的亲密内容：收礼回话、话题 chips、Lv.3 特别互动、Lv.4 专属故事 */
 const BOND = {
   sweet:{
-    cheer:{ win:"这就是我说的那种厉害。今天的布丁我请。", ok:"接住这么多，手不酸吗？", low:"没关系，我刚才一直在旁边喊你。" },
-    thanks:{ rose:"玫瑰我收下了，等会儿压进笔记本里。", coffee:"这杯我慢慢喝，喝完再讲今天的事给你听。", cake:"蛋糕……你怎么知道我今天正想吃甜的。" },
-    topics:[
-      { id:"miss", lv:1, label:"想你了",     q:"想你了。",       a:"才说一句我耳朵就热了。（脸红）那你今晚别走好不好。" },
-      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？",   a:"粉色的针织，领口有个小蝴蝶结。好看的话你要夸我。" },
-      { id:"show", lv:2, label:"给我看看",   q:"给我看看嘛。",   a:"相册里那几张……只给你看哦～别截图。" },
-      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",       a:"唔……闭上眼。（脸红）好了，这个只有今晚有。" }
-    ],
-    scene:{ t:"雨天的后厨", x:"那天雨下得很大，店里没客人。她把烤箱门打开一条缝取暖，让你坐在面粉袋上，说这是全店最好的位置。你们一句话没说，听了四十分钟的雨。" },
-    story:{ t:"她没讲完的那一年", x:"她第一年没考上甜点师执照，瞒了家里八个月。每天照常出门，在店里多站三小时。她说这件事只讲给两个人听过，你是第二个。" }
+    cheer:{ win:"这就是我说的那种厉害！今天的糖我请。", ok:"接住这么多，手不酸吗？", low:"没关系呀，我一直在旁边给你喊加油。" },
+    thanks:{ rose:"玫瑰我收下了，等会儿压进本子里。", coffee:"这杯我慢慢喝，喝完讲今天的事给你听。", cake:"蛋糕……你怎么知道我正想吃甜的。" },
+    scene:{ t:"奶茶店打烊前", x:"店里只剩你们两个，她把最后一杯做成双份糖，说这杯不收钱，但你要听她讲完今天被客人气到的三件事。" },
+    story:{ t:"她偷偷存的那罐糖", x:"她从十六岁开始存糖纸，一张不丢。她说等攒满一罐就送给最想见的人，罐子现在差三张。" }
   },
-  queen:{
-    cheer:{ win:"干得漂亮。这种手速我给满分。", ok:"稳。再快一点会更好看。", low:"别急。我见过更差的，那个人是我。" },
-    thanks:{ rose:"你知道我不收花。这次算例外。", coffee:"加了两份浓缩。你记得。", cake:"我不吃甜的。但这块我会吃完。" },
-    topics:[
-      { id:"miss", lv:1, label:"想你了",     q:"想你了。",     a:"我知道。所以我把今晚空出来了。" },
-      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？", a:"红色真丝的吊带裙。细节自己想。" },
-      { id:"show", lv:2, label:"给我看看",   q:"给我看看。",   a:"相册的权限我只开给一个人。你去看吧。" },
-      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",     a:"靠过来。……行了，剩下的留到见面。" }
-    ],
-    scene:{ t:"谈判桌之后", x:"会开到十点半，对方全程没让步。走出电梯她才把高跟鞋脱下来提在手里，光脚走过停车场，回头问你：刚才我凶吗。" },
-    story:{ t:"她不接的那通电话", x:"有一个号码她从不接，但每次响完都会盯着屏幕几秒。她说那是她第一个客户，也是教会她把价格说出口的人。后来那家公司倒了。" }
+  bunny:{
+    cheer:{ win:"漂亮。这手速我给满分，过来领奖。", ok:"稳，再快一点会更好看。", low:"别急嘛，我还没玩够呢。" },
+    thanks:{ rose:"花别别在耳朵上，兔耳朵会歪。", coffee:"这杯我端着，你陪我站会儿。", cake:"甜的我吃一口，剩下喂你。" },
+    scene:{ t:"派对散场的后台", x:"音乐停了，她把兔耳摘下来挂在你手指上，说这东西今晚归你保管，明天记得亲自还给她。" },
+    story:{ t:"她为什么挑兔子", x:"第一份工让她选个造型，她挑了最吵的那套，因为兔子跑得快——她说那时候她只想有个随时能跑掉的理由。" }
   },
-  cool:{
-    cheer:{ win:"漂亮。我没想到你能到这个分。", ok:"可以。节奏比上一局准。", low:"嗯。下一局我还在。" },
-    thanks:{ rose:"……放窗台上了。", coffee:"这个点不该喝的。谢谢。", cake:"甜的我吃一半，剩下的归你。" },
-    topics:[
-      { id:"miss", lv:1, label:"想你了",     q:"想你了。",     a:"……嗯。我也是。（脸红）" },
-      { id:"wear", lv:1, label:"今天穿什么", q:"今天穿什么？", a:"银色的，背后开得有点低。别问了。" },
-      { id:"show", lv:2, label:"给我看看",   q:"给我看看。",   a:"第二张你最好一个人看。看完告诉我一句话。" },
-      { id:"kiss", lv:2, label:"晚安吻",     q:"晚安吻。",     a:"闭眼。别出声。……晚安。" }
-    ],
-    scene:{ t:"琴房最后一盏灯", x:"学生都走了，她没开大灯，只留谱架上那一盏。她把琴递过来，说你按住这里，我来拨。那是你第一次听见自己弹出的声音。" },
-    story:{ t:"她弹给谁听", x:"她十九岁在槟城街头弹过半年。只有一个人每周三晚上都来，站在同一棵树下，从不鼓掌。后来那个人没再出现，她把那首曲子封存了四年。" }
+  neko:{
+    cheer:{ win:"喵！你赢了，奖励是让我抱一下。", ok:"还可以喵，下一局我帮你盯着。", low:"没事喵……我陪你再来一次。" },
+    thanks:{ rose:"花花！我放在枕头边喵。", coffee:"热的，我慢慢舔……啊不是，慢慢喝。", cake:"这个归我喵，不许抢。" },
+    scene:{ t:"午睡的窗台", x:"阳光刚好，她整个人缩在你旁边的窗台上，说只睡五分钟，结果醒来第一句是「你怎么还没走喵」。" },
+    story:{ t:"她捡过一只猫", x:"她高中捡过一只没人要的小猫，养了两个月被家里送走。她说从那天起她就决定，谁对她好她就黏到底。" }
+  },
+  summer:{
+    cheer:{ win:"赢得漂亮，这杯椰子我请。", ok:"节奏不错，再热一点就赢了。", low:"没关系，太阳还没下去，再来。" },
+    thanks:{ rose:"花别碰水，我放遮阳伞下面。", coffee:"冰的才行，这个点喝热的会晒晕。", cake:"分我一半，剩下的你吃完才准走。" },
+    scene:{ t:"退潮之后", x:"人都走了，她拉你去踩湿掉的沙，说这时候的沙最软。你们一路走到灯塔，她一句话都没问你要不要回去。" },
+    story:{ t:"她不敢游的那片海", x:"她十二岁在这片海差点溺水，之后三年不下水。现在她每天都来，只是从不往深处走——除了有人陪的时候。" }
+  },
+  maid:{
+    cheer:{ win:"恭喜主人！这局我都看着呢。", ok:"做得很好，下一局我继续替您记分。", low:"没关系的主人，我帮您准备好下一局了。" },
+    thanks:{ rose:"花我插在您的杯子旁边好不好？", coffee:"主人的咖啡，两份糖，和上次一样。", cake:"这块我切好了，叉子在这边。" },
+    scene:{ t:"打扫完的午后", x:"活都干完了，她却不走，端着托盘站在门边问：主人今天可以多留我十分钟吗？我不说话也行。" },
+    story:{ t:"她记的那本小册子", x:"她有一本手写的小册子，记着你说过的每一句随口的话——哪天没睡好，哪种甜度不喝。她说这不是工作，是她自己想记。" }
   }
 };
 
@@ -1837,17 +1985,38 @@ const today = () => new Date().toISOString().slice(0,10);
 function fresh(){
   return {
     pts:0, day:today(), checkedIn:false, rounds:0, invited:0,
-    girl:"sweet", bg:"cafe", outfit:{}, nick:"演示用户",
+    girl:"bunny", bg:"cafe", outfit:{}, nick:"演示用户",
     owned:{ bg:["cafe"], act:[], outfit:[], outfitC:[], outfitL:[], vid:[], album:{}, tier:{} },
-    eps:{ d1:[1,2] }, watched:[], last:{},
+    eps:{ d1:[] }, watched:[], last:{},        /* 第 1–3 集对所有人免费，不记进已购 */
     tasks:{ checkin:false, game:false, drama:false, share:false, gift:false },
     streak:0,
-    chats:{}, ledger:[], coached:false, booted:false,
-    vouchers:[], extra:0, dbl:0,
-    xp:{ sweet:80, queen:0, cool:0 },   // 演示起点：小糖差一步到 Lv.2
+    ledger:[], coached:false, booted:false,
+    vouchers:[], dbl:0, gt:{},                 /* gt: 每个游戏的段位进度 */
+    xp:{ sweet:0, bunny:80, neko:0, summer:0, maid:0 },   // 演示起点：兔兔差一步到 Lv.2
     shots:{},
-    chatXp:[], epXp:[], coachXp:false
+    epXp:[], coachXp:false
   };
+}
+const GIDS = ["sweet", "bunny", "neko", "summer", "maid"];
+/* 旧存档里 queen / cool 已下线：按角色存的东西丢弃，当前陪伴回落到小糖 */
+function migrateGirls(s){
+  const ok = id => GIDS.includes(id);
+  if(!ok(s.girl)) s.girl = "sweet";
+  const pick = o => {
+    const out = {};
+    for(const k in (o || {})) if(ok(k)) out[k] = o[k];
+    return out;
+  };
+  s.xp = Object.assign({ sweet:0, bunny:0, neko:0, summer:0, maid:0 }, pick(s.xp));
+  s.outfit = pick(s.outfit);
+  s.shots  = pick(s.shots);
+  s.gt     = s.gt || {};
+  const o = s.owned = s.owned || {};
+  o.album = pick(o.album);
+  o.tier  = pick(o.tier);
+  o.vid    = (o.vid    || []).filter(ok);
+  o.outfit = (o.outfit || []).filter(ok);
+  delete s.chats; delete s.chatXp; delete s.extra;   /* 聊天与每日计分局都已下线 */
 }
 let S = load();
 function load(){
@@ -1856,15 +2025,19 @@ function load(){
   if(!s || typeof s !== "object"){ s = fresh(); }
   else { const f = fresh(); for(const k in f) if(!(k in s)) s[k] = f[k]; }
   if(s.day !== today()){
-    s.day = today(); s.checkedIn = false; s.rounds = 0; s.invited = 0; s.extra = 0;
-    s.chatXp = [];
+    s.day = today(); s.checkedIn = false; s.rounds = 0; s.invited = 0;
     s.tasks = { checkin:false, game:false, drama:false, share:false, gift:false };
   }
+  migrateGirls(s);
   if(!s.owned.outfitC) s.owned.outfitC = [];
   if(!s.owned.outfitL) s.owned.outfitL = [];
   if(!s.owned.album) s.owned.album = {};
   if(!s.owned.tier) s.owned.tier = {};
   if(!s.shots) s.shots = {};
+  if(!s.gt) s.gt = {};
+  if(!s.vouchers) s.vouchers = [];
+  if(!Array.isArray(s.eps.d1)) s.eps.d1 = [];
+  s.eps.d1 = s.eps.d1.filter(n => n > FREE_EPS);     /* 免费集不再当作已购 */
   if(!s.booted){
     s.booted = true; s.pts = RULES.signup;
     s.ledger = [{ t:Date.now(), label:"首次注册奖励", d:RULES.signup }];
@@ -1905,12 +2078,23 @@ function i3Fail(img){
   if(h) h.classList.add("fb");
 }
 window.i3Fail = i3Fail;
-const CHK = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 12.6 9.6 17.4 19.2 6.6"/></svg>`;
+const HRT_PATH = "M12 20.4S3.5 15.1 3.5 9.3A4.7 4.7 0 0 1 12 6.6a4.7 4.7 0 0 1 8.5 2.7c0 5.8-8.5 11.1-8.5 11.1z";
+/* 打卡格子：已打卡 = 实心爱心，未打卡 = 描边爱心 */
+const HRT_FILL = `<svg viewBox="0 0 24 24" class="hf"><path d="${HRT_PATH}"/></svg>`;
+const HRT_LINE = `<svg viewBox="0 0 24 24" class="hl" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${HRT_PATH}"/></svg>`;
 const GIFTLINE = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.6h16V20H4zM2.8 6.8h18.4v3.8H2.8zM12 6.8V20M12 6.8S10.6 3.4 8.6 3.4a1.9 1.9 0 0 0 0 3.4zm0 0s1.4-3.4 3.4-3.4a1.9 1.9 0 0 1 0 3.4z"/></svg>`;
 const fmtTime = t => { const d = new Date(t); return `${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; };
 
 /* 图片占位：加载失败时露出金/蓝渐变 + 首字 */
 function imgFail(el){ const p = el.closest(".ph"); if(p) p.classList.add("gone"); }
+/* logo 文件缺失时退回金色字标 */
+function logoFail(el, size){
+  const b = document.createElement("div");
+  b.className = "h2 gg";
+  b.style.cssText = `font-size:${size || 20}px;letter-spacing:.04em`;
+  b.textContent = "MBA66";
+  el.replaceWith(b);
+}
 /* 视频缺失：退回 poster 图 + 轻微 Ken-Burns */
 function vidFail(el){
   const p = el.closest(".ph"); const poster = el.getAttribute("poster");
@@ -2003,9 +2187,9 @@ function levelSheet(g, lv){
         <div class="row"><span class="gold" style="width:18px">${ico("i-up")}</span>
           <div class="row-m"><div class="row-t">解锁：${esc(lv.unlock)}</div>
             <div class="row-s">累计亲密经验 ${S.xp[g.id] || 0}</div></div></div>
-        ${lv.lv >= 2 ? `<div class="row"><span class="gold" style="width:18px">${ico("i-chat")}</span>
-          <div class="row-m"><div class="row-t">聊天里新增互动话题</div>
-            <div class="row-s">在输入框上方选用</div></div></div>` : ""}
+        ${lv.lv >= 2 ? `<div class="row"><span class="gold" style="width:18px">${ico("i-shirt")}</span>
+          <div class="row-m"><div class="row-t">解锁更多造型与私密照片</div>
+            <div class="row-s">在她的空间里查看</div></div></div>` : ""}
         ${lv.lv >= 3 ? `<div class="row"><span class="gold" style="width:18px">${ico("i-sparkle")}</span>
           <div class="row-m"><div class="row-t">特别互动：${esc(BOND[g.id].scene.t)}</div>
             <div class="row-s">在她的空间里查看</div></div></div>` : ""}
@@ -2014,7 +2198,7 @@ function levelSheet(g, lv){
             <div class="row-s">在她的空间里查看</div></div></div>` : ""}
       </div>
       <p class="sm" style="margin-top:14px">亲密经验只累积，不消耗、不折现。</p>`,
-    foot:`<a class="btn btn-pri btn-w" href="#chat" onclick="closeSheet()">${ico("i-chat")}去找${esc(g.name)}</a>
+    foot:`<a class="btn btn-pri btn-w" href="#girl/${g.id}" onclick="closeSheet()">${ico("i-heart")}去看${esc(g.name)}</a>
           <button class="btn btn-qt btn-w" onclick="closeSheet()">知道了</button>`
   });
   setTimeout(() => confetti(sh.querySelector(".lvup")), 320);
@@ -2044,6 +2228,18 @@ function toast(msg, icon="i-check"){
   setTimeout(() => { d.classList.add("out"); setTimeout(() => d.remove(), 320); }, 2300);
 }
 /* 积分与亲密并排显示在同一条 toast 上 */
+function winPop(pts, sub){
+  let w = $("#winpop");
+  if(!w){ w = document.createElement("div"); w.id = "winpop"; ($("#stage") ? $("#stage").parentElement : document.body).appendChild(w); }
+  w.innerHTML = `<div class="wp" role="dialog" aria-label="恭喜获得"><div class="rays"></div><div class="rb">恭喜获得</div>
+    <div class="coin">${i3("coin", 74)}</div>
+    <div class="num">+${pts}<small>积分</small></div><div class="sub">${esc(sub)}</div>
+    <button class="btn btn-gold btn-w" data-wpok>立即收下</button></div>`;
+  w.classList.add("on");
+  const close = () => w.classList.remove("on");
+  w.querySelector("[data-wpok]").onclick = close;
+  w.onclick = e => { if(e.target === w) close(); };
+}
 function rewardToast(label, pts, xp, g){
   const box = $("#toast");
   const d = document.createElement("div");
@@ -2247,7 +2443,7 @@ function moveTabInd(){
 }
 /* 3. 悬浮陪伴头像：只在首页 / 短剧 / 奖励 / 我的出现 */
 const FAB_ON = ["drama", "rewards", "me", "points", "games"];
-const FAB_SAY = ["在吗～", "想你了", "来陪我玩嘛", "偷偷看你一眼", "今天想我没"];
+const FAB_SAY = ["来玩一局嘛", "想你了", "陪我玩", "偷偷看你一眼", "今天想我没"];
 let fabTimer = null;
 function syncFab(name){
   const f = $("#fab"); if(!f) return;
@@ -2256,7 +2452,7 @@ function syncFab(name){
   f.classList.toggle("on", show);
   if(!show){ f.innerHTML = ""; return; }
   const g = girl();
-  f.setAttribute("aria-label", `和${g.name}聊天`);
+  f.setAttribute("aria-label", `和${g.name}玩亲密游戏`);
   f.innerHTML = `${phImg(outfitImg(g), g.initial, "", "", AV)}<span class="dot"></span><span class="ring"></span>`;
   if(rm()) return;
   const pop = () => {
@@ -2327,10 +2523,10 @@ function react(host, kind="idle", gid){
 /* 五级衣柜：一次性解锁，价格递增；比基尼是顶级，没有内衣级 */
 const TIERS = [
   { k:"daily",  t:"日常",     price:0,   img:g => g.img },
-  { k:"lounge", t:"酒廊礼服", price:100, img:g => g.lounge },
-  { k:"v3",     t:"性感造型", price:200, img:g => g.v3 },
-  { k:"x",      t:"睡衣",     price:300, img:g => g.x },
-  { k:"bikini", t:"比基尼",   price:500, img:g => g.bikini }
+  { k:"lounge", t:"夜店派对",     price:100, img:g => g.lounge },
+  { k:"v3",     t:"招牌 Cosplay", price:200, img:g => g.v3 },
+  { k:"x",      t:"睡衣",         price:300, img:g => g.x },
+  { k:"bikini", t:"高叉比基尼",   price:500, img:g => g.bikini }
 ];
 const tierOf = k => TIERS.find(t => t.k === k) || TIERS[0];
 const tierImg = (g, k) => tierOf(k).img(g);
@@ -2342,7 +2538,7 @@ const wornTier = gid => {
 };
 const outfitImg = g => tierImg(g, wornTier(g.id));
 const TIER_LINE = {
-  lounge:"这条裙子是为今晚挑的。", v3:"好看吗？我特意换的。",
+  lounge:"这身是为今晚挑的，陪我久一点。", v3:"招牌造型，只给你看全套。",
   x:"……这套只在家里穿。（脸红）", bikini:"第一次穿给你看…不许乱看哦（脸红）"
 };
 /* 私密相册：主图 + 私房照 + 两套旧造型；0 号免费，其余 120 解锁 */
@@ -2404,6 +2600,22 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
 /* ============================================================
    首页
    ============================================================ */
+/* 首页广告位：4 张海报，自动轮播 */
+const ADS = [
+  { gid:"sweet",  t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   icon:"i-cal",    cls:"ad-1", pos:"52% 14%", act:"check" },
+  { gid:"bunny",  t:"美女，你今天打卡了吗？",              cta:"马上打卡", icon:"i-heart",  cls:"ad-2", pos:"50% 12%", act:"check" },
+  { gid:"summer", t:"充值马上能赢奖和拿积分",              cta:"去充值",   icon:"i-coin",   cls:"ad-3", pos:"50% 16%", act:"topup" },
+  { gid:"neko",   t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     icon:"i-game",   cls:"ad-4", pos:"50% 12%", go:"#games" }
+];
+let adStop = null;
+/* 精彩推荐：卖点卡，各自有去处 */
+const PROMOS = [
+  { k:"games", gid:"maid",   img:g => g.v3,     pos:"50% 14%", kick:"GAMES",  t:"与女友互动 · 亲密游戏", sub:"赢积分换奖励 · 段位越高倍率越高", href:"#games" },
+  { k:"drama", gid:"sweet",  img:g => g.lounge, pos:"50% 20%", kick:"DRAMA",  t:"更多更新剧情 · 紧张刺激", sub:"看剧也能累积积分，前 3 集免费", href:"#drama" },
+  { k:"girls", gid:"bunny",  img:g => g.v3,     pos:"50% 12%", kick:"NEW",    t:"新女友上线", sub:"兔女郎 / 猫女郎 / 高叉比基尼", href:"#girls" },
+  { k:"topup", gid:"summer", img:g => g.bikini, pos:"50% 16%", kick:"MBA66",  t:"充值多多 · 赢奖多多", sub:"MBA66 平台活动，积分与奖品一起拿", href:null }
+];
+
 ROUTES.home = { view(){
   const g = girl();
   const bd = bondOf(g.id);
@@ -2414,7 +2626,8 @@ ROUTES.home = { view(){
     .concat(GIRLS.map(x => ({ img:x.v3, ini:x.initial, cap:x.name, href:`#girl/${x.id}`, play:false })));
   return {
     ghost:true, flush:true, tab:"home",
-    bar:`<img src="assets/logo/logo-hg.png" alt="MBA66" style="height:17px;filter:drop-shadow(0 2px 6px rgba(42,10,51,.9))" onerror="this.outerHTML='<div class=\\'bar-t\\'>MBA66</div>'">
+    bar:`<img class="brandlogo" src="assets/logo/logo-hg.png" alt="MBA66"
+           onerror="logoFail(this,22)">
          <div style="margin-left:auto">${ptLink()}</div>`,
     html:`
     <section class="hero" data-od-id="home-hero" id="heroBox" data-react-pos="right:14px;bottom:150px">
@@ -2436,32 +2649,53 @@ ROUTES.home = { view(){
             return `<button class="ckday ${done ? "on" : ""} ${gift ? "gift" : ""} ${isToday ? "today act" : ""}"
               ${isToday ? 'data-ck="1"' : "disabled"} data-od-id="ckday-${dn}"
               aria-label="第 ${dn} 天${done ? " 已打卡" : isToday ? " 今天可打卡" : ""}">
-              <i>${gift ? GIFTLINE : CHK}</i><b>第${dn}天</b></button>`;
+              <i>${gift ? GIFTLINE : done ? HRT_FILL : HRT_LINE}</i><b>第${dn}天</b></button>`;
           }).join("")}
         </div>
       </div>
     </section>
 
     <div style="padding:12px 14px 0">
+      <div class="adwrap" data-od-id="home-ads">
+        <div class="adtrack" id="adTrack">
+          ${ADS.map((a, i) => {
+            const x = girl(a.gid);
+            return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
+              <span class="ad-ph">${phImg(x.v3, x.initial, x.name, "", a.pos || "50% 18%")}</span>
+              <span class="ad-shade"></span>
+              <span class="ad-c"><b>${esc(a.t)}</b>
+                <span class="ad-cta">${ico(a.icon)}${esc(a.cta)}</span></span>
+            </div>`;
+          }).join("")}
+        </div>
+        <div class="addots" id="adDots">${ADS.map((_, i) =>
+          `<button class="${i ? "" : "on"}" data-dot="${i}" aria-label="第 ${i + 1} 张广告"></button>`).join("")}</div>
+      </div>
+
       <div class="qtiles" data-od-id="home-quick">
-        <a class="qt qt-blue" href="#chat" data-od-id="qt-chat">${i3("chat-role", 44)}<span>角色互动</span></a>
-        <a class="qt qt-purple" href="#games" data-od-id="qt-game">${i3("game", 44)}<span>小游戏</span></a>
-        <a class="qt qt-orange" href="#drama" data-od-id="qt-drama">${i3("drama", 44)}<span>AI 剧集</span></a>
+        <a class="qt qt-purple" href="#games" data-od-id="qt-game">${i3("game", 26)}<span>亲密游戏</span></a>
+        <a class="qt qt-orange" href="#drama" data-od-id="qt-drama">${i3("drama", 26)}<span>AI 剧集</span></a>
+        <a class="qt qt-pink" href="#girls" data-od-id="qt-girls">${i3("crown", 26)}<span>女友</span></a>
       </div>
 
       <a class="vip" href="#points" style="margin-top:11px" data-od-id="home-vip">${i3("crown", 34)}
-        <div class="row-m"><b>会员中心</b></div>
+        <div class="row-m"><b>MBA66 会员中心</b></div>
         <span class="cv"><span data-pts>${S.pts}</span> 积分${ico("i-next")}</span></a>
 
-      <section class="sec" data-od-id="home-feed">
-        <div class="sec-h"><h2 class="h2">热门内容推荐</h2><a class="tbtn" href="#drama">全部${ico("i-next")}</a></div>
-        <div class="pscroll">
-          ${feed.map(f => `<a class="poster" href="${f.href}" data-od-id="feed-${esc(f.cap)}">
-            ${phImg(f.img, f.ini, f.cap)}<div class="scrim"></div>
-            <span class="pbadge"><svg viewBox="0 0 24 24">${f.play
-              ? '<path d="M8.4 5.3 19 12 8.4 18.7z"/>'
-              : '<path d="M12 20.3S3.6 15.1 3.6 9.4A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 8.4 2.6c0 5.7-8.4 10.9-8.4 10.9z"/>'}</svg></span>
-            <span class="cap">${esc(f.cap)}</span></a>`).join("")}
+      <section class="sec" data-od-id="home-promo">
+        <div class="sec-h"><h2 class="h2">精彩推荐</h2><span class="sm">MBA66 专属</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${PROMOS.map(pr => {
+            const x = girl(pr.gid);
+            const inner = `<span class="pm-ph">${phImg(pr.img ? pr.img(x) : x.v3, x.initial, pr.t, "", pr.pos || "50% 16%")}</span>
+              <span class="pm-shade"></span>
+              <span class="pm-c"><em>${esc(pr.kick)}</em><b>${esc(pr.t)}</b>
+                <span class="pm-s">${esc(pr.sub)}</span></span>
+              <span class="pm-go">${ico("i-next")}</span>`;
+            return pr.href
+              ? `<a class="pmcard gframe" href="${pr.href}" data-od-id="promo-${pr.k}">${inner}</a>`
+              : `<button class="pmcard gframe" data-promo="${pr.k}" data-od-id="promo-${pr.k}">${inner}</button>`;
+          }).join("")}
         </div>
       </section>
 
@@ -2490,7 +2724,7 @@ ROUTES.home = { view(){
         burst(lastTap || tile.getBoundingClientRect(), { n:14, spread:54 });
         reward("每日打卡", RULES.checkin, XPR.checkin);
         react($("#heroBox"), "win");
-        setTimeout(render, 820);
+        setTimeout(() => { render(); winPop(RULES.checkin, `第 ${S.streak} 天打卡 · 连续 7 天送大礼`); }, 820);
       };
       const ck = root.querySelector("[data-ck]"); if(ck) ck.onclick = doCheck;
       const tc = $("#taskCheck", root); if(tc) tc.onclick = doCheck;
@@ -2509,12 +2743,56 @@ ROUTES.home = { view(){
         try { v.play(); } catch(e){}
         toast(`${g.name} 在看你`, "i-heart");
       };
+      /* 广告轮播：自动播放 + 可拖拽 + 圆点 + 循环 */
+      const track = $("#adTrack", root), dots = $$("#adDots button", root);
+      if(track){
+        let ai = 0, atimer = null, drag = null;
+        const go = i => {
+          ai = (i + ADS.length) % ADS.length;
+          track.style.transform = `translate3d(${-ai * 100}%,0,0)`;
+          dots.forEach((d, k) => d.classList.toggle("on", k === ai));
+        };
+        const start = () => { if(rm()) return; stop(); atimer = setInterval(() => go(ai + 1), 3600); };
+        const stop = () => { if(atimer) clearInterval(atimer); atimer = null; };
+        dots.forEach(d => d.onclick = () => { go(+d.dataset.dot); start(); });
+        track.addEventListener("pointerdown", e => {
+          drag = { x:e.clientX, moved:0 }; stop();
+          track.classList.add("grabbing");
+        });
+        track.addEventListener("pointermove", e => {
+          if(!drag) return;
+          drag.moved = e.clientX - drag.x;
+          track.style.transform = `translate3d(calc(${-ai * 100}% + ${drag.moved}px),0,0)`;
+        });
+        const endDrag = () => {
+          if(!drag) return;
+          const m = drag.moved; drag = null;
+          track.classList.remove("grabbing");
+          go(Math.abs(m) > 42 ? (m < 0 ? ai + 1 : ai - 1) : ai);
+          start();
+        };
+        track.addEventListener("pointerup", endDrag);
+        track.addEventListener("pointercancel", endDrag);
+        track.addEventListener("pointerleave", endDrag);
+        $$("[data-ad]", root).forEach(el => el.onclick = e => {
+          if(Math.abs((drag && drag.moved) || 0) > 6) return;
+          const a = ADS[+el.dataset.ad];
+          if(a.act === "check") return doCheck();
+          if(a.act === "topup") return toast("跳转 MBA66 充值页（演示）", "i-coin");
+          nav(a.go);
+        });
+        go(0); start();
+        adStop = stop;
+      }
+      $$("[data-promo]", root).forEach(b => b.onclick = () =>
+        toast("跳转 MBA66 平台活动页（演示）", "i-crown"));
       $("#seeHer", root).onclick = e => { e.stopPropagation(); playClip(); };
       hero.addEventListener("click", e => {
         if(e.target.closest("a,button")) return;
         playClip(); react(hero, "idle");
       });
-    }
+    },
+    leave(){ if(adStop){ adStop(); adStop = null; } }
   };
 }};
 
@@ -2523,7 +2801,7 @@ function TASKS(){
   const g = girl();
   return [
     { k:"checkin", t:"每日打卡",       p:`+${RULES.checkin} 积分`,      x:`+${XPR.checkin} 亲密`, done:S.tasks.checkin, go:null },
-    { k:"game",    t:"玩一局小游戏",   p:`最多 +${RULES.gameMax} 积分`, x:`+${XPR.game} 亲密`,    done:S.tasks.game,    go:"#games" },
+    { k:"game",    t:"玩一局亲密游戏",   p:`最多 +${RULES.gameMax} 积分`, x:`+${XPR.game} 亲密`,    done:S.tasks.game,    go:"#games" },
     { k:"drama",   t:"看完一集短剧",   p:"解锁后续内容",                x:`+${XPR.drama} 亲密`,   done:S.tasks.drama,   go:"#drama" },
     { k:"gift",    t:"送她一份礼物",   p:`-${PRICE.gift} 积分`,         x:`+${XPR.gift} 亲密`,    done:S.tasks.gift,    go:"#girl/" + g.id },
     { k:"share",   t:"分享给好友",     p:`好友有效观看 +${RULES.invite}/人`, x:"", done:S.tasks.share, go:"#drama" }
@@ -2536,10 +2814,10 @@ function TASKS(){
 ROUTES.girls = { view(){
   return {
     tab:"girls",
-    bar:`<div class="row-m"><div class="bar-t">选择你的 AI 伙伴</div></div>${ptLink()}`,
+    bar:`<div class="row-m"><div class="bar-t">我的女友</div></div>${ptLink()}`,
     html:`
-    <h1 class="h1" style="margin-bottom:6px"><span class="gg">选择你的虚拟角色</span></h1>
-    <p class="p" data-od-id="girls-intro">三位成年虚拟角色，性格与说话方式不同。随时可以更换，已解锁的内容不会消失。</p>
+    <h1 class="h1" style="margin-bottom:6px"><span class="gg">选择你的虚拟女友</span></h1>
+    <p class="p" data-od-id="girls-intro">${GIRLS.length} 位成年虚拟女友，造型与性格各不相同。随时可以更换，已解锁的内容不会消失。</p>
     <div style="display:flex;flex-direction:column;gap:13px;margin-top:20px">
       ${GIRLS.map(g => `
         <div class="gcard ${S.girl === g.id ? "cur" : ""}" data-od-id="girl-card-${g.id}">
@@ -2559,8 +2837,8 @@ ROUTES.girls = { view(){
             <div style="margin-top:13px">${bondBar(g.id, "sm")}</div>
             <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
               ${S.girl === g.id
-                ? `<a class="btn btn-qt" href="#chat" style="flex:1;min-height:42px;font-size:13px">${ico("i-chat")}去聊天</a>`
-                : `<button class="btn btn-gold" data-pick="${g.id}" style="flex:1;min-height:42px;font-size:13px">${ico("i-heart")}选择角色</button>`}
+                ? `<a class="btn btn-qt" href="#games" style="flex:1;min-height:42px;font-size:13px">${ico("i-game")}陪她玩</a>`
+                : `<button class="btn btn-gold" data-pick="${g.id}" style="flex:1;min-height:42px;font-size:13px">${ico("i-heart")}选她陪我</button>`}
               <a class="tbtn" href="#girl/${g.id}">她的空间</a>
             </div>
           </div>
@@ -2609,8 +2887,8 @@ ROUTES.girl = { view(id){
       <div style="margin-top:12px">${bondBar(g.id)}</div>
       <div style="margin-top:12px">
         ${isCur
-          ? `<a class="btn btn-pri btn-w" href="#chat" data-od-id="girl-cta-chat">${ico("i-chat")}和${esc(g.name)}聊天</a>`
-          : `<button class="btn btn-gold btn-w claim" id="pick" data-od-id="girl-cta-pick">${ico("i-heart")}选择角色</button>`}
+          ? `<a class="btn btn-pri btn-w claim" href="#games" data-od-id="girl-cta-games">${ico("i-game")}和${esc(g.name)}玩亲密游戏</a>`
+          : `<button class="btn btn-gold btn-w claim" id="pick" data-od-id="girl-cta-pick">${ico("i-heart")}选她陪我</button>`}
       </div>
       ${S.owned.act.length && isCur ? `
       <div style="display:flex;gap:8px;margin-top:11px;flex-wrap:wrap">
@@ -2621,10 +2899,9 @@ ROUTES.girl = { view(id){
       <section class="sec">
         <div class="sec-h"><h2 class="h2">她的空间</h2></div>
         <div style="display:flex;flex-direction:column;gap:9px">
-          <a class="lrow" href="#chat">${ico("i-chat")}<div class="row-m">聊天<div class="row-s">文字对话 · 不消耗积分</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">${TIERS.length} 套造型 · 已解锁 ${TIERS.filter(t => ownTier(g.id, t.k)).length}</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#videos">${ico("i-play")}<div class="row-m">视频收藏<div class="row-s">${ownsVid ? "已解锁 " + g.name + " 的问候短片" : "未解锁"}</div></div><span class="cv">${S.owned.vid.length}/${GIRLS.length}${ico("i-next")}</span></a>
-          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩小游戏<div class="row-s">${LIVE.length} 个游戏 · 今日可计分 ${scoredLeft()}/${roundCap()} 局</div></div><span class="cv">${ico("i-next")}</span></a>
+          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩亲密游戏<div class="row-s">${LIVE.length} 个游戏 · 每局都计分</div></div><span class="cv">${ico("i-next")}</span></a>
         </div>
       </section>
 
@@ -2673,117 +2950,18 @@ ROUTES.girl = { view(id){
 </script>
 <script>
 "use strict";
-/* ============================================================
-   聊天
-   ============================================================ */
-function chatLog(){ const g = girl(); if(!S.chats[g.id]) S.chats[g.id] = []; return S.chats[g.id]; }
 
-ROUTES.chat = { view(){
-  const g = girl(), bg = bgOf();
-  const log = chatLog();
-  const lv = lvOf(g.id);
-  return {
-    tab:"girls", flush:true, noTabs:true,
-    bar:`<button class="ibtn hit" onclick="history.length>1?history.back():nav('#home')" aria-label="返回">${ico("i-back")}</button>
-      <div class="av-s">${phImg(outfitImg(g), g.initial, "", "", AV)}</div>
-      <div class="row-m" style="min-width:0">
-        <div class="bar-t" style="display:flex;align-items:center;gap:6px;white-space:nowrap">
-          <span>${esc(g.name)}<span class="en">${esc(g.en)}</span></span><span class="pill g">AI虚拟角色</span></div>
-        <div style="margin-top:5px">${bondBar(g.id, "sm")}</div>
-      </div>
-      <button class="ibtn hit" id="chatMenu" aria-label="更多">${ico("i-dots")}</button>`,
-    html:`<div class="chat-wrap" style="height:100%">
-      <div class="chat-bg">${phImg(bg.img, bg.initial, bg.name + " 场景")}</div>
-      <div class="chat-sc" id="log">
-        <div class="msg sys">以下对话由 AI 虚拟角色生成，不代表真实人物。聊天不产生娱乐积分，每天第一次互动 +${XPR.chat} 亲密。</div>
-        ${log.length ? "" : `<div class="msg her">${esc(g.line)}</div>`}
-        ${log.map(m => `<div class="msg ${m.r}">${esc(m.x)}</div>`).join("")}
-      </div>
-      <div class="chips" id="chips" data-od-id="chat-topics">
-        ${BOND[g.id].topics.map(t => t.lv <= lv
-          ? `<button class="chip" data-topic="${t.id}">${ico("i-chat")}${esc(t.label)}</button>`
-          : `<button class="chip lk" data-locked="${t.lv}">${ico("i-lock")}${esc(t.label)} · Lv.${t.lv} 解锁</button>`).join("")}
-        <button class="chip" data-gift-open="1">${ico("i-gift")}送礼物</button>
-      </div>
-      <form class="chat-in" id="form" autocomplete="off">
-        <textarea id="inp" rows="1" placeholder="和${esc(g.name)}说点什么…" aria-label="输入消息"></textarea>
-        <button class="send hit" type="submit" id="send" disabled aria-label="发送">${ico("i-send")}</button>
-      </form>
-    </div>`,
-    after(root){
-      // 聊天屏不滚动 stage，内部滚动
-      $("#stage").style.overflow = "hidden";
-      root.style.height = "100%"; root.style.paddingBottom = "0";
-      const log = $("#log", root), inp = $("#inp", root), send = $("#send", root);
-      const bottom = () => { log.scrollTop = log.scrollHeight; };
-      bottom();
-      const grow = () => { inp.style.height = "auto"; inp.style.height = Math.min(92, inp.scrollHeight) + "px"; send.disabled = !inp.value.trim(); };
-      inp.addEventListener("input", grow);
-      inp.addEventListener("keydown", e => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); $("#form", root).requestSubmit(); } });
-      $("#form", root).addEventListener("submit", e => {
-        e.preventDefault();
-        const txt = inp.value.trim(); if(!txt) return;
-        inp.value = ""; grow();
-        say(txt);
-      });
-      /* 发一条，并让她回一句（带输入中动画） */
-      function say(txt, forced){
-        push("me", txt);
-        firstChatXp();
-        const t = document.createElement("div");
-        t.className = "typing"; t.innerHTML = "<i></i><i></i><i></i>";
-        log.appendChild(t); bottom();
-        setTimeout(() => { t.remove(); push("her", forced || answer(girl(), txt)); },
-          620 + Math.random() * 760);
-      }
-      function firstChatXp(){
-        const id = girl().id;
-        if(S.chatXp.includes(id)) return;
-        S.chatXp.push(id); save();
-        reward(`和${girl().name}互动`, 0, XPR.chat, id);
-      }
-      $$("[data-topic]", root).forEach(b => b.onclick = () => {
-        const t = BOND[girl().id].topics.find(x => x.id === b.dataset.topic);
-        say(t.q, t.a);
-      });
-      $$("[data-locked]", root).forEach(b => b.onclick = () => {
-        const need = +b.dataset.locked, bd = bondOf(girl().id);
-        toast(`这个话题要 Lv.${need} ${LEVELS[need - 1].name} · 还差 ${LEVELS[need - 1].at - bd.xp} 点亲密`, "i-lock");
-      });
-      $("[data-gift-open]", root).onclick = () => giftSheet(girl().id);
-      function push(r, x){
-        chatLog().push({ r, x }); save();
-        const d = document.createElement("div");
-        d.className = "msg " + r; d.textContent = x;
-        log.appendChild(d); bottom();
-      }
-      $("#chatMenu").onclick = () => sheet({
-        title:"聊天设置", sub:`${girl().name} · AI 虚拟角色`,
-        body:`<div class="panel" style="padding:4px 16px">
-            <div class="row"><div class="row-m"><div class="row-t">当前场景</div><div class="row-s">${bgOf().name}</div></div><a class="tbtn" href="#wardrobe" onclick="closeSheet()">更换</a></div>
-            <div class="row"><div class="row-m"><div class="row-t">对话条数</div><div class="row-s">仅保存在本机</div></div><span class="pill">${chatLog().length}</span></div>
-          </div>
-          <p class="sm" style="margin:14px 0 4px">聊天不产生娱乐积分。</p>`
-      });
-    },
-    leave(){ $("#stage").style.overflow = ""; }
-  };
-}};
+const BGS = [
+  { id:"cafe",  name:"咖啡馆", en:"Cafe",  img:"assets/img/bg-cafe.webp",  initial:"咖" },
+  { id:"beach", name:"海边",   en:"Beach", img:"assets/img/bg-beach.webp", initial:"海" },
+  { id:"night", name:"夜景",   en:"Night", img:"assets/img/bg-night.webp", initial:"夜" }
+];
+const ACTS = [
+  { id:"heart", name:"比心", en:"Heart",     icon:"i-heart",   say:"比心" },
+  { id:"wave",  name:"挥手", en:"Wave",      icon:"i-sparkle", say:"挥手" },
+  { id:"cheer", name:"庆祝", en:"Celebrate", icon:"i-star",    say:"庆祝" }
+];
 
-function answer(g, txt){
-  const t = txt.toLowerCase();
-  for(const k in g.reply){
-    if(k.split("|").some(w => t.includes(w))){
-      const a = g.reply[k];
-      return a[Math.floor(Math.random() * a.length)];
-    }
-  }
-  return g.fallback[Math.floor(Math.random() * g.fallback.length)];
-}
-
-/* ============================================================
-   换装 / 场景 / 动作
-   ============================================================ */
 ROUTES.wardrobe = { view(){
   const g = girl();
   const cur = wornTier(g.id);
@@ -2902,15 +3080,14 @@ function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then, fr
           ${[...cond,
              stock ? `库存 ${stock}` : null,
              limit || null,
-             expiry ? `有效期至 ${expiry}` : null,
-             "娱乐积分不充值、不提现"].filter(Boolean)
+             expiry ? `有效期至 ${expiry}` : null].filter(Boolean)
             .map(c => `<li class="sm" style="display:flex;gap:8px;color:var(--muted)"><span class="gold">${ico("i-check","ic")}</span><span>${esc(c)}</span></li>`).join("")}
         </ul>
       </div>`,
     foot: ok
       ? `<button class="btn btn-pri btn-w" id="yes">确认兑换 · ${cost} 积分</button>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">再想想</button>`
-      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去玩小游戏赚积分</a>
+      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去玩亲密游戏赚积分</a>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
   });
   const y = sh.querySelector("#yes");
@@ -2941,22 +3118,20 @@ function giftSheet(gid){
           <div class="row-s">${b.max ? "已满级" : "距 Lv." + (b.lv + 1) + " 还差 " + (b.next - b.xp) + " 点"}</div></div>
           <b style="font-size:15px;color:var(--gold)">Lv.${b.lv} ${esc(b.name)}</b></div>
       </div>
-      <p class="sm" style="margin-top:14px">选中即送出，她会在聊天里回你一句。礼物为虚拟物品，不可转让、不折现。</p>`,
+      <p class="sm" style="margin-top:14px">选中即送出，她会立刻回你一句。礼物为虚拟物品，不可转让、不折现。</p>`,
     foot:`<button class="btn btn-qt btn-w" onclick="closeSheet()">再看看</button>`
   });
   $$("[data-gift]", sh).forEach(btn => btn.onclick = () => sendGift(g, GIFTS.find(x => x.id === btn.dataset.gift), btn));
 }
 function sendGift(g, gift, fromEl){
   if(S.pts < PRICE.gift){ closeSheet(); toast(`积分不足，还差 ${PRICE.gift - S.pts}`, "i-coin"); return; }
-  const log = S.chats[g.id] = S.chats[g.id] || [];
-  log.push({ r:"me", x:`送你一份${gift.name}` });
-  log.push({ r:"her", x:BOND[g.id].thanks[gift.id] });
   S.tasks.gift = true;
   const from = fromEl ? fromEl.getBoundingClientRect() : lastTap;
   closeSheet();
-  const to = (current.name === "chat" && rectOf(".av-s")) || rectOf("#fab") || rectOf(".ptchip");
+  const to = rectOf("#fab") || rectOf(".ptchip");
   flyIcon(from, to, gift.icon, () => burst(to, { n:9, kind:"heart", spread:36 }));
   reward(`送出${gift.name}`, -PRICE.gift, XPR.gift, g.id);
+  toast(`${g.name}：${BOND[g.id].thanks[gift.id]}`, "i-heart");
   setTimeout(render, 980);
 }
 
@@ -3066,13 +3241,13 @@ function bondStory(gid, kind){
         <p class="p" style="margin-top:14px">${esc(kind === "scene" ? "特别互动及剧情" : "专属故事及互动")}需要和${esc(g.name)}的亲密度达到 Lv.${need}。
           还差 ${lv.at - b.xp} 点亲密经验。</p>
         <div class="panel" style="margin-top:12px;padding:4px 16px">
-          ${[["每日签到", `+${XPR.checkin}`], ["每天第一次和她聊天", `+${XPR.chat}`],
-             ["心动挑战每局（每日 " + RULES.gameRounds + " 局）", `+${XPR.game}`],
+          ${[["每日签到", `+${XPR.checkin}`], ["陪她玩一局亲密游戏", `+${XPR.game}`],
+             ["亲密游戏每局", `+${XPR.game}`],
              ["看完一集已解锁短剧", `+${XPR.drama}`], ["送出一份礼物", `+${XPR.gift}`]]
             .map(r => `<div class="row"><div class="row-m"><div class="row-t">${r[0]}</div></div>
               <b style="color:var(--rose);font-size:14px">${r[1]} 亲密</b></div>`).join("")}
         </div>`,
-      foot:`<a class="btn btn-pri btn-w" href="#chat" onclick="closeSheet()">${ico("i-chat")}去和${esc(g.name)}聊天</a>
+      foot:`<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去陪${esc(g.name)}玩</a>
             <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
     });
   }
@@ -3081,7 +3256,7 @@ function bondStory(gid, kind){
     body:`<div class="lvup">${phImg(kind === "scene" ? outfitImg(g) : g.img2, g.initial, g.name + " 形象")}
         <div class="cap"><div class="lbl">${kind === "scene" ? "特别互动" : "专属故事"}</div></div></div>
       <p class="p" style="margin-top:14px">${esc(c.x)}</p>`,
-    foot:`<a class="btn btn-pri btn-w" href="#chat" onclick="closeSheet()">${ico("i-chat")}和${esc(g.name)}说说</a>
+    foot:`<a class="btn btn-pri btn-w" href="#girl/${g.id}" onclick="closeSheet()">${ico("i-heart")}去看${esc(g.name)}</a>
           <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
   });
 }
@@ -3161,35 +3336,33 @@ const FX = {
 const GAMES = [
   /* 上线中：5 个 */
   { id:"rps",    name:"猜拳换装",     hook:"赢两局，一套一套换",  cls:"gx-5", icon:"game",      live:true, isNew:true, hot:true,
-    cover:{ gid:"queen", img:g => g.bikini, pos:"50% 16%", tint:"cv-pink",   fx:"rps" } },
+    cover:{ gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
   { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
-    cover:{ gid:"cool",  img:g => g.v3,     pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
+    cover:{ gid:"summer", img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
   { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
     cover:{ gid:"sweet", img:g => g.sun,    pos:"46% 42%", tint:"cv-gold",   fx:"sun" } },
   { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
-    cover:{ gid:"sweet", img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
+    cover:{ gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
   { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
     cover:{ fan:true,    tint:"cv-violet" } },
   /* KIV · 即将推出：代码保留，UI 不可进入 */
-  { id:"close",  name:"心跳靠近",     hook:"停在刚刚好的距离",   cls:"gx-1", icon:"chat-role",
-    cover:{ gid:"queen", img:g => g.v3,     pos:"52% 10%", tint:"cv-pink",   fx:"ecg" } },
   { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
-    cover:{ gid:"cool",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
+    cover:{ gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
   { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
     cover:{ gid:"sweet", img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
   { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
-    cover:{ gid:"queen", img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
+    cover:{ gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
   { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
-    cover:{ gid:"cool",  img:g => g.bikini, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
+    cover:{ gid:"neko",  img:g => g.lounge, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
 function gameCover(gm){
   const c = gm.cover || {};
   if(c.fan){
-    const FAN = { sweet:g => g.x, queen:g => g.bikini, cool:g => g.lounge };
-    return `<div class="cv-fan">${GIRLS.map(x =>
-      `<span>${phImg(FAN[x.id](x), x.initial, "", "", "50% 16%")}</span>`).join("")}</div>
+    const FAN = { sweet:g => g.x, bunny:g => g.bikini, neko:g => g.lounge, summer:g => g.bikini, maid:g => g.x };
+    return `<div class="cv-fan">${GIRLS.slice(0, 3).map(x =>
+      `<span>${phImg((FAN[x.id] || (y => y.v3))(x), x.initial, "", "", "50% 16%")}</span>`).join("")}</div>
       <div class="cv-tint"></div>`;
   }
   const x = girl(c.gid);
@@ -3198,21 +3371,50 @@ function gameCover(gm){
     <div class="cv-tint"></div>${FX[c.fx] || ""}`;
 }
 const gameOf = id => GAMES.find(x => x.id === id) || LIVE[0];
-const roundCap = () => RULES.gameRounds + (S.extra || 0);
-const scoredLeft = () => Math.max(0, roundCap() - S.rounds);
+
+/* ---------- 段位：铜 → 银 → 金 → 钻石，按该游戏累计积分升段，越高倍率越高 ---------- */
+const GTIERS = [
+  { k:"bronze",  t:"铜牌", en:"Bronze",  at:0,   mul:1   },
+  { k:"silver",  t:"银牌", en:"Silver",  at:60,  mul:1.2 },
+  { k:"gold",    t:"金牌", en:"Gold",    at:180, mul:1.5 },
+  { k:"diamond", t:"钻石", en:"Diamond", at:400, mul:2   }
+];
+const gtRec = id => (S.gt && S.gt[id]) || { xp:0, best:0, plays:0 };
+function gTier(id){
+  const xp = gtRec(id).xp || 0;
+  let i = 0;
+  for(let k = 0; k < GTIERS.length; k++) if(xp >= GTIERS[k].at) i = k;
+  const cur = GTIERS[i], nxt = GTIERS[i + 1];
+  return { ...cur, i, xp, next:nxt, need: nxt ? nxt.at - xp : 0,
+    pct: nxt ? Math.min(1, (xp - cur.at) / (nxt.at - cur.at)) : 1 };
+}
+const tierBadge = (id, cls = "") => {
+  const T = gTier(id);
+  return `<span class="tgb tg-${T.k} ${cls}">${ico("i-crown","ic")}${T.t}<em>×${T.mul}</em></span>`;
+};
+function tierBar(id){
+  const T = gTier(id);
+  return `<div class="tgbar" data-od-id="tierbar-${id}">
+    <div class="tgbar-h">${tierBadge(id)}
+      <span class="sm">${T.next ? `距离 ${T.next.t} 还差 ${T.need} 分` : "已达最高段位"}</span></div>
+    <div class="tgbar-t"><i style="transform:scaleX(${T.pct})"></i></div>
+    <div class="tgbar-f">${GTIERS.map((x, k) =>
+      `<span class="${k <= T.i ? "on" : ""}">${x.t} ×${x.mul}</span>`).join("")}</div>
+  </div>`;
+}
 
 /* ---------- 大厅 ---------- */
 ROUTES.games = { view(){
-  const g = girl(), left = scoredLeft();
+  const g = girl();
   return {
     tab:"home",
-    bar:`<div class="row-m"><div class="bar-t">小游戏</div></div>${ptLink()}`,
+    bar:`<div class="row-m"><div class="bar-t">亲密游戏</div></div>${ptLink()}`,
     html:`
-    <div class="panel" style="display:flex;align-items:center;gap:12px;padding:13px 15px" data-od-id="games-pool">
-      ${i3("game", 34)}
-      <div class="row-m"><b style="font-size:15px;font-weight:700">今日计分局</b>
-        <div class="sm" style="margin-top:2px">${LIVE.length} 个游戏共用 · 每局最多 +${RULES.gameMax} 积分</div></div>
-      <b class="big" style="font-size:24px;color:${left ? "var(--gold-2)" : "var(--muted)"}">${left}<span style="font-size:14px">/${roundCap()}</span></b>
+    <div class="gpanel" data-od-id="games-pool">
+      ${i3("game", 36)}
+      <div class="row-m"><b style="font-size:15.5px;font-weight:700">每局都计分</b>
+        <div class="sm" style="margin-top:3px">${LIVE.length} 个游戏 · 单局最多 +${RULES.gameMax} 积分 · 段位越高倍率越高</div></div>
+      <b class="big gg" style="font-size:22px">×${Math.max(...LIVE.map(x => gTier(x.id).mul)).toFixed(1)}</b>
     </div>
     ${S.dbl ? `<div class="panel vhit" style="margin-top:10px;display:flex;align-items:center;gap:10px;padding:11px 14px" data-od-id="games-dbl">
       ${ico("i-coin")}<div class="row-m"><b style="font-size:13.5px">双倍积分卡已生效</b>
@@ -3224,7 +3426,7 @@ ROUTES.games = { view(){
         ${(gm.isNew || gm.hot) ? `<span class="badges">${gm.isNew ? `<span class="newbadge">新</span>` : ""}${
           gm.hot ? `<span class="hotbadge">热</span>` : ""}</span>` : ""}
         <b>${esc(gm.name)}</b><em>${esc(gm.hook)}</em>
-        <span class="pill ${left ? "g" : "tbd"}">${left ? `剩余计分 ${left}/${roundCap()}` : "练习模式"}</span>
+        ${tierBadge(gm.id, "oncard")}
       </a>`).join("")}
     </div>
 
@@ -3249,8 +3451,8 @@ ROUTES.game = { view(id){
   const gm = gameOf(id || LIVE[0].id);
   if(!gm.live){                       /* KIV：直接敲 hash 也进不去 */
     setTimeout(() => { toast("即将上线，敬请期待", "i-lock"); nav("#games"); }, 0);
-    return { tab:"home", bar:barBack("即将推出"), html:`<div class="empty"><p class="sm">这个小游戏还在路上，敬请期待。</p>
-      <a class="tbtn" href="#games" style="display:inline-block;margin-top:8px">回到小游戏</a></div>` };
+    return { tab:"home", bar:barBack("即将推出"), html:`<div class="empty"><p class="sm">这个游戏还在路上，敬请期待。</p>
+      <a class="tbtn" href="#games" style="display:inline-block;margin-top:8px">回到亲密游戏</a></div>` };
   }
   return {
     tab:"home",
@@ -3262,7 +3464,7 @@ ROUTES.game = { view(id){
 }};
 
 function gameIntro(gm){
-  const g = girl(), left = scoredLeft();
+  const g = girl(), rec = gtRec(gm.id);
   return `
   <section data-od-id="game-intro">
     <div class="panel" style="padding:0;overflow:hidden">
@@ -3276,14 +3478,16 @@ function gameIntro(gm){
         </div>
       </div>
       <div style="padding:14px 16px 16px">
-        <div style="margin-bottom:12px">${bondBar(g.id)}</div>
+        ${tierBar(gm.id)}
+        <div style="margin-top:12px">${bondBar(g.id)}</div>
         <div class="row" style="border-top:1px solid var(--line-2)">
-          <div class="row-m"><div class="row-t">今日剩余计分局</div></div>
-          <b class="big" style="font-size:19px;color:${left ? "var(--gold-2)" : "var(--muted)"}">${left}</b></div>
+          <div class="row-m"><div class="row-t">这个游戏的最好成绩</div>
+            <div class="row-s">已玩 ${rec.plays || 0} 局 · 累计段位分 ${rec.xp || 0}</div></div>
+          <b class="big" style="font-size:19px;color:var(--gold-2)">${rec.best || 0}</b></div>
       </div>
     </div>
     <button class="btn btn-pri btn-w claim" id="go" style="margin-top:14px" data-od-id="game-start">
-      ${ico("i-game")}${left ? "开始游戏" : "练习模式（不计分）"}</button>
+      ${ico("i-game")}开始游戏 · 本局计分</button>
     <a class="btn btn-gh btn-w" href="#games" style="margin-top:9px">换个游戏</a>
   </section>`;
 }
@@ -3302,9 +3506,10 @@ let settled = false;          /* 一局只能结算一次：超时与手动结�
 function startGame(gm){
   stopGame();
   settled = false;
-  const scored = scoredLeft() > 0;
+  curGame = gm.id;
+  const scored = true;              /* 每局都计分，没有练习模式 */
   ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog,
-     rps:playRps, photo:playPhoto, sun:playSun, close:playClose })[gm.id](gm, scored);
+     rps:playRps, photo:playPhoto, sun:playSun })[gm.id](gm, scored);
 }
 /* 把一局的得分折算成积分并出结算页 */
 function gameFinish(gm, { score, scored, earned, detail }){
@@ -3312,51 +3517,71 @@ function gameFinish(gm, { score, scored, earned, detail }){
   settled = true;
   stopGame();
   const g = girl();
-  let dbl = false;
-  if(scored){
-    if(S.dbl > 0 && earned > 0){      /* 双倍积分卡：一次性，用掉即失效 */
-      dbl = true; earned *= 2; S.dbl = 0; useVoucher("x2");
-    }
-    S.rounds++; S.tasks.game = true; save();
-    reward(gm.name, earned, XPR.game, g.id);
+  /* 基础分 → 段位加成 → 双倍卡，三段分开展示 */
+  const T0 = gTier(gm.id);
+  const base = earned;
+  const tbonus = Math.round(base * (T0.mul - 1));
+  let dbl = false, dbonus = 0;
+  if(S.dbl > 0 && base > 0){            /* 双倍积分卡：一次性，用掉即失效 */
+    dbl = true; dbonus = base + tbonus; S.dbl = 0; useVoucher("x2");
   }
-  const left = scoredLeft();
-  const tier = earned >= 24 ? "win" : earned >= 12 ? "ok" : "low";
-  const cheer = BOND[g.id].cheer[tier];
+  const total = base + tbonus + dbonus;
+  const rec = (S.gt = S.gt || {})[gm.id] = S.gt[gm.id] || { xp:0, best:0, plays:0 };
+  rec.plays = (rec.plays || 0) + 1;
+  rec.best = Math.max(rec.best || 0, score);
+  rec.xp = (rec.xp || 0) + base;         /* 段位分按基础积分累积 */
+  S.rounds = (S.rounds || 0) + 1;
+  S.tasks.game = true; save();
+  const T = gTier(gm.id);
+  const promoted = T.i > T0.i;
+  reward(gm.name, total, XPR.game, g.id);
+  if(total > 0) setTimeout(() => winPop(total, `${gm.name} · ${T.t}${promoted ? " · 段位升级！" : ""}`), 700);
+  const mood = total >= 36 ? "win" : total >= 15 ? "ok" : "low";
+  const cheer = BOND[g.id].cheer[mood];
   $("#gameHost").innerHTML = `
   <section data-od-id="game-result">
-    <div class="panel" style="padding:0;overflow:hidden">
+    <div class="panel gframe" style="padding:0;overflow:hidden">
       <div class="rhero" data-od-id="result-companion">
         ${phImg(outfitImg(g), g.initial, g.name + " 的庆祝")}
         <div class="scrim"></div>
         <span class="pill g badge" style="position:absolute;top:12px;right:12px;z-index:4">
-          ${ico(tier === "win" ? "i-star" : "i-heart")}${tier === "win" ? "特别庆祝" : "她的回应"}</span>
+          ${ico(mood === "win" ? "i-star" : "i-heart")}${mood === "win" ? "特别庆祝" : "她的回应"}</span>
         <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
           <div class="h3">${esc(g.name)}<span class="en">${esc(g.en)}</span></div>
           <p class="p" style="margin-top:5px;color:rgba(255,255,255,.9)">「${esc(cheer)}」</p>
         </div>
       </div>
       <div style="text-align:center;padding:18px 18px 20px">
-        <div class="lbl">${scored ? gm.name + " · 本局结果" : "练习结果 · 不计分"}</div>
+        <div class="lbl">${esc(gm.name)} · 本局结果</div>
         <div class="big xl" id="finalScore" style="margin-top:6px;font-size:46px">${score}</div>
         <div class="sm" style="margin-top:3px">${esc(detail)}</div>
-        <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line-2);display:flex;gap:10px">
-          <div style="flex:1"><div class="lbl">获得积分${dbl ? " ×2" : ""}</div>
-            <div class="big stat-n" style="font-size:25px;margin-top:4px;color:${earned ? "var(--gold-2)" : "var(--muted)"}">${scored ? "+" + earned : "0"}</div></div>
-          <div style="flex:1"><div class="lbl">获得亲密</div>
-            <div class="big stat-n" style="font-size:25px;margin-top:4px;color:${scored ? "var(--rose)" : "var(--muted)"}">${scored ? "+" + XPR.game : "0"}</div></div>
-          <div style="flex:1"><div class="lbl">剩余计分局</div>
-            <div class="big stat-n" style="font-size:25px;margin-top:4px">${left}</div></div>
+        <div class="scorelist" data-od-id="result-breakdown">
+          <div class="row"><div class="row-m"><div class="row-t">基础积分</div></div>
+            <b class="big stat-n" style="font-size:18px">+${base}</b></div>
+          <div class="row"><div class="row-m"><div class="row-t">段位加成</div>
+            <div class="row-s">${T0.t} ×${T0.mul}</div></div>
+            <b class="big stat-n" style="font-size:18px;color:${tbonus ? "var(--gold-2)" : "var(--muted)"}">+${tbonus}</b></div>
+          ${dbl ? `<div class="row"><div class="row-m"><div class="row-t">双倍积分卡</div>
+            <div class="row-s">已用掉，下一局恢复</div></div>
+            <b class="big stat-n" style="font-size:18px;color:var(--gold-2)">+${dbonus}</b></div>` : ""}
+          <div class="row total"><div class="row-m"><div class="row-t">本局合计</div>
+            <div class="row-s">亲密 +${XPR.game}</div></div>
+            <b class="big stat-n gg" style="font-size:24px">+${total}</b></div>
         </div>
-        <div style="margin-top:14px;text-align:left">${bondBar(g.id)}</div>
+        ${promoted ? `<div class="panel vhit" style="margin-top:12px;padding:11px 14px;display:flex;align-items:center;gap:10px">
+          ${ico("i-up")}<div class="row-m" style="text-align:left"><b style="font-size:13.5px">段位提升 · ${T.t}</b>
+          <div class="sm" style="margin-top:2px">${esc(gm.name)} 的积分倍率升到 ×${T.mul}</div></div></div>` : ""}
+        <div style="margin-top:14px;text-align:left">${tierBar(gm.id)}</div>
+        <div style="margin-top:12px;text-align:left">${bondBar(g.id)}</div>
       </div>
     </div>
-    <button class="btn btn-pri btn-w" id="again" style="margin-top:14px">${left ? "再来一局" : "再练一局（不计分）"}</button>
+    <button class="btn btn-pri btn-w" id="again" style="margin-top:14px">再来一局</button>
     <div style="display:flex;gap:9px;margin-top:9px">
       <a class="btn btn-gh" href="#games" style="flex:1">换个游戏</a>
-      <a class="btn btn-gh" href="#chat" style="flex:1">找${esc(g.name)}聊聊</a>
+      <a class="btn btn-gh" href="#girl/${g.id}" style="flex:1">去看${esc(g.name)}</a>
     </div>
   </section>`;
+  if(promoted) setTimeout(() => { confetti($(".rhero")); toast(`${gm.name} 升到 ${T.t} · 倍率 ×${T.mul}`, "i-crown"); }, 320);
   $("#again").onclick = () => startGame(gm);
   if(!rm()){
     countTo($("#finalScore"), 0, score);
@@ -3368,8 +3593,9 @@ function gstat(cols, scored){
   return `<div class="gstat">${cols.map(c => `<div><span class="lbl">${c[0]}</span><b id="${c[1]}">${c[2]}</b></div>`).join("")}</div>
     <div class="tbar"><i id="tb" style="transform:scaleX(1)"></i></div>`;
 }
-const modeBar = scored => `<div style="display:flex;align-items:center;gap:10px;margin-top:13px">
-  <span class="pill ${scored ? "g" : "tbd"}">${scored ? "本局计分" : "练习模式 · 不计分"}</span>
+let curGame = null;                /* 对局内状态条要显示当前游戏的段位 */
+const modeBar = () => `<div style="display:flex;align-items:center;gap:10px;margin-top:13px">
+  ${curGame ? tierBadge(curGame) : `<span class="pill g">本局计分</span>`}
   <button class="tbtn" id="quit" style="margin-left:auto">结束本局</button></div>`;
 
 /* ============================================================
@@ -3508,7 +3734,7 @@ function playQuiz(gm, scored){
         </button>`).join("")}
       </div>
       <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
-        <span class="pill ${scored ? "g" : "tbd"}">${scored ? "本局计分" : "练习模式 · 不计分"}</span>
+        ${curGame ? tierBadge(curGame) : ""}
         <span class="pill">已答对 ${G.right}</span>
         <button class="btn btn-pri" id="nextQ" style="margin-left:auto;min-height:42px;font-size:13.5px" aria-disabled="true">
           ${G.i === qs.length - 1 ? "看结果" : "下一题"}</button>
@@ -3820,7 +4046,7 @@ function playTruth(gm, scored){
       </div>
       <div id="tdBody" style="margin-top:12px"></div>
       <div style="display:flex;align-items:center;gap:10px;margin-top:13px">
-        <span class="pill ${scored ? "g" : "tbd"}">${scored ? "本局计分" : "练习模式 · 不计分"}</span>
+        ${curGame ? tierBadge(curGame) : ""}
         <button class="tbtn" id="quit" style="margin-left:auto">结束本局</button>
       </div>
     </section>`;
@@ -4226,18 +4452,18 @@ function playRps(gm, scored){
       <div class="panel vhit" style="margin-top:13px;padding:4px 16px" data-od-id="rps-bonus">
         <div class="row"><span class="gold" style="width:18px">${ico("i-coin")}</span>
           <div class="row-m"><div class="row-t">惊喜奖励</div>
-            <div class="row-s">${scored ? "点「收下」后到账" : "练习模式不计分"}</div></div>
+            <div class="row-s">点「收下」后到账</div></div>
           <b class="big" style="font-size:17px;color:${bonus ? "var(--gold-2)" : "var(--muted)"}">${bonus ? "+" + bonus : "0"}</b></div>
         <div class="row"><span class="gold" style="width:18px">${ico("i-game")}</span>
           <div class="row-m"><div class="row-t">本局结算</div>
-            <div class="row-s">${scored ? "收下后结算，封顶 +" + RULES.gameMax : "练习模式不计分"}</div></div>
-          <b class="big" style="font-size:17px;color:${scored ? "var(--gold-2)" : "var(--muted)"}">${scored ? "+" + RULES.gameMax : "0"}</b></div>
+            <div class="row-s">收下后结算，封顶 +${RULES.gameMax}，再按段位加成</div></div>
+          <b class="big" style="font-size:17px;color:var(--gold-2)">+${RULES.gameMax}</b></div>
         <div class="row"><span class="gold" style="width:18px">${ico("i-shirt")}</span>
           <div class="row-m"><div class="row-t">比基尼造型 已加入衣柜试穿</div>
             <div class="row-s">${isNew ? "新解锁 · 永久可切换" : "已在衣柜里"}</div></div>
           <a class="tbtn" href="#wardrobe">去衣柜</a></div>
       </div>
-      <button class="btn btn-pri btn-w claim" id="takeit" style="margin-top:14px">${ico("i-gift")}收下${scored ? ` · 共 +${RULES.gameMax + RPS_BONUS} 积分` : "惊喜"}</button>
+      <button class="btn btn-pri btn-w claim" id="takeit" style="margin-top:14px">${ico("i-gift")}收下惊喜 · +${RPS_BONUS} 积分</button>
     </section>`;
     setTimeout(() => confetti($("#rstage")), rm() ? 0 : 240);
     /* 领取时才发放：中途离开不会反复白拿 +20 */
@@ -4351,9 +4577,9 @@ const SUN_LEN = 20;
 function playSun(gm, scored){
   let g = girl();
   let note = "";
-  if(!g.sun){                                   // 露娜没有这张图，换薇薇安顶上
-    note = "露娜去换衣服了，薇薇安来陪你";
-    g = girl("queen");
+  if(!g.sun){                                   // 只有小糖有防晒图，其他人由小糖顶上
+    note = g.name + "去换泳衣了，小糖来陪你";
+    g = girl("sweet");
   }
   G = { left:SUN_LEN, done:0, drag:false };
   $("#gameHost").innerHTML = `
@@ -4418,102 +4644,17 @@ function playSun(gm, scored){
 }
 
 /* ============================================================
-   游戏 10 · 心跳靠近（停在刚刚好的距离）
-   ============================================================ */
-const CLOSE_TRIES = 3;
-const ZONE_A = 0.46, ZONE_B = 0.62;
-function playClose(gm, scored){
-  const g = girl();
-  G = { tries:0, best:0, score:0, p:0, holding:false, lock:false };
-  paint();
-  function paint(){
-    if(!G) return;
-    $("#gameHost").innerHTML = `
-    <section data-od-id="game-run">
-      ${gstat([["第几次","ct",`${G.tries + 1} / ${CLOSE_TRIES}`],["得分","cs",G.score],["最好","cb",`${Math.round(G.best * 100)}%`]], scored)}
-      <div class="closebox" id="closebox" data-react-pos="right:12px;bottom:12px">
-        ${phImg(outfitImg(g), g.initial, g.name, "", "50% 18%")}
-        <div class="lipstamp" id="lipst" style="display:none">${LIPS}</div>
-      </div>
-      <div class="hrbar"><div class="zone"></div><div class="pin" id="pin" style="left:0%"></div></div>
-      <p class="sm" style="margin-top:9px;text-align:center">
-        <span class="hrbeat">${HEART}</span> 按住靠近 · 停在金色区间最好</p>
-      <button class="btn btn-pri btn-w claim" id="holdBtn" style="margin-top:10px">按住靠近她</button>
-      ${modeBar(scored)}
-    </section>`;
-    $("#quit").onclick = finish;
-    const btn = $("#holdBtn"), img = $("#closebox").querySelector("img"), pin = $("#pin");
-    const start = e => {
-      if(!G || G.lock) return;
-      e.preventDefault();
-      G.holding = true; G.p = 0;
-      const t0 = performance.now();
-      const step = now => {
-        if(!G || !G.holding) return;
-        G.p = Math.min(1, (now - t0) / 2600);
-        if(img) img.style.transform = `scale(${1 + G.p * .5})`;
-        if(pin) pin.style.left = (G.p * 100) + "%";
-        if(G.p >= 1) return release();
-        G.raf = requestAnimationFrame(step);
-      };
-      G.raf = requestAnimationFrame(step);
-    };
-    const release = () => {
-      if(!G || !G.holding || G.lock) return;
-      G.holding = false; G.lock = true;
-      if(G.raf) cancelAnimationFrame(G.raf);
-      const p = G.p;
-      G.best = Math.max(G.best, p >= ZONE_A && p <= ZONE_B ? 1 : p);
-      const box = $("#closebox");
-      if(p > ZONE_B){
-        pulseOnce($("#gameHost"), "shakeit", 470);
-        if(img) img.style.transform = "scale(1)";
-        toast(`${g.name}：太近啦！`, "i-heart");
-      } else if(p >= ZONE_A){
-        G.score += 10;
-        const st = $("#lipst");
-        if(st && !rm()){ st.style.display = ""; st.style.animation = "none"; void st.offsetWidth;
-          st.style.animation = "lipGo 1.5s var(--e3) both"; }
-        burst(box.getBoundingClientRect(), { n:12, kind:"heart", spread:62 });
-        toast(`${g.name}：啾～刚刚好。`, "i-heart");
-        react(box, "win", g.id);
-      } else {
-        G.score += Math.round(p * 8);
-        toast(`${g.name}：还差一点点呢。`, "i-heart");
-      }
-      $("#cs").textContent = G.score;
-      G.tries++;
-      setTimeout(() => {
-        if(!G) return;
-        G.lock = false;
-        if(G.tries >= CLOSE_TRIES) return finish();
-        paint();
-      }, 1100);
-    };
-    btn.addEventListener("pointerdown", start);
-    btn.addEventListener("pointerup", release);
-    btn.addEventListener("pointerleave", release);
-    btn.addEventListener("keydown", e => { if(e.key === " " || e.key === "Enter"){ e.preventDefault(); start(e); } });
-    btn.addEventListener("keyup", e => { if(e.key === " " || e.key === "Enter"){ e.preventDefault(); release(); } });
-    G.off = () => {};
-  }
-  function finish(){
-    const sc = G ? G.score : 0, best = G ? G.best : 0;
-    const earned = scored ? Math.min(RULES.gameMax, sc) : 0;
-    gameFinish(gm, { score:sc, scored, earned, detail:`${CLOSE_TRIES} 次尝试 · 最近 ${Math.round(best * 100)}%` });
-  }
-}
-
-/* ============================================================
    短剧
    ============================================================ */
 ROUTES.drama = { view(){
   const d = DRAMAS[0];
-  const un = S.eps[d.id] || [], last = S.last[d.id] || 0;
+  const last = S.last[d.id] || 0;
   const rows = d.eps.map((t, i) => {
     const nn = i + 1;
-    return { n:nn, t, ok:un.includes(nn), seen:S.watched.some(w => w.d === d.id && w.e === nn) };
+    return { n:nn, t, ok:epOpen(d, nn), free:nn <= FREE_EPS,
+      seen:S.watched.some(w => w.d === d.id && w.e === nn) };
   });
+  const un = rows.filter(r => r.ok);
   return {
     tab:"drama",
     bar:`<div class="row-m"><div class="bar-t">我的剧集</div><div class="bar-s">AI Drama · 本周推荐</div></div>${ptLink()}`,
@@ -4525,7 +4666,7 @@ ROUTES.drama = { view(){
         <h1 class="h1" style="font-size:26px"><span class="gg">${esc(d.title)}</span></h1>
         <div class="ichips" style="margin-top:9px">
           ${d.tag.split(" · ").map(t => `<span class="ichip">${esc(t)}</span>`).join("")}
-          <span class="ichip">已解锁 ${un.length}/6</span></div>
+          <span class="ichip">已解锁 ${epsOpenCount(d)}/6</span></div>
       </div>
     </a>
 
@@ -4537,7 +4678,7 @@ ROUTES.drama = { view(){
 
     <div id="epList" style="display:flex;flex-direction:column;gap:9px;margin-top:12px"></div>
     <p class="sm" id="epEmpty" style="margin-top:14px;text-align:center;display:none">这个分类下还没有内容</p>
-    <p class="sm" style="margin-top:16px;text-align:center">第 1、2 集免费 · 第 3 集起每集 ${PRICE.ep} 积分，解锁后永久可看</p>`,
+    <p class="sm" style="margin-top:16px;text-align:center">第 1–${FREE_EPS} 集免费 · 第 ${FREE_EPS + 1} 集起每集 ${PRICE.ep} 积分，解锁后永久可看</p>`,
     after(root){
       const host = $("#epList", root), empty = $("#epEmpty", root);
       const paint = f => {
@@ -4546,8 +4687,8 @@ ROUTES.drama = { view(){
         host.innerHTML = list.map(r => `<button class="lrow" data-ep="${r.n}" data-od-id="eprow-${r.n}">
           <span class="epthumb">${phImg(d.poster, d.initial, "", "", "50% 36%")}</span>
           <div class="row-m"><div class="row-t">第 ${r.n} 集 · ${esc(r.t)}</div>
-            <div class="row-s">${r.ok ? (r.seen ? "已观看" : "已解锁 · 未观看") : PRICE.ep + " 积分解锁"}</div></div>
-          <span class="cv">${r.ok ? (r.seen ? `<span class="pill ok">已看</span>` : `<span class="pill g">可看</span>`)
+            <div class="row-s">${r.ok ? (r.seen ? "已观看" : r.free ? "免费 · 未观看" : "已解锁 · 未观看") : PRICE.ep + " 积分解锁"}</div></div>
+          <span class="cv">${r.ok ? (r.seen ? `<span class="pill ok">已看</span>` : `<span class="pill g">${r.free ? "免费" : "可看"}</span>`)
             : `<span class="pill tbd">${ico("i-lock")}${PRICE.ep}</span>`}${ico("i-next")}</span></button>`).join("");
         $$("[data-ep]", host).forEach(b => b.onclick = () => openEp(d, +b.dataset.ep, b));
       };
@@ -4562,15 +4703,15 @@ ROUTES.drama = { view(){
 
 ROUTES.show = { view(id){
   const d = drama(id);
-  const un = S.eps[d.id] || [], last = S.last[d.id] || 0;
+  const last = S.last[d.id] || 0;
   const next = Math.min(6, last + 1);
-  const nextLocked = [1,2,3,4,5,6].find(x => !un.includes(x)) || null;
+  const nextLocked = [1,2,3,4,5,6].find(x => !epOpen(d, x)) || null;
   const genres = d.tag.split(" · ").concat(["6 集"]);
   return {
     tab:"drama", ghost:true, flush:true,
     bar:`<button class="ibtn hit" onclick="history.length>1?history.back():nav('#drama')" aria-label="返回">${ico("i-back")}</button>
       <div class="row-m" style="text-align:center"><div class="bar-t gg" style="letter-spacing:.04em">AI DRAMA</div></div>
-      <button class="ibtn hit" id="shr" aria-label="分享剧集">${ico("i-share")}</button>`,
+      <span style="width:38px"></span>`,
     html:`
     <div style="position:relative" data-od-id="show-poster">
       ${phImg(d.poster, d.initial, d.title + " 海报")}
@@ -4586,6 +4727,7 @@ ROUTES.show = { view(id){
         <p class="p" style="margin-top:8px;color:var(--muted)">${esc(d.desc)}</p>
       </section>
 
+      ${shareBanner()}
       <div class="acts3" style="margin-top:14px" data-od-id="show-actions">
         <button class="act3 a3-gold" id="a-unlock" ${nextLocked ? "" : 'aria-disabled="true"'}>
           ${i3("coin", 40)}<span>${nextLocked ? "积分解锁" : "全部已解锁"}</span></button>
@@ -4594,13 +4736,13 @@ ROUTES.show = { view(id){
         <button class="act3 a3-deep" id="a-share">
           ${i3("share", 40)}<span>分享剧集</span></button>
       </div>
-      <p class="sm" style="margin-top:10px;text-align:center">第 1、2 集免费 · 第 3 集起每集 ${PRICE.ep} 积分，解锁后永久可看</p>
+      <p class="sm" style="margin-top:10px;text-align:center">第 1–${FREE_EPS} 集免费 · 第 ${FREE_EPS + 1} 集起每集 ${PRICE.ep} 积分，解锁后永久可看</p>
 
       <section class="sec" data-od-id="show-eps">
-        <div class="sec-h"><h2 class="h2">剧集</h2><span class="sm">已解锁 ${un.length}/6</span></div>
+        <div class="sec-h"><h2 class="h2">剧集</h2><span class="sm">已解锁 ${epsOpenCount(d)}/6</span></div>
         <div class="epgrid">
           ${d.eps.map((t, i) => {
-            const nn = i + 1, ok = un.includes(nn), seen = S.watched.some(w => w.d === d.id && w.e === nn);
+            const nn = i + 1, ok = epOpen(d, nn), seen = S.watched.some(w => w.d === d.id && w.e === nn);
             return `<button class="ep ${seen ? "on" : ""}" data-ep="${nn}" data-od-id="ep-${d.id}-${nn}">
               <span style="display:flex;align-items:center;gap:5px">
                 ${ok ? (seen ? ico("i-check") : ico("i-play")) : ico("i-lock")}第 ${nn} 集</span>
@@ -4612,7 +4754,7 @@ ROUTES.show = { view(id){
     after(root){
       $$("[data-ep]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.ep, b));
       const doShare = () => shareSheet(d);
-      $("#shr").onclick = doShare;
+      $$("[data-share]", root).forEach(b => b.onclick = doShare);
       $("#a-share", root).onclick = doShare;
       const au = $("#a-unlock", root);
       au.onclick = () => nextLocked ? openEp(d, nextLocked, au) : toast("全部剧集已解锁", "i-check");
@@ -4620,10 +4762,53 @@ ROUTES.show = { view(id){
   };
 }};
 
+/* 每集视频上方的亮色分享横幅 + 看完后的弹窗，都走同一个 shareSheet */
+const shareBanner = () => `<div class="shbar gframe" data-od-id="share-banner">
+  <span class="shbar-i">${i3("share", 34)}</span>
+  <div class="row-m"><b>马上分享给朋友，获取更多积分和奖品</b>
+    <em>好友有效观看 +${RULES.invite} 积分/人</em></div>
+  <button class="btn btn-gold shbar-b" data-share="1">${ico("i-share")}分享给好友</button>
+</div>`;
+function epEndSheet(d, n){
+  if(sheetOpen) return;
+  const next = n < 6 ? n + 1 : null;
+  const sh = sheet({
+    title:"记得分享给朋友，获得更多积分和奖品！",
+    sub:`${d.title} · 第 ${n} 集 看完了`,
+    body:`<div class="panel gframe" style="padding:0;overflow:hidden" data-od-id="ep-end-card">
+        <div class="rhero" style="height:min(26vh,210px)">
+          ${phImg(d.poster, d.initial, d.title, "", "50% 38%")}
+          <div class="scrim"></div>
+          <span class="pill g badge" style="position:absolute;top:11px;left:11px;z-index:4">${ico("i-check")}已看完</span>
+          <div style="position:absolute;z-index:3;left:14px;right:14px;bottom:12px">
+            <div class="h3">${esc(d.title)} · 第 ${n} 集</div>
+            <p class="sm" style="margin-top:4px;color:rgba(255,255,255,.88)">${esc(d.eps[n - 1])}</p></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:12px;padding:4px 16px">
+        <div class="row"><span class="gold" style="width:18px">${ico("i-share")}</span>
+          <div class="row-m"><div class="row-t">分享给好友</div>
+            <div class="row-s">每位好友有效观看 +${RULES.invite} 积分，每天最多 ${RULES.inviteMax} 人</div></div></div>
+        <div class="row"><span class="gold" style="width:18px">${ico("i-heart")}</span>
+          <div class="row-m"><div class="row-t">看完这一集</div>
+            <div class="row-s">亲密 +${XPR.drama}，已记入进度</div></div></div>
+      </div>`,
+    foot:`<button class="btn btn-gold btn-w claim" id="epShare">${ico("i-share")}分享给好友</button>
+      ${next
+        ? `<button class="btn btn-qt btn-w" id="epNext">${epOpen(d, next) ? ico("i-play") + "下一集" : ico("i-lock") + `解锁第 ${next} 集`}</button>`
+        : `<button class="btn btn-qt btn-w" onclick="closeSheet()">${ico("i-check")}全剧看完了</button>`}`
+  });
+  sh.querySelector("#epShare").onclick = () => { closeSheet(); setTimeout(() => shareSheet(d, n), 220); };
+  const nx = sh.querySelector("#epNext");
+  if(nx) nx.onclick = () => { closeSheet(); setTimeout(() => openEp(d, next), 200); };
+}
+
 let justUnlocked = null;
+const epOpen = (d, n) => n <= FREE_EPS || (S.eps[d.id] || []).includes(n);
+const epsOpenCount = d => d.eps.filter((_, i) => epOpen(d, i + 1)).length;
 function openEp(d, n, el){
   const un = S.eps[d.id] || (S.eps[d.id] = []);
-  if(un.includes(n)) return nav(`#play/${d.id}/${n}`);
+  if(epOpen(d, n)) return nav(`#play/${d.id}/${n}`);
   if(el && S.pts < PRICE.ep) pulseOnce(el, "shake", 460);
   buy({ cost:PRICE.ep, title:"一集AI短剧", sub:`${d.title} · 第 ${n} 集 ${d.eps[n - 1]}`, fromEl:el,
     cond:["解锁后永久可看，不重复扣分","仅解锁本集"],
@@ -4633,8 +4818,7 @@ function openEp(d, n, el){
 
 ROUTES.play = { view(id, epStr){
   const d = drama(id), n = Math.min(6, Math.max(1, +epStr || 1));
-  const un = S.eps[d.id] || [];
-  if(!un.includes(n)) return { ...ROUTES.show.view(id), after(root){ ROUTES.show.view(id).after(root); setTimeout(() => openEp(d, n), 260); } };
+  if(!epOpen(d, n)) return { ...ROUTES.show.view(id), after(root){ ROUTES.show.view(id).after(root); setTimeout(() => openEp(d, n), 260); } };
   // 记录进度
   S.last[d.id] = Math.max(S.last[d.id] || 0, n);
   S.watched = [{ d:d.id, e:n, t:Date.now() }, ...S.watched.filter(w => !(w.d === d.id && w.e === n))].slice(0, 20);
@@ -4642,9 +4826,9 @@ ROUTES.play = { view(id, epStr){
   const prev = n > 1 ? n - 1 : null, next = n < 6 ? n + 1 : null;
   return {
     tab:"drama", flush:true, noTabs:true,
-    bar:barBack(`${d.title} · 第 ${n} 集`, esc(d.eps[n - 1]),
-      `<button class="ibtn hit" id="shr2" aria-label="分享">${ico("i-share")}</button>`),
+    bar:barBack(`${d.title} · 第 ${n} 集`, esc(d.eps[n - 1]), `<span style="width:38px"></span>`),
     html:`
+    <div style="padding:12px 14px 0">${shareBanner()}</div>
     <div class="player ph" style="--pos:50% 50%" data-initial="${esc(d.initial)}" data-od-id="player-${d.id}-${n}">
       <video src="${d.video}" poster="${d.poster}" data-alt="${esc(d.title)}" controls autoplay muted playsinline
         preload="metadata" onerror="vidFail(this)"></video>
@@ -4663,14 +4847,14 @@ ROUTES.play = { view(id, epStr){
         ${prev ? `<button class="btn btn-gh" style="flex:1" data-go="${prev}">${ico("i-back")}第 ${prev} 集</button>` : ""}
         ${next
           ? `<button class="btn btn-pri" style="flex:1.4" data-go="${next}" data-od-id="player-next">
-               ${(S.eps[d.id] || []).includes(next) ? ico("i-play") + "下一集" : ico("i-lock") + `解锁第 ${next} 集`}</button>`
-          : `<a class="btn btn-pri" style="flex:1.4" href="#show/${d.id}">${ico("i-check")}看完了</a>`}
+               ${epOpen(d, next) ? ico("i-play") + "下一集" : ico("i-lock") + `解锁第 ${next} 集`}</button>`
+          : `<button class="btn btn-pri" style="flex:1.4" id="epFin" data-od-id="player-fin">${ico("i-check")}看完了</button>`}
       </div>
       <section class="sec">
         <div class="sec-h"><h2 class="h2">剧集</h2><a class="tbtn" href="#show/${d.id}">剧集详情</a></div>
         <div class="epgrid">
           ${d.eps.map((t, i) => {
-            const k = i + 1, ok = (S.eps[d.id] || []).includes(k);
+            const k = i + 1, ok = epOpen(d, k);
             return `<button class="ep ${k === n ? "on" : ""}" data-go="${k}">
               <span style="display:flex;align-items:center;gap:5px">${ok ? (k === n ? ico("i-pause") : ico("i-play")) : ico("i-lock")}第 ${k} 集</span>
               <em>${ok ? esc(t) : PRICE.ep + " 积分"}</em></button>`;
@@ -4680,7 +4864,7 @@ ROUTES.play = { view(id, epStr){
     </div>`,
     after(root){
       $$("[data-go]", root).forEach(b => b.onclick = () => openEp(d, +b.dataset.go, b));
-      $("#shr2").onclick = () => shareSheet(d, n);
+      $$("[data-share]", root).forEach(b => b.onclick = () => shareSheet(d, n));
       const key = `${d.id}-${n}`;
       const credit = () => {
         if(S.epXp.includes(key)) return;
@@ -4690,6 +4874,11 @@ ROUTES.play = { view(id, epStr){
         if(b) b.outerHTML = `<span class="pill ok">${ico("i-check")}已看完</span>`;
       };
       const done = $("#epDone", root); if(done) done.onclick = credit;
+      const fin = $("#epFin", root); if(fin) fin.onclick = () => { credit(); epEndSheet(d, n); };
+      if(!next){
+        const b = root.querySelector('[data-od-id="player-fin"]');
+        if(b) b.classList.add("claim");
+      }
       const player = root.querySelector(".player"), pbar = $("#pbar", root);
       if(justUnlocked === key && player){
         justUnlocked = null;
@@ -4700,7 +4889,7 @@ ROUTES.play = { view(id, epStr){
         v.addEventListener("timeupdate", () => {
           if(pbar && v.duration) pbar.style.transform = `scaleX(${(v.currentTime / v.duration).toFixed(4)})`;
         });
-        v.addEventListener("ended", credit);
+        v.addEventListener("ended", () => { credit(); epEndSheet(d, n); });
         v.addEventListener("timeupdate", () => {
           if(v.duration && v.currentTime / v.duration > 0.95) credit();
         });
@@ -4842,7 +5031,41 @@ const CATALOG = [
     target(){ return "吉隆坡门店核销"; }, note:"积分待确认" }
 ];
 
+/* MBA66 实物周边：用品牌标做砖，不编造实物照片 */
+const MERCH = [
+  { id:"tee", t:"MBA66 T恤",   sub:"黑金印花 · M / L / XL", cost:1200 },
+  { id:"cap", t:"MBA66 帽子",  sub:"金标刺绣鸭舌帽",         cost:800  },
+  { id:"cup", t:"MBA66 水杯",  sub:"保温 500ml",             cost:600  },
+  { id:"bag", t:"MBA66 挎包",  sub:"限量联名款",             cost:1500 }
+];
+const RW_CATS = [
+  { k:"merch", t:"周边" },
+  { k:"girl",  t:"女友奖励" },
+  { k:"drama", t:"剧集奖励" },
+  { k:"vip",   t:"会员福利" }
+];
+const RW_IN = { girl:["album", "tier", "vid", "gift"], drama:["ep"] };
+let rwCat = "merch";
+
+/* 周边核销码：和福利码一样存进兑换记录 */
+function redeemMerch(m, fromEl){
+  let code = "";
+  buy({ cost:m.cost, title:m.t, sub:"MBA66 周边", fromEl,
+    cond:["兑换后生成核销码，存入「兑换记录」", "凭核销码到 MBA66 门店领取实物"],
+    done(){
+      code = newCode();
+      S.vouchers = S.vouchers || [];
+      S.vouchers.unshift({ id:"merch:" + m.id, name:m.t, code, t:Date.now(), used:false });
+      if(S.vouchers.length > 30) S.vouchers.length = 30;
+      (S.owned.merch = S.owned.merch || []).push(m.id);
+    },
+    then(){ setTimeout(() => voucherDone({ title:m.t, sub:"到 MBA66 门店核销", icon:"crown" }, code), 340); } });
+}
+
 ROUTES.rewards = { view(){
+  const vs = S.vouchers || [];
+  const cat = RW_CATS.some(c => c.k === rwCat) ? rwCat : "merch";
+  const list = cat === "merch" || cat === "vip" ? [] : CATALOG.filter(c => (RW_IN[cat] || []).includes(c.id));
   return {
     tab:"rewards",
     bar:`<div class="row-m"><div class="bar-t">积分奖励</div></div>${ptLink()}`,
@@ -4855,47 +5078,99 @@ ROUTES.rewards = { view(){
       </div>
       <a class="tbtn" href="#points" style="position:relative;z-index:2;white-space:nowrap">积分记录${ico("i-next")}</a>
     </div>
-    <p class="sm" style="margin-top:12px">兑换流程：预览 → 查看积分 → 确认兑换 → 加入收藏。下列库存与有效期为演示占位值。</p>
 
-    <div class="g2" style="margin-top:20px" data-od-id="rewards-grid">
-      ${CATALOG.map(c => {
-        const tgt = c.target(), tbd = c.cost === null;
-        return `<button class="item" data-rw="${c.id}" data-od-id="reward-${c.id}">
-          ${phImg(c.img(), c.initial(), c.title)}
-          <span class="pill ${tbd ? "tbd" : "g"} badge">${tbd ? "积分待定" : c.cost + " 积分"}</span>
-          <div class="item-b">
-            <div class="lbl">${esc(c.cat)}</div>
-            <div class="item-t">${esc(c.title)}</div>
-            <div class="sm" style="margin-top:auto">${esc(tgt ? "本次兑换：" + tgt : c.note)}</div>
-            <div class="sm" style="color:var(--faint)">${esc(c.stock)} · ${esc(c.limit)}</div>
-          </div></button>`;
-      }).join("")}
+    <section class="mhero gframe" data-od-id="rewards-merch-hero">
+      <div class="mhero-h">
+        <img class="mhero-logo" src="assets/logo/logo-hg.png" alt="MBA66"
+          onerror="logoFail(this,20)">
+        <div class="row-m"><b>MBA66 周边</b><em>品牌实物 · 门店核销</em></div>
+        ${i3("crown", 32)}
+      </div>
+      <div class="mgrid">
+        ${MERCH.map(m => {
+          const own = (S.owned.merch || []).includes(m.id);
+          return `<button class="mtile" data-merch="${m.id}" data-od-id="merch-${m.id}">
+            <span class="mtile-art">
+              <img src="assets/logo/mba-app-icon01.png" alt="" onerror="this.style.display='none'">
+              <em>MBA66</em></span>
+            <b>${esc(m.t)}</b>
+            <span class="mtile-s">${esc(m.sub)}</span>
+            <span class="mtile-f"><i>${m.cost} 积分</i>
+              <span class="pill ${own ? "ok" : "g"}">${own ? "已兑换" : "兑换"}</span></span>
+          </button>`;
+        }).join("")}
+      </div>
+      <p class="sm" style="margin-top:11px">实物图以门店实际发放为准，演示中用品牌标占位。</p>
+    </section>
+
+    <div class="chiprow" data-od-id="rewards-cats">
+      ${RW_CATS.map(c => `<button class="catchip ${c.k === cat ? "on" : ""}" data-cat="${c.k}">${esc(c.t)}</button>`).join("")}
+    </div>
+
+    <div id="rwBody" data-od-id="rewards-body">
+      ${cat === "merch" ? `<p class="sm" style="margin-top:4px">上面的 ${MERCH.length} 件周边都可以用娱乐积分兑换，兑换后在「我的 · 兑换记录」里查看核销码。</p>`
+      : cat === "vip" ? `
+        <div class="vgrid">
+          ${VOUCHERS.map(v => {
+            const off = v.cost === null || (v.once && vs.some(x => x.id === v.id));
+            return `<div class="vcard ${off ? "off" : ""}" data-od-id="voucher-${v.id}">
+              ${i3(v.icon, 30)}
+              <div class="vt">${esc(v.title)}</div>
+              <div class="vs">${esc(v.sub)}</div>
+              <div class="vdash"></div>
+              <div class="vf">
+                <span class="vc">${v.cost === null ? "敬请期待" : v.cost + " 积分"}</span>
+                <button class="vb" data-vc="${v.id}" ${off ? 'aria-disabled="true"' : ""}>${
+                  v.cost === null ? "待开放" : (v.once && vs.some(x => x.id === v.id)) ? "已兑换" : "兑换"}</button>
+              </div>
+            </div>`;
+          }).join("")}
+        </div>
+        <p class="sm" style="margin-top:11px">兑换后生成福利码，到店或客服出示核销。</p>`
+      : `<div class="g2">
+          ${list.map(c => {
+            const tgt = c.target(), tbd = c.cost === null;
+            return `<button class="item" data-rw="${c.id}" data-od-id="reward-${c.id}">
+              ${phImg(c.img(), c.initial(), c.title)}
+              <span class="pill ${tbd ? "tbd" : "g"} badge">${tbd ? "积分待定" : c.cost + " 积分"}</span>
+              <div class="item-b">
+                <div class="lbl">${esc(c.cat)}</div>
+                <div class="item-t">${esc(c.title)}</div>
+                <div class="sm" style="margin-top:auto">${esc(tgt ? "本次兑换：" + tgt : c.note)}</div>
+                <div class="sm" style="color:var(--faint)">${esc(c.stock)} · ${esc(c.limit)}</div>
+              </div></button>`;
+          }).join("")}
+        </div>
+        ${cat === "drama" ? `<p class="sm" style="margin-top:11px">第 1–${FREE_EPS} 集免费，第 ${FREE_EPS + 1} 集起每集 ${PRICE.ep} 积分，解锁后永久可看。</p>` : ""}`}
     </div>
 
     <section class="sec" data-od-id="rewards-rules">
       <div class="sec-h"><h2 class="h2">积分规则</h2></div>
       <div class="panel" style="padding:4px 16px">
         ${[["首次注册", `+${RULES.signup}`, "仅一次"],
-           ["每日签到", `+${RULES.checkin}`, "每日一次"],
-           ["心动挑战", `最多 +${RULES.gameMax}`, `每日 ${RULES.gameRounds} 局计分`],
+           ["每日打卡", `+${RULES.checkin}`, "每日一次"],
+           ["亲密游戏", `最多 +${RULES.gameMax}`, "每局都计分 · 段位最高 ×2"],
            ["带来有效新观众", `+${RULES.invite}`, `每人，每日最多 ${RULES.inviteMax} 人`]].map(r =>
           `<div class="row"><div class="row-m"><div class="row-t">${r[0]}</div><div class="row-s">${r[2]}</div></div>
             <b style="color:#92CD9D;font-size:14px">${r[1]}</b></div>`).join("")}
       </div>
       <div class="sec-h" style="margin-top:22px"><h2 class="h2">亲密经验</h2><span class="sm">按角色累积</span></div>
       <div class="panel" style="padding:4px 16px">
-        ${[["每日签到", `+${XPR.checkin}`, "每日一次"],
-           ["每天第一次和她聊天", `+${XPR.chat}`, "每位角色每日一次"],
-           ["心动挑战每局", `+${XPR.game}`, `每日 ${RULES.gameRounds} 局`],
-           ["首次看完一集已解锁短剧", `+${XPR.drama}`, "每集一次"],
+        ${[["每日打卡", `+${XPR.checkin}`, "每日一次"],
+           ["亲密游戏每局", `+${XPR.game}`, "不限局数"],
+           ["首次看完一集已解锁剧集", `+${XPR.drama}`, "每集一次"],
            ["送出一份礼物", `+${XPR.gift}`, `每份 ${PRICE.gift} 积分`],
            ["完成新手引导", `+${XPR.coach}`, "仅一次"]].map(r =>
           `<div class="row"><div class="row-m"><div class="row-t">${r[0]}</div><div class="row-s">${r[2]}</div></div>
             <b style="color:var(--rose);font-size:14px">${r[1]}</b></div>`).join("")}
       </div>
       <p class="sm" style="margin-top:12px">亲密经验不可消耗、不可转让，只用于提升与该角色的关系等级。</p>
-      </section>`,
+    </section>`,
     after(root){
+      $$("[data-cat]", root).forEach(b => b.onclick = () => { rwCat = b.dataset.cat; render(); });
+      $$("[data-merch]", root).forEach(b => b.onclick = () =>
+        redeemMerch(MERCH.find(m => m.id === b.dataset.merch), b));
+      $$("[data-vc]", root).forEach(b => b.onclick = () => redeemVoucher(vcOf(b.dataset.vc), b));
       $$("[data-rw]", root).forEach(b => b.onclick = () => {
         const c = CATALOG.find(x => x.id === b.dataset.rw);
         const tgt = c.target();
@@ -4936,7 +5211,7 @@ const LEDGER_ICON = label =>
   /挑战|游戏/.test(label) ? "game" :
   /短剧|剧集|集/.test(label) ? "drama" :
   /礼物|玫瑰|咖啡|蛋糕/.test(label) ? "gift" :
-  /互动|聊天|引导/.test(label) ? "chat-role" : "coin";
+  /互动|引导/.test(label) ? "chat-role" : "coin";
 
 function unlockedThumbs(){
   const out = [];
@@ -4988,8 +5263,8 @@ ROUTES.points = { view(){
           : `<div class="lgrow"><div class="row-m sm">还没有积分记录</div></div>`}
       </div>
       <div class="panel" style="margin-top:10px;padding:6px 16px">
-        ${[["每日打卡", `+${RULES.checkin}`, "checkin"], ["参与小游戏", `最多 +${RULES.gameMax}`, "game"],
-           ["观看 AI 剧集", `解锁 ${PRICE.ep}/集`, "drama"], ["角色互动", "不消耗积分", "chat-role"]].map(r => `
+        ${[["每日打卡", `+${RULES.checkin}`, "checkin"], ["玩亲密游戏", `最多 +${RULES.gameMax}`, "game"],
+           ["观看 AI 剧集", `第 ${FREE_EPS + 1} 集起 ${PRICE.ep}/集`, "drama"], ["送她礼物", `-${PRICE.gift} 积分`, "gift"]].map(r => `
           <div class="lgrow"><span class="tile">${ico(r[2] === "checkin" ? "i-cal" : r[2] === "game" ? "i-game" : r[2] === "drama" ? "i-film" : "i-chat")}</span>
             <div class="row-m"><div class="row-t">${r[0]}</div></div>
             <b style="font-size:13.5px;color:var(--gold-2)">${r[1]}</b></div>`).join("")}
@@ -5017,8 +5292,7 @@ const VOUCHERS = [
   { id:"welcome",  title:"Welcome Bonus 新人礼",   sub:"首次兑换专享",        cost:300, icon:"crown", once:true },
   { id:"free",     title:"Free Bonus 免费礼金",    sub:"每周一次",            cost:500, icon:"coin" },
   { id:"comeback", title:"回归礼 Comeback Bonus",  sub:"7 天未登录后可领",     cost:200, icon:"gift" },
-  { id:"round",    title:"多玩一轮",               sub:"今日小游戏计分局 +1",  cost:150, icon:"game", act:"round" },
-  { id:"x2",       title:"双倍积分卡",             sub:"下一局小游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
+  { id:"x2",       title:"双倍积分卡",             sub:"下一局亲密游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
   { id:"birthday", title:"生日礼",                 sub:"生日月专享 · 敬请期待", cost:null, icon:"gift" }
 ];
 const vcOf = id => VOUCHERS.find(v => v.id === id);
@@ -5048,12 +5322,11 @@ function voucherDone(v, code){
         ${i3(v.icon, 46)}
         <div class="lbl" style="margin-top:12px">福利码</div>
         <div class="vcode" style="margin-top:7px;font-size:23px">${code}</div>
-        <p class="sm" style="margin-top:10px">已存入「我的福利」</p>
+        <p class="sm" style="margin-top:10px">已存入「兑换记录」</p>
       </div>
       <div class="panel" style="margin-top:12px;padding:4px 16px">
         <div class="row"><div class="row-m"><div class="row-t">${esc(v.sub)}</div>
-          <div class="row-s">${v.act === "round" ? "今日计分局已 +1，立即生效" :
-            v.act === "x2" ? "下一局计分的小游戏积分自动 ×2" : "到店或客服出示福利码核销"}</div></div></div>
+          <div class="row-s">${v.act === "x2" ? "下一局亲密游戏的积分自动 ×2" : "到店或客服出示福利码核销"}</div></div></div>
         <div class="row"><div class="row-m"><div class="row-t">当前余额</div></div>
           <b class="big" style="font-size:15px;color:var(--gold)">${S.pts}</b></div>
       </div>`,
@@ -5071,17 +5344,14 @@ function redeemVoucher(v, fromEl){
   let code = "";
   buy({
     cost:v.cost, title:v.title, sub:v.sub, fromEl,
-    cond:["兑换后生成福利码，存入「我的福利」",
-          v.act === "round" ? "今日小游戏计分局 +1，当日有效"
-          : v.act === "x2" ? "下一局小游戏积分 ×2，用后失效"
-          : "福利码可在「我的福利」里复制"],
+    cond:["兑换后生成福利码，存入「兑换记录」",
+          v.act === "x2" ? "下一局亲密游戏积分 ×2，用后失效" : "福利码可在「兑换记录」里复制"],
     done(){
       code = newCode();
       S.vouchers = S.vouchers || [];
-      S.vouchers.unshift({ id:v.id, code, t:Date.now(), used:v.act === "round" });
+      S.vouchers.unshift({ id:v.id, code, t:Date.now(), used:false });
       if(S.vouchers.length > 30) S.vouchers.length = 30;
-      if(v.act === "round") S.extra = (S.extra || 0) + 1;
-      if(v.act === "x2")    S.dbl = 1;
+      if(v.act === "x2") S.dbl = 1;
     },
     then(){ setTimeout(() => voucherDone(v, code), 340); }
   });
@@ -5091,10 +5361,34 @@ function redeemVoucher(v, fromEl){
    我的 · 先兑换福利，再是她们
    ============================================================ */
 let meAllLog = false;
+/* MBA66 会员等级：按累计积分流入算，纯展示 */
+const MLEVELS = [
+  { at:0,    t:"普通会员", en:"Member" },
+  { at:1000, t:"白银会员", en:"Silver" },
+  { at:2500, t:"黄金会员", en:"Gold" },
+  { at:5000, t:"钻石会员", en:"Diamond" }
+];
+function memberLv(){
+  const got = (S.ledger || []).filter(l => l.d > 0).reduce((a, l) => a + l.d, 0);
+  let i = 0;
+  for(let k = 0; k < MLEVELS.length; k++) if(got >= MLEVELS[k].at) i = k;
+  const nxt = MLEVELS[i + 1];
+  return { ...MLEVELS[i], got, next:nxt, need: nxt ? nxt.at - got : 0,
+    pct: nxt ? Math.min(1, (got - MLEVELS[i].at) / (nxt.at - MLEVELS[i].at)) : 1 };
+}
+const vName = x => (vcOf(x.id) || {}).title || x.name || "福利";
+/* 段位最高的那个游戏，用来在女友行上显示玩家实力 */
+const bestGameId = () => LIVE.reduce((best, gm) =>
+  gTier(gm.id).i > gTier(best).i ? gm.id : best, LIVE[0].id);
+
 ROUTES.me = { view(){
-  const g = girl();
   const vs = S.vouchers || [];
-  const unlocked = unlockedThumbs();
+  const ml = memberLv();
+  const d = DRAMAS[0];
+  const epsOpen = epsOpenCount(d), epsSeen = d.eps.filter((_, i) =>
+    S.watched.some(w => w.d === d.id && w.e === i + 1)).length;
+  const cont = Math.min(6, (S.last[d.id] || 0) + 1);
+  const mine = GIRLS.filter(x => S.owned.vid.includes(x.id) || x.id === S.girl);
   const logN = meAllLog ? 12 : 3;
   return {
     tab:"me",
@@ -5103,47 +5397,81 @@ ROUTES.me = { view(){
     <div class="ptcard" data-od-id="me-account">
       ${i3("coin", 52)}
       <div class="row-m" style="position:relative;z-index:2">
-        <div class="sm" style="color:rgba(255,255,255,.82)">${esc(S.nick)} · 可用娱乐积分</div>
+        <div class="sm" style="color:rgba(255,255,255,.82)">${esc(S.nick)} · ${esc(ml.t)}</div>
         <div class="n gg"><span data-pts>${S.pts}</span></div>
       </div>
       <a class="tbtn" href="#points" style="position:relative;z-index:2;white-space:nowrap">积分记录${ico("i-next")}</a>
     </div>
+    <div class="gpanel" style="margin-top:11px" data-od-id="me-member">
+      ${i3("crown", 32)}
+      <div class="row-m"><b style="font-size:14px">MBA66 ${esc(ml.t)}</b>
+        <div class="sm" style="margin-top:3px">${ml.next ? `累计获取 ${ml.got} 积分 · 距 ${ml.next.t} 还差 ${ml.need}` : `累计获取 ${ml.got} 积分 · 已是最高等级`}</div>
+        <div class="tgbar-t" style="margin-top:8px"><i style="transform:scaleX(${ml.pct})"></i></div>
+      </div>
+    </div>
 
-    <section class="sec" style="margin-top:18px" data-od-id="me-vouchers">
-      <div class="sec-h"><h2 class="h2">会员福利兑换</h2><span class="sm">用娱乐积分换</span></div>
-      <div class="vgrid">
-        ${VOUCHERS.map(v => {
-          const off = v.cost === null || (v.once && vs.some(x => x.id === v.id));
-          return `<div class="vcard ${off ? "off" : ""}" data-od-id="voucher-${v.id}">
-            ${i3(v.icon, 30)}
-            <div class="vt">${esc(v.title)}</div>
-            <div class="vs">${esc(v.sub)}</div>
-            <div class="vdash"></div>
-            <div class="vf">
-              <span class="vc">${v.cost === null ? "敬请期待" : v.cost + " 积分"}</span>
-              <button class="vb" data-vc="${v.id}" ${off ? "aria-disabled=\"true\"" : ""}>${
-                v.cost === null ? "待开放" : (v.once && vs.some(x => x.id === v.id)) ? "已兑换" : "兑换"}</button>
-            </div>
-          </div>`;
+    <section class="sec" data-od-id="me-girls">
+      <div class="sec-h"><h2 class="h2">我的女友</h2><span class="sm">已解锁 ${mine.length} / ${GIRLS.length}</span></div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        ${GIRLS.map(x => {
+          const b = bondOf(x.id), has = mine.includes(x);
+          return `<a class="mgrow gframe ${has ? "" : "lk"}" href="#girl/${x.id}" data-od-id="mygirl-${x.id}">
+            <span class="ring" style="--p:${Math.round(b.pct * 100)}">
+              <span class="av-s">${phImg(outfitImg(x), x.initial, "", "", AV)}</span></span>
+            <span class="row-m"><b>${esc(x.name)}<em>${esc(x.type)}</em></b>
+              <span class="sm" style="display:block;margin-top:3px">${has
+                ? `Lv.${b.lv} ${esc(b.name)} · 亲密度 ${Math.round(b.pct * 100)}%`
+                : "未解锁 · 选她陪我即可解锁"}</span></span>
+            <span class="mgrow-r">${has ? tierBadge(bestGameId())
+              : `<span class="pill tbd">${ico("i-lock")}未解锁</span>`}</span>
+          </a>`;
         }).join("")}
       </div>
-      <p class="sm" style="margin-top:11px">兑换后生成福利码，到店或客服出示核销。</p>
     </section>
 
-    <section class="sec" data-od-id="me-myvouchers">
-      <div class="sec-h"><h2 class="h2">我的福利</h2><span class="sm">${vs.length} 张</span></div>
+    <section class="sec" data-od-id="me-gameprog">
+      <div class="sec-h"><h2 class="h2">游戏进度</h2><a class="tbtn" href="#games">去玩${ico("i-next")}</a></div>
+      <div class="panel" style="padding:4px 16px">
+        ${LIVE.map(gm => { const r = gtRec(gm.id), T = gTier(gm.id);
+          return `<div class="row" data-od-id="gprog-${gm.id}">
+            <div class="row-m"><div class="row-t">${esc(gm.name)}</div>
+              <div class="row-s">${r.plays ? `已玩 ${r.plays} 局 · 最好 ${r.best} 分` : "还没玩过"}${
+                T.next ? ` · 距${T.next.t} ${T.need} 分` : " · 已满段位"}</div></div>
+            <span class="cv" style="margin-left:auto">${tierBadge(gm.id)}</span>
+          </div>`; }).join("")}
+      </div>
+    </section>
+
+    <section class="sec" data-od-id="me-dramaprog">
+      <div class="sec-h"><h2 class="h2">剧集进度</h2><span class="sm">${esc(d.title)}</span></div>
+      <div class="panel" style="padding:4px 16px">
+        <div class="row"><span class="gold" style="width:18px">${ico("i-film")}</span>
+          <div class="row-m"><div class="row-t">已解锁 ${epsOpen} / 6 集</div>
+            <div class="row-s">第 1–${FREE_EPS} 集免费 · 其余每集 ${PRICE.ep} 积分</div></div></div>
+        <div class="row"><span class="gold" style="width:18px">${ico("i-eye")}</span>
+          <div class="row-m"><div class="row-t">已观看 ${epsSeen} / 6 集</div>
+            <div class="row-s">${S.watched.length ? "最近：第 " + S.watched[0].e + " 集 · " + fmtTime(S.watched[0].t) : "还没有观看记录"}</div></div></div>
+        <div class="row"><span class="gold" style="width:18px">${ico("i-play")}</span>
+          <div class="row-m"><div class="row-t">继续观看 · 第 ${cont} 集</div>
+            <div class="row-s">${esc(d.eps[cont - 1])}</div></div>
+          <a class="tbtn" href="#play/${d.id}/${cont}">继续</a></div>
+      </div>
+    </section>
+
+    <section class="sec" data-od-id="me-redeems">
+      <div class="sec-h"><h2 class="h2">兑换记录</h2><span class="sm">${vs.length} 条</span></div>
       ${vs.length ? `<div class="panel" style="padding:4px 16px">
-        ${vs.slice(0, 8).map((x, i) => { const v = vcOf(x.id) || { title:"福利", icon:"gift" };
-          return `<div class="row" data-od-id="myv-${i}">
+        ${vs.slice(0, 8).map((x, i) => `<div class="row" data-od-id="redeem-${i}">
             <span class="gold" style="width:18px">${ico(x.used ? "i-check" : "i-gift")}</span>
-            <div class="row-m"><div class="row-t">${esc(v.title)}</div>
+            <div class="row-m"><div class="row-t">${esc(vName(x))}</div>
               <div class="row-s vcode" style="font-size:11.5px">${x.code} · ${fmtTime(x.t)}</div></div>
             <span style="margin-left:auto;display:flex;align-items:center;gap:9px">
               <span class="pill ${x.used ? "tbd" : "g"}">${x.used ? "已使用" : "未使用"}</span>
               <button class="tbtn" data-cp="${x.code}">复制</button></span>
-          </div>`; }).join("")}
+          </div>`).join("")}
         </div>`
-        : `<div class="empty"><p class="sm">还没有兑换记录。上面挑一张，积分够就能换。</p></div>`}
+        : `<div class="empty"><p class="sm">还没有兑换记录。</p>
+           <a class="tbtn" href="#rewards" style="display:inline-block;margin-top:8px">去奖励页兑换</a></div>`}
     </section>
 
     <section class="sec" data-od-id="me-ledger">
@@ -5156,20 +5484,9 @@ ROUTES.me = { view(){
             <b class="${l.d > 0 ? "up" : "dn"}">${l.d > 0 ? "+" : ""}${l.d}</b></div>`).join("")
           : `<div class="lg"><div class="row-m sm">暂无记录</div></div>`}
       </div>
-    </section>
-
-    <section class="sec" data-od-id="me-bond">
-      <div class="sec-h"><h2 class="h2">她们</h2><span class="sm">亲密经验只累积</span></div>
-      <div class="panel" style="display:flex;flex-direction:column;gap:13px;padding:14px 16px">
-        ${GIRLS.map(x => `<div style="display:flex;gap:11px;align-items:center" data-od-id="bond-row-${x.id}">
-          <div class="av-s">${phImg(outfitImg(x), x.initial, "", "", AV)}</div>
-          <div class="row-m">${bondBar(x.id, "sm")}</div>
-          <a class="tbtn" href="#girl/${x.id}">查看</a></div>`).join("")}
-      </div>
       <div style="display:flex;flex-direction:column;gap:9px;margin-top:10px">
-        <a class="lrow" href="#points">${ico("i-star")}<div class="row-m">已解锁内容<div class="row-s">造型、照片、剧集</div></div><span class="cv">${unlocked.length} 项${ico("i-next")}</span></a>
-        <a class="lrow" href="#girl/${g.id}">${ico("i-lock")}<div class="row-m">私密相册<div class="row-s">${esc(g.name)} · 已解锁 ${albumCount(g.id)}/${albumOf(g).length}</div></div><span class="cv">${ico("i-next")}</span></a>
-        <a class="lrow" href="#drama">${ico("i-eye")}<div class="row-m">观看记录<div class="row-s">短剧续看</div></div><span class="cv">${S.watched.length} 条${ico("i-next")}</span></a>
+        <a class="lrow" href="#points">${ico("i-star")}<div class="row-m">已解锁内容<div class="row-s">造型、照片、剧集</div></div><span class="cv">${unlockedThumbs().length} 项${ico("i-next")}</span></a>
+        <a class="lrow" href="#girl/${S.girl}">${ico("i-lock")}<div class="row-m">私密相册<div class="row-s">${esc(girl().name)} · 已解锁 ${albumCount(S.girl)}/${albumOf(girl()).length}</div></div><span class="cv">${ico("i-next")}</span></a>
       </div>
     </section>
 
@@ -5178,13 +5495,13 @@ ROUTES.me = { view(){
       <div style="display:flex;flex-direction:column;gap:9px">
         <button class="lrow" id="editNick2">${ico("i-user")}<div class="row-m">昵称<div class="row-s">仅保存在本机</div></div><span class="cv">${esc(S.nick)}${ico("i-next")}</span></button>
         <button class="lrow" id="guide">${ico("i-sparkle")}<div class="row-m">重看新手引导<div class="row-s">3 步说明</div></div><span class="cv">${ico("i-next")}</span></button>
-        <button class="lrow" id="reset">${ico("i-refresh")}<div class="row-m">重置演示数据<div class="row-s">积分、福利、解锁、记录全部恢复初始</div></div><span class="cv">${ico("i-next")}</span></button>
+        <button class="lrow" id="reset">${ico("i-refresh")}<div class="row-m">重置演示数据<div class="row-s">积分、兑换、解锁、进度全部恢复初始</div></div><span class="cv">${ico("i-next")}</span></button>
       </div>
     </section>
 
     <div class="panel" style="margin-top:22px;text-align:center" data-od-id="me-disclaimer">
-      <img src="assets/logo/logo-hg.png" alt="MBA66" style="height:22px;width:auto;max-width:70%;opacity:.9"
-        onerror="this.outerHTML='<div class=\'h2 gold\'>MBA66</div>'">
+      <img src="assets/logo/logo-hg.png" alt="MBA66" class="brandlogo" style="height:24px;opacity:.92"
+        onerror="logoFail(this,20)">
       <p class="sm" style="margin-top:12px">角色为 AI 虚拟形象 · 演示版本 · 数据仅存于本机</p>
     </div>`,
     after(root){
@@ -5201,21 +5518,20 @@ ROUTES.me = { view(){
           S.nick = v.slice(0, 12); save(); closeSheet(); toast("昵称已更新"); render();
         };
       };
-      $$("[data-vc]", root).forEach(b => b.onclick = () => redeemVoucher(vcOf(b.dataset.vc), b));
       $$("[data-cp]", root).forEach(b => b.onclick = async () =>
-        toast(await copyText(b.dataset.cp) ? "福利码已复制" : "请手动复制福利码", "i-check"));
-      const ml = $("#moreLog", root);
-      if(ml) ml.onclick = () => { meAllLog = !meAllLog; render(); };
+        toast(await copyText(b.dataset.cp) ? "核销码已复制" : "请手动复制核销码", "i-check"));
+      const ml2 = $("#moreLog", root);
+      if(ml2) ml2.onclick = () => { meAllLog = !meAllLog; render(); };
       $("#editNick2", root).onclick = nickSheet;
       $("#guide", root).onclick = () => startCoach(true);
       $("#reset", root).onclick = () => {
         const sh = sheet({ title:"重置演示数据", sub:"此操作不可撤销",
-          body:`<p class="p">将清除本机保存的全部演示状态：娱乐积分、已兑换福利、签到、已解锁内容、观看记录、聊天记录与偏好，并重新发放首次注册 +${RULES.signup} 积分。</p>`,
+          body:`<p class="p">将清除本机保存的全部演示状态：娱乐积分、兑换记录、打卡、已解锁内容、游戏段位、观看进度与偏好，并重新发放首次注册 +${RULES.signup} 积分。</p>`,
           foot:`<button class="btn btn-pri btn-w" id="yes2">确认重置</button>
                 <button class="btn btn-qt btn-w" onclick="closeSheet()">取消</button>` });
         sh.querySelector("#yes2").onclick = () => {
           try { localStorage.removeItem(KEY); } catch(e){}
-          S = load(); save(); meAllLog = false; closeSheet(); nav("#home"); render();
+          S = load(); save(); meAllLog = false; rwCat = "merch"; closeSheet(); nav("#home"); render();
           toast(`演示数据已重置 · 首次注册 +${RULES.signup} 积分`, "i-refresh");
         };
       };
@@ -5227,8 +5543,8 @@ ROUTES.me = { view(){
    新手引导（3 步）
    ============================================================ */
 const COACH = [
-  { sel:'#tabs a[data-tab="girls"]', t:"先选一位 AI 伙伴", s:"三位角色性格不同，聊天的语气也不一样。随时可以更换，已解锁的内容不会消失。" },
-  { sel:'[data-od-id="home-checkin"]', t:"每天签到攒积分", s:`签到 +${RULES.checkin}，心动挑战单局最多 +${RULES.gameMax}（每日 ${RULES.gameRounds} 局计分）。` },
+  { sel:'#tabs a[data-tab="girls"]', t:"先选一位 AI 女友", s:`${GIRLS.length} 位虚拟女友，造型和性格都不一样。随时可以更换，已解锁的内容不会消失。` },
+  { sel:'[data-od-id="home-checkin"]', t:"每天打卡攒积分", s:`打卡 +${RULES.checkin}，亲密游戏每局都计分，单局最多 +${RULES.gameMax}，段位越高倍率越高。` },
   { sel:'#tabs a[data-tab="rewards"]', t:"两套数值，各管各的", s:`娱乐积分解锁内容：短剧单集 ${PRICE.ep}、礼物 ${PRICE.gift}、场景 ${PRICE.bg}、造型 ${TIERS[1].price}–${TIERS[4].price}，也能在「我的」兑换会员福利。亲密经验只累积，升到 Lv.4 解锁她的专属故事。` }
 ];
 let coachI = 0;
@@ -5276,7 +5592,7 @@ function endCoach(finished){
 /* ============================================================
    启动
    ============================================================ */
-$("#fab").onclick = () => nav("#chat");
+$("#fab").onclick = () => nav("#games");
 if(!location.hash) location.hash = "#home";
 render();
 if(!S.coached){
