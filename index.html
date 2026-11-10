@@ -2236,6 +2236,28 @@ body{
 .vx.off{opacity:.55}
 .vx.off .vb{background:#2A2A33;color:var(--tx2)}
 @media (prefers-reduced-motion:reduce){.vx-stub img{animation:none}}
+/* ===== 她的私密视频 ===== */
+.clg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.clt{position:relative;aspect-ratio:3/4;border:0;padding:0;border-radius:14px;overflow:hidden;background:#111;cursor:pointer;font-family:var(--sans)}
+.clt .ph{position:absolute;inset:0}
+.clt .lv{z-index:1}
+.clt::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.85))}
+.clt.lk .ph img{filter:blur(14px) brightness(.7);transform:scale(1.15)}
+.clt-t{position:absolute;z-index:3;left:10px;bottom:9px;font-size:13px;font-weight:800;color:#fff}
+.clt-play{position:absolute;z-index:3;right:9px;bottom:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--au-g);color:#1B1206}
+.clt-play .ic{width:13px;height:13px}
+.clt-lock{position:absolute;z-index:3;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff}
+.clt-lock .ic{width:26px;height:26px;padding:10px;box-sizing:content-box;border-radius:50%;background:rgba(0,0,0,.45);color:var(--au);margin-bottom:4px}
+.clt-lock b{font-size:13px;font-weight:800}
+.clt-lock small{font-size:11px;color:rgba(255,255,255,.75)}
+#clipView{position:absolute;inset:0;z-index:85;display:none;background:#000}
+#clipView.on{display:block}
+#clipView video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#clipView .cv-top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;padding:52px 16px 16px;
+  background:linear-gradient(180deg,rgba(0,0,0,.7),transparent);color:#fff;font-size:15px}
+#clipView .cv-top button,#clipView .cv-snd{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;cursor:pointer}
+#clipView .cv-snd{position:absolute;right:16px;bottom:40px}
+#clipView .ic{width:18px;height:18px}
 </style>
 </head>
 <body>
@@ -3381,6 +3403,12 @@ ROUTES.girl = { view(id){
         </div>
       </section>
 
+      <section class="sec" data-od-id="girl-clips">
+        <div class="sec-h"><h2 class="h2">她的私密视频</h2>
+          <span class="sm">${clipsOf(g).filter(c => clipOpen(g, c)).length} / ${clipsOf(g).length} 已解锁 · 亲密度越高解锁越多</span></div>
+        ${clipGrid(g)}
+      </section>
+
       <section class="sec" data-od-id="girl-album">
         <div class="sec-h"><h2 class="h2">她的私密相册</h2>
           <span class="sm">${albumCount(g.id)} / 4 已解锁${shotsOf(g.id).length ? " · 写真 " + shotsOf(g.id).length + " 张" : ""}</span></div>
@@ -3404,6 +3432,7 @@ ROUTES.girl = { view(id){
       </section>
     </div>`,
     after(root){
+      $$("[data-clip]", root).forEach(b => b.onclick = () => openClip(g, +b.dataset.clip, b));
       $$("[data-gd]", root).forEach(b => b.onclick = () => {
         if(b.dataset.gd === "gift") return giftSheet(g.id);
         const v = $("#gVid", root);
@@ -3559,6 +3588,48 @@ function balanceRows(cost){
 }
 
 /* 统一的「确认兑换」确认单 */
+/* 她的私密视频：玩久了（亲密度升级）自动解锁，或用积分提前解锁 */
+const CLIP_RULE = [ { lv:1, cost:0 }, { lv:2, cost:150 }, { lv:3, cost:200 }, { lv:4, cost:300 }, { lv:4, cost:300 } ];
+function clipsOf(g){
+  const V = k => `assets/video/girl-${g.id}-${k}.mp4`;
+  const L = {
+    bunny:  [["招牌兔女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边防晒", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["清晨睡衣", V("v-x"), g.x]],
+    neko:   [["招牌猫女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["夜色街拍", V("v-night"), g.img2]],
+    maid:   [["招牌女仆", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["派对香槟", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
+    summer: [["酒店比基尼", g.video, g.v3], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
+  }[g.id] || [["招牌", g.video, g.v3]];
+  return L.map(([t, src, poster], i) => ({ i, t, src, poster, ...CLIP_RULE[Math.min(i, CLIP_RULE.length - 1)] }));
+}
+const clipOwned = (gid, i) => ((S.owned.clips || {})[gid] || []).includes(i);
+const clipOpen = (g, c) => c.cost === 0 || bondOf(g.id).lv >= c.lv || clipOwned(g.id, c.i);
+function clipGrid(g){
+  return `<div class="clg">${clipsOf(g).map(c => { const open = clipOpen(g, c); return `
+    <button class="clt ${open ? "" : "lk"}" data-clip="${c.i}" data-od-id="clip-${g.id}-${c.i}">
+      ${phImg(c.poster, g.initial, c.t, "", "50% 16%")}
+      ${open ? `<video class="lv" src="${c.src}" poster="${c.poster}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" onerror="this.remove()"></video>` : ""}
+      ${open ? `<span class="clt-play">${ico("i-play")}</span>`
+             : `<span class="clt-lock">${ico("i-lock")}<b>Lv.${c.lv} 解锁</b><small>或 ${c.cost} 积分</small></span>`}
+      <span class="clt-t">${esc(c.t)}</span>
+    </button>`; }).join("")}</div>`;
+}
+function playClip(g, c){
+  let v = $("#clipView");
+  if(!v){ v = document.createElement("div"); v.id = "clipView"; ($("#stage") ? $("#stage").parentElement : document.body).appendChild(v); }
+  v.innerHTML = `<video src="${c.src}" poster="${c.poster}" autoplay loop playsinline muted></video>
+    <div class="cv-top"><b>${esc(g.name)} · ${esc(c.t)}</b><button aria-label="关闭">${ico("i-close")}</button></div>
+    <button class="cv-snd" aria-label="开声音">${ico("i-sound")}</button>`;
+  v.classList.add("on");
+  const vid = v.querySelector("video"); vid.play().catch(() => {});
+  v.querySelector(".cv-top button").onclick = () => { vid.pause(); v.classList.remove("on"); v.innerHTML = ""; };
+  v.querySelector(".cv-snd").onclick = () => { vid.muted = !vid.muted; };
+}
+function openClip(g, i, el){
+  const c = clipsOf(g)[i];
+  if(clipOpen(g, c)) return playClip(g, c);
+  buy({ cost:c.cost, title:`${g.name} · ${c.t}`, sub:"私密视频",
+    cond:[`亲密度达到 Lv.${c.lv} 会自动解锁`, "提前用积分解锁，永久可看"], fromEl:el,
+    done(){ const o = S.owned.clips = S.owned.clips || {}; (o[g.id] = o[g.id] || []).push(i); } });
+}
 function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then, fromEl }){
   const after = S.pts - cost;
   const ok = after >= 0;
