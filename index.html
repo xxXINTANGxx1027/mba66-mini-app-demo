@@ -2114,6 +2114,13 @@ body{
 .topshare em{font-style:normal;font-size:10.5px;font-weight:900;padding:1px 5px;border-radius:6px;background:#E5383B;color:#fff}
 @media (prefers-reduced-motion:no-preference){.topshare{animation:shPulse 2.2s ease-in-out infinite}}
 @keyframes shPulse{0%,100%{box-shadow:0 6px 18px -6px rgba(233,196,106,.7)}50%{box-shadow:0 0 0 6px rgba(233,196,106,.18),0 6px 18px -6px rgba(233,196,106,.9)}}
+/* 分类：5 个等宽图标入口，一屏放下 */
+.h-chips{display:grid !important;grid-template-columns:repeat(5,1fr);gap:4px !important;margin:18px 0 0 !important;padding:0 !important;overflow:visible !important}
+.h-chips a,.h-chips a.on{flex-direction:column !important;gap:6px !important;height:auto !important;padding:0 !important;background:transparent !important;
+  font-size:11.5px !important;font-weight:700 !important;color:var(--tx2) !important;white-space:nowrap}
+.h-chips a .ic{width:20px !important;height:20px !important;padding:12px;box-sizing:content-box;border-radius:50%;background:#16161B;color:var(--tx)}
+.h-chips a.on{color:var(--au) !important}
+.h-chips a.on .ic{background:var(--au-g);color:#1B1206}
 </style>
 </head>
 <body>
