@@ -2917,7 +2917,7 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
 const ADS = [
   { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
   { gid:"maid",   tag:"今日提醒",   h:"Hi，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"Hi，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
-  { gid:"summer", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 42%", act:"topup" },
+  { gid:"bunny",  img:g => g.sun, tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 62%", act:"topup" },
   { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
 let adStop = null, bnStop = null;
@@ -2956,7 +2956,7 @@ ROUTES.home = { view(){
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
-              <span class="ad-ph">${phImg(x.bikini || x.v3, x.initial, x.name, "", a.pos || "50% 18%")}</span>
+              <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}</span>
               <span class="ad-shade"></span><span class="ad-streak"></span>
               <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
               <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
