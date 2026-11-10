@@ -2874,7 +2874,7 @@ const ADS = [
   { gid:"summer", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 14%", act:"topup" },
   { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
-let adStop = null;
+let adStop = null, bnStop = null;
 /* 精彩推荐：卖点卡，各自有去处 */
 const PROMOS = [
   { k:"games", gid:"maid",   img:g => g.v3,     pos:"50% 14%", kick:"GAMES",  t:"与女友互动 · 亲密游戏", sub:"赢积分换奖励 · 段位越高倍率越高", href:"#games" },
@@ -2944,7 +2944,7 @@ ROUTES.home = { view(){
         </div>
       </section>
 
-      <div class="h-hs h-bonus">
+      <div class="h-hs h-bonus" id="hBonus">
         <button class="h-bn" id="hFree" data-od-id="bn-free">
           <span class="h-bn-t"><b>每日免费积分</b><small>打卡就送，连续 7 天更多</small><u>立即领取</u></span>
           <span class="h-bn-art">${i3("coin", 64)}</span></button>
@@ -3030,8 +3030,31 @@ ROUTES.home = { view(){
         go(0); start();
         adStop = stop;
       }
+      const bn = $("#hBonus", root);
+      if(bn && !rm()){
+        let bi = 0, held = false, bt = null;
+        const cards = [...bn.children];
+        const step = () => {
+          if(held || !bn.isConnected) return;
+          bi = (bi + 1) % cards.length;
+          bn.scrollTo({ left: bi ? cards[bi].offsetLeft - parseFloat(getComputedStyle(bn).paddingLeft) : 0, behavior:"smooth" });
+        };
+        bt = setInterval(step, 3000);
+        const hold = () => { held = true; };
+        const release = () => {
+          held = false;
+          const x = bn.scrollLeft;   // 手动滑过之后，从最近的那张继续
+          bi = cards.reduce((k, c, i) => Math.abs(c.offsetLeft - x) < Math.abs(cards[k].offsetLeft - x) ? i : k, 0);
+        };
+        bn.addEventListener("pointerdown", hold);
+        bn.addEventListener("touchstart", hold, { passive:true });
+        bn.addEventListener("pointerup", release);
+        bn.addEventListener("touchend", release);
+        bn.addEventListener("pointerleave", release);
+        bnStop = () => clearInterval(bt);
+      }
     },
-    leave(){ if(adStop){ adStop(); adStop = null; } }
+    leave(){ if(adStop){ adStop(); adStop = null; } if(bnStop){ bnStop(); bnStop = null; } }
   };
 }};
 
