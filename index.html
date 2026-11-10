@@ -2185,6 +2185,8 @@ body{
 .stg-say{top:auto !important;bottom:142px !important;max-width:70% !important}
 .stg-v{object-position:50% 12% !important}
 #bar.ghost{background:linear-gradient(180deg,rgba(7,7,10,.95) 0%,rgba(7,7,10,.75) 65%,rgba(7,7,10,0) 100%) !important}
+.ad-ph .ad-v{position:absolute;top:0;right:0;bottom:0;width:64%;height:100%;object-fit:cover;z-index:0}
+.stg-act>*{line-height:1.25}
 </style>
 </head>
 <body>
@@ -2282,7 +2284,7 @@ const GIRLS = [
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
     bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
     lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
-    video:"assets/video/girl-bunny.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-2.mp4"],
+    video:"assets/video/girl-bunny.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-2.mp4"],
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
     about:"22 岁，派对场子里最会逗人的兔女郎，专挑你撑不住的时候凑过来。",
     outfit2:"限定 · 午夜兔尾",
@@ -2293,7 +2295,7 @@ const GIRLS = [
     v3:"assets/img/girl-neko-v3.webp", x:"assets/img/girl-neko-x.webp",
     bikini:"assets/img/girl-neko-bikini.webp", sun:"assets/img/girl-neko-sun.webp",
     lounge:"assets/img/girl-neko-lounge.webp", img:"assets/img/girl-neko.webp", img2:"assets/img/girl-neko-2.webp",
-    video:"assets/video/girl-neko.mp4", videos:["assets/video/girl-neko.mp4","assets/video/girl-neko-2.mp4"],
+    video:"assets/video/girl-neko.mp4", bkv:"assets/video/girl-neko-bikini.mp4", videos:["assets/video/girl-neko.mp4","assets/video/girl-neko-2.mp4"],
     line:"喵～你手给我，我要蹭一下。",
     about:"21 岁，挂在你身上的猫咪系女友，三句话里两句带「喵」，不理她会闹。",
     outfit2:"限定 · 铃铛夜",
@@ -2987,7 +2989,7 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
 const ADS = [
   { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
   { gid:"maid",   tag:"今日提醒",   h:"Hi，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"Hi，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
-  { gid:"bunny",  img:g => g.sun, tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 62%", act:"topup" },
+  { gid:"bunny",  img:g => g.sun, vid:g => g.sunv, vpos:"50% 55%", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 62%", act:"topup" },
   { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
 let adStop = null, bnStop = null;
@@ -3050,7 +3052,7 @@ ROUTES.home = { view(){
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
-              <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}</span>
+              <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}${(a.vid ? a.vid(x) : x.bkv) ? `<video class="ad-v" src="${a.vid ? a.vid(x) : x.bkv}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" onerror="this.remove()" style="object-position:${a.vpos || "50% 20%"}"></video>` : ""}</span>
               <span class="ad-shade"></span><span class="ad-streak"></span>
               <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
               <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
