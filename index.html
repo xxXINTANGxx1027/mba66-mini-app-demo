@@ -1975,8 +1975,6 @@ body{
 .ptcard{background:linear-gradient(120deg,rgba(233,196,106,.18),rgba(21,21,27,.95) 60%) !important;border:1px solid rgba(233,196,106,.3) !important;box-shadow:none !important}
 .gcardx .cv-fx{opacity:.35}
 .gcardx>em.h-badge{position:absolute;left:10px;top:10px;font-style:normal}
-/* 夏夏：竖屏视频截帧，脸在上方，裁切点下移，多露出比基尼 */
-[data-od-id="girl-hero-summer"] .ph>img{--pos:50% 36% !important;object-position:50% 36% !important}
 /* ===== v13 · 全站精修 ===== */
 #fab{display:none !important}
 /* 女友列表：两列人像卡 */
@@ -2121,6 +2119,27 @@ body{
 .h-chips a .ic{width:20px !important;height:20px !important;padding:12px;box-sizing:content-box;border-radius:50%;background:#16161B;color:var(--tx)}
 .h-chips a.on{color:var(--au) !important}
 .h-chips a.on .ic{background:var(--au-g);color:#1B1206}
+/* ===== v18 · 让画面动起来（参考 5100：人物和背景都会动） ===== */
+.lv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none}
+.h-gt .lv,.gl2-ph .lv{z-index:0}
+.h-gt::after,.gl2-ph::after{z-index:1}
+.h-gt b,.h-badge,.gl2-n,.gl2-cur{z-index:2}
+.gcardx .lv{z-index:0}
+.h-gl{position:relative}
+.h-gl-v{position:absolute;left:0;right:0;top:0;aspect-ratio:1;border-radius:50%;overflow:hidden;pointer-events:none}
+.h-gl.cur .h-gl-v{inset:2px auto auto 2px;width:calc(100% - 4px)}
+/* 背景：金色光点缓慢飘动 */
+.app::before{content:"";position:absolute;inset:-20% -10%;z-index:0;pointer-events:none;opacity:.55;
+  background-image:radial-gradient(1.6px 1.6px at 12% 18%,rgba(255,226,150,.9),transparent),radial-gradient(1.2px 1.2px at 68% 8%,rgba(255,226,150,.8),transparent),
+    radial-gradient(2px 2px at 82% 42%,rgba(255,226,150,.7),transparent),radial-gradient(1.4px 1.4px at 30% 64%,rgba(255,226,150,.8),transparent),
+    radial-gradient(1.8px 1.8px at 54% 86%,rgba(255,226,150,.7),transparent),radial-gradient(1.2px 1.2px at 92% 76%,rgba(255,226,150,.8),transparent),
+    radial-gradient(1.5px 1.5px at 6% 92%,rgba(255,226,150,.7),transparent),radial-gradient(1.3px 1.3px at 44% 34%,rgba(255,226,150,.6),transparent);
+  background-size:100% 50%;animation:dustUp 26s linear infinite}
+@keyframes dustUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+/* 广告海报照片缓慢推近 */
+.adslide .ad-ph .ph img{animation:adKB 9s ease-in-out infinite alternate;transform-origin:60% 30%}
+@keyframes adKB{from{transform:scale(1)}to{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.app::before,.adslide .ad-ph .ph img{animation:none}}
 </style>
 </head>
 <body>
@@ -2235,15 +2254,15 @@ const GIRLS = [
     outfit2:"限定 · 铃铛夜",
     react:{ hit:["喵～","好耶","蹭一下"], combo:["喵喵喵","再来嘛","好快"], win:["喵！赢了","抱我","最棒的"], idle:["喵……","在这呢","摸摸头"] } },
 
-  { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:23,
-    tags:["性感","爱撒娇","身材火辣"],
+  { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:22,
+    tags:["俏皮","爱撒娇","身材火辣"],
     v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
     bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
     lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
-    video:"assets/video/girl-summer.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-2.mp4"],
-    line:"今天这套红色的，好看吗？只给你看哦～",
-    about:"23 岁，最爱穿比基尼对着镜头撒娇的辣妹，你一来她就舍不得下线。",
-    outfit2:"限定 · 红色比基尼",
+    video:"assets/video/girl-summer.mp4",
+    line:"这套桃红色的，是专门穿给你看的哦～",
+    about:"22 岁，黑色短发的甜妹，最爱穿比基尼窝在酒店套房等你，嘴甜又会撒娇。",
+    outfit2:"限定 · 夜色约会",
     react:{ hit:["可以哦","漂亮","就这样"], combo:["越来越顺","别停","帅"], win:["赢得好看","奖励你","过来"], idle:["等你呢","晒着呢","嗨～"] } },
 
   { id:"maid", name:"奈奈", en:"Nana", type:"女仆", initial:"奈", age:21,
@@ -2948,7 +2967,7 @@ ROUTES.home = { view(){
     const c = gm.cover || {}, x = girl(c.gid || "bunny");
     const img = c.img ? c.img(x) : x.v3;
     return `<a class="h-gt" href="#game/${gm.id}" data-od-id="hg-${gm.id}">
-      ${phImg(img, x.initial, gm.name, "", c.pos || "50% 14%")}
+      ${phImg(img, x.initial, gm.name, "", c.pos || "50% 14%")}${liveVid(x, "50% 14%")}
       ${gm.hot ? '<em class="h-badge hot">HOT</em>' : gm.isNew ? '<em class="h-badge">NEW</em>' : ""}
       <b>${esc(gm.name)}</b></a>`;
   };
@@ -3014,7 +3033,7 @@ ROUTES.home = { view(){
 
       <section class="h-block">${secH("我的女友", "#girls")}
         <div class="h-hs h-girls">${GIRLS.map(x => `<a class="h-gl ${x.id === g.id ? "cur" : ""}" href="#girl/${x.id}">
-          ${phImg(x.v3, x.initial, x.name, "", "50% 8%")}<span><b>${esc(x.name)}</b><small>${esc(x.type)}</small></span></a>`).join("")}</div></section>
+          ${phImg(x.v3, x.initial, x.name, "", "50% 8%")}<span class="h-gl-v">${liveVid(x, "50% 12%")}</span><span><b>${esc(x.name)}</b><small>${esc(x.type)}</small></span></a>`).join("")}</div></section>
 
       <section class="h-block">${secH("AI 剧集", "#drama")}
         <a class="h-card h-drama" href="#show/${d.id}">
@@ -3135,7 +3154,7 @@ ROUTES.girls = { view(){
       ${GIRLS.map(g => { const cur = S.girl === g.id, bd = bondOf(g.id); return `
         <div class="gcard gl2-c ${cur ? "cur" : ""}" data-od-id="girl-card-${g.id}">
           <a class="gl2-ph" href="#girl/${g.id}" aria-label="${esc(g.name)} 角色详情">
-            ${phImg(g.v3, g.initial, g.name + " 形象", "", "50% 12%")}
+            ${phImg(g.v3, g.initial, g.name + " 形象", "", "50% 12%")}${liveVid(g, "50% 14%")}
             ${cur ? `<em class="gl2-cur">${ico("i-check")}陪伴中</em>` : ""}
             <span class="gl2-n"><b>${esc(g.name)}</b><small>${esc(g.type)} · ${g.age} 岁</small></span>
           </a>
@@ -3667,6 +3686,9 @@ const GAMES = [
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
+const liveVid = (x, pos = "50% 20%") => x && x.video
+  ? `<video class="lv" src="${x.video}" poster="${x.v3}" muted autoplay loop playsinline preload="metadata"
+      style="object-position:${pos}" aria-hidden="true" onerror="this.remove()"></video>` : "";
 function gameCover(gm){
   const c = gm.cover || {};
   if(c.fan){
@@ -3677,7 +3699,7 @@ function gameCover(gm){
   }
   const x = girl(c.gid);
   const src = (c.img && c.img(x)) || x.v3;
-  return `${phImg(src, x.initial, "", "", c.pos || "50% 20%")}
+  return `${phImg(src, x.initial, "", "", c.pos || "50% 20%")}${liveVid(x, c.pos || "50% 20%")}
     <div class="cv-tint"></div>${FX[c.fx] || ""}`;
 }
 const gameOf = id => GAMES.find(x => x.id === id) || LIVE[0];
