@@ -2303,7 +2303,7 @@ const GIRLS = [
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
     bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
     lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
-    video:"assets/video/girl-bunny.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-2.mp4"],
+    video:"assets/video/girl-bunny.mp4", sunv:"assets/video/girl-bunny-sun.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-2.mp4"],
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
     about:"22 岁，派对场子里最会逗人的兔女郎，专挑你撑不住的时候凑过来。",
     outfit2:"限定 · 午夜兔尾",
@@ -2336,7 +2336,7 @@ const GIRLS = [
     v3:"assets/img/girl-maid-v3.webp", x:"assets/img/girl-maid-x.webp",
     bikini:"assets/img/girl-maid-bikini.webp", sun:"assets/img/girl-maid-sun.webp",
     lounge:"assets/img/girl-maid-lounge.webp", img:"assets/img/girl-maid.webp", img2:"assets/img/girl-maid-2.webp",
-    video:"assets/video/girl-maid.mp4", videos:["assets/video/girl-maid.mp4","assets/video/girl-maid-2.mp4"],
+    video:"assets/video/girl-maid.mp4", bkv:"assets/video/girl-maid-bikini.mp4", videos:["assets/video/girl-maid.mp4","assets/video/girl-maid-2.mp4"],
     line:"主人，今天也要我陪着吗？",
     about:"21 岁，说话轻轻的女仆系女友，什么都帮你记着，只求你多看她两眼。",
     outfit2:"限定 · 蕾丝围裙",
@@ -3071,7 +3071,7 @@ ROUTES.home = { view(){
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
-              <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}${(a.vid ? a.vid(x) : x.bkv) ? `<video class="ad-v" src="${a.vid ? a.vid(x) : x.bkv}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" onerror="this.remove()" style="object-position:${a.vpos || "50% 20%"}"></video>` : ""}</span>
+              <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}${(a.vid ? a.vid(x) : x.bkv) ? `<video class="ad-v" src="${a.vid ? a.vid(x) : x.bkv}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" onerror="this.remove()" style="object-position:${a.vpos || "50% 6%"}"></video>` : ""}</span>
               <span class="ad-shade"></span><span class="ad-streak"></span>
               <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
               <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
@@ -3166,7 +3166,7 @@ ROUTES.home = { view(){
           const R = (g.react && [...(g.react.hit || []), ...(g.react.win || [])]) || ["讨厌～"];
           return setSay(R[Math.floor(Math.random() * R.length)] + "（脸红）"); }
         if(k === "bikini"){
-          if(!g.bkv){ return toast(`${g.name} 的比基尼短片马上就好`, "i-sparkle"); }
+          if(!g.bkv){ return toast(`${g.name} 现在穿的就是比基尼哦～`, "i-sparkle"); }
           bk = !bk; sv.src = bk ? g.bkv : g.video; sv.play().catch(() => {});
           b.querySelector("b").textContent = bk ? "换回来" : "比基尼";
           setSay(bk ? "这套只穿给你看哦～" : g.line);
@@ -3370,7 +3370,7 @@ ROUTES.girl = { view(id){
       $$("[data-gd]", root).forEach(b => b.onclick = () => {
         if(b.dataset.gd === "gift") return giftSheet(g.id);
         const v = $("#gVid", root);
-        if(!g.bkv || !v) return toast(`${g.name} 的比基尼短片马上就好`, "i-sparkle");
+        if(!g.bkv || !v) return toast(`${g.name} 现在穿的就是比基尼哦～`, "i-sparkle");
         const on = b.dataset.on !== "1";
         b.dataset.on = on ? "1" : "0";
         v.loop = true; v.src = on ? g.bkv : (g.videos || [g.video])[0]; v.play().catch(() => {});
