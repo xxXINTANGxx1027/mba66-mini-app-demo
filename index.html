@@ -1820,6 +1820,41 @@ body{
 .ad-1 .ad-shade,.ad-2 .ad-shade,.ad-3 .ad-shade,.ad-4 .ad-shade{background:linear-gradient(95deg,#121116 0 44%,rgba(18,17,22,.8) 58%,rgba(18,17,22,0) 88%) !important}
 .adslide .ad-c b{color:#F6F1E6}
 .adwrap{border-color:rgba(233,196,106,.32) !important}
+/* ===== 广告位 · 赌场活动海报 ===== */
+.adwrap{border:1px solid rgba(233,196,106,.45) !important;border-radius:20px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,236,190,.06),0 0 24px -8px rgba(233,196,106,.35),0 18px 34px -20px #000 !important}
+.adslide{height:156px !important;background:#0B0A0E}
+.adslide .ad-ph .ph{width:64% !important}
+.adslide .ad-ph .ph img{object-fit:cover}
+.ad-1 .ad-shade,.ad-2 .ad-shade,.ad-3 .ad-shade,.ad-4 .ad-shade{background:
+  linear-gradient(92deg,#0B0A0E 0 34%,rgba(11,10,14,.86) 46%,rgba(11,10,14,.2) 70%,rgba(11,10,14,0) 86%),
+  radial-gradient(70% 90% at 0% 100%,rgba(233,196,106,.22),transparent 70%) !important}
+.ad-3 .ad-shade{background:linear-gradient(92deg,#1A0507 0 34%,rgba(26,5,7,.86) 46%,rgba(26,5,7,.2) 70%,rgba(26,5,7,0) 86%),
+  radial-gradient(70% 90% at 0% 100%,rgba(255,70,60,.28),transparent 70%) !important}
+.ad-streak{position:absolute;z-index:1;top:-40%;left:30%;width:38px;height:180%;transform:rotate(22deg);pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,236,190,.16),transparent)}
+.adslide .ad-c{left:16px !important;width:62% !important;gap:0 !important;justify-content:center}
+.ad-tag{align-self:flex-start;font-style:normal;font-size:10.5px;font-weight:900;letter-spacing:.08em;color:#1B1206;padding:3px 9px 3px 8px;
+  background:linear-gradient(180deg,#FBE7A6,#E2B551);clip-path:polygon(0 0,100% 0,calc(100% - 6px) 50%,100% 100%,0 100%);margin-bottom:7px}
+.ad-3 .ad-tag{background:linear-gradient(180deg,#FF6B5E,#D2261B);color:#fff}
+.ad-h{display:block;font-size:24px !important;font-weight:900 !important;line-height:1.16 !important;letter-spacing:.01em;
+  background:linear-gradient(180deg,#FFF8DF 0%,#F7D683 45%,#D9A23A 75%,#FFE7A6 100%);-webkit-background-clip:text;background-clip:text;color:transparent !important;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.9)) drop-shadow(0 0 10px rgba(233,196,106,.35));text-shadow:none !important}
+.ad-sub{display:block;margin-top:5px;font-size:11.5px;color:rgba(246,241,230,.78);font-weight:600}
+.adslide .ad-cta{margin-top:10px;height:28px !important;padding:0 10px 0 14px !important;gap:2px !important;font-weight:900 !important;
+  background:linear-gradient(180deg,#FBE7A6,#E2B551 48%,#A9741F) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 6px 14px -6px rgba(233,196,106,.7) !important}
+.adslide .ad-cta svg{width:14px;height:14px;stroke:#1B1206;stroke-width:2.6;fill:none}
+.ad-coin{position:absolute;z-index:2;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#FFF6CF,#F2C455 45%,#A86E14 100%);box-shadow:0 3px 8px rgba(0,0,0,.6),inset 0 -2px 0 rgba(120,70,0,.5)}
+.ad-coin::after{content:"";position:absolute;inset:22%;border-radius:50%;border:1.5px solid rgba(140,90,10,.55)}
+.ad-coin.c1{width:22px;height:22px;left:52%;top:14px;transform:rotate(-12deg)}
+.ad-coin.c2{width:14px;height:14px;left:58%;bottom:22px;opacity:.9}
+.ad-coin.c3{width:10px;height:10px;left:46%;bottom:44px;opacity:.75}
+.addots{right:14px !important;bottom:12px !important}
+.addots button{background:rgba(255,255,255,.3) !important}
+.addots button.on{background:#E9C46A !important}
+@media (prefers-reduced-motion:no-preference){.ad-coin.c1{animation:coinBob 2.6s ease-in-out infinite}.ad-coin.c2{animation:coinBob 3.1s ease-in-out .4s infinite}}
+@keyframes coinBob{50%{transform:translateY(-4px) rotate(8deg)}}
 </style>
 </head>
 <body>
@@ -2632,10 +2667,10 @@ const ptLink = () => `<a class="ptchip" href="#me" aria-label="积分余额">${i
    ============================================================ */
 /* 首页广告位：4 张海报，自动轮播 */
 const ADS = [
-  { gid:"sweet",  t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   icon:"i-cal",    cls:"ad-1", pos:"52% 14%", act:"check" },
-  { gid:"bunny",  t:"美女，你今天打卡了吗？",              cta:"马上打卡", icon:"i-heart",  cls:"ad-2", pos:"50% 12%", act:"check" },
-  { gid:"summer", t:"充值马上能赢奖和拿积分",              cta:"去充值",   icon:"i-coin",   cls:"ad-3", pos:"50% 16%", act:"topup" },
-  { gid:"neko",   t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     icon:"i-game",   cls:"ad-4", pos:"50% 12%", go:"#games" }
+  { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
+  { gid:"maid",   tag:"今日提醒",   h:"美女，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"美女，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
+  { gid:"summer", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 14%", act:"topup" },
+  { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
 let adStop = null;
 /* 精彩推荐：卖点卡，各自有去处 */
@@ -2694,9 +2729,11 @@ ROUTES.home = { view(){
             const x = girl(a.gid);
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
               <span class="ad-ph">${phImg(x.v3, x.initial, x.name, "", a.pos || "50% 18%")}</span>
-              <span class="ad-shade"></span>
-              <span class="ad-c"><b>${esc(a.t)}</b>
-                <span class="ad-cta">${ico(a.icon)}${esc(a.cta)}</span></span>
+              <span class="ad-shade"></span><span class="ad-streak"></span>
+              <span class="ad-coin c1"></span><span class="ad-coin c2"></span><span class="ad-coin c3"></span>
+              <span class="ad-c" aria-label="${esc(a.t)}"><em class="ad-tag">${esc(a.tag)}</em>
+                <b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
+                <span class="ad-cta">${esc(a.cta)}<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span>
             </div>`;
           }).join("")}
         </div>
