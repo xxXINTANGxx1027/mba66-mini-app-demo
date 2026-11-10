@@ -1977,6 +1977,49 @@ body{
 .gcardx>em.h-badge{position:absolute;left:10px;top:10px;font-style:normal}
 /* 夏夏：竖屏视频截帧，脸在上方，裁切点下移，多露出比基尼 */
 [data-od-id="girl-hero-summer"] .ph>img{--pos:50% 36% !important;object-position:50% 36% !important}
+/* ===== v13 · 全站精修 ===== */
+#fab{display:none !important}
+/* 女友列表：两列人像卡 */
+.gl2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gl2-c{border-radius:var(--r) !important;overflow:hidden;background:var(--sf) !important;border:1px solid var(--bd) !important;box-shadow:none !important;padding:0 !important}
+.gl2-c.cur{border-color:rgba(233,196,106,.7) !important}
+.gl2-ph{position:relative;display:block;aspect-ratio:3/4;text-decoration:none;color:#fff}
+.gl2-ph .ph{position:absolute;inset:0}
+.gl2-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.85))}
+.gl2-cur{position:absolute;z-index:2;left:8px;top:8px;display:inline-flex;align-items:center;gap:3px;font-style:normal;font-size:10.5px;font-weight:800;
+  padding:3px 8px;border-radius:6px;background:var(--au-g);color:#1B1206}
+.gl2-cur .ic{width:12px;height:12px}
+.gl2-n{position:absolute;z-index:2;left:10px;right:10px;bottom:9px;display:flex;flex-direction:column}
+.gl2-n b{font-size:17px;font-weight:900}
+.gl2-n small{font-size:11px;color:rgba(255,255,255,.75)}
+.gl2-b{padding:10px}
+.gl2-lv{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--tx2);font-weight:600}
+.gl2-lv i{display:block;height:4px;border-radius:2px;background:var(--sf2);overflow:hidden}
+.gl2-lv u{display:block;height:100%;background:var(--au-g)}
+.gl2-btn{display:grid;place-items:center;width:100%;height:34px;margin-top:10px;border:0;border-radius:9px;background:var(--au-g);color:#1B1206;
+  font:800 13px var(--sans);text-decoration:none;cursor:pointer}
+.gl2-btn.ghost{background:var(--sf2);border:1px solid var(--bd);color:var(--tx)}
+/* 段位标签：中性底 + 金属色字 */
+.tgb{background:rgba(0,0,0,.55) !important;border:1px solid var(--bd) !important;box-shadow:none !important;color:#E3A86B !important}
+.tgb.tg-silver{color:#D7DCE3 !important}.tgb.tg-gold{color:var(--au) !important}.tgb.tg-diamond{color:#9FE3FF !important}
+.tgb em{color:inherit !important;opacity:.7}
+.epnum{display:grid;place-items:center;flex:0 0 44px;height:44px;border-radius:10px;background:var(--sf2);border:1px solid var(--bd);
+  font:900 16px var(--sans);color:var(--au);font-variant-numeric:tabular-nums}
+.epnum.lk{color:var(--tx2)}
+.mtile-art{height:84px !important;display:grid !important;place-items:center;position:relative}
+.mtile-art .mart{width:46px;height:46px}
+.mtile-art em{position:absolute;right:8px;bottom:6px;font-style:normal;font-size:9px;font-weight:900;letter-spacing:.12em;color:rgba(233,196,106,.6)}
+.rules{margin-top:var(--sec);background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:0 14px}
+.rules>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:52px;cursor:pointer;font-weight:800;font-size:15px}
+.rules>summary::-webkit-details-marker{display:none}
+.rules>summary small{font-size:12px;font-weight:600;color:var(--tx2)}
+.rules>summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--tx2);border-bottom:2px solid var(--tx2);transform:rotate(45deg);margin:-4px 4px 0}
+.rules[open]>summary::after{transform:rotate(-135deg);margin-top:4px}
+.rules[open]{padding-bottom:14px}
+.rules .panel{background:var(--sf2) !important}
+.cv-pink .cv-tint,.cv-gold .cv-tint,.cv-violet .cv-tint,.cv-coral .cv-tint{display:none !important}
+.gcardx:not(.cv-frost) .cv-fx{display:none !important}
+.gcardx{border-color:var(--bd) !important}
 </style>
 </head>
 <body>
@@ -2964,35 +3007,22 @@ ROUTES.girls = { view(){
     tab:"girls",
     bar:`<div class="row-m"><div class="bar-t">我的女友</div></div>${ptLink()}`,
     html:`
-    <h1 class="h1" style="margin-bottom:6px"><span class="gg">选择你的虚拟女友</span></h1>
-    <p class="p" data-od-id="girls-intro">${GIRLS.length} 位成年虚拟女友，造型与性格各不相同。随时可以更换，已解锁的内容不会消失。</p>
-    <div style="display:flex;flex-direction:column;gap:13px;margin-top:20px">
-      ${GIRLS.map(g => `
-        <div class="gcard ${S.girl === g.id ? "cur" : ""}" data-od-id="girl-card-${g.id}">
-          <a href="#girl/${g.id}" style="display:block;position:relative;text-decoration:none;color:inherit"
-             aria-label="${esc(g.name)} 角色详情">
-            ${phImg(outfitImg(g), g.initial, g.name + " 形象")}
-            <div class="scrim"></div>
-            ${S.girl === g.id ? `<span class="pill g badge" style="position:absolute;top:11px;right:11px;z-index:4">${ico("i-check")}当前陪伴</span>` : ""}
-            <div style="position:absolute;z-index:3;left:14px;right:14px;bottom:12px">
-              <div class="lbl">${esc(g.type)}</div>
-              <div class="h2" style="margin-top:4px">${esc(g.name)}<span class="agechip">${g.age}岁</span></div>
-            </div>
+    <div class="gl2" data-od-id="girls-grid">
+      ${GIRLS.map(g => { const cur = S.girl === g.id, bd = bondOf(g.id); return `
+        <div class="gcard gl2-c ${cur ? "cur" : ""}" data-od-id="girl-card-${g.id}">
+          <a class="gl2-ph" href="#girl/${g.id}" aria-label="${esc(g.name)} 角色详情">
+            ${phImg(g.v3, g.initial, g.name + " 形象", "", "50% 12%")}
+            ${cur ? `<em class="gl2-cur">${ico("i-check")}陪伴中</em>` : ""}
+            <span class="gl2-n"><b>${esc(g.name)}</b><small>${esc(g.type)} · ${g.age} 岁</small></span>
           </a>
-          <div class="gcard-b">
-            <p class="sm" style="color:var(--muted)">${esc(g.about)}</p>
-            <div class="ichips">${g.tags.map(t => `<span class="ichip">${esc(t)}</span>`).join("")}</div>
-            <div style="margin-top:13px">${bondBar(g.id, "sm")}</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
-              ${S.girl === g.id
-                ? `<a class="btn btn-qt" href="#games" style="flex:1;min-height:42px;font-size:13px">${ico("i-game")}陪她玩</a>`
-                : `<button class="btn btn-gold" data-pick="${g.id}" style="flex:1;min-height:42px;font-size:13px">${ico("i-heart")}选她陪我</button>`}
-              <a class="tbtn" href="#girl/${g.id}">她的空间</a>
-            </div>
+          <div class="gl2-b">
+            <div class="gl2-lv"><span>Lv.${bd.lv} ${esc(bd.name)}</span><i><u style="width:${Math.round(bd.pct * 100)}%"></u></i></div>
+            ${cur ? `<a class="gl2-btn ghost" href="#games">陪她玩</a>`
+                  : `<button class="gl2-btn" data-pick="${g.id}">选她陪我</button>`}
           </div>
-        </div>`).join("")}
+        </div>`; }).join("")}
     </div>
-    <p class="sm" style="margin-top:20px;text-align:center">全部角色为 AI 虚拟形象，不对应任何真实人物</p>`,
+    <p class="sm" style="margin-top:20px;text-align:center;color:var(--tx2)">角色形象仅作演示用途</p>`,
     after(root){
       $$("[data-pick]", root).forEach(b => b.onclick = () => {
         const g = girl(b.dataset.pick);
@@ -3536,6 +3566,13 @@ function gTier(id){
   return { ...cur, i, xp, next:nxt, need: nxt ? nxt.at - xp : 0,
     pct: nxt ? Math.min(1, (xp - cur.at) / (nxt.at - cur.at)) : 1 };
 }
+const MERCH_SVG = d => `<svg class="mart" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBE7A6"/><stop offset="1" stop-color="#B8862B"/></linearGradient></defs><g fill="none" stroke="url(#mg)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">${d}</g></svg>`;
+const MERCH_ART = {
+  tee:MERCH_SVG('<path d="M22 10l-12 7 5 10 5-3v30h24V24l5 3 5-10-12-7c-1 4-5 7-10 7s-9-3-10-7z"/>'),
+  cap:MERCH_SVG('<path d="M10 40c0-13 10-22 22-22s22 9 22 22"/><path d="M8 40h40c6 0 10 2 10 5H8z"/><path d="M32 18v-4"/>'),
+  cup:MERCH_SVG('<path d="M18 14h24l-3 40H21z"/><path d="M16 14h28M20 24h20"/>'),
+  bag:MERCH_SVG('<path d="M12 22h40l-4 32H16z"/><path d="M24 22v-5a8 8 0 0 1 16 0v5"/>')
+};
 const tierBadge = (id, cls = "") => {
   const T = gTier(id);
   return `<span class="tgb tg-${T.k} ${cls}">${ico("i-crown","ic")}${T.t}<em>×${T.mul}</em></span>`;
@@ -4831,7 +4868,7 @@ ROUTES.drama = { view(){
         const list = rows.filter(r => f === "all" || (f === "un" ? r.ok : r.seen));
         empty.style.display = list.length ? "none" : "";
         host.innerHTML = list.map(r => `<button class="lrow" data-ep="${r.n}" data-od-id="eprow-${r.n}">
-          <span class="epthumb">${phImg(d.poster, d.initial, "", "", "50% 36%")}</span>
+          <span class="epnum ${r.ok ? "" : "lk"}">${String(r.n).padStart(2, "0")}</span>
           <div class="row-m"><div class="row-t">第 ${r.n} 集 · ${esc(r.t)}</div>
             <div class="row-s">${r.ok ? (r.seen ? "已观看" : r.free ? "免费 · 未观看" : "已解锁 · 未观看") : PRICE.ep + " 积分解锁"}</div></div>
           <span class="cv">${r.ok ? (r.seen ? `<span class="pill ok">已看</span>` : `<span class="pill g">${r.free ? "免费" : "可看"}</span>`)
@@ -5236,9 +5273,7 @@ ROUTES.rewards = { view(){
         ${MERCH.map(m => {
           const own = (S.owned.merch || []).includes(m.id);
           return `<button class="mtile" data-merch="${m.id}" data-od-id="merch-${m.id}">
-            <span class="mtile-art">
-              <img src="assets/logo/mba-app-icon01.png" alt="" onerror="this.style.display='none'">
-              <em>MBA66</em></span>
+            <span class="mtile-art">${MERCH_ART[m.id] || MERCH_ART.tee}<em>MBA66</em></span>
             <b>${esc(m.t)}</b>
             <span class="mtile-s">${esc(m.sub)}</span>
             <span class="mtile-f"><i>${m.cost} 积分</i>
@@ -5246,7 +5281,7 @@ ROUTES.rewards = { view(){
           </button>`;
         }).join("")}
       </div>
-      <p class="sm" style="margin-top:11px">实物图以门店实际发放为准，演示中用品牌标占位。</p>
+      <p class="sm" style="margin-top:11px">实物以门店实际发放为准，演示中用线稿占位。</p>
     </section>
 
     <div class="chiprow" data-od-id="rewards-cats">
@@ -5290,8 +5325,9 @@ ROUTES.rewards = { view(){
         ${cat === "drama" ? `<p class="sm" style="margin-top:11px">第 1–${FREE_EPS} 集免费，第 ${FREE_EPS + 1} 集起每集 ${PRICE.ep} 积分，解锁后永久可看。</p>` : ""}`}
     </div>
 
-    <section class="sec" data-od-id="rewards-rules">
-      <div class="sec-h"><h2 class="h2">积分规则</h2></div>
+    <details class="rules" data-od-id="rewards-rules">
+      <summary>规则说明<small>积分怎么赚 · 亲密经验怎么涨</small></summary>
+      <div class="sec-h" style="margin-top:14px"><h2 class="h2">积分规则</h2></div>
       <div class="panel" style="padding:4px 16px">
         ${[["首次注册", `+${RULES.signup}`, "仅一次"],
            ["每日打卡", `+${RULES.checkin}`, "每日一次"],
@@ -5311,7 +5347,7 @@ ROUTES.rewards = { view(){
             <b style="color:var(--rose);font-size:14px">${r[1]}</b></div>`).join("")}
       </div>
       <p class="sm" style="margin-top:12px">亲密经验不可消耗、不可转让，只用于提升与该角色的关系等级。</p>
-    </section>`,
+    </details>`,
     after(root){
       $$("[data-cat]", root).forEach(b => b.onclick = () => { rwCat = b.dataset.cat; render(); });
       $$("[data-merch]", root).forEach(b => b.onclick = () =>
