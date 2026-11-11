@@ -2340,6 +2340,59 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .adslide{background:#0B0A0E}
 .adslide .ad-ph .ph,.ad-ph .ad-v{-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%,#000 48%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%,#000 48%)}
 .ad-coin{display:none !important}
+/* ===== 广告 1：签到日历（亮金底） ===== */
+.ad-cal{background:linear-gradient(125deg,#FBE7A9 0%,#E9BE5A 46%,#B8841C 100%) !important;color:#2B1A04}
+.ad-cal::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 88% 10%,rgba(255,255,255,.55),transparent 60%);pointer-events:none}
+.cal-t{position:absolute;left:16px;top:13px;display:flex;flex-direction:column;z-index:1}
+.ad-cal .ad-tag{background:#2B1A04;color:#F7DE95;clip-path:none;border-radius:4px;margin-bottom:5px}
+.cal-t b{font-size:22px;font-weight:900;line-height:1.1;color:#2B1A04}
+.cal-t small{margin-top:3px;font-size:11.5px;font-weight:700;color:rgba(43,26,4,.72)}
+.cal-gift{position:absolute;right:12px;top:4px;width:76px;height:76px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(80,45,0,.35));animation:coinBob 2.8s ease-in-out infinite}
+.cal-days{position:absolute;left:12px;right:12px;bottom:11px;display:flex;gap:5px;z-index:1}
+.cal-days i{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:5px 0 4px;border-radius:9px;font-style:normal;
+  background:rgba(255,255,255,.42);border:1px solid rgba(120,80,10,.18)}
+.cal-days i img{width:22px;height:22px;object-fit:contain}
+.cal-days i u{text-decoration:none;font-size:9.5px;font-weight:900;color:#5A3A08}
+.cal-days i.ok{background:#2B1A04;border-color:#2B1A04}
+.cal-days i.ok u{color:#F7DE95}
+.cal-days i.now{box-shadow:0 0 0 2px #2B1A04;background:#fff}
+.cal-days i.big{flex:1.35;background:linear-gradient(180deg,#fff,#FFE9B0)}
+/* ===== 广告 2：她发来的消息（左图右对话） ===== */
+.ad-chat{background:linear-gradient(110deg,#1A0A18 0%,#2C0F2A 60%,#3A1235 100%) !important}
+.cht-ph{position:absolute;left:0;top:0;bottom:0;width:44%;overflow:hidden}
+.cht-ph .ph,.cht-ph .lv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cht-ph{-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 100%);mask-image:linear-gradient(90deg,#000 55%,transparent 100%)}
+.cht-c{position:absolute;left:41%;right:12px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.cht-who{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(255,230,240,.75)}
+.cht-who i{width:7px;height:7px;border-radius:50%;background:#3BE07A;box-shadow:0 0 0 2px rgba(59,224,122,.25)}
+.cht-b{margin-top:6px;padding:9px 12px;border-radius:4px 14px 14px 14px;background:#fff;color:#1C1018;font-size:15px;font-weight:900;line-height:1.3;
+  box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.cht-row{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.cht-row .ad-cta{margin-top:0 !important}
+.cht-typ{display:flex;gap:4px}
+.cht-typ i{width:6px;height:6px;border-radius:50%;background:rgba(255,220,235,.7);animation:chtDot 1.2s ease-in-out infinite}
+.cht-typ i:nth-child(2){animation-delay:.2s}.cht-typ i:nth-child(3){animation-delay:.4s}
+@keyframes chtDot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+/* ===== 广告 4：游戏卡牌扇面（紫） ===== */
+.ad-play{background:radial-gradient(80% 120% at 85% 50%,#4A1F6E 0%,#1B0E2A 55%,#0E0A14 100%) !important}
+.ply-fan{position:absolute;right:6px;top:0;bottom:0;width:48%;}
+.ply-fan img{position:absolute;top:50%;width:70px;height:94px;object-fit:cover;border-radius:10px;border:1.5px solid rgba(255,225,160,.7);
+  box-shadow:0 8px 20px rgba(0,0,0,.55)}
+.ply-fan img:nth-child(1){right:92px;transform:translateY(-46%) rotate(-14deg)}
+.ply-fan img:nth-child(2){right:16px;transform:translateY(-46%) rotate(13deg)}
+.ply-fan img:nth-child(3){right:52px;transform:translateY(-54%) scale(1.12);z-index:2}
+.ad-play .ad-c{width:56% !important}
+@media (prefers-reduced-motion:reduce){.cal-gift,.cht-typ i{animation:none}}
+.pout{position:fixed;z-index:95;width:88px;height:88px;margin:-44px 0 0 -44px;pointer-events:none;animation:poutUp 2.6s cubic-bezier(.2,.8,.2,1) forwards}
+.pout>img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 30%;border:3px solid #F2C25B;
+  box-shadow:0 10px 26px rgba(0,0,0,.55),0 0 0 7px rgba(242,194,91,.18)}
+.pout i{position:absolute;right:-8px;bottom:-4px;width:36px;height:36px;border-radius:50%;background:#1A1216;display:grid;place-items:center;border:1.5px solid #F2C25B;
+  animation:poutKiss .5s ease-in-out .35s 3 alternate}
+.pout i img{width:25px;height:25px;object-fit:contain}
+@keyframes poutUp{0%{transform:translateY(0) scale(.3);opacity:0}16%{transform:translateY(-96px) scale(1.14);opacity:1}28%{transform:translateY(-104px) scale(1)}
+  78%{transform:translateY(-118px) scale(1);opacity:1}100%{transform:translateY(-160px) scale(.85);opacity:0}}
+@keyframes poutKiss{to{transform:scale(1.25) rotate(-10deg)}}
+@media (prefers-reduced-motion:reduce){.pout{animation:none;transform:translateY(-110px)}.pout i{animation:none}}
 </style>
 </head>
 <body>
@@ -2408,6 +2461,18 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 </div>
 
 <script>
+/* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
+const APP_VER = "v38";
+(function(){
+  if(location.protocol === "file:") return;
+  fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
+    const m = t.match(/const APP_VER = "([^"]+)"/);
+    if(m && m[1] !== APP_VER && sessionStorage.getItem("mba66.reloaded") !== m[1]){
+      sessionStorage.setItem("mba66.reloaded", m[1]);
+      location.replace(location.pathname + "?r=" + Date.now() + location.hash);
+    }
+  }).catch(() => {});
+})();
 /* ============================================================
    MBA66 娱乐小程序 · 可点击演示 (vanilla, no backend)
    ============================================================ */
@@ -2436,7 +2501,7 @@ const GIRLS = [
     tags:["爱逗人","腿长","会撒野"],
     v3:"assets/img/girl-bunny-v3.webp", x:"assets/img/girl-bunny-x.webp",
     bikini:"assets/img/girl-bunny-bikini.webp", sun:"assets/img/girl-bunny-sun.webp",
-    lounge:"assets/img/girl-bunny-lounge.webp", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
+    lounge:"assets/img/girl-bunny-lounge.webp?v=2", img:"assets/img/girl-bunny.webp", img2:"assets/img/girl-bunny-2.webp",
     video:"assets/video/girl-bunny.mp4", sunv:"assets/video/girl-bunny-sun.mp4", bkv:"assets/video/girl-bunny-bikini.mp4", videos:["assets/video/girl-bunny.mp4","assets/video/girl-bunny-v-img.mp4"],
     line:"耳朵戴好了，今晚我负责发牌，你负责输。",
     about:"22 岁，派对场子里最会逗人的兔女郎，专挑你撑不住的时候凑过来。",
@@ -3086,7 +3151,7 @@ const wornTier = gid => {
   return (k && ownTier(gid, k)) ? k : "v3";   // 主图/头像一律用 v3 新形象
 };
 const outfitImg = g => tierImg(g, wornTier(g.id));
-const TIER_VID = { lounge:["neko","maid","summer"], x:["bunny","maid","summer"] };
+const TIER_VID = { lounge:["bunny","neko","maid","summer"], x:["bunny","maid","summer"] };
 const tierVid = (g, k) => k === "v3" ? g.video : k === "bikini" ? g.bkv : k === "daily" ? `assets/video/girl-${g.id}-v-img.mp4`
   : (TIER_VID[k] || []).includes(g.id) ? `assets/video/girl-${g.id}-v-${k}.mp4` : "";
 const outfitVid = g => tierVid(g, wornTier(g.id));
@@ -3253,6 +3318,23 @@ ROUTES.home = { view(){
         <div class="adtrack" id="adTrack">
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
+            if(i === 0) return `<div class="adslide ad-cal" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
+              <span class="cal-t"><em class="ad-tag">${esc(a.tag)}</em><b>${a.h}</b><small>${esc(a.sub)}</small></span>
+              <img class="cal-gift" src="assets/icons/g/gift.webp" alt="" aria-hidden="true">
+              <span class="cal-days">${[1,2,3,4,5,6,7].map(d => `<i class="${d <= streak ? "ok" : ""} ${d === todayIdx && !S.checkedIn ? "now" : ""} ${d === 7 ? "big" : ""}">
+                <img src="assets/icons/g/${d === 7 ? "gift" : "coin"}.webp" alt=""><u>${d === 7 ? "大礼" : "+10"}</u></i>`).join("")}</span>
+            </div>`;
+            if(i === 1) return `<div class="adslide ad-chat" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
+              <span class="cht-ph">${phImg(x.v3, x.initial, x.name, "", "50% 12%")}${liveVid(x, "50% 12%")}</span>
+              <span class="cht-c"><span class="cht-who"><i></i>${esc(x.name)} · 刚刚</span>
+                <span class="cht-b">Hi，你今天打卡了吗？<br>我在等你哦～</span>
+                <span class="cht-row"><span class="cht-typ"><i></i><i></i><i></i></span><span class="ad-cta">${esc(a.cta)}${ARR}</span></span></span>
+            </div>`;
+            if(i === 3) return `<div class="adslide ad-play" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
+              <span class="ply-fan">${["rps", "sun", "photo"].map(k => `<img src="assets/img/game-${k}.webp" alt="">`).join("")}</span>
+              <span class="ad-c"><em class="ad-tag">${esc(a.tag)}</em><b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
+                <span class="ad-cta">${esc(a.cta)}${ARR}</span></span>
+            </div>`;
             return `<div class="adslide ${a.cls}" data-ad="${i}" data-od-id="ad-${i}">
               <span class="ad-ph">${phImg(a.img ? a.img(x) : (x.bikini || x.v3), x.initial, x.name, "", a.pos || "50% 18%")}${(a.vid ? a.vid(x) : x.bkv) ? `<video class="ad-v" src="${a.vid ? a.vid(x) : x.bkv}" muted autoplay loop playsinline preload="metadata" aria-hidden="true" onerror="this.remove()" style="object-position:${a.vpos || "50% 6%"}"></video>` : ""}</span>
               <span class="ad-shade"></span><span class="ad-streak"></span>
@@ -3346,7 +3428,7 @@ ROUTES.home = { view(){
         if(k === "check") return doCheck();
         if(k === "show") return showOff(g.id);
         if(k === "gift") return giftSheet(g.id);
-        if(k === "tease"){ burst(b.getBoundingClientRect(), { n:10, kind:"heart", spread:48 });
+        if(k === "tease"){ burst(b.getBoundingClientRect(), { n:10, kind:"heart", spread:48 }); popPout(g, b);
           const R = (g.react && [...(g.react.hit || []), ...(g.react.win || [])]) || ["讨厌～"];
           return setSay(R[Math.floor(Math.random() * R.length)] + "（脸红）"); }
         if(k === "bikini"){
@@ -3826,7 +3908,7 @@ const CLIP_RULE = [ { lv:1, cost:0 }, { lv:2, cost:150 }, { lv:3, cost:200 }, { 
 function clipsOf(g){
   const V = k => `assets/video/girl-${g.id}-${k}.mp4`;
   const L = {
-    bunny:  [["招牌兔女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边防晒", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["清晨睡衣", V("v-x"), g.x]],
+    bunny:  [["招牌兔女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边防晒", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
     neko:   [["招牌猫女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["夜色街拍", V("v-night"), g.img2]],
     maid:   [["招牌女仆", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["派对香槟", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
     summer: [["酒店比基尼", g.video, g.v3], ["海边比基尼", g.bkv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
@@ -4156,6 +4238,15 @@ const GAMES = [
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
+/* 撩她：从按钮弹出她嘟嘴的小头像贴纸 */
+function popPout(g, from){
+  const r = from.getBoundingClientRect(), el = document.createElement("div");
+  el.className = "pout"; el.setAttribute("aria-hidden", "true");
+  el.innerHTML = `<img src="assets/img/pout-${g.id}.webp" onerror="this.onerror=null;this.src='${g.v3}'" alt=""><i><img src="assets/icons/g/lips.webp" alt=""></i>`;
+  el.style.left = (r.left + r.width / 2) + "px"; el.style.top = r.top + "px";
+  document.querySelectorAll(".pout").forEach(x => x.remove());
+  document.body.appendChild(el); setTimeout(() => el.remove(), 2700);
+}
 const liveVid = (x, pos = "50% 20%", worn = false) => x && (worn ? outfitVid(x) : x.video)
   ? `<video class="lv" src="${worn ? outfitVid(x) : x.video}" poster="${worn ? outfitImg(x) : x.v3}" muted autoplay loop playsinline preload="metadata"
       style="object-position:${pos}" aria-hidden="true" onerror="this.remove()"></video>` : "";
@@ -5182,7 +5273,10 @@ function playRps(gm, scored){
   function throwHand(mine){
     if(!G || G.lock) return;
     G.lock = true; lockBtns(true);
-    const hers = RPS[(Math.random() * 3) | 0];
+    // 偏向玩家：约 5 成赢、2 成平、3 成输，演示时不会一直输
+    const mk = typeof mine === "string" ? mine : mine.k, r = Math.random();
+    const want = r < 0.5 ? RPS_BEATS[mk] : r < 0.7 ? mk : Object.keys(RPS_BEATS).find(k => RPS_BEATS[k] === mk);
+    const hers = RPS.find(x => x.k === want) || RPS[(Math.random() * 3) | 0];
     const hand = $("#herHand"), beat = $("#rbeat");
     const gap = rm() ? 0 : 420;
     RPS_BEAT.forEach((t, i) => setTimeout(() => {
