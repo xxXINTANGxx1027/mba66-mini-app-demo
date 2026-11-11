@@ -2563,6 +2563,37 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .gde-entry small{font-size:11.5px;color:rgba(255,236,190,.75)}
 .gde-entry>svg.ic:last-child{width:16px;height:16px;stroke:#FFD43B}
 .h-chip-guide b,.h-chips a.h-chip-guide{color:#FFD43B !important}
+/* ===== 响应式 ===== */
+.stg{aspect-ratio:auto !important;height:var(--stgH, 676px) !important;min-height:240px}
+/* 矮屏：右侧按钮变紧凑，台词和互动栏下移收紧 */
+.stg.short .stg-rail{top:64px;gap:7px}
+.stg.short .stg-rail img.ic{padding:7px !important;width:22px !important;height:22px !important}
+.stg.short .stg-rail>*{font-size:10px;gap:2px}
+.stg.short .stg-act{bottom:30px;padding:8px 4px}
+.stg.short .stg-more{bottom:8px}
+.stg.short .stg-say{bottom:122px !important}
+.stg.tiny .stg-rail{gap:4px}
+.stg.tiny .stg-rail>* b{display:none}
+.stg.tiny .stg-act small{display:none}
+.stg.tiny .stg-say{bottom:104px !important;font-size:12px}
+.stg.micro .stg-rail,.stg.micro .stg-say,.stg.micro .stg-more{display:none}
+.stg.micro .stg-act{bottom:10px}
+/* 很窄的手机（320 左右） */
+@media (max-width:360px){
+  .h-chips a{font-size:10.5px !important}
+  .gde-ht h1{font-size:25px}
+  .cg-h{font-size:22px}
+  .cg-gw{width:96px;height:96px;margin-top:-50px}
+  .ad-cal2 .cg-coin.k1,.ad-cal2 .cg-coin.k3,.ad-cal2 .cg-coin.k5{display:none}
+}
+/* 手机横屏 / 很矮的窗口：改成全高的竖向一栏，不再显示被压扁的手机框 */
+@media (max-height:560px) and (orientation:landscape){
+  body{display:flex !important;align-items:stretch;justify-content:center;overflow:hidden;background:#07070A}
+  #bd-brand,#backdrop{display:none !important}
+  #phone{width:min(430px,100vw) !important;height:100vh !important;height:100dvh !important;max-height:none !important;border-radius:0 !important;box-shadow:0 0 0 1px rgba(226,187,106,.18) !important}
+  #phone::before{display:none}
+  #bar{padding-top:10px !important;min-height:56px !important}
+}
 </style>
 </head>
 <body>
@@ -2632,7 +2663,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v48";
+const APP_VER = "v49";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3375,6 +3406,15 @@ function parse(){
 }
 /* 只播放屏幕里看得到的视频，滑出去就暂停（手机上更流畅、更省电） */
 let vidIO = null;
+function fitStage(){
+  const st = document.getElementById("stage"), sg = document.getElementById("hStage");
+  if(!st) return;
+  const h = st.clientHeight;
+  document.documentElement.style.setProperty("--stgH", h + "px");
+  if(sg){ sg.classList.toggle("short", h < 640); sg.classList.toggle("tiny", h < 520); sg.classList.toggle("micro", h < 380); }
+}
+addEventListener("resize", fitStage);
+addEventListener("orientationchange", () => setTimeout(fitStage, 300));
 function watchVids(){
   if(!("IntersectionObserver" in window)) return;
   if(vidIO) vidIO.disconnect();
@@ -3418,7 +3458,7 @@ function render(){
   afterRender($(".scr", st), current.name);
   if(out.after) out.after($(".scr", st));
   leaveHook = out.leave || null;
-  watchVids();
+  watchVids(); fitStage();
 }
 window.addEventListener("hashchange", render);
 
