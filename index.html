@@ -2113,7 +2113,7 @@ body{
 @media (prefers-reduced-motion:no-preference){.topshare{animation:shPulse 2.2s ease-in-out infinite}}
 @keyframes shPulse{0%,100%{box-shadow:0 6px 18px -6px rgba(233,196,106,.7)}50%{box-shadow:0 0 0 6px rgba(233,196,106,.18),0 6px 18px -6px rgba(233,196,106,.9)}}
 /* 分类：5 个等宽图标入口，一屏放下 */
-.h-chips{display:grid !important;grid-template-columns:repeat(4,1fr);gap:4px !important;margin:18px 0 0 !important;padding:0 !important;overflow:visible !important}
+.h-chips{display:grid !important;grid-template-columns:repeat(5,1fr);gap:4px !important;margin:18px 0 0 !important;padding:0 !important;overflow:visible !important}
 .h-chips a,.h-chips a.on{flex-direction:column !important;gap:6px !important;height:auto !important;padding:0 !important;background:transparent !important;
   font-size:11.5px !important;font-weight:700 !important;color:var(--tx2) !important;white-space:nowrap}
 .h-chips a .ic{width:20px !important;height:20px !important;padding:12px;box-sizing:content-box;border-radius:50%;background:#16161B;color:var(--tx)}
@@ -2499,6 +2499,70 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 @media (prefers-reduced-motion:reduce){.cg-rays,.cg-gift,.cg-plus,.cg-coin,.cg-cta,.cg-shine,.cg-spark{animation:none !important}}
 .adnudge{animation:adNudge .45s cubic-bezier(.3,1.5,.5,1)}
 @keyframes adNudge{0%,100%{scale:1}35%{scale:.96}}
+/* ===== 玩法指南 ===== */
+.gde-hero{position:relative;height:240px;margin:4px 0 0;border-radius:20px;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);border:1px solid rgba(255,206,0,.3)}
+.gde-hero .ph,.gde-hero .lv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gde-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,7,10,.92) 0%,rgba(8,7,10,.55) 52%,rgba(8,7,10,0) 80%),linear-gradient(0deg,#0B0A0E 0%,rgba(11,10,14,0) 40%)}
+.gde-ht{position:absolute;left:20px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;z-index:2}
+.gde-ht em{font-style:normal;font-size:11px;font-weight:900;color:#3A2600;background:linear-gradient(180deg,#FFEA6B,#FFC400);padding:3px 10px;border-radius:10px}
+.gde-ht h1{margin:8px 0 0;font-size:30px;font-weight:900;line-height:1.12;color:#FFFDF0;text-shadow:0 3px 12px rgba(0,0,0,.6)}
+.gde-ht p{margin:6px 0 0;font-size:13px;font-weight:700;color:rgba(255,236,190,.85)}
+.gde-gift{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:#FFE27A;
+  padding:6px 12px;border-radius:16px;background:rgba(255,206,0,.14);border:1px solid rgba(255,206,0,.5)}
+.gde-gift b{font-size:16px;color:#FFD43B}
+.gde-gift img.gi{width:18px;height:18px}
+.gde-flow{display:flex;align-items:center;justify-content:space-between;gap:4px;margin:14px 0 6px;padding:12px 10px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,206,0,.12),rgba(255,206,0,.03));border:1px solid rgba(255,206,0,.28)}
+.gde-flow span{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.gde-flow i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,206,0,.16)}
+.gde-flow i img.gi{width:24px;height:24px}
+.gde-flow b{font-size:13.5px;font-weight:900;color:#FFD43B}
+.gde-flow small{font-size:10px;color:rgba(255,236,190,.7)}
+.gde-flow u{text-decoration:none;font-size:22px;color:rgba(255,206,0,.6);font-weight:900}
+.gde-sh{display:flex;align-items:baseline;gap:8px;margin:20px 0 10px}
+.gde-tag{font-size:16px;font-weight:900;color:#FFFDF0}
+.gde-tag.earn{color:#FFD43B}.gde-tag.love{color:#FF8FB3}.gde-tag.spend{color:#7FE3A0}
+.gde-sh small{font-size:11.5px;color:var(--tx2,rgba(255,255,255,.6))}
+.gde-c{position:relative;display:flex;align-items:flex-start;gap:11px;padding:14px 12px 14px 14px;margin-bottom:9px;border-radius:16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.gde-n{position:absolute;left:-4px;top:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;font-size:11px;font-weight:900;line-height:20px;text-align:center;
+  color:#3A2600;background:linear-gradient(180deg,#FFEA6B,#FFC400);box-shadow:0 2px 6px rgba(255,190,0,.5)}
+.gde-i{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(255,206,0,.1);border:1px solid rgba(255,206,0,.3)}
+.gde-i img.gi,.gde-i .ic{width:28px;height:28px}
+.gde-m{flex:1;min-width:0}
+.gde-m b{display:block;font-size:15px;font-weight:900;color:#FFFDF0}
+.gde-m p{margin:4px 0 0;font-size:12.5px;line-height:1.55;color:rgba(255,245,225,.72)}
+.gde-k{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.gde-k em{font-style:normal;font-size:10.5px;font-weight:800;color:#FFD43B;padding:2px 8px;border-radius:8px;background:rgba(255,206,0,.12);border:1px solid rgba(255,206,0,.3)}
+.gde-go{flex:0 0 auto;align-self:center;height:32px;padding:0 13px;border:0;border-radius:16px;font-size:12.5px;font-weight:900;color:#3A2600;cursor:pointer;
+  background:linear-gradient(180deg,#FFEA6B 0%,#FFC400 60%,#FFA800 100%);box-shadow:0 3px 0 #B87500,0 6px 12px -4px rgba(255,180,0,.6)}
+.gde-lv{margin:0 0 9px;padding:13px 14px;border-radius:16px;background:linear-gradient(180deg,rgba(255,143,179,.12),rgba(255,143,179,.03));border:1px solid rgba(255,143,179,.3)}
+.gde-lv>b{display:block;font-size:13.5px;font-weight:900;color:#FF8FB3;margin-bottom:6px}
+.gde-lv div{display:grid;grid-template-columns:auto 1fr;gap:1px 8px;padding:7px 0;border-top:1px dashed rgba(255,143,179,.2)}
+.gde-lv div:first-of-type{border-top:0}
+.gde-lv em{font-style:normal;font-size:12.5px;font-weight:900;color:#FFFDF0}
+.gde-lv span{justify-self:end;font-size:11px;color:rgba(255,200,220,.75)}
+.gde-lv small{grid-column:1 / -1;font-size:11.5px;color:rgba(255,245,225,.7)}
+.gde-faq{margin:22px 0 0;padding:14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.gde-faq>b{display:block;font-size:15px;font-weight:900;color:#FFFDF0;margin-bottom:4px}
+.gde-faq details{border-top:1px solid rgba(255,255,255,.07);padding:10px 0}
+.gde-faq details:first-of-type{border-top:0}
+.gde-faq summary{cursor:pointer;font-size:13.5px;font-weight:800;color:#FFE27A;list-style:none;position:relative;padding-right:20px}
+.gde-faq summary::-webkit-details-marker{display:none}
+.gde-faq summary::after{content:"+";position:absolute;right:2px;top:-2px;font-size:18px;color:#FFD43B;transition:transform .2s}
+.gde-faq details[open] summary::after{transform:rotate(45deg)}
+.gde-faq p{margin:7px 0 0;font-size:12.5px;line-height:1.6;color:rgba(255,245,225,.75)}
+.gde-start{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;margin:18px 0 8px;border:0;border-radius:25px;cursor:pointer;
+  font-size:16px;font-weight:900;color:#3A2600;background:linear-gradient(180deg,#FFEA6B 0%,#FFC400 60%,#FFA800 100%);box-shadow:0 4px 0 #B87500,0 10px 20px -6px rgba(255,180,0,.6)}
+.gde-start img.gi,.gde-go img.gi{filter:brightness(0) opacity(.72) !important;width:20px;height:20px}
+.gde-entry{display:flex;align-items:center;gap:11px;margin-top:11px;padding:13px 14px;border-radius:16px;
+  background:linear-gradient(90deg,rgba(255,206,0,.16),rgba(255,206,0,.04));border:1px solid rgba(255,206,0,.4)}
+.gde-entry>img.gi,.gde-entry>.ic:first-child{width:30px;height:30px}
+.gde-entry span{flex:1;display:flex;flex-direction:column;gap:2px}
+.gde-entry b{font-size:14.5px;font-weight:900;color:#FFD43B}
+.gde-entry small{font-size:11.5px;color:rgba(255,236,190,.75)}
+.gde-entry>svg.ic:last-child{width:16px;height:16px;stroke:#FFD43B}
+.h-chip-guide b,.h-chips a.h-chip-guide{color:#FFD43B !important}
 </style>
 </head>
 <body>
@@ -2568,7 +2632,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v47";
+const APP_VER = "v48";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3474,6 +3538,7 @@ ROUTES.home = { view(){
         <a href="#drama">${ico("i-play")}AI 剧集</a>
         <a href="#girls">${ico("i-heart")}女友</a>
         <a href="#rewards">${ico("i-gift")}周边</a>
+        <a href="#guide" class="h-chip-guide">${ico("i-sparkle")}玩法指南</a>
       </nav>
 
       <section class="h-card h-ck" data-od-id="home-checkin">
@@ -6442,6 +6507,81 @@ const vName = x => (vcOf(x.id) || {}).title || x.name || "福利";
 const bestGameId = () => LIVE.reduce((best, gm) =>
   gTier(gm.id).i > gTier(best).i ? gm.id : best, LIVE[0].id);
 
+
+/* ---------- 玩法指南：给玩家看，怎么赚积分、怎么宠她、怎么花积分 ---------- */
+ROUTES.guide = { view(){
+  const g = girl();
+  const row = (n, icon, t, desc, nums, cta, act) => `
+    <div class="gde-c" data-od-id="guide-${n}">
+      <span class="gde-n">${n}</span>
+      <span class="gde-i">${ico(icon)}</span>
+      <div class="gde-m"><b>${t}</b><p>${desc}</p>
+        ${nums.length ? `<div class="gde-k">${nums.map(x => `<em>${x}</em>`).join("")}</div>` : ""}</div>
+      <button class="gde-go" data-go="${act}">${cta}</button>
+    </div>`;
+  const sec = (k, t, sub) => `<div class="gde-sh"><span class="gde-tag ${k}">${t}</span><small>${sub}</small></div>`;
+  return {
+    tab:"me",
+    bar:`<button class="ibtn hit" onclick="history.length>1?history.back():nav('#home')" aria-label="返回">${ico("i-back")}</button>
+      <div class="row-m" style="text-align:center"><div class="bar-t">玩法指南</div></div><span style="width:40px"></span>`,
+    html:`
+    <section class="gde-hero" data-od-id="guide-hero">
+      ${phImg(outfitImg(g), g.initial, g.name, "", "50% 16%")}${liveVid(g, "50% 14%", true)}
+      <span class="gde-shade"></span>
+      <div class="gde-ht"><em>新手必看</em><h1>3 分钟看懂<br>怎么玩</h1><p>赚积分 · 宠女友 · 换周边</p>
+        <span class="gde-gift">${ico("i-coin")}注册即送 <b>${RULES.signup}</b> 积分</span></div>
+    </section>
+
+    <div class="gde-flow" data-od-id="guide-flow">
+      <span><i>${ico("i-coin")}</i><b>赚积分</b><small>打卡 · 游戏 · 邀请</small></span><u>›</u>
+      <span><i>${ico("i-heart")}</i><b>宠她</b><small>送礼 · 换装 · 升级</small></span><u>›</u>
+      <span><i>${ico("i-gift")}</i><b>换奖励</b><small>剧集 · 周边 · 会员</small></span>
+    </div>
+
+    ${sec("earn", "① 赚积分", "每天都能拿")}
+    ${row(1, "i-cal", "每日打卡", `每天点一次「打卡」，连续打满 7 天送大礼。`, [`+${RULES.checkin} 积分 / 天`, `+${XPR.checkin} 亲密`, "第 7 天大礼"], "去打卡", "check")}
+    ${row(2, "i-game", "亲密游戏", `${LIVE.length} 个小游戏：猜拳换装、拍写真、涂防晒、擦雾气、翻翻乐。玩得越多段位越高，积分倍率越高。`,
+        [`每局最多 +${RULES.gameMax}`, GTIERS.map(t => `${t.t} ×${t.mul}`).join(" · ")], "去玩", "#games")}
+    ${row(3, "i-share", "炫耀她 · 邀请好友", `把女友海报分享到朋友圈或群组，好友用你的邀请码注册，你和好友都有奖励。`,
+        [`你 +${RULES.invite} / 人`, `最多 ${RULES.inviteMax} 人`, `好友送 ${RULES.signup}`], "去炫耀", "show")}
+    ${row(4, "i-film", "分享剧集", `看剧时点右上角「分享」，好友打开观看你就有积分。`, [`+${RULES.invite} 积分 / 人`], "去看剧", "#drama")}
+
+    ${sec("love", "② 宠她 · 涨亲密度", "亲密度只会涨，不会掉")}
+    ${row(5, "i-heart", "选一位女友", `${GIRLS.map(x => x.name).join("、")}，随时可以换人陪你，每位的造型和性格都不一样。`, [], "去选她", "#girls")}
+    ${row(6, "i-rose", "和她互动", `首页下方：「送礼」花 ${PRICE.gift} 积分涨亲密；「撩她」免费，她会害羞回应；「比基尼」直接看她换装。`,
+        [`送礼 ${PRICE.gift} 积分`, `+${XPR.gift} 亲密`, "撩她免费"], "去互动", "#home")}
+    <div class="gde-lv" data-od-id="guide-levels">
+      <b>亲密度等级</b>
+      ${LEVELS.map(l => `<div><em>Lv.${l.lv} ${esc(l.name)}</em><span>${l.at} 亲密</span><small>${esc(l.unlock)}</small></div>`).join("")}
+    </div>
+    ${row(7, "i-shirt", "给她换装", `衣柜里用积分解锁新造型，换上后首页、详情页、游戏里的她都会跟着换。`, ["100 – 500 积分 / 套", "永久可切换"], "去衣柜", "#wardrobe")}
+    ${row(8, "i-play", "私密视频", `亲密度升到对应等级就会解锁，等不及也可以直接用积分解锁。`, ["Lv.2 起解锁", "或用积分解锁"], "去看看", `#girl/${g.id}`)}
+
+    ${sec("spend", "③ 花积分", "积分可以换这些")}
+    ${row(9, "i-film", "AI 剧集", `每部剧前 ${FREE_EPS} 集免费，第 ${FREE_EPS + 1} 集起用积分解锁，看过的随时回看。`, [`前 ${FREE_EPS} 集免费`, `${PRICE.ep} 积分 / 集`], "去看剧", "#drama")}
+    ${row(10, "i-gift", "MBA66 周边", `T 恤、帽子、水杯、挎包，用积分兑换后到 MBA66 门店出示核销码领取。`, ["600 – 1500 积分", "门店核销"], "去兑换", "#rewards")}
+    ${row(11, "i-crown", "会员等级", `按累计获得的积分升级，等级越高福利越多。`, MLEVELS.slice(1).map(m => `${m.t} ${m.at}`), "看我的", "#me")}
+
+    <section class="gde-faq" data-od-id="guide-faq">
+      <b>常见问题</b>
+      <details><summary>积分用完了怎么办？</summary><p>每天打卡、玩亲密游戏、邀请好友都能再赚；也可以在 MBA66 充值获得更多积分。</p></details>
+      <details><summary>亲密度会减少吗？</summary><p>不会。亲密度只累积、不消耗、不折现，送礼和游戏只会让它越来越高。</p></details>
+      <details><summary>换了女友，之前的进度还在吗？</summary><p>在。每位女友的亲密度、衣服和私密视频都分开保存，随时换回来继续。</p></details>
+      <details><summary>她们是真人吗？</summary><p>不是，都是 AI 角色，形象仅作演示用途。</p></details>
+    </section>
+
+    <button class="gde-start" data-go="#home">${ico("i-heart")}开始陪她</button>`,
+    after(root){
+      $$("[data-go]", root).forEach(b => b.onclick = () => {
+        const k = b.dataset.go;
+        if(k === "show") return showOff(S.girl);
+        if(k === "check"){ nav("#home"); setTimeout(() => { const c = document.querySelector('[data-stg="check"]'); if(c) c.click(); }, 450); return; }
+        nav(k);
+      });
+    }
+  };
+} };
+
 ROUTES.me = { view(){
   const vs = S.vouchers || [];
   const ml = memberLv();
@@ -6471,6 +6611,7 @@ ROUTES.me = { view(){
       </div>
     </div>
 
+    <a class="gde-entry" href="#guide" data-od-id="me-guide">${ico("i-sparkle")}<span><b>玩法指南</b><small>怎么赚积分、宠女友、换周边</small></span>${ico("i-next")}</a>
     <section class="sec" data-od-id="me-girls">
       <div class="sec-h"><h2 class="h2">我的女友</h2><span class="sm">已解锁 ${mine.length} / ${GIRLS.length}</span></div>
       <div style="display:flex;flex-direction:column;gap:9px">
