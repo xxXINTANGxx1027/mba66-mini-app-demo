@@ -2462,7 +2462,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v38";
+const APP_VER = "v40";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3331,7 +3331,7 @@ ROUTES.home = { view(){
                 <span class="cht-row"><span class="cht-typ"><i></i><i></i><i></i></span><span class="ad-cta">${esc(a.cta)}${ARR}</span></span></span>
             </div>`;
             if(i === 3) return `<div class="adslide ad-play" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
-              <span class="ply-fan">${["rps", "sun", "photo"].map(k => `<img src="assets/img/game-${k}.webp" alt="">`).join("")}</span>
+              <span class="ply-fan">${["rps", "sun", "photo"].map(k => `<img src="assets/img/game-${k}.webp?v=2" alt="">`).join("")}</span>
               <span class="ad-c"><em class="ad-tag">${esc(a.tag)}</em><b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
                 <span class="ad-cta">${esc(a.cta)}${ARR}</span></span>
             </div>`;
@@ -4217,15 +4217,15 @@ const FX = {
 const GAMES = [
   /* 上线中：5 个 */
   { id:"rps",    name:"猜拳换装",     hook:"赢两局，一套一套换",  cls:"gx-5", icon:"game",      live:true, isNew:true, hot:true,
-    cover:{ art:"assets/img/game-rps.webp", gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
+    cover:{ art:"assets/img/game-rps.webp?v=2", gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
   { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
-    cover:{ art:"assets/img/game-photo.webp", gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
+    cover:{ art:"assets/img/game-photo.webp?v=2", gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
   { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
-    cover:{ art:"assets/img/game-sun.webp", gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
+    cover:{ art:"assets/img/game-sun.webp?v=2", gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
   { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
-    cover:{ art:"assets/img/game-fog.webp", gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
+    cover:{ art:"assets/img/game-fog.webp?v=2", gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
   { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
-    cover:{ art:"assets/img/game-mem.webp", fan:true,    tint:"cv-violet" } },
+    cover:{ art:"assets/img/game-mem.webp?v=3", fan:true,    tint:"cv-violet" } },
   /* KIV · 即将推出：代码保留，UI 不可进入 */
   { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
     cover:{ art:"assets/img/game-truth.webp", gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
@@ -4252,7 +4252,7 @@ const liveVid = (x, pos = "50% 20%", worn = false) => x && (worn ? outfitVid(x) 
       style="object-position:${pos}" aria-hidden="true" onerror="this.remove()"></video>` : "";
 function gameCover(gm){
   const c = gm.cover || {};
-  if(c.art) return phImg(c.art, "", gm.name, "", "50% 50%");
+  if(c.art) return phImg(c.art, "", gm.name, "", "50% 22%");
   if(c.fan){
     const FAN = { sweet:g => g.x, bunny:g => g.bikini, neko:g => g.lounge, summer:g => g.bikini, maid:g => g.x };
     return `<div class="cv-fan">${GIRLS.slice(0, 3).map(x =>
