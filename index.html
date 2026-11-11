@@ -2807,6 +2807,43 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
   .rv-top{padding:5px 10px}.rv-top b{font-size:14px}.rv-bar{margin-top:6px}.rv-wrap{margin-top:7px}
   .rv-pad{grid-template-columns:repeat(3,50px);grid-template-rows:repeat(2,36px);gap:5px;margin-top:7px}
 }
+/* ===== 脱衣斗地主 ===== */
+.dz-top{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:7px 12px;border-radius:14px;background:rgba(233,196,106,.08);border:1px solid rgba(233,196,106,.25)}
+.dz-top span{display:flex;flex-direction:column;gap:1px}.dz-top span:nth-child(2){align-items:center}.dz-top span:last-child{align-items:flex-end}
+.dz-top small{font-size:10.5px;color:rgba(255,236,190,.6)}.dz-top b{font-size:14.5px;font-weight:900;color:#FFD43B;white-space:nowrap}
+.dz-stage{position:relative;height:min(30vh,260px);min-height:170px;margin-top:8px;border-radius:18px;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);border:1px solid rgba(233,196,106,.35);background:#000}
+.dz-ph,.dz-ph .ph,.dz-ph .lv{position:absolute;inset:0;width:100%;height:100%}
+.dz-ph .ph img,.dz-ph .lv{object-fit:cover}
+.dz-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,.8) 100%)}
+.dz-lad{position:absolute;left:8px;right:8px;top:8px;z-index:3;transform:scale(.82);transform-origin:top center}
+.dz-her{position:absolute;right:10px;bottom:10px;z-index:3;display:flex;align-items:center;gap:4px;padding:4px 8px 4px 4px;border-radius:12px;background:rgba(0,0,0,.55);color:#fff}
+.dz-back{width:22px;height:30px;border-radius:4px;background:repeating-linear-gradient(45deg,#B8862A 0 4px,#7A5512 4px 8px);border:1.5px solid #FBE7A6}
+.dz-her b{font-size:17px;font-weight:900;color:#FFD43B}.dz-her small{font-size:10.5px;color:rgba(255,236,190,.7)}
+.dz-say{position:absolute;left:10px;bottom:10px;right:96px;z-index:3;font-size:12px;font-weight:800;line-height:1.4;color:#fff;text-shadow:0 1px 3px #000}
+.dz-hp{position:absolute;left:0;right:0;bottom:46px;z-index:3;display:flex;justify-content:center}
+.dz-hp em,.dz-mid em{font-style:normal;font-size:14px;font-weight:900;color:#FFE27A;text-shadow:0 1px 4px #000;padding:3px 12px;border-radius:10px;background:rgba(0,0,0,.45)}
+.dz-mid{min-height:64px;margin-top:8px;display:flex;align-items:center;justify-content:center}
+.dz-dp{display:flex;flex-direction:column;align-items:center;gap:4px}.dz-dp small{font-size:11px;color:rgba(255,236,190,.65)}
+.dz-res{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border-radius:14px;border:1.5px solid #E9C46A;background:rgba(233,196,106,.1)}
+.dz-res b{font-size:18px;font-weight:900;color:#FFD43B;white-space:nowrap}.dz-res.lose b{color:#FF8FB3}
+.dz-res small{flex:1;font-size:11.5px;line-height:1.4;color:rgba(255,245,225,.8)}
+.dz-res .btn{height:36px;padding:0 14px;white-space:nowrap}
+.pkrow{display:flex}
+.pkrow .pk{position:relative;margin-left:-14px}.pkrow .pk:first-child{margin-left:0}
+.pk{position:absolute;top:16px;width:46px;height:66px;border-radius:7px;background:linear-gradient(180deg,#FFFFFF,#F1ECE2);border:1px solid #CFC6B4;
+  box-shadow:-2px 2px 5px rgba(0,0,0,.35);color:#1A1A1A;display:flex;flex-direction:column;align-items:flex-start;padding:3px 0 0 5px;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;user-select:none;-webkit-user-select:none}
+.pk b{font:900 17px/1 ui-rounded,"SF Pro Rounded",system-ui,sans-serif}.pk i{font-style:normal;font-size:15px;line-height:1.1}
+.pk.red{color:#D9262E}
+.pk.ten b{font-size:14px;letter-spacing:-1.5px;margin-left:-2px}.pk.sm.ten b{font-size:11px}
+.pk.jk b{font-size:13px;line-height:1.05}.pk.jk i{font-size:7px;font-weight:900;letter-spacing:.02em;writing-mode:vertical-rl;margin-top:2px}
+.pk.sel{transform:translateY(-14px);box-shadow:0 0 0 2px #FFD43B,-2px 6px 10px rgba(0,0,0,.4)}
+.pk.sm{position:relative;top:0;width:32px;height:46px;padding:2px 0 0 3px;cursor:default}
+.pk.sm b{font-size:12.5px}.pk.sm i{font-size:11px}.pk.sm.jk b{font-size:10px}.pk.sm.jk i{display:none}
+.dz-hand{position:relative;height:88px;margin-top:4px}
+.dz-btns{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;margin-top:4px}
+.dz-btns .btn{height:42px}.dz-btns .btn[disabled]{opacity:.45}
+@media (max-height:760px){.dz-stage{height:24vh;min-height:140px}.dz-mid{min-height:54px;margin-top:6px}.dz-hand{height:84px}}
 </style>
 </head>
 <body>
@@ -2876,7 +2913,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v56";
+const APP_VER = "v58";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3775,7 +3812,7 @@ ROUTES.home = { view(){
                 <span class="cht-row"><span class="cht-typ"><i></i><i></i><i></i></span><span class="ad-cta">${esc(a.cta)}${ARR}</span></span></span>
             </div>`;
             if(i === 3) return `<div class="adslide ad-play" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
-              <span class="ply-fan">${["yqq", "slot", "gacha"].map(k => `<img src="assets/img/game-${k}.webp" alt="">`).join("")}</span>
+              <span class="ply-fan">${["rps", "sun", "photo"].map(k => `<img src="assets/img/game-${k}.webp?v=2" alt="">`).join("")}</span>
               <span class="ad-c"><em class="ad-tag">${esc(a.tag)}</em><b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
                 <span class="ad-cta">${esc(a.cta)}${ARR}</span></span>
             </div>`;
@@ -4666,16 +4703,26 @@ const FX = {
 };
 /* cover: 哪位角色、哪套造型、裁切点、色调、主题图形，十张各不相同 */
 const GAMES = [
-  { id:"yqq",    name:"野球拳",     hook:"猜拳赢一局，她脱一件",     cls:"gx-5", icon:"game",  live:true, isNew:true, hot:true,
-    cover:{ gid:"bunny",  art:"assets/img/game-yqq.webp",    tint:"cv-pink" } },
-  { id:"reveal", name:"圈地揭图",   hook:"圈掉雾面，把她整个揭开",   cls:"gx-3", icon:"game",  live:true, isNew:true,
-    cover:{ gid:"summer", art:"assets/img/game-reveal.webp", tint:"cv-violet" } },
-  { id:"gacha",  name:"抽卡收集",   hook:"抽她的私房写真卡",         cls:"gx-6", icon:"gift",  live:true, hot:true,
-    cover:{ gid:"maid",   art:"assets/img/game-gacha.webp",  tint:"cv-gold" } },
-  { id:"idle",   name:"放置养成",   hook:"点她涨爱心，离线也在涨",   cls:"gx-4", icon:"heart", live:true,
-    cover:{ gid:"neko",   art:"assets/img/game-idle.webp",   tint:"cv-frost" } },
-  { id:"slot",   name:"美女老虎机", hook:"三个一样，她就换装",       cls:"gx-3", icon:"crown", live:true,
-    cover:{ gid:"bunny",  art:"assets/img/game-slot.webp",   tint:"cv-violet" } }
+  /* 上线中：5 个 */
+  { id:"rps",    name:"猜拳换装",     hook:"赢两局，一套一套换",  cls:"gx-5", icon:"game",      live:true, isNew:true, hot:true,
+    cover:{ art:"assets/img/game-rps.webp?v=2", gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
+  { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
+    cover:{ art:"assets/img/game-photo.webp?v=2", gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
+  { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
+    cover:{ art:"assets/img/game-sun.webp?v=2", gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
+  { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
+    cover:{ art:"assets/img/game-fog.webp?v=2", gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
+  { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
+    cover:{ art:"assets/img/game-mem.webp?v=3", fan:true,    tint:"cv-violet" } },
+  /* KIV · 即将推出：代码保留，UI 不可进入 */
+  { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
+    cover:{ art:"assets/img/game-truth.webp", gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
+  { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
+    cover:{ art:"assets/img/game-heart.webp", gid:"maid",  img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
+  { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
+    cover:{ art:"assets/img/game-quiz.webp", gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
+  { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
+    cover:{ art:"assets/img/game-catch.webp", gid:"neko",  img:g => g.lounge, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
@@ -4848,7 +4895,8 @@ function startGame(gm){
   settled = false;
   curGame = gm.id;
   const scored = true;              /* 每局都计分，没有练习模式 */
-  ({ yqq:playRps, reveal:playReveal, gacha:playGacha, idle:playIdle, slot:playSlot })[gm.id](gm, scored);
+  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog,
+     rps:playRps, photo:playPhoto, sun:playSun })[gm.id](gm, scored);
 }
 
 /* ============================================================
@@ -5417,6 +5465,243 @@ function playSlot(gm, scored){
   }
   $("#slGo").onclick = spin;
   $("#quit").onclick = done;
+}
+
+/* ---------- 斗地主规则核心：牌型判断 / 比大小 / 出牌 AI ---------- */
+/* 点数：3..13 = 3..K，14 = A，15 = 2，16 = 小王，17 = 大王 */
+const DDZ_RANK = { 11:"J", 12:"Q", 13:"K", 14:"A", 15:"2", 16:"小王", 17:"大王" };
+const ddzLabel = r => DDZ_RANK[r] || String(r);
+function ddzDeck(){
+  const d = []; let id = 0;
+  for(let r = 3; r <= 15; r++) for(let s = 0; s < 4; s++) d.push({ r, s, id:id++ });
+  d.push({ r:16, s:4, id:id++ }, { r:17, s:4, id:id++ });
+  for(let i = d.length - 1; i > 0; i--){ const j = (Math.random() * (i + 1)) | 0; [d[i], d[j]] = [d[j], d[i]]; }
+  return d;
+}
+const ddzSort = cs => cs.slice().sort((a, b) => a.r - b.r || a.s - b.s);
+function ddzCount(cs){ const m = new Map(); for(const c of cs) m.set(c.r, (m.get(c.r) || 0) + 1); return m; }
+const isRun = rs => rs.every((r, i) => i === 0 || r === rs[i - 1] + 1) && rs[rs.length - 1] <= 14;
+/* 判断一手牌的牌型；不合法返回 null */
+function ddzType(cs){
+  const n = cs.length; if(!n) return null;
+  const m = ddzCount(cs), ranks = [...m.keys()].sort((a, b) => a - b), cnt = r => m.get(r);
+  if(n === 2 && m.has(16) && m.has(17)) return { t:"rocket", main:17, len:1 };
+  if(ranks.length === 1){
+    if(n === 1) return { t:"single", main:ranks[0], len:1 };
+    if(n === 2) return { t:"pair", main:ranks[0], len:1 };
+    if(n === 3) return { t:"trio", main:ranks[0], len:1 };
+    if(n === 4) return { t:"bomb", main:ranks[0], len:1 };
+  }
+  if(n === 4 && ranks.length === 2){ const t = ranks.find(r => cnt(r) === 3); if(t) return { t:"trio1", main:t, len:1 }; }
+  if(n === 5 && ranks.length === 2){ const t = ranks.find(r => cnt(r) === 3); if(t && ranks.some(r => cnt(r) === 2)) return { t:"trio2", main:t, len:1 }; }
+  if(n === 6){ const f = ranks.find(r => cnt(r) === 4); if(f) return { t:"four2", main:f, len:1 }; }
+  if(n >= 5 && ranks.every(r => cnt(r) === 1) && isRun(ranks)) return { t:"straight", main:ranks[n - 1], len:n };
+  if(n >= 6 && n % 2 === 0 && ranks.every(r => cnt(r) === 2) && isRun(ranks)) return { t:"pairs", main:ranks[ranks.length - 1], len:ranks.length };
+  // 飞机：连续的三张（≥2 组），可带同样数量的单张或对子
+  const trios = ranks.filter(r => cnt(r) >= 3);
+  for(let k = trios.length; k >= 2; k--){
+    for(let i = 0; i + k <= trios.length; i++){
+      const run = trios.slice(i, i + k);
+      if(!isRun(run)) continue;
+      const rest = n - 3 * k;
+      if(rest === 0) return { t:"plane", main:run[k - 1], len:k, w:0 };
+      if(rest === k) return { t:"plane", main:run[k - 1], len:k, w:1 };
+      if(rest === 2 * k){
+        const left = new Map(m); run.forEach(r => left.set(r, left.get(r) - 3));
+        if([...left.values()].every(v => v === 0 || v === 2)) return { t:"plane", main:run[k - 1], len:k, w:2 };
+      }
+    }
+  }
+  return null;
+}
+/* a 能不能压过 b */
+function ddzBeats(a, b){
+  if(!a) return false;
+  if(!b) return true;
+  if(a.t === "rocket") return true;
+  if(b.t === "rocket") return false;
+  if(a.t === "bomb" && b.t !== "bomb") return true;
+  if(a.t !== b.t || a.len !== b.len || (a.w || 0) !== (b.w || 0)) return false;
+  return a.main > b.main;
+}
+/* 列出手里所有能出的组合（AI 和「提示」用） */
+function ddzOptions(hand){
+  const m = new Map(); for(const c of ddzSort(hand)){ if(!m.has(c.r)) m.set(c.r, []); m.get(c.r).push(c); }
+  const ranks = [...m.keys()], out = [], take = (r, k) => m.get(r).slice(0, k);
+  const singles = ranks.map(r => take(r, 1)), pairs = ranks.filter(r => m.get(r).length >= 2);
+  for(const r of ranks){
+    const g = m.get(r).length;
+    out.push(take(r, 1));
+    if(g >= 2) out.push(take(r, 2));
+    if(g >= 3){
+      out.push(take(r, 3));
+      const kick1 = ranks.find(x => x !== r && m.get(x).length === 1) ?? ranks.find(x => x !== r);
+      if(kick1 != null) out.push([...take(r, 3), ...take(kick1, 1)]);
+      const kick2 = pairs.find(x => x !== r && m.get(x).length === 2) ?? pairs.find(x => x !== r);
+      if(kick2 != null) out.push([...take(r, 3), ...take(kick2, 2)]);
+    }
+    if(g === 4) out.push(take(r, 4));
+  }
+  for(let i = 0; i < ranks.length; i++)            // 顺子
+    for(let j = i + 4; j < ranks.length && ranks[j] <= 14; j++){
+      const run = ranks.slice(i, j + 1); if(!isRun(run)) break; out.push(run.map(r => take(r, 1)[0]));
+    }
+  for(let i = 0; i < pairs.length; i++)            // 连对
+    for(let j = i + 2; j < pairs.length && pairs[j] <= 14; j++){
+      const run = pairs.slice(i, j + 1); if(!isRun(run)) break; out.push(run.flatMap(r => take(r, 2)));
+    }
+  if(m.has(16) && m.has(17)) out.push([...m.get(16), ...m.get(17)]);
+  return out.map(cs => ({ cs, ty:ddzType(cs) })).filter(o => o.ty);
+}
+const ddzBig = o => o.ty.t === "bomb" || o.ty.t === "rocket";
+/* AI：领出时出含最小牌、张数最多的组合；跟牌时用最小能压的，不得已才用炸弹 */
+function ddzAI(hand, last, oppLeft){
+  const opts = ddzOptions(hand);
+  const whole = ddzType(hand); if(whole && ddzBeats(whole, last)) return hand.slice();
+  if(!last){
+    const low = Math.min(...hand.map(c => c.r));
+    const pool = opts.filter(o => !ddzBig(o) && o.cs.some(c => c.r === low));
+    pool.sort((a, b) => b.cs.length - a.cs.length || a.ty.main - b.ty.main);
+    return (pool[0] || opts.sort((a, b) => a.ty.main - b.ty.main)[0]).cs;
+  }
+  const can = opts.filter(o => ddzBeats(o.ty, last));
+  const norm = can.filter(o => !ddzBig(o)).sort((a, b) => a.ty.main - b.ty.main || a.cs.length - b.cs.length);
+  if(norm.length) return norm[0].cs;
+  const big = can.filter(ddzBig).sort((a, b) => (a.ty.t === "rocket") - (b.ty.t === "rocket") || a.ty.main - b.ty.main);
+  if(big.length && (oppLeft <= 6 || hand.length <= 6 || Math.random() < .35)) return big[0].cs;
+  return null;
+}
+
+/* ============================================================
+   脱衣斗地主（二人）：你当地主 20 张，她 17 张；你赢一局她脱一件，最多 5 局
+   ============================================================ */
+const DZ_DEALS = 5, DZ_SUIT = ["♠", "♥", "♣", "♦"];
+function pkHTML(c, cls = ""){
+  if(c.r >= 16) return `<span class="pk jk ${c.r === 17 ? "red" : ""} ${cls}" data-id="${c.id}"><b>${c.r === 17 ? "大" : "小"}<br>王</b><i>JOKER</i></span>`;
+  return `<span class="pk ${c.s % 2 ? "red" : ""} ${c.r === 10 ? "ten" : ""} ${cls}" data-id="${c.id}"><b>${ddzLabel(c.r)}</b><i>${DZ_SUIT[c.s]}</i></span>`;
+}
+function playDdz(gm, scored){
+  const g = girl(), L = RPS_LINE[g.id] || RPS_LINE.bunny;
+  G = { deal:0, wins:0, loss:0, step:0, you:[], her:[], last:null, lastBy:-1, sel:new Set(), lock:true, surprise:false, hint:0 };
+  const tierAt = i => RPS_LADDER[Math.min(i, RPS_LADDER.length - 1)];
+  const ladder = () => RPS_LADDER.map((k, i) => `<span class="rstep ${i <= G.step ? "got" : ""} ${i === G.step ? "cur" : ""}">${phImg(tierImg(g, k), g.initial, "", "", "50% 18%")}
+      ${i <= G.step ? "" : `<i class="lk">${ico("i-lock","ic")}</i>`}<b>${esc(tierOf(k).t)}</b></span>`).join(`<i class="rarrow">${ico("i-next","ic")}</i>`);
+  $("#gameHost").innerHTML = `
+  <section data-od-id="game-run" class="dz">
+    <div class="dz-top"><span><small>局数</small><b id="dzDeal">1 / ${DZ_DEALS}</b></span><span><small>比分</small><b id="dzScore">你 0 : 0 她</b></span><span><small>她穿着</small><b id="dzWear">${esc(tierOf(tierAt(0)).t)}</b></span></div>
+    <div class="dz-stage" id="dzStage" data-react-pos="right:10px;top:52px">
+      <div class="dz-ph" id="dzPh">${herMedia(g, tierAt(0))}</div><div class="dz-shade"></div>
+      <div class="rladder dz-lad" id="dzLad">${ladder()}</div>
+      <div class="dz-her"><span class="dz-back"></span><b id="dzLeft">17</b><small>张</small></div>
+      <div class="dz-say" id="dzSay">输一局我就脱一件…不过你得先赢我哦～</div>
+      <div class="dz-hp" id="dzHerPlay"></div>
+    </div>
+    <div class="dz-mid" id="dzMid"></div>
+    <div class="dz-hand" id="dzHand"></div>
+    <div class="dz-btns"><button class="btn btn-gh" id="dzPass">不出</button><button class="btn btn-gh" id="dzHint">提示</button><button class="btn btn-pri" id="dzPlay">出牌</button></div>
+    ${modeBar(scored)}
+  </section>`;
+  const say = t => { const e = $("#dzSay"); if(e){ e.textContent = t; pulseOnce(e, "pop", 360); } };
+  const byId = (hand, ids) => hand.filter(c => ids.has(c.id));
+  function paintHand(){
+    const box = $("#dzHand"); if(!box) return;
+    const cs = G.you.slice().reverse(), n = cs.length, W = box.clientWidth, cw = 46;
+    const step = n > 1 ? Math.min(30, (W - cw) / (n - 1)) : 0, off = (W - (cw + step * (n - 1))) / 2;
+    box.innerHTML = cs.map((c, i) => pkHTML(c, G.sel.has(c.id) ? "sel" : "").replace('class="pk', `style="left:${off + i * step}px" class="pk`)).join("");
+    $$(".pk", box).forEach(el => el.onclick = () => { if(G.lock) return; const id = +el.dataset.id; G.sel.has(id) ? G.sel.delete(id) : G.sel.add(id); el.classList.toggle("sel"); });
+  }
+  function paintBtns(){
+    const mine = !G.lock;
+    $("#dzPlay").disabled = !mine; $("#dzHint").disabled = !mine;
+    $("#dzPass").disabled = !mine || !G.last;
+  }
+  const show = (el, cs, txt) => { el.innerHTML = cs && cs.length ? `<span class="pkrow">${ddzSort(cs).reverse().map(c => pkHTML(c, "sm")).join("")}</span>` : `<em>${txt || ""}</em>`; };
+  function newDeal(){
+    G.deal++; G.sel.clear(); G.hint = 0;
+    const d = ddzDeck(); G.you = ddzSort(d.slice(0, 20)); G.her = ddzSort(d.slice(20, 37));
+    const dipai = d.slice(17, 20);
+    G.last = null; G.lastBy = -1;
+    $("#dzDeal").textContent = `${G.deal} / ${DZ_DEALS}`; $("#dzLeft").textContent = G.her.length;
+    show($("#dzHerPlay"), null, "");
+    $("#dzMid").innerHTML = `<div class="dz-dp"><small>你是地主 · 底牌</small><span class="pkrow">${dipai.map(c => pkHTML(c, "sm")).join("")}</span></div>`;
+    G.lock = false; paintHand(); paintBtns();
+    say(["发牌啦～你先出", "这局我可不会让你哦～", "再输我就…真的要脱了（脸红）", "最后几件了…你手下留情嘛～", "最后一局，赢了给你惊喜～"][Math.min(G.deal - 1, 4)]);
+  }
+  function youPlay(){
+    if(G.lock) return;
+    const cs = byId(G.you, G.sel), ty = ddzType(cs);
+    if(!cs.length){ toast("先点选要出的牌", "i-coin"); return; }
+    if(!ty){ toast("这几张不是合法的牌型", "i-coin"); return; }
+    if(!ddzBeats(ty, G.last)){ toast("压不过她的牌", "i-coin"); return; }
+    G.you = G.you.filter(c => !G.sel.has(c.id)); G.sel.clear(); G.hint = 0;
+    G.last = ty; G.lastBy = 0;
+    show($("#dzMid"), cs);
+    if(ty.t === "bomb" || ty.t === "rocket"){ pulseOnce($("#dzStage"), "flick", 520); say("炸弹！你好坏～"); }
+    paintHand();
+    if(!G.you.length) return endDeal(true);
+    G.lock = true; paintBtns(); setTimeout(herTurn, rm() ? 50 : 750);
+  }
+  function youPass(){
+    if(G.lock || !G.last) return;
+    G.sel.clear(); paintHand(); show($("#dzMid"), null, "你：不出");
+    G.lock = true; paintBtns(); setTimeout(herTurn, rm() ? 50 : 600);
+  }
+  function hint(){
+    if(G.lock) return;
+    const opts = ddzOptions(G.you).filter(o => ddzBeats(o.ty, G.last))
+      .sort((a, b) => ddzBig(a) - ddzBig(b) || a.ty.main - b.ty.main || b.cs.length - a.cs.length);
+    if(!opts.length){ toast("没有压得过的牌，点「不出」", "i-coin"); return; }
+    const o = opts[G.hint++ % opts.length]; G.sel = new Set(o.cs.map(c => c.id)); paintHand();
+  }
+  function herTurn(){
+    if(!G) return;
+    if(G.lastBy === 1) G.last = null;
+    const play = ddzAI(G.her, G.last, G.you.length);
+    if(play){
+      const ids = new Set(play.map(c => c.id)), ty = ddzType(play);
+      G.her = G.her.filter(c => !ids.has(c.id)); G.last = ty; G.lastBy = 1;
+      show($("#dzHerPlay"), play); $("#dzLeft").textContent = G.her.length;
+      if(ty.t === "bomb" || ty.t === "rocket"){ pulseOnce($("#dzStage"), "flick", 520); say("炸弹！嘿嘿～这局你要输了吧"); }
+      else if(G.her.length <= 3 && G.her.length) say(`我只剩 ${G.her.length} 张咯～`);
+      if(!G.her.length) return endDeal(false);
+    } else {
+      show($("#dzHerPlay"), null, "不要");
+      if(Math.random() < .5) say(["要不起…", "哼，让你一手～", "这都压不过…"][(Math.random() * 3) | 0]);
+      G.last = null; G.lastBy = 0;
+    }
+    if(G.lastBy === 0) G.last = null;
+    G.lock = false; paintBtns();
+  }
+  function endDeal(won){
+    G.lock = true; paintBtns();
+    const st = $("#dzStage");
+    if(won){
+      G.wins++;
+      if(G.step < RPS_LADDER.length - 1){
+        G.step++;
+        setTimeout(() => {
+          if(!G) return;
+          $("#dzPh").innerHTML = herMedia(g, tierAt(G.step)); $("#dzLad").innerHTML = ladder();
+          $("#dzWear").textContent = tierOf(tierAt(G.step)).t; confetti(st); react(st, "win", g.id);
+        }, rm() ? 0 : 500);
+        say(L.win[Math.min(G.step - 1, L.win.length - 1)]);
+      } else if(!G.surprise){ G.surprise = true; confetti(st); say(RPS_SURPRISE[g.id] || RPS_SURPRISE.bunny); }
+    } else { G.loss++; react(st, "hit", g.id); say(L.lose[(G.loss - 1) % L.lose.length]); }
+    $("#dzScore").textContent = `你 ${G.wins} : ${G.loss} 她`;
+    const last = G.deal >= DZ_DEALS || G.surprise;
+    $("#dzMid").innerHTML = `<div class="dz-res ${won ? "win" : "lose"}"><b>${won ? "你赢了！" : "她赢了～"}</b>
+      <small>${won ? (G.surprise ? "她已经脱到最后一件了…" : `她脱掉一件，换成「${esc(tierOf(tierAt(G.step)).t)}」`) : "她还穿得好好的，再来！"}</small>
+      <button class="btn btn-pri" id="dzNext">${last ? "看结算" : "下一局"}</button></div>`;
+    $("#dzNext").onclick = () => last ? done() : newDeal();
+  }
+  function done(){
+    if(!G) return;
+    gameFinish(gm, { score:G.wins, scored, earned:Math.min(RULES.gameMax, G.wins * 10 + (G.surprise ? 10 : 0) + (G.deal ? 2 : 0)),
+      detail:`赢 ${G.wins} 局 / 共 ${G.deal} 局 · 她脱到「${tierOf(tierAt(G.step)).t}」` });
+  }
+  $("#dzPlay").onclick = youPlay; $("#dzPass").onclick = youPass; $("#dzHint").onclick = hint;
+  $("#quit").onclick = done;
+  newDeal();
 }
 
 /* 把一局的得分折算成积分并出结算页 */
@@ -6192,7 +6477,7 @@ const RPS = [
 ];
 const RPS_BEATS = { rock:"sci", paper:"rock", sci:"paper" };
 /* 换装阶梯：礼服 → 睡衣 → 比基尼，赢一局上一档 */
-const RPS_LADDER = ["daily", "lounge", "x", "bikini"];
+const RPS_LADDER = ["lounge", "x", "bikini"];
 const RPS_LINE = {
   sweet:{ win:["那…我去换一套。", "说好只看一眼哦。（脸红）", "最后一套了，不许笑我。"],
           lose:["哼～弹你额头。", "笨手笨脚的。", "再来呀，我可不让。"],
@@ -6225,7 +6510,7 @@ const RPS_SURPRISE = {
   maid:"主人好厉害…奈奈的比基尼，只给主人看。",
   summer:"服了你！这套最辣的，就给你一个人看～"
 };
-const RPS_ROUNDS = 7, RPS_PT = 10, RPS_BONUS = 20;   /* 赢两局到顶 = 30 封顶 + 20 惊喜 */
+const RPS_ROUNDS = 5, RPS_PT = 15, RPS_BONUS = 20;   /* 赢两局到顶 = 30 封顶 + 20 惊喜 */
 const RPS_BEAT = ["石头…", "剪刀…", "布！"];
 
 function playRps(gm, scored){
@@ -6271,7 +6556,7 @@ function playRps(gm, scored){
           ${r.svg}<span>${r.t}</span></button>`).join("")}
       </div>
       ${modeBar(scored)}
-      <p class="sm" style="margin-top:10px;text-align:center">赢一局她脱一件：日常 → 夜店 → 睡衣 → 比基尼，脱到最后有惊喜。</p>
+      <p class="sm" style="margin-top:10px;text-align:center">连赢两局就能一路换到比基尼，最后有惊喜。</p>
     </section>`;
     $("#quit").onclick = done;
     $$("[data-rps]").forEach(b => b.onclick = () => throwHand(b.dataset.rps));
