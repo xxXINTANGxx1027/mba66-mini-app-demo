@@ -907,7 +907,7 @@ body{
 .poster .pbadge{right:6px;bottom:6px;top:auto;width:26px;height:26px;
   background:linear-gradient(180deg,rgba(232,183,70,.95),rgba(214,157,26,.95));border-color:rgba(255,255,255,.4)}
 
-/* ---------- 亲密游戏大厅 ---------- */
+/* ---------- 哈希游戏大厅 ---------- */
 .ghub{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .gcardx{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
   min-height:152px;padding:13px;border-radius:18px;text-decoration:none;color:#fff;text-align:left;
@@ -2609,6 +2609,88 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .ad-cal2 .cg-plus{background:#14110B !important;color:#F3D27A !important;border:1.5px solid #E9C46A;box-shadow:0 4px 12px rgba(0,0,0,.5) !important}
 .ad-cal2 .cg-shine{background:linear-gradient(90deg,rgba(255,236,190,0),rgba(255,236,190,.22),rgba(255,236,190,0)) !important}
 .ad-cal2 .cg-spark{filter:sepia(1) saturate(3) hue-rotate(5deg)}
+/* ===== 哈希游戏 ===== */
+.hx-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;padding:9px 12px;border-radius:14px;
+  background:rgba(255,206,0,.08);border:1px solid rgba(255,206,0,.25);font-size:11px;color:rgba(255,236,190,.7)}
+.hx-top span{display:flex;flex-direction:column;gap:1px}
+.hx-top span:nth-child(2){text-align:center;align-items:center}
+.hx-top span:nth-child(3){text-align:right;align-items:flex-end}
+.hx-top small{font-size:10.5px;color:rgba(255,236,190,.6)}
+.hx-top u{text-decoration:none}
+.hx-top b{white-space:nowrap;font-size:15px;font-weight:900;color:#FFD43B;font-variant-numeric:tabular-nums}
+.hx-stage{position:relative;margin-top:10px;height:min(31vh,280px);min-height:200px;border-radius:20px;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);
+  border:1px solid rgba(233,196,106,.35);background:#000}
+.hx-ph,.hx-ph .ph,.hx-ph .lv{position:absolute;inset:0;width:100%;height:100%}
+.hx-ph .ph img,.hx-ph .lv{object-fit:cover}
+.hx-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 55%,rgba(0,0,0,.75) 100%)}
+.hx-lad{position:absolute;left:10px;right:10px;top:10px;z-index:3;transform:scale(.86);transform-origin:top center}
+.hx-dealer{position:absolute;left:12px;bottom:12px;z-index:3;display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:900;color:#fff;text-shadow:0 1px 4px #000}
+.hx-dealer em{font-style:normal;font-size:10px;font-weight:900;color:#1B1206;background:linear-gradient(180deg,#FBE7A6,#E2B551);padding:2px 7px;border-radius:6px}
+.hx-dealer small{font-size:11px;font-weight:700;color:rgba(255,236,190,.85);padding:2px 8px;border-radius:8px;background:rgba(0,0,0,.45)}
+.hx-say{position:absolute;right:12px;bottom:12px;z-index:3;max-width:52%;padding:7px 11px;border-radius:14px 14px 4px 14px;font-size:12px;font-weight:700;line-height:1.4;
+  color:#fff;background:rgba(20,16,24,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
+.hx-res{position:absolute;left:50%;top:50%;z-index:4;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 22px;border-radius:18px;
+  background:rgba(10,8,12,.82);border:1.5px solid #E9C46A;box-shadow:0 10px 30px rgba(0,0,0,.6);opacity:0;transform:translate(-50%,-50%) scale(.6);pointer-events:none;transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.5,1)}
+.hx-res.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.hx-res b{font-size:12px;color:rgba(255,236,190,.8)}
+.hx-res span{font-size:40px;font-weight:900;line-height:1.05;color:#FFD43B;text-shadow:0 0 18px rgba(255,200,0,.6)}
+.hx-res em{font-style:normal;font-size:15px;font-weight:900;color:#fff}
+.hx-res.win{border-color:#FFD43B}.hx-res.win em{color:#7FE3A0}
+.hx-res.lose em{color:#FF8A8A}.hx-res.lose span{color:#F0E2C0;text-shadow:none}
+.hx-hash{margin-top:10px;padding:10px 12px;border-radius:14px;background:#0E0C10;border:1px solid rgba(255,255,255,.08)}
+.hx-hh{display:flex;flex-direction:column;gap:2px}
+.hx-hh b{font-size:12.5px;font-weight:900;color:#FFE27A}
+.hx-hh small{font-size:10.5px;line-height:1.45;color:rgba(255,245,225,.6)}
+.hx-hash code{display:block;margin-top:7px;font:700 15px/1.3 ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.06em;color:rgba(240,232,214,.82);
+  white-space:nowrap;overflow:hidden;text-overflow:clip}
+.hx-hash code i{font-style:normal;color:rgba(240,232,214,.4);padding:0 2px}
+.hx-hash code mark{background:linear-gradient(180deg,#FFEA6B,#FFC400);color:#2A1800;border-radius:4px;padding:0 3px;box-shadow:0 0 12px rgba(255,200,0,.7)}
+.hx-hash code.rolling{color:#FFD43B;filter:blur(.3px)}
+.hx-road{display:flex;align-items:center;gap:4px;margin-top:9px;overflow-x:auto;scrollbar-width:none;min-height:26px}
+.hx-road::-webkit-scrollbar{display:none}
+.hx-rl{flex:0 0 auto;font-size:11px;font-weight:800;color:rgba(255,236,190,.6);margin-right:4px}
+.hx-road i{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:900}
+.hx-road i.a{background:#FFC400;color:#2A1800}.hx-road i.b{background:#FF8FB3;color:#3A0B1C}
+.hx-road i.t{background:#7FE3A0;color:#0B3A1A}.hx-road i.n{background:rgba(255,206,0,.15);color:#FFD43B;border:1px solid rgba(255,206,0,.5)}
+.hx-bets{display:grid;gap:8px;margin-top:10px}
+.hx-bets.n2{grid-template-columns:1fr 1fr}.hx-bets.n3{grid-template-columns:1fr .8fr 1fr}.hx-bets.n10{grid-template-columns:repeat(5,1fr)}
+.hx-bet{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:68px;border-radius:16px;cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,206,0,.14),rgba(255,206,0,.04));border:1.5px solid rgba(255,206,0,.4);color:#FFF6D8;transition:transform .15s,box-shadow .2s}
+.hx-bets.n10 .hx-bet{min-height:54px}
+.hx-bet b{font-size:26px;font-weight:900;line-height:1;color:#FFD43B}
+.hx-bets.n10 .hx-bet b{font-size:22px}
+.hx-bet small{font-size:10px;font-weight:700;color:rgba(255,236,190,.65)}
+.hx-bet.on{background:linear-gradient(180deg,rgba(255,206,0,.32),rgba(255,206,0,.1));border-color:#FFD43B;box-shadow:0 0 0 1px #FFD43B inset,0 6px 18px -6px rgba(255,200,0,.7)}
+.hx-bet.hit{animation:hxHit .7s ease-in-out 2;border-color:#7FE3A0}
+@keyframes hxHit{50%{box-shadow:0 0 0 3px rgba(127,227,160,.8),0 0 24px rgba(127,227,160,.6)}}
+.hx-stk{position:absolute;top:-8px;right:-6px;min-width:26px;padding:2px 6px;border-radius:10px;font-style:normal;font-size:10.5px;font-weight:900;color:#2A1800;
+  background:linear-gradient(180deg,#FFEA6B,#FFC400);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.hx-stk:empty{display:none}
+.hx-bet[disabled],.hx-chip[disabled]{opacity:.55;cursor:default}
+.hx-chips{display:flex;align-items:center;gap:10px;margin-top:12px}
+.hx-chip{width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:13px;font-weight:900;color:#2A1800;border:3px dashed rgba(255,255,255,.55);
+  background:radial-gradient(circle at 50% 35%,#FFEA6B,#FFC400 60%,#E09A00);box-shadow:0 3px 0 #9A6500,0 6px 12px -4px rgba(0,0,0,.5);transition:transform .15s}
+.hx-chip:nth-child(2){background:radial-gradient(circle at 50% 35%,#FFB3C8,#FF6B93 60%,#D23A64);box-shadow:0 3px 0 #8E1F3E,0 6px 12px -4px rgba(0,0,0,.5)}
+.hx-chip:nth-child(3){background:radial-gradient(circle at 50% 35%,#C9B3FF,#8E6BFF 60%,#5A3AD2);color:#fff;box-shadow:0 3px 0 #33208E,0 6px 12px -4px rgba(0,0,0,.5)}
+.hx-chip.on{transform:translateY(-5px) scale(1.08);border-color:#fff;outline:2px solid #FFD43B;outline-offset:2px}
+.hx-clear{margin-left:auto;height:34px;padding:0 14px;border-radius:17px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:rgba(255,245,225,.8);font-size:12.5px;font-weight:800;cursor:pointer}
+.hx-go{margin-top:12px}
+.hx-go[disabled]{opacity:.5}
+@media (max-width:360px){.hx-bet b{font-size:22px}.hx-hash code{font-size:13px}.hx-chip{width:42px;height:42px}}
+@media (prefers-reduced-motion:reduce){.hx-res{transition:none}.hx-bet.hit{animation:none}}
+/* 哈希游戏：矮屏压缩，下注区一屏看得到 */
+@media (max-height:760px){
+  .hx-top{padding:6px 10px}.hx-top b{font-size:13.5px}
+  .hx-stage{height:24vh;min-height:150px;margin-top:8px}
+  .hx-hash{margin-top:8px;padding:8px 10px}.hx-hh small{display:none}.hx-hash code{margin-top:4px;font-size:13.5px}
+  .hx-road{margin-top:6px;min-height:22px}
+  .hx-bets{margin-top:8px;gap:6px}.hx-bet{min-height:54px}.hx-bets.n10 .hx-bet{min-height:44px}.hx-bet b{font-size:22px}.hx-bets.n10 .hx-bet b{font-size:19px}
+  .hx-chips{margin-top:9px}.hx-chip{width:40px;height:40px;font-size:12px}
+  .hx-go{margin-top:9px}
+  .hx > p.sm{display:none}
+}
+.hx-hlucky .hx-stage{height:min(24vh,220px);min-height:130px}
+@media (max-height:760px){.hx-hlucky .hx-stage{height:19vh;min-height:120px}.hx-hlucky .hx-road{display:none}}
 </style>
 </head>
 <body>
@@ -2666,7 +2748,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
       <a href="#me" data-tab="me"><img class="ic gi" src="assets/icons/g/user.webp" alt="" aria-hidden="true"><span>我的</span></a>
       <i id="tabInd" aria-hidden="true"></i>
     </nav>
-    <button id="fab" aria-label="亲密游戏"></button>
+    <button id="fab" aria-label="哈希游戏"></button>
     <div id="fx" aria-hidden="true"></div>
     <div id="viewer" role="dialog" aria-modal="true" aria-hidden="true"></div>
     <div id="veil"></div>
@@ -2678,7 +2760,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v51";
+const APP_VER = "v54";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3301,7 +3383,7 @@ function syncFab(name){
   f.classList.toggle("on", show);
   if(!show){ f.innerHTML = ""; return; }
   const g = girl();
-  f.setAttribute("aria-label", `和${g.name}玩亲密游戏`);
+  f.setAttribute("aria-label", `和${g.name}玩哈希游戏`);
   f.innerHTML = `${phImg(outfitImg(g), g.initial, "", "", AV)}<span class="dot"></span><span class="ring"></span>`;
   if(rm()) return;
   const pop = () => {
@@ -3499,12 +3581,12 @@ const ADS = [
   { gid:"bunny",  tag:"每日福利",   h:"打卡即获积分",        sub:"更多奖励 · 连续 7 天送大礼", t:"打卡即获积分 · 更多奖励",            cta:"去打卡",   cls:"ad-1", pos:"50% 10%", act:"check" },
   { gid:"maid",   tag:"今日提醒",   h:"Hi，你今天<br>打卡了吗？", sub:"她在等你 · 打卡 +10 积分", t:"Hi，你今天打卡了吗？",   cta:"马上打卡", cls:"ad-2", pos:"50% 10%", act:"check" },
   { gid:"bunny",  img:g => g.sun, vid:g => g.sunv, vpos:"50% 55%", tag:"MBA66 限时", h:"充值马上赢奖",        sub:"充值即拿积分 · 大奖等你拿",  t:"充值马上能赢奖和拿积分",              cta:"去充值",   cls:"ad-3", pos:"50% 62%", act:"topup" },
-  { gid:"neko",   tag:"亲密游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
+  { gid:"neko",   tag:"哈希游戏",   h:"陪女友玩游戏",        sub:"赢积分 · 换奖励",            t:"与女友互动玩游戏，即能获取积分换奖励", cta:"去玩",     cls:"ad-4", pos:"50% 10%", go:"#games" }
 ];
 let adStop = null, bnStop = null;
 /* 精彩推荐：卖点卡，各自有去处 */
 const PROMOS = [
-  { k:"games", gid:"maid",   img:g => g.v3,     pos:"50% 14%", kick:"GAMES",  t:"与女友互动 · 亲密游戏", sub:"赢积分换奖励 · 段位越高倍率越高", href:"#games" },
+  { k:"games", gid:"maid",   img:g => g.v3,     pos:"50% 14%", kick:"GAMES",  t:"与女友互动 · 哈希游戏", sub:"赢积分换奖励 · 段位越高倍率越高", href:"#games" },
   { k:"drama", gid:"maid",   img:g => g.lounge, pos:"50% 20%", kick:"DRAMA",  t:"更多更新剧情 · 紧张刺激", sub:"看剧也能累积积分，前 3 集免费", href:"#drama" },
   { k:"girls", gid:"bunny",  img:g => g.v3,     pos:"50% 12%", kick:"NEW",    t:"新女友上线", sub:"兔女郎 / 猫女郎 / 高叉比基尼", href:"#girls" },
   { k:"topup", gid:"summer", img:g => g.bikini, pos:"50% 16%", kick:"MBA66",  t:"充值多多 · 赢奖多多", sub:"MBA66 平台活动，积分与奖品一起拿", href:null }
@@ -3577,7 +3659,7 @@ ROUTES.home = { view(){
                 <span class="cht-row"><span class="cht-typ"><i></i><i></i><i></i></span><span class="ad-cta">${esc(a.cta)}${ARR}</span></span></span>
             </div>`;
             if(i === 3) return `<div class="adslide ad-play" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
-              <span class="ply-fan">${["rps", "sun", "photo"].map(k => `<img src="assets/img/game-${k}.webp?v=2" alt="">`).join("")}</span>
+              <span class="ply-fan">${["hdress", "hbs", "hoe"].map(k => `<img src="assets/img/game-${k}.webp" alt="">`).join("")}</span>
               <span class="ad-c"><em class="ad-tag">${esc(a.tag)}</em><b class="ad-h">${a.h}</b><small class="ad-sub">${esc(a.sub)}</small>
                 <span class="ad-cta">${esc(a.cta)}${ARR}</span></span>
             </div>`;
@@ -3596,7 +3678,7 @@ ROUTES.home = { view(){
         `<button class="${i ? "" : "on"}" data-dot="${i}" aria-label="第 ${i + 1} 张广告"></button>`).join("")}</div>
 
       <nav class="h-chips" aria-label="分类">
-        <a href="#games">${ico("i-game")}亲密游戏</a>
+        <a href="#games">${ico("i-game")}哈希游戏</a>
         <a href="#drama">${ico("i-play")}AI 剧集</a>
         <a href="#girls">${ico("i-heart")}女友</a>
         <a href="#rewards">${ico("i-gift")}周边</a>
@@ -3628,7 +3710,7 @@ ROUTES.home = { view(){
           <span class="h-bn-art">${i3("gift", 64)}</span></a>
       </div>
 
-      <section class="h-block">${secH("亲密游戏", "#games")}
+      <section class="h-block">${secH("哈希游戏", "#games")}
         <div class="h-hs h-games">${live.map(gameTile).join("")}</div></section>
 
       <section class="h-block">${secH("我的女友", "#girls")}
@@ -3847,7 +3929,7 @@ ROUTES.join = { view(){
         <ul class="jn-perks">
           <li>${ico("i-coin")}注册即领 <b>800 积分</b></li>
           <li>${ico("i-play")}${esc(g.name)} 的专属欢迎视频</li>
-          <li>${ico("i-gift")}每日打卡、亲密游戏赢更多奖励</li>
+          <li>${ico("i-gift")}每日打卡、哈希游戏赢更多奖励</li>
         </ul>
         <form class="jn-form" onsubmit="return false">
           <input type="tel" inputmode="tel" placeholder="手机号（演示，不会发送）" aria-label="手机号" autocomplete="off">
@@ -3869,7 +3951,7 @@ function TASKS(){
   const g = girl();
   return [
     { k:"checkin", t:"每日打卡",       p:`+${RULES.checkin} 积分`,      x:`+${XPR.checkin} 亲密`, done:S.tasks.checkin, go:null },
-    { k:"game",    t:"玩一局亲密游戏",   p:`最多 +${RULES.gameMax} 积分`, x:`+${XPR.game} 亲密`,    done:S.tasks.game,    go:"#games" },
+    { k:"game",    t:"玩一局哈希游戏",   p:`最多 +${RULES.gameMax} 积分`, x:`+${XPR.game} 亲密`,    done:S.tasks.game,    go:"#games" },
     { k:"drama",   t:"看完一集短剧",   p:"解锁后续内容",                x:`+${XPR.drama} 亲密`,   done:S.tasks.drama,   go:"#drama" },
     { k:"gift",    t:"送她一份礼物",   p:`-${PRICE.gift} 积分`,         x:`+${XPR.gift} 亲密`,    done:S.tasks.gift,    go:"#girl/" + g.id },
     { k:"share",   t:"分享给好友",     p:`好友有效观看 +${RULES.invite}/人`, x:"", done:S.tasks.share, go:"#drama" }
@@ -3939,7 +4021,7 @@ ROUTES.girl = { view(id){
     <div class="stg-act gd-act" data-od-id="girl-actions">
       <button data-gd="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
       <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
-      <a href="#games">${ico("i-game")}<b>陪她玩</b><small>亲密游戏</small></a>
+      <a href="#games">${ico("i-game")}<b>陪她玩</b><small>哈希游戏</small></a>
       <button data-gd="bikini">${ico("i-bikini")}<b>比基尼</b><small>看她</small></button>
     </div>
     <div style="padding:0 14px">
@@ -3950,7 +4032,7 @@ ROUTES.girl = { view(id){
       <div style="margin-top:12px">${bondBar(g.id)}</div>
       <div style="margin-top:12px">
         ${isCur
-          ? `<a class="btn btn-pri btn-w claim" href="#games" data-od-id="girl-cta-games">${ico("i-game")}和${esc(g.name)}玩亲密游戏</a>`
+          ? `<a class="btn btn-pri btn-w claim" href="#games" data-od-id="girl-cta-games">${ico("i-game")}和${esc(g.name)}玩哈希游戏</a>`
           : `<button class="btn btn-gold btn-w claim" id="pick" data-od-id="girl-cta-pick">${ico("i-heart")}选她陪我</button>`}
       </div>
       ${S.owned.act.length && isCur ? `
@@ -3964,7 +4046,7 @@ ROUTES.girl = { view(id){
         <div style="display:flex;flex-direction:column;gap:9px">
           <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">${TIERS.length} 套造型 · 已解锁 ${TIERS.filter(t => ownTier(g.id, t.k)).length}</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#videos">${ico("i-play")}<div class="row-m">视频收藏<div class="row-s">${ownsVid ? "已解锁 " + g.name + " 的问候短片" : "未解锁"}</div></div><span class="cv">${S.owned.vid.length}/${GIRLS.length}${ico("i-next")}</span></a>
-          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩亲密游戏<div class="row-s">${LIVE.length} 个游戏 · 每局都计分</div></div><span class="cv">${ico("i-next")}</span></a>
+          <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩哈希游戏<div class="row-s">${LIVE.length} 个游戏 · 每局都计分</div></div><span class="cv">${ico("i-next")}</span></a>
         </div>
       </section>
 
@@ -4214,7 +4296,7 @@ function buy({ cost, title, sub, cond = [], stock, limit, expiry, done, then, fr
     foot: ok
       ? `<button class="btn btn-pri btn-w" id="yes">确认兑换 · ${cost} 积分</button>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">再想想</button>`
-      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去玩亲密游戏赚积分</a>
+      : `<a class="btn btn-pri btn-w" href="#games" onclick="closeSheet()">${ico("i-game")}去玩哈希游戏赚积分</a>
          <button class="btn btn-qt btn-w" onclick="closeSheet()">关闭</button>`
   });
   const y = sh.querySelector("#yes");
@@ -4372,8 +4454,8 @@ function bondStory(gid, kind){
         <p class="p" style="margin-top:14px">${esc(kind === "scene" ? "特别互动及剧情" : "专属故事及互动")}需要和${esc(g.name)}的亲密度达到 Lv.${need}。
           还差 ${lv.at - b.xp} 点亲密经验。</p>
         <div class="panel" style="margin-top:12px;padding:4px 16px">
-          ${[["每日签到", `+${XPR.checkin}`], ["陪她玩一局亲密游戏", `+${XPR.game}`],
-             ["亲密游戏每局", `+${XPR.game}`],
+          ${[["每日签到", `+${XPR.checkin}`], ["陪她玩一局哈希游戏", `+${XPR.game}`],
+             ["哈希游戏每局", `+${XPR.game}`],
              ["看完一集已解锁短剧", `+${XPR.drama}`], ["送出一份礼物", `+${XPR.gift}`]]
             .map(r => `<div class="row"><div class="row-m"><div class="row-t">${r[0]}</div></div>
               <b style="color:var(--rose);font-size:14px">${r[1]} 亲密</b></div>`).join("")}
@@ -4465,26 +4547,17 @@ const FX = {
 };
 /* cover: 哪位角色、哪套造型、裁切点、色调、主题图形，十张各不相同 */
 const GAMES = [
-  /* 上线中：5 个 */
-  { id:"rps",    name:"猜拳换装",     hook:"赢两局，一套一套换",  cls:"gx-5", icon:"game",      live:true, isNew:true, hot:true,
-    cover:{ art:"assets/img/game-rps.webp?v=2", gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
-  { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
-    cover:{ art:"assets/img/game-photo.webp?v=2", gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
-  { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
-    cover:{ art:"assets/img/game-sun.webp?v=2", gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
-  { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
-    cover:{ art:"assets/img/game-fog.webp?v=2", gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
-  { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
-    cover:{ art:"assets/img/game-mem.webp?v=3", fan:true,    tint:"cv-violet" } },
-  /* KIV · 即将推出：代码保留，UI 不可进入 */
-  { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
-    cover:{ art:"assets/img/game-truth.webp", gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
-  { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
-    cover:{ art:"assets/img/game-heart.webp", gid:"maid",  img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
-  { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
-    cover:{ art:"assets/img/game-quiz.webp", gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
-  { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
-    cover:{ art:"assets/img/game-catch.webp", gid:"neko",  img:g => g.lounge, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
+  /* 哈希游戏：取区块哈希最后一位数字开奖 · 用本局体验筹码，不动积分余额 */
+  { id:"hdress", name:"哈希换装", hook:"猜中单双，她就换一套",   cls:"gx-5", icon:"game",  live:true, isNew:true, hot:true,
+    cover:{ gid:"bunny",  art:"assets/img/game-hdress.webp", tint:"cv-pink" } },
+  { id:"hoe",    name:"哈希单双", hook:"最后一位数字，单还是双", cls:"gx-3", icon:"coin",  live:true, isNew:true,
+    cover:{ gid:"neko",   art:"assets/img/game-hoe.webp",    tint:"cv-violet" } },
+  { id:"hbs",    name:"哈希大小", hook:"0–4 小 · 5–9 大",        cls:"gx-6", icon:"coin",  live:true, hot:true,
+    cover:{ gid:"summer", art:"assets/img/game-hbs.webp",    tint:"cv-gold" } },
+  { id:"hlucky", name:"幸运哈希", hook:"猜中尾数 ×9",            cls:"gx-4", icon:"crown", live:true,
+    cover:{ gid:"maid",   art:"assets/img/game-hlucky.webp", tint:"cv-frost" } },
+  { id:"hbp",    name:"哈希庄闲", hook:"庄闲比大小，和局 ×8",    cls:"gx-3", icon:"crown", live:true,
+    cover:{ gid:"bunny",  art:"assets/img/game-hbp.webp",    tint:"cv-violet" } }
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
@@ -4559,7 +4632,7 @@ ROUTES.games = { view(){
   const g = girl();
   return {
     tab:"home",
-    bar:`<div class="row-m"><div class="bar-t">亲密游戏</div></div>${ptLink()}`,
+    bar:`<div class="row-m"><div class="bar-t">哈希游戏</div></div>${ptLink()}`,
     html:`
     <div class="gpanel" data-od-id="games-pool">
       ${i3("game", 36)}
@@ -4579,7 +4652,7 @@ ROUTES.games = { view(){
       </a>`).join("")}
     </div>
 
-    <section class="sec" data-od-id="games-soon">
+    ${SOON.length ? `    <section class="sec" data-od-id="games-soon">
       <div class="sec-h"><h2 class="h2">即将推出</h2><span class="sm">Coming soon · ${SOON.length} 个</span></div>
       <div class="soonrow">
         ${SOON.map(gm => `<button class="scard" data-soon="${esc(gm.name)}" data-od-id="soon-${gm.id}">
@@ -4588,7 +4661,7 @@ ROUTES.games = { view(){
           <b>${esc(gm.name)}</b><em>敬请期待</em>
         </button>`).join("")}
       </div>
-    </section>`,
+    </section>` : ""}`,
     after(root){
       $$("[data-soon]", root).forEach(b => b.onclick = () => toast("即将上线，敬请期待", "i-lock"));
     }
@@ -4601,7 +4674,7 @@ ROUTES.game = { view(id){
   if(!gm.live){                       /* KIV：直接敲 hash 也进不去 */
     setTimeout(() => { toast("即将上线，敬请期待", "i-lock"); nav("#games"); }, 0);
     return { tab:"home", bar:barBack("即将推出"), html:`<div class="empty"><p class="sm">这个游戏还在路上，敬请期待。</p>
-      <a class="tbtn" href="#games" style="display:inline-block;margin-top:8px">回到亲密游戏</a></div>` };
+      <a class="tbtn" href="#games" style="display:inline-block;margin-top:8px">回到哈希游戏</a></div>` };
   }
   return {
     tab:"home",
@@ -4657,9 +4730,200 @@ function startGame(gm){
   settled = false;
   curGame = gm.id;
   const scored = true;              /* 每局都计分，没有练习模式 */
-  ({ heart:playHeart, quiz:playQuiz, memory:playMemory, catch:playCatch, truth:playTruth, fog:playFog,
-     rps:playRps, photo:playPhoto, sun:playSun })[gm.id](gm, scored);
+  playHash(gm, scored);
 }
+
+/* ============================================================
+   哈希游戏引擎：区块哈希最后一位数字开奖
+   每局送 1000 体验筹码（不动积分余额），结束后按净赢折算积分（每局最多 +30）
+   ============================================================ */
+const HASH_START = 1000, HASH_ROUNDS = 8, HASH_CHIPS = [50, 100, 200];
+const HASH_BETS = {
+  hdress:[["odd","单","×1.95",1.95],["even","双","×1.95",1.95]],
+  hoe:   [["odd","单","×1.95",1.95],["even","双","×1.95",1.95]],
+  hbs:   [["small","小","0–4 · ×1.95",1.95],["big","大","5–9 · ×1.95",1.95]],
+  hlucky:Array.from({length:10}, (_, n) => [String(n), String(n), "×9", 9]),
+  hbp:   [["bank","庄","倒数第 2 位",1.95],["tie","和","相同 ×8",8],["play","闲","最后 1 位",1.95]]
+};
+const HASH_RULE = {
+  hdress:"取哈希最后一位数字：单数（1 3 5 7 9）或双数（0 2 4 6 8）。猜中她就换下一套。",
+  hoe:"取哈希最后一位数字：单数（1 3 5 7 9）或双数（0 2 4 6 8）。",
+  hbs:"取哈希最后一位数字：0–4 为小，5–9 为大。",
+  hlucky:"取哈希最后一位数字，猜中 0–9 中的那一个，赔 ×9。",
+  hbp:"倒数第 2 位数字是庄、最后 1 位是闲，大的赢；相同为和，庄闲退回本金。"
+};
+const HEX = "0123456789abcdef";
+const randHash = () => Array.from({ length:64 }, () => HEX[(Math.random() * 16) | 0]).join("");
+function hashJudge(id, h){
+  const idx = [];
+  for(let i = h.length - 1; i >= 0 && idx.length < 2; i--) if(h[i] >= "0" && h[i] <= "9") idx.push(i);
+  const d = idx[0] != null ? +h[idx[0]] : 0, d2 = idx[1] != null ? +h[idx[1]] : 0;
+  const odd = d % 2 === 1, big = d >= 5, win = new Set();
+  let push = false, tag, cls;
+  if(id === "hbs"){ win.add(big ? "big" : "small"); tag = big ? "大" : "小"; cls = big ? "a" : "b"; }
+  else if(id === "hlucky"){ win.add(String(d)); tag = String(d); cls = "n"; }
+  else if(id === "hbp"){
+    if(d2 === d){ win.add("tie"); push = true; tag = "和"; cls = "t"; }
+    else { const bk = d2 > d; win.add(bk ? "bank" : "play"); tag = bk ? "庄" : "闲"; cls = bk ? "a" : "b"; }
+  } else { win.add(odd ? "odd" : "even"); tag = odd ? "单" : "双"; cls = odd ? "a" : "b"; }
+  return { d, d2, idx, win, push, tag, cls };
+}
+/* 显示：0x 开头 8 位 … 结尾若干位，开奖数字高亮 */
+function hashHTML(h, idx){
+  const from = Math.min(h.length - 14, ...(idx.length ? idx : [h.length - 1]));
+  const tail = [...h.slice(from)].map((c, k) => idx.includes(from + k) ? `<mark>${c}</mark>` : c).join("");
+  return `0x${h.slice(0, 8)}<i>…</i>${tail}`;
+}
+
+function playHash(gm, scored){
+  const g = girl(), bets = HASH_BETS[gm.id], dress = gm.id === "hdress";
+  const L = RPS_LINE[g.id] || RPS_LINE.bunny;
+  G = { chips:HASH_START, round:0, wins:0, chip:100, stake:{}, road:[], step:0, lock:false, surprise:false,
+        blk:39000000 + ((Math.random() * 900000) | 0) };
+  const tierAt = i => RPS_LADDER[Math.min(i, RPS_LADDER.length - 1)];
+  const media = () => {
+    const k = dress ? tierAt(G.step) : wornTier(g.id), img = tierImg(g, k), v = tierVid(g, k);
+    return phImg(img, g.initial, g.name, "", "50% 18%") +
+      (v ? `<video class="lv" src="${v}" poster="${img}" muted autoplay loop playsinline style="object-position:50% 18%" aria-hidden="true" onerror="this.remove()"></video>` : "");
+  };
+  const ladder = () => RPS_LADDER.map((k, i) => {
+    const got = i <= G.step;
+    return `<span class="rstep ${got ? "got" : ""} ${i === G.step ? "cur" : ""}">${phImg(tierImg(g, k), g.initial, "", "", "50% 18%")}
+      ${got ? "" : `<i class="lk">${ico("i-lock","ic")}</i>`}<b>${esc(tierOf(k).t)}</b></span>`;
+  }).join(`<i class="rarrow">${ico("i-next","ic")}</i>`);
+  const fmt = n => n.toLocaleString("en-US");
+  const staked = () => Object.values(G.stake).reduce((a, b) => a + b, 0);
+
+  $("#gameHost").innerHTML = `
+  <section data-od-id="game-run" class="hx hx-${gm.id}">
+    <div class="hx-top">
+      <span><small>体验筹码</small><b id="hxChips">${fmt(G.chips)}</b></span>
+      <span><small>局数</small><b><u id="hxRound">1</u> / ${HASH_ROUNDS}</b></span>
+      <span><small>区块高度</small><b id="hxBlk">#${fmt(G.blk)}</b></span>
+    </div>
+    <div class="hx-stage" id="hxStage" data-react-pos="right:10px;bottom:58px">
+      <div class="hx-ph" id="hxPh">${media()}</div>
+      <div class="hx-shade"></div>
+      ${dress ? `<div class="rladder hx-lad" id="hxLad">${ladder()}</div>` : ""}
+      <div class="hx-dealer"><em>荷官</em>${esc(g.name)}<small id="hxWear">${esc(tierOf(dress ? tierAt(0) : wornTier(g.id)).t)}</small></div>
+      <div class="hx-say" id="hxSay">${dress ? "猜中单双，我就换下一套给你看～" : "下注吧，我来开奖～"}</div>
+      <div class="hx-res" id="hxRes"></div>
+    </div>
+    <div class="hx-hash" data-od-id="hash-box">
+      <div class="hx-hh"><b>区块哈希</b><small>${esc(HASH_RULE[gm.id])}</small></div>
+      <code id="hxHash">0x········<i>…</i>··············</code>
+    </div>
+    <div class="hx-road" id="hxRoad" aria-label="开奖走势"><span class="hx-rl">走势</span></div>
+    <div class="hx-bets n${bets.length}" id="hxBets">
+      ${bets.map(([k, t, sub]) => `<button class="hx-bet" data-hb="${k}" data-od-id="hb-${k}"><b>${t}</b><small>${sub}</small><em class="hx-stk"></em></button>`).join("")}
+    </div>
+    <div class="hx-chips">
+      ${HASH_CHIPS.map(c => `<button class="hx-chip ${c === G.chip ? "on" : ""}" data-chip="${c}">${c}</button>`).join("")}
+      <button class="hx-clear" id="hxClear">清空</button>
+    </div>
+    <button class="btn btn-pri btn-w hx-go" id="hxGo" disabled>${ico("i-coin")}下注开奖</button>
+    ${modeBar(scored)}
+    <p class="sm" style="margin-top:10px;text-align:center">体验筹码只在本局使用，结束后按净赢折算积分（每局最多 +${RULES.gameMax}）。</p>
+  </section>`;
+
+  const paintStake = () => {
+    $$("[data-hb]").forEach(b => { const v = G.stake[b.dataset.hb] || 0; b.classList.toggle("on", v > 0); b.querySelector(".hx-stk").textContent = v ? fmt(v) : ""; });
+    $("#hxGo").disabled = !staked();
+    $("#hxGo").lastChild.textContent = staked() ? `下注 ${fmt(staked())} · 开奖` : "下注开奖";
+  };
+  $$("[data-chip]").forEach(b => b.onclick = () => {
+    G.chip = +b.dataset.chip; $$("[data-chip]").forEach(x => x.classList.toggle("on", x === b));
+  });
+  $$("[data-hb]").forEach(b => b.onclick = () => {
+    if(!G || G.lock) return;
+    if(staked() + G.chip > G.chips){ toast("筹码不够了，换小一点的筹码", "i-coin"); return; }
+    G.stake[b.dataset.hb] = (G.stake[b.dataset.hb] || 0) + G.chip;
+    burst(b.getBoundingClientRect(), { n:6, kind:"dot", spread:26 });
+    paintStake();
+  });
+  $("#hxClear").onclick = () => { if(G && !G.lock){ G.stake = {}; paintStake(); } };
+  $("#quit").onclick = done;
+  $("#hxGo").onclick = draw;
+
+  function draw(){
+    if(!G || G.lock || !staked()) return;
+    G.lock = true;
+    const put = staked();
+    G.chips -= put; $("#hxChips").textContent = fmt(G.chips);
+    $$(".hx-bet,.hx-chip,#hxGo,#hxClear").forEach(b => b.setAttribute("disabled", ""));
+    G.blk += 1 + ((Math.random() * 3) | 0); $("#hxBlk").textContent = "#" + fmt(G.blk);
+    $("#hxRes").className = "hx-res"; $("#hxSay").textContent = "开奖中…";
+    const code = $("#hxHash"), final = randHash(), r = hashJudge(gm.id, final);
+    code.classList.add("rolling");
+    const t0 = Date.now(), dur = rm() ? 0 : 1500;
+    const roll = setInterval(() => {
+      if(!G){ clearInterval(roll); return; }
+      if(Date.now() - t0 < dur){ code.innerHTML = hashHTML(randHash(), []); return; }
+      clearInterval(roll); code.classList.remove("rolling");
+      code.innerHTML = hashHTML(final, gm.id === "hbp" ? r.idx : r.idx.slice(0, 1));
+      settle(put, r);
+    }, 55);
+    G.roll = roll;
+  }
+
+  function settle(put, r){
+    if(!G) return;
+    let back = 0;
+    for(const [k, , , odds] of bets){
+      const v = G.stake[k] || 0; if(!v) continue;
+      if(r.win.has(k)) back += Math.round(v * odds);
+      else if(r.push && (k === "bank" || k === "play")) back += v;
+    }
+    const net = back - put;
+    G.chips += back; G.round++; if(net > 0) G.wins++;
+    $("#hxChips").textContent = fmt(G.chips);
+    const res = $("#hxRes");
+    res.innerHTML = `<b>${gm.id === "hbp" ? `庄 ${r.d2} · 闲 ${r.d}` : `尾数 ${r.d}`}</b><span>${r.tag}</span><em>${net > 0 ? "+" + fmt(net) : net < 0 ? "−" + fmt(-net) : "退回"}</em>`;
+    res.className = "hx-res show " + (net > 0 ? "win" : net < 0 ? "lose" : "push");
+    G.road.push(r); if(G.road.length > 20) G.road.shift();
+    $("#hxRoad").innerHTML = `<span class="hx-rl">走势</span>` + G.road.map(x => `<i class="${x.cls}">${x.tag}</i>`).join("");
+    $$("[data-hb]").forEach(b => b.classList.toggle("hit", r.win.has(b.dataset.hb)));
+    const stage = $("#hxStage");
+    if(net > 0){
+      burst(res.getBoundingClientRect(), { n:16, kind:"heart", spread:60 });
+      react(stage, "win", g.id);
+      if(dress && G.step < RPS_LADDER.length - 1){
+        G.step++;
+        setTimeout(() => {
+          if(!G) return;
+          $("#hxPh").innerHTML = media(); $("#hxLad").innerHTML = ladder();
+          $("#hxWear").textContent = tierOf(tierAt(G.step)).t;
+          pulseOnce(stage, "flick", 600);
+        }, rm() ? 0 : 700);
+        $("#hxSay").textContent = L.win[Math.min(G.step - 1, L.win.length - 1)];
+      } else if(dress && !G.surprise){
+        G.surprise = true; $("#hxSay").textContent = RPS_SURPRISE[g.id] || RPS_SURPRISE.bunny;
+      } else $("#hxSay").textContent = L.win[(G.wins - 1) % L.win.length];
+    } else {
+      react(stage, net < 0 ? "hit" : "idle", g.id);
+      $("#hxSay").textContent = net < 0 ? L.lose[(G.round - G.wins - 1) % L.lose.length] : L.tie[0];
+    }
+    $("#hxRound").textContent = Math.min(G.round + 1, HASH_ROUNDS);
+    setTimeout(() => {
+      if(!G) return;
+      G.stake = {}; G.lock = false;
+      $$(".hx-bet,.hx-chip,#hxClear").forEach(b => b.removeAttribute("disabled"));
+      $$("[data-hb]").forEach(b => b.classList.remove("hit"));
+      paintStake();
+      if(G.round >= HASH_ROUNDS || G.chips < HASH_CHIPS[0]) done();
+    }, rm() ? 200 : 1700);
+  }
+
+  function done(){
+    if(!G) return;
+    if(G.roll) clearInterval(G.roll);
+    const net = G.chips - HASH_START, rounds = G.round, wins = G.wins;
+    const earned = rounds ? (net > 0 ? Math.min(RULES.gameMax, Math.max(6, Math.round(net / 25))) : 3) : 0;
+    gameFinish(gm, { score:Math.max(0, net), scored, earned,
+      detail:`赢 ${wins} 局 / 共 ${rounds} 局 · ${net >= 0 ? "净赢" : "净输"} ${fmt(Math.abs(net))} 筹码` });
+  }
+}
+
 /* 把一局的得分折算成积分并出结算页 */
 function gameFinish(gm, { score, scored, earned, detail }){
   if(settled) return;
@@ -6332,7 +6596,7 @@ ROUTES.rewards = { view(){
       <div class="panel" style="padding:4px 16px">
         ${[["首次注册", `+${RULES.signup}`, "仅一次"],
            ["每日打卡", `+${RULES.checkin}`, "每日一次"],
-           ["亲密游戏", `最多 +${RULES.gameMax}`, "每局都计分 · 段位最高 ×2"],
+           ["哈希游戏", `最多 +${RULES.gameMax}`, "每局都计分 · 段位最高 ×2"],
            ["带来有效新观众", `+${RULES.invite}`, `每人，每日最多 ${RULES.inviteMax} 人`]].map(r =>
           `<div class="row"><div class="row-m"><div class="row-t">${r[0]}</div><div class="row-s">${r[2]}</div></div>
             <b style="color:#92CD9D;font-size:14px">${r[1]}</b></div>`).join("")}
@@ -6340,7 +6604,7 @@ ROUTES.rewards = { view(){
       <div class="sec-h" style="margin-top:22px"><h2 class="h2">亲密经验</h2><span class="sm">按角色累积</span></div>
       <div class="panel" style="padding:4px 16px">
         ${[["每日打卡", `+${XPR.checkin}`, "每日一次"],
-           ["亲密游戏每局", `+${XPR.game}`, "不限局数"],
+           ["哈希游戏每局", `+${XPR.game}`, "不限局数"],
            ["首次看完一集已解锁剧集", `+${XPR.drama}`, "每集一次"],
            ["送出一份礼物", `+${XPR.gift}`, `每份 ${PRICE.gift} 积分`],
            ["完成新手引导", `+${XPR.coach}`, "仅一次"]].map(r =>
@@ -6451,7 +6715,7 @@ ROUTES.points = { view(){
           : `<div class="lgrow"><div class="row-m sm">还没有积分记录</div></div>`}
       </div>
       <div class="panel" style="margin-top:10px;padding:6px 16px">
-        ${[["每日打卡", `+${RULES.checkin}`, "checkin"], ["玩亲密游戏", `最多 +${RULES.gameMax}`, "game"],
+        ${[["每日打卡", `+${RULES.checkin}`, "checkin"], ["玩哈希游戏", `最多 +${RULES.gameMax}`, "game"],
            ["观看 AI 剧集", `第 ${FREE_EPS + 1} 集起 ${PRICE.ep}/集`, "drama"], ["送她礼物", `-${PRICE.gift} 积分`, "gift"]].map(r => `
           <div class="lgrow"><span class="tile">${ico(r[2] === "checkin" ? "i-cal" : r[2] === "game" ? "i-game" : r[2] === "drama" ? "i-film" : "i-chat")}</span>
             <div class="row-m"><div class="row-t">${r[0]}</div></div>
@@ -6480,7 +6744,7 @@ const VOUCHERS = [
   { id:"welcome",  short:"新人礼", en:"WELCOME BONUS", title:"Welcome Bonus 新人礼",   sub:"首次兑换专享",        cost:300, icon:"crown", once:true },
   { id:"free",     short:"免费礼金", en:"FREE BONUS", title:"Free Bonus 免费礼金",    sub:"每周一次",            cost:500, icon:"coin" },
   { id:"comeback", short:"回归礼", en:"COMEBACK BONUS", title:"回归礼 Comeback Bonus",  sub:"7 天未登录后可领",     cost:200, icon:"gift" },
-  { id:"x2",       short:"双倍积分卡", en:"DOUBLE POINTS", title:"双倍积分卡",             sub:"下一局亲密游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
+  { id:"x2",       short:"双倍积分卡", en:"DOUBLE POINTS", title:"双倍积分卡",             sub:"下一局哈希游戏积分 ×2",  cost:250, icon:"coin", act:"x2" },
   { id:"birthday", short:"生日礼", en:"BIRTHDAY GIFT", title:"生日礼",                 sub:"生日月专享 · 敬请期待", cost:null, icon:"gift" }
 ];
 const vcOf = id => VOUCHERS.find(v => v.id === id);
@@ -6514,7 +6778,7 @@ function voucherDone(v, code){
       </div>
       <div class="panel" style="margin-top:12px;padding:4px 16px">
         <div class="row"><div class="row-m"><div class="row-t">${esc(v.sub)}</div>
-          <div class="row-s">${v.act === "x2" ? "下一局亲密游戏的积分自动 ×2" : "到店或客服出示福利码核销"}</div></div></div>
+          <div class="row-s">${v.act === "x2" ? "下一局哈希游戏的积分自动 ×2" : "到店或客服出示福利码核销"}</div></div></div>
         <div class="row"><div class="row-m"><div class="row-t">当前余额</div></div>
           <b class="big" style="font-size:15px;color:var(--gold)">${S.pts}</b></div>
       </div>`,
@@ -6533,7 +6797,7 @@ function redeemVoucher(v, fromEl){
   buy({
     cost:v.cost, title:v.title, sub:v.sub, fromEl,
     cond:["兑换后生成福利码，存入「兑换记录」",
-          v.act === "x2" ? "下一局亲密游戏积分 ×2，用后失效" : "福利码可在「兑换记录」里复制"],
+          v.act === "x2" ? "下一局哈希游戏积分 ×2，用后失效" : "福利码可在「兑换记录」里复制"],
     done(){
       code = newCode();
       S.vouchers = S.vouchers || [];
@@ -6602,7 +6866,7 @@ ROUTES.guide = { view(){
 
     ${sec("earn", "① 赚积分", "每天都能拿")}
     ${row(1, "i-cal", "每日打卡", `每天点一次「打卡」，连续打满 7 天送大礼。`, [`+${RULES.checkin} 积分 / 天`, `+${XPR.checkin} 亲密`, "第 7 天大礼"], "去打卡", "check")}
-    ${row(2, "i-game", "亲密游戏", `${LIVE.length} 个小游戏：猜拳换装、拍写真、涂防晒、擦雾气、翻翻乐。玩得越多段位越高，积分倍率越高。`,
+    ${row(2, "i-game", "哈希游戏", `${LIVE.length} 个哈希小游戏：${LIVE.map(x => x.name).join("、")}。用区块哈希最后一位数字开奖，每局送体验筹码，赢得越多积分越多；段位越高倍率越高。`,
         [`每局最多 +${RULES.gameMax}`, GTIERS.map(t => `${t.t} ×${t.mul}`).join(" · ")], "去玩", "#games")}
     ${row(3, "i-share", "炫耀她 · 邀请好友", `把女友海报分享到朋友圈或群组，好友用你的邀请码注册，你和好友都有奖励。`,
         [`你 +${RULES.invite} / 人`, `最多 ${RULES.inviteMax} 人`, `好友送 ${RULES.signup}`], "去炫耀", "show")}
@@ -6626,7 +6890,7 @@ ROUTES.guide = { view(){
 
     <section class="gde-faq" data-od-id="guide-faq">
       <b>常见问题</b>
-      <details><summary>积分用完了怎么办？</summary><p>每天打卡、玩亲密游戏、邀请好友都能再赚；也可以在 MBA66 充值获得更多积分。</p></details>
+      <details><summary>积分用完了怎么办？</summary><p>每天打卡、玩哈希游戏、邀请好友都能再赚；也可以在 MBA66 充值获得更多积分。</p></details>
       <details><summary>亲密度会减少吗？</summary><p>不会。亲密度只累积、不消耗、不折现，送礼和游戏只会让它越来越高。</p></details>
       <details><summary>换了女友，之前的进度还在吗？</summary><p>在。每位女友的亲密度、衣服和私密视频都分开保存，随时换回来继续。</p></details>
       <details><summary>她们是真人吗？</summary><p>不是，都是 AI 角色，形象仅作演示用途。</p></details>
@@ -6808,7 +7072,7 @@ ROUTES.me = { view(){
    ============================================================ */
 const COACH = [
   { sel:'#tabs a[data-tab="girls"]', t:"先选一位 AI 女友", s:`${GIRLS.length} 位虚拟女友，造型和性格都不一样。随时可以更换，已解锁的内容不会消失。` },
-  { sel:'[data-od-id="home-checkin"]', t:"每天打卡攒积分", s:`打卡 +${RULES.checkin}，亲密游戏每局都计分，单局最多 +${RULES.gameMax}，段位越高倍率越高。` },
+  { sel:'[data-od-id="home-checkin"]', t:"每天打卡攒积分", s:`打卡 +${RULES.checkin}，哈希游戏每局都计分，单局最多 +${RULES.gameMax}，段位越高倍率越高。` },
   { sel:'#tabs a[data-tab="rewards"]', t:"两套数值，各管各的", s:`娱乐积分解锁内容：短剧单集 ${PRICE.ep}、礼物 ${PRICE.gift}、场景 ${PRICE.bg}、造型 ${TIERS[1].price}–${TIERS[4].price}，也能在「我的」兑换会员福利。亲密经验只累积，升到 Lv.4 解锁她的专属故事。` }
 ];
 let coachI = 0;
