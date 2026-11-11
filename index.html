@@ -9,7 +9,7 @@
 <link rel="preload" as="image" href="assets/img/girl-bunny-v3.webp" fetchpriority="high">
 <link rel="preload" as="image" href="assets/img/girl-bunny-v3.webp">
 <link rel="preload" as="image" href="assets/img/girl-neko-v3.webp">
-<link rel="preload" as="image" href="assets/img/drama-1.webp">
+<link rel="preload" as="image" href="assets/img/drama-1.webp?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2594,6 +2594,21 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
   #phone::before{display:none}
   #bar{padding-top:10px !important;min-height:56px !important}
 }
+/* 打卡横幅：保留游戏动效，配色回到 app 的黑金 */
+.ad-cal2{background:radial-gradient(90% 130% at 80% 50%,#3A2A0C 0%,#1C1508 45%,#0B0A0E 100%) !important;border:1px solid rgba(233,196,106,.45) !important;color:#F6F1E6}
+.ad-cal2 .cg-rays{opacity:.5;background:repeating-conic-gradient(from 0deg,rgba(233,196,106,.55) 0deg 8deg,rgba(233,196,106,0) 8deg 22deg) !important}
+.ad-cal2 .cg-glow{background:radial-gradient(circle,rgba(255,214,120,.55),rgba(233,196,106,0) 65%) !important}
+.ad-cal2 .cg-tag{background:linear-gradient(180deg,#FBE7A6,#E2B551) !important;color:#1B1206 !important;box-shadow:none !important;transform:none !important;border-radius:4px !important}
+.ad-cal2 .cg-h{-webkit-text-stroke:0 !important;text-shadow:0 2px 10px rgba(0,0,0,.6) !important;
+  background:linear-gradient(180deg,#FFF6D2 0%,#F3D27A 45%,#C99A35 100%);-webkit-background-clip:text;background-clip:text;color:transparent !important}
+.ad-cal2 .cg-sub{color:rgba(246,236,210,.78) !important;font-weight:700 !important}
+.ad-cal2 .cg-cta{background:linear-gradient(180deg,#FBE7A6 0%,#E2B551 55%,#B8862A 100%) !important;color:#1B1206 !important;text-shadow:none !important;
+  box-shadow:0 3px 0 #7A5512,0 8px 16px -6px rgba(233,196,106,.6),inset 0 1px 0 rgba(255,255,255,.6) !important;animation:cgCtaGold 2s ease-in-out infinite !important}
+@keyframes cgCtaGold{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.ad-cal2 .cg-cta svg{width:14px;height:14px;stroke:#1B1206;stroke-width:2.6;fill:none;margin-left:2px}
+.ad-cal2 .cg-plus{background:#14110B !important;color:#F3D27A !important;border:1.5px solid #E9C46A;box-shadow:0 4px 12px rgba(0,0,0,.5) !important}
+.ad-cal2 .cg-shine{background:linear-gradient(90deg,rgba(255,236,190,0),rgba(255,236,190,.22),rgba(255,236,190,0)) !important}
+.ad-cal2 .cg-spark{filter:sepia(1) saturate(3) hue-rotate(5deg)}
 </style>
 </head>
 <body>
@@ -2663,7 +2678,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v49";
+const APP_VER = "v51";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -2777,9 +2792,9 @@ const BOND = {
 };
 
 const DRAMAS = [
-  { id:"d1", title:"午夜来电", en:"Midnight Call", tag:"都市 · 悬爱", initial:"午",
-    poster:"assets/img/drama-1.webp", video:"assets/video/drama-1.mp4",
-    desc:"凌晨一点的陌生号码，接起来是三年前说过再见的人。六集说完一段没讲完的话。",
+  { id:"d1", title:"午夜来电", en:"Midnight Call", tag:"都市 · 职场", initial:"午",
+    poster:"assets/img/drama-1.webp?v=2", video:"assets/video/drama-1.mp4?v=2",
+    desc:"凌晨一点，整层楼只剩她还在加班。一通陌生来电，是三年前说过再见的人。六集说完一段没讲完的话。",
     eps:["陌生号码","她还在那间房","第三通","旧录音","雨停之前","最后一次来电"] }
 ];
 
@@ -2896,7 +2911,14 @@ const GIFTLINE = `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" st
 const fmtTime = t => { const d = new Date(t); return `${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`; };
 
 /* 图片占位：加载失败时露出金/蓝渐变 + 首字 */
-function imgFail(el){ const p = el.closest(".ph"); if(p) p.classList.add("gone"); }
+function imgFail(el){
+  if(!el.dataset.retry){   // 网络偶尔失败：先重试一次，再显示占位字
+    el.dataset.retry = "1";
+    const u = el.getAttribute("src"); setTimeout(() => { el.src = u + (u.includes("?") ? "&" : "?") + "r=" + Date.now(); }, 600);
+    return;
+  }
+  const p = el.closest(".ph"); if(p) p.classList.add("gone");
+}
 /* logo 文件缺失时退回金色字标 */
 function logoFail(el, size){
   const b = document.createElement("div");
@@ -3545,7 +3567,7 @@ ROUTES.home = { view(){
               ${[1,2,3,4,5].map(n => `<img class="cg-coin k${n}" src="assets/icons/g/coin.webp" alt="" aria-hidden="true">`).join("")}
               <span class="cg-gw" aria-hidden="true"><img class="cg-gift" src="assets/icons/g/gift.webp" alt=""><em class="cg-plus">+10</em></span>
               <span class="cg-t"><em class="cg-tag">${esc(a.tag)}</em><b class="cg-h">${a.h}</b><small class="cg-sub">${esc(a.sub)}</small>
-                <span class="cg-cta">${esc(a.cta)}</span></span>
+                <span class="cg-cta">${esc(a.cta)}${ARR}</span></span>
               <span class="cg-shine" aria-hidden="true"></span><span class="cg-spark s1"></span><span class="cg-spark s2"></span><span class="cg-spark s3"></span>
             </div>`;
             if(i === 1) return `<div class="adslide ad-chat" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
