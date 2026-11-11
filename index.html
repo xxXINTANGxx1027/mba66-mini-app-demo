@@ -2333,6 +2333,13 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 /* 翻翻乐：12 张牌一屏放下（4 列 x 3 行） */
 .mgrid{grid-template-columns:repeat(4,1fr) !important;gap:8px !important;margin-top:12px}
 .mcard .face{border-radius:10px}
+/* 舞台：照片垫底，视频开始播再淡入，避免黑屏 */
+.stg-mv{opacity:0;transition:opacity .35s ease}
+.stg-mv.ok{opacity:1}
+/* 广告位：图片和视频自己带左侧渐隐，不靠上层遮罩（部分手机视频会盖住遮罩，出现硬边） */
+.adslide{background:#0B0A0E}
+.adslide .ad-ph .ph,.ad-ph .ad-v{-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%,#000 48%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 22%,#000 48%)}
+.ad-coin{display:none !important}
 </style>
 </head>
 <body>
@@ -3079,6 +3086,11 @@ const wornTier = gid => {
   return (k && ownTier(gid, k)) ? k : "v3";   // 主图/头像一律用 v3 新形象
 };
 const outfitImg = g => tierImg(g, wornTier(g.id));
+const TIER_VID = { lounge:["neko","maid","summer"], x:["bunny","maid","summer"] };
+const tierVid = (g, k) => k === "v3" ? g.video : k === "bikini" ? g.bkv : k === "daily" ? `assets/video/girl-${g.id}-v-img.mp4`
+  : (TIER_VID[k] || []).includes(g.id) ? `assets/video/girl-${g.id}-v-${k}.mp4` : "";
+const outfitVid = g => tierVid(g, wornTier(g.id));
+const bkImg = g => g.id === "summer" ? g.sun : g.bikini;   // 夏夏的比基尼视频是用海边那张生成的
 const TIER_LINE = {
   lounge:"这身是为今晚挑的，陪我久一点。", v3:"招牌造型，只给你看全套。",
   x:"……这套只在家里穿。（脸红）", bikini:"第一次穿给你看…不许乱看哦（脸红）"
@@ -3199,9 +3211,9 @@ ROUTES.home = { view(){
   const live = GAMES.filter(x => x.live);
   const gameTile = gm => {
     const c = gm.cover || {}, x = girl(c.gid || "bunny");
-    const img = c.img ? c.img(x) : x.v3;
+    const img = c.art || (c.img ? c.img(x) : x.v3);
     return `<a class="h-gt" href="#game/${gm.id}" data-od-id="hg-${gm.id}">
-      ${phImg(img, x.initial, gm.name, "", c.pos || "50% 14%")}${liveVid(x, "50% 14%")}
+      ${phImg(img, x.initial, gm.name, "", c.art ? "50% 50%" : (c.pos || "50% 14%"))}${c.art ? "" : liveVid(x, "50% 14%")}
       ${gm.hot ? '<em class="h-badge hot">HOT</em>' : gm.isNew ? '<em class="h-badge">NEW</em>' : ""}
       <b>${esc(gm.name)}</b></a>`;
   };
@@ -3212,7 +3224,8 @@ ROUTES.home = { view(){
     html:`
     ${LOBBY ? "" : (() => { const bd = bondOf(g.id); return `
     <section class="stg" id="hStage" data-od-id="home-stage">
-      <video class="stg-v" id="stgVid" src="${g.video}" poster="${g.v3}" muted autoplay loop playsinline preload="auto" aria-label="${esc(g.name)}"></video>
+      <img class="stg-v stg-bg" id="stgBg" src="${outfitImg(g)}" alt="" aria-hidden="true">
+      <video class="stg-v stg-mv" id="stgVid" ${outfitVid(g) ? `src="${outfitVid(g)}"` : ""} poster="${outfitImg(g)}" muted autoplay loop playsinline preload="auto" aria-label="${esc(g.name)}"></video>
       <div class="stg-shade"></div>
       <a class="stg-hud" href="#girl/${g.id}" data-od-id="stage-hud">
         <span class="stg-av">${phImg(g.v3, g.initial, "", "", "50% 10%")}</span>
@@ -3338,12 +3351,18 @@ ROUTES.home = { view(){
           return setSay(R[Math.floor(Math.random() * R.length)] + "（脸红）"); }
         if(k === "bikini"){
           if(!g.bkv){ return playClip(g, clipsOf(g)[0]); }
-          bk = !bk; sv.src = bk ? g.bkv : g.video; sv.play().catch(() => {});
+          bk = !bk; swapStage(bk ? g.bkv : outfitVid(g), bk ? bkImg(g) : outfitImg(g));
           b.querySelector("b").textContent = bk ? "换回来" : "比基尼";
           setSay(bk ? "这套只穿给你看哦～" : g.line);
         }
       });
-      if(sv) sv.play().catch(() => {});
+      const bg = $("#stgBg", root);
+      function swapStage(src, img){
+        if(!sv) return;
+        bg.src = img; sv.poster = img; sv.classList.remove("ok");
+        if(src){ sv.src = src; sv.play().catch(() => {}); } else { sv.removeAttribute("src"); sv.load(); }
+      }
+      if(sv){ sv.addEventListener("playing", () => sv.classList.add("ok")); sv.play().catch(() => {}); }
       const dep = $("#hDep"); if(dep) dep.onclick = () => toast("跳转 MBA66 充值页（演示）", "i-coin");
       /* 广告轮播：自动播放 + 可拖拽 + 圆点 + 循环 */
       const track = $("#adTrack", root), dots = $$("#adDots button", root);
@@ -3577,7 +3596,7 @@ ROUTES.girl = { view(id){
     <section class="hero" id="gHero" style="border-radius:0" data-react-pos="right:14px;bottom:170px" data-od-id="girl-hero-${g.id}">
       <div class="ph gvid" style="--pos:50% 24%;height:clamp(380px,60vh,500px)">
         <img src="${outfitImg(g)}" alt="${esc(g.name)} 形象" onerror="imgFail(this)">
-        <video id="gVid" src="${(g.videos || [g.video])[0]}" poster="${outfitImg(g)}" muted autoplay loop playsinline
+        <video id="gVid" ${outfitVid(g) ? `src="${outfitVid(g)}"` : ""} poster="${outfitImg(g)}" muted autoplay loop playsinline
           preload="auto" aria-label="${esc(g.name)} 动态形象" onerror="this.remove()"></video></div>
       <div class="scrim"></div>
       <div class="hero-c" style="bottom:14px">
@@ -3653,16 +3672,14 @@ ROUTES.girl = { view(id){
         if(!g.bkv || !v) return playClip(g, clipsOf(g)[0]);
         const on = b.dataset.on !== "1";
         b.dataset.on = on ? "1" : "0";
-        v.loop = true; v.src = on ? g.bkv : (g.videos || [g.video])[0]; v.play().catch(() => {});
+        const im = v.parentNode.querySelector("img"); if(im) im.src = on ? bkImg(g) : outfitImg(g);
+        v.poster = on ? bkImg(g) : outfitImg(g);
+        if(on || outfitVid(g)){ v.src = on ? g.bkv : outfitVid(g); v.play().catch(() => {}); } else { v.removeAttribute("src"); v.load(); }
         b.querySelector("b").textContent = on ? "换回来" : "比基尼";
         const st = $("#stage"); if(st) st.scrollTo({ top:0, behavior:"smooth" });
         toast(on ? `${g.name} 换上比基尼了～` : `${g.name} 换回来了`, "i-sparkle");
       });
-      const gv = $("#gVid", root), list = g.videos || [g.video];
-      if(gv && list.length > 1){        // 多段视频：播完一段接下一段，循环
-        let vi = 0; gv.loop = false;
-        gv.addEventListener("ended", () => { vi = (vi + 1) % list.length; gv.src = list[vi]; gv.play().catch(() => {}); });
-      }
+      const gv = $("#gVid", root);
       if(gv) gv.play().catch(() => {});
       const hero = $("#gHero", root);
       hero.addEventListener("click", () => react(hero, "idle", g.id));
@@ -4118,32 +4135,33 @@ const FX = {
 const GAMES = [
   /* 上线中：5 个 */
   { id:"rps",    name:"猜拳换装",     hook:"赢两局，一套一套换",  cls:"gx-5", icon:"game",      live:true, isNew:true, hot:true,
-    cover:{ gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
+    cover:{ art:"assets/img/game-rps.webp", gid:"bunny", img:g => g.v3, pos:"50% 14%", tint:"cv-pink",   fx:"rps" } },
   { id:"photo",  name:"帮她拍写真",   hook:"抓住她最美那一秒",   cls:"gx-3", icon:"drama",     live:true, isNew:true,
-    cover:{ gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
+    cover:{ art:"assets/img/game-photo.webp", gid:"maid",   img:g => g.v3,    pos:"50% 12%", tint:"cv-violet", fx:"cam" } },
   { id:"sun",    name:"帮她涂防晒",   hook:"她晒得有点烫",       cls:"gx-6", icon:"coin",      live:true, isNew:true, hot:true,
-    cover:{ gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
+    cover:{ art:"assets/img/game-sun.webp", gid:"neko",   img:g => g.v3,    pos:"50% 12%", tint:"cv-gold",   fx:"sun" } },
   { id:"fog",    name:"擦掉雾气",     hook:"擦开镜子上的雾",     cls:"gx-4", icon:"coin",      live:true,
-    cover:{ gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
+    cover:{ art:"assets/img/game-fog.webp", gid:"maid",  img:g => g.x,      pos:"50% 18%", tint:"cv-frost",  fx:"fog" } },
   { id:"memory", name:"记忆翻翻乐",   hook:"翻出成对的她",       cls:"gx-3", icon:"crown",     live:true,
-    cover:{ fan:true,    tint:"cv-violet" } },
+    cover:{ art:"assets/img/game-mem.webp", fan:true,    tint:"cv-violet" } },
   /* KIV · 即将推出：代码保留，UI 不可进入 */
   { id:"truth",  name:"真心话大冒险", hook:"转瓶子，她来接招",   cls:"gx-2", icon:"chat-role",
-    cover:{ gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
+    cover:{ art:"assets/img/game-truth.webp", gid:"neko",  img:g => g.v3,     pos:"42% 30%", tint:"cv-violet", fx:"bottle" } },
   { id:"heart",  name:"30秒心动挑战", hook:"接住她的飞吻和心",   cls:"gx-1", icon:"game",
-    cover:{ gid:"maid",  img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
+    cover:{ art:"assets/img/game-heart.webp", gid:"maid",  img:g => g.lounge, pos:"54% 24%", tint:"cv-pink",   fx:"lips" } },
   { id:"quiz",   name:"默契问答",     hook:"5 道只有你答得上",   cls:"gx-2", icon:"chat-role",
-    cover:{ gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
+    cover:{ art:"assets/img/game-quiz.webp", gid:"maid",  img:g => g.lounge, pos:"44% 20%", tint:"cv-gold",   fx:"bub" } },
   { id:"catch",  name:"接住飞吻",     hook:"别让情敌插队",       cls:"gx-6", icon:"gift",
-    cover:{ gid:"neko",  img:g => g.lounge, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
+    cover:{ art:"assets/img/game-catch.webp", gid:"neko",  img:g => g.lounge, pos:"50% 14%", tint:"cv-coral",  fx:"fall" } }
 ];
 const LIVE  = GAMES.filter(g => g.live);
 const SOON  = GAMES.filter(g => !g.live);
-const liveVid = (x, pos = "50% 20%") => x && x.video
-  ? `<video class="lv" src="${x.video}" poster="${x.v3}" muted autoplay loop playsinline preload="metadata"
+const liveVid = (x, pos = "50% 20%", worn = false) => x && (worn ? outfitVid(x) : x.video)
+  ? `<video class="lv" src="${worn ? outfitVid(x) : x.video}" poster="${worn ? outfitImg(x) : x.v3}" muted autoplay loop playsinline preload="metadata"
       style="object-position:${pos}" aria-hidden="true" onerror="this.remove()"></video>` : "";
 function gameCover(gm){
   const c = gm.cover || {};
+  if(c.art) return phImg(c.art, "", gm.name, "", "50% 50%");
   if(c.fan){
     const FAN = { sweet:g => g.x, bunny:g => g.bikini, neko:g => g.lounge, summer:g => g.bikini, maid:g => g.x };
     return `<div class="cv-fan">${GIRLS.slice(0, 3).map(x =>
@@ -4259,7 +4277,7 @@ function gameIntro(gm){
   <section data-od-id="game-intro">
     <div class="panel" style="padding:0;overflow:hidden">
       <div class="rhero ${(gm.cover || {}).tint || ""}">
-        ${phImg(outfitImg(g), g.initial, g.name + " 形象", "", "50% 16%")}${liveVid(g, "50% 14%")}
+        ${phImg(outfitImg(g), g.initial, g.name + " 形象", "", "50% 16%")}${liveVid(g, "50% 14%", true)}
         <div class="cv-tint"></div>
         <div class="scrim"></div>
         <div style="position:absolute;z-index:3;left:16px;right:16px;bottom:14px">
@@ -5117,10 +5135,8 @@ function playRps(gm, scored){
   const tierAt = i => RPS_LADDER[Math.min(i, RPS_LADDER.length - 1)];
   const wornSrc = () => tierImg(g, tierAt(G.step));
   const wornName = () => tierOf(tierAt(G.step)).t;
-  const RPS_VID = { lounge:{ neko:1, maid:1, summer:1 }, x:{ bunny:1, maid:1, summer:1 } };
   const wornVid = () => {
-    const k = tierAt(G.step);
-    const v = k === "bikini" ? g.bkv : (RPS_VID[k] || {})[g.id] ? `assets/video/girl-${g.id}-v-${k}.mp4` : "";
+    const v = tierVid(g, tierAt(G.step));
     return v ? `<video class="lv" src="${v}" poster="${wornSrc()}" muted autoplay loop playsinline style="object-position:50% 14%" aria-hidden="true" onerror="this.remove()"></video>` : "";
   };
 
