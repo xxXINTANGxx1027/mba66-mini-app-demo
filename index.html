@@ -2412,6 +2412,45 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .ad-cal .cal-cta{margin-top:11px !important;background:#2B1A04 !important;color:#F7DE95 !important;box-shadow:none !important}
 .ad-cal .cal-cta svg{stroke:#F7DE95 !important}
 .ad-cal .cal-gift{top:50%;right:16px;width:118px;height:118px;margin-top:-59px}
+/* ===== 每日打卡：鲜艳黄色 ===== */
+.ckday i{background:rgba(255,206,0,.12) !important;border:1.5px solid rgba(255,206,0,.5) !important;box-shadow:none !important}
+.ckday i svg{opacity:1 !important}
+.ckday i svg.hl{stroke:#FFD43B !important}
+.ckday i svg.hf{fill:#FFD43B !important;filter:none !important}
+.ckday.on i{background:linear-gradient(180deg,#FFEA6B 0%,#FFCC00 55%,#FFAE00 100%) !important;border-color:#FFF2A8 !important;
+  box-shadow:0 0 0 1px rgba(255,204,0,.35),0 6px 16px -4px rgba(255,190,0,.75) !important}
+.ckday.on i svg.hf{fill:#3A2600 !important}
+.ckday.on i svg.hl{stroke:#3A2600 !important}
+.ckday.today i{background:radial-gradient(circle at 50% 35%,#FFF27A,#FFD000 60%,#FFB300) !important;border:2px solid #FFF6BF !important;
+  animation:ckYellow 1.6s ease-in-out infinite !important}
+.ckday.today i svg.hl,.ckday.today i svg{stroke:#3A2600 !important}
+.ckday.today i svg.hf{fill:#3A2600 !important}
+@keyframes ckYellow{0%,100%{box-shadow:0 0 0 0 rgba(255,214,0,.8),0 6px 16px -4px rgba(255,190,0,.8)}50%{box-shadow:0 0 0 7px rgba(255,214,0,0),0 6px 20px -2px rgba(255,190,0,.95)}}
+.ckday.gift i{background:linear-gradient(180deg,#FFF07A 0%,#FFC800 50%,#FF9F00 100%) !important;border:0 !important;
+  box-shadow:0 6px 18px -4px rgba(255,170,0,.85) !important}
+.ckday.gift i svg{stroke:#3A2600 !important}
+.ckday b{color:rgba(255,222,110,.75) !important;font-weight:700 !important}
+.ckday.on b,.ckday.gift b{color:#FFD43B !important}
+.ckday.today b{color:#FFF27A !important;font-weight:900 !important}
+@media (prefers-reduced-motion:reduce){.ckday.today i{animation:none !important}}
+/* 首页每日打卡：鲜艳黄色 */
+.h-day i{background:rgba(255,206,0,.13) !important;border:1.5px solid rgba(255,206,0,.55) !important;box-shadow:none !important}
+.h-day i svg{fill:none !important;stroke:#FFD43B !important;opacity:1 !important}
+.h-day.on i{background:linear-gradient(180deg,#FFEA6B 0%,#FFCC00 55%,#FFAE00 100%) !important;border-color:#FFF2A8 !important;
+  box-shadow:0 6px 16px -4px rgba(255,190,0,.8) !important}
+.h-day.on i svg{fill:#3A2600 !important;stroke:#3A2600 !important}
+.h-day.today i{background:radial-gradient(circle at 50% 35%,#FFF27A,#FFD000 60%,#FFB300) !important;border:2px solid #FFF6BF !important;
+  animation:ckYellow 1.6s ease-in-out infinite !important}
+.h-day.today i svg{stroke:#3A2600 !important}
+.h-day.gift i{background:linear-gradient(180deg,#FFF07A 0%,#FFC800 50%,#FF9F00 100%) !important;border:0 !important;
+  box-shadow:0 6px 18px -4px rgba(255,170,0,.85) !important}
+.h-day.gift i svg{stroke:#3A2600 !important;fill:none !important}
+.h-day small{color:rgba(255,222,110,.75) !important;font-weight:700 !important}
+.h-day.on small,.h-day.gift small{color:#FFD43B !important}
+.h-day.today small{color:#FFF27A !important;font-weight:900 !important}
+.h-day,.h-day.gift{background:none !important;box-shadow:none !important;border:0 !important}
+.h-day,.h-days{overflow:visible !important;contain:none !important}
+@media (prefers-reduced-motion:reduce){.h-day.today i{animation:none !important}}
 </style>
 </head>
 <body>
@@ -2481,7 +2520,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v44";
+const APP_VER = "v45";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
