@@ -2393,6 +2393,25 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
   78%{transform:translateY(-118px) scale(1);opacity:1}100%{transform:translateY(-160px) scale(.85);opacity:0}}
 @keyframes poutKiss{to{transform:scale(1.25) rotate(-10deg)}}
 @media (prefers-reduced-motion:reduce){.pout{animation:none;transform:translateY(-110px)}.pout i{animation:none}}
+/* ===== 全局点击动画 ===== */
+.tapd{animation:tapPress .34s cubic-bezier(.3,1.5,.5,1) !important}
+@keyframes tapPress{0%{scale:1}30%{scale:.93}100%{scale:1}}
+.tapring{position:fixed;z-index:999;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;pointer-events:none;
+  border:2px solid rgba(242,194,91,.9);box-shadow:0 0 16px rgba(242,194,91,.55),inset 0 0 12px rgba(242,194,91,.35);
+  animation:tapRing .6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes tapRing{0%{transform:scale(.2);opacity:1}100%{transform:scale(1.5);opacity:0}}
+/* 换页：新页面淡入上滑 */
+#stage > *{animation:pgIn .34s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* 底部导航：每次点都弹一下 */
+#tabs a.tapd .ic{animation:tabPop .44s cubic-bezier(.3,1.5,.5,1)}
+@media (prefers-reduced-motion:reduce){.tapd,#stage > *{animation:none !important}.tapring{display:none}}
+/* 广告 1：去掉 7 天格子（下面「每日打卡」已有），改成标题 + 按钮 + 大礼盒 */
+.ad-cal .cal-t{top:0;bottom:0;justify-content:center}
+.ad-cal .cal-t b{font-size:25px}
+.ad-cal .cal-cta{margin-top:11px !important;background:#2B1A04 !important;color:#F7DE95 !important;box-shadow:none !important}
+.ad-cal .cal-cta svg{stroke:#F7DE95 !important}
+.ad-cal .cal-gift{top:50%;right:16px;width:118px;height:118px;margin-top:-59px}
 </style>
 </head>
 <body>
@@ -2462,7 +2481,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v40";
+const APP_VER = "v44";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -2521,12 +2540,12 @@ const GIRLS = [
 
   { id:"summer", name:"夏夏", en:"Summer", type:"比基尼辣妹", initial:"夏", age:22,
     tags:["俏皮","爱撒娇","身材火辣"],
-    v3:"assets/img/girl-summer-v3.webp", x:"assets/img/girl-summer-x.webp",
-    bikini:"assets/img/girl-summer-bikini.webp", sun:"assets/img/girl-summer-sun.webp",
-    lounge:"assets/img/girl-summer-lounge.webp", img:"assets/img/girl-summer.webp", img2:"assets/img/girl-summer-2.webp",
-    video:"assets/video/girl-summer.mp4", bkv:"assets/video/girl-summer-bikini.mp4", videos:["assets/video/girl-summer.mp4","assets/video/girl-summer-v-lounge.mp4"],
+    v3:"assets/img/girl-summer-v3.webp?v=2", x:"assets/img/girl-summer-x.webp?v=2",
+    bikini:"assets/img/girl-summer-bikini.webp?v=2", sun:"assets/img/girl-summer-sun.webp?v=2",
+    lounge:"assets/img/girl-summer-lounge.webp?v=2", img:"assets/img/girl-summer.webp?v=2", img2:"assets/img/girl-summer-2.webp?v=2",
+    video:"assets/video/girl-summer.mp4?v=2", sunv:"assets/video/girl-summer-sun.mp4?v=2", bkv:"assets/video/girl-summer-bikini.mp4?v=2", videos:["assets/video/girl-summer.mp4?v=2","assets/video/girl-summer-v-lounge.mp4?v=2"],
     line:"这套桃红色的，是专门穿给你看的哦～",
-    about:"22 岁，黑色短发的甜妹，最爱穿比基尼窝在酒店套房等你，嘴甜又会撒娇。",
+    about:"22 岁，奶茶金色长卷发的甜妹，最爱穿比基尼在泳池边晒太阳等你，嘴甜又会撒娇。",
     outfit2:"限定 · 夜色约会",
     react:{ hit:["可以哦","漂亮","就这样"], combo:["越来越顺","别停","帅"], win:["赢得好看","奖励你","过来"], idle:["等你呢","晒着呢","嗨～"] } },
 
@@ -2893,6 +2912,18 @@ document.addEventListener("pointerdown", e => {
   setTimeout(() => i.remove(), 520);
 }, true);
 
+/* 全局点击动画：按下回弹 + 手指位置金色光圈（不改元素自身 transform，用独立的 scale 属性） */
+const TAPSEL = "button,a,[data-gift],[data-rw],[data-pick],[data-ep],[data-clip],[data-outfit],[data-tier],[data-merch],[data-vc],[data-c],[data-rps],[data-ad],[role=button]";
+document.addEventListener("pointerdown", e => {
+  const t = e.target.closest(TAPSEL);
+  if(!t || rm()) return;
+  t.classList.remove("tapd"); void t.offsetWidth; t.classList.add("tapd");
+  setTimeout(() => t.classList.remove("tapd"), 360);
+  const ring = document.createElement("i");
+  ring.className = "tapring"; ring.style.left = e.clientX + "px"; ring.style.top = e.clientY + "px";
+  document.body.appendChild(ring); setTimeout(() => ring.remove(), 620);
+}, true);
+
 const fxBox = () => $("#fx").getBoundingClientRect();
 function fxAt(r){
   if(!r) return null;
@@ -3152,10 +3183,10 @@ const wornTier = gid => {
 };
 const outfitImg = g => tierImg(g, wornTier(g.id));
 const TIER_VID = { lounge:["bunny","neko","maid","summer"], x:["bunny","maid","summer"] };
-const tierVid = (g, k) => k === "v3" ? g.video : k === "bikini" ? g.bkv : k === "daily" ? `assets/video/girl-${g.id}-v-img.mp4`
-  : (TIER_VID[k] || []).includes(g.id) ? `assets/video/girl-${g.id}-v-${k}.mp4` : "";
+const tierVid = (g, k) => k === "v3" ? g.video : k === "bikini" ? g.bkv : k === "daily" ? `assets/video/girl-${g.id}-v-img.mp4?v=2`
+  : (TIER_VID[k] || []).includes(g.id) ? `assets/video/girl-${g.id}-v-${k}.mp4?v=2` : "";
 const outfitVid = g => tierVid(g, wornTier(g.id));
-const bkImg = g => g.id === "summer" ? g.sun : g.bikini;   // 夏夏的比基尼视频是用海边那张生成的
+const bkImg = g => g.bikini;
 const TIER_LINE = {
   lounge:"这身是为今晚挑的，陪我久一点。", v3:"招牌造型，只给你看全套。",
   x:"……这套只在家里穿。（脸红）", bikini:"第一次穿给你看…不许乱看哦（脸红）"
@@ -3319,10 +3350,8 @@ ROUTES.home = { view(){
           ${ADS.map((a, i) => {
             const x = girl(a.gid);
             if(i === 0) return `<div class="adslide ad-cal" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
-              <span class="cal-t"><em class="ad-tag">${esc(a.tag)}</em><b>${a.h}</b><small>${esc(a.sub)}</small></span>
+              <span class="cal-t"><em class="ad-tag">${esc(a.tag)}</em><b>${a.h}</b><small>${esc(a.sub)}</small><span class="ad-cta cal-cta">${esc(a.cta)}${ARR}</span></span>
               <img class="cal-gift" src="assets/icons/g/gift.webp" alt="" aria-hidden="true">
-              <span class="cal-days">${[1,2,3,4,5,6,7].map(d => `<i class="${d <= streak ? "ok" : ""} ${d === todayIdx && !S.checkedIn ? "now" : ""} ${d === 7 ? "big" : ""}">
-                <img src="assets/icons/g/${d === 7 ? "gift" : "coin"}.webp" alt=""><u>${d === 7 ? "大礼" : "+10"}</u></i>`).join("")}</span>
             </div>`;
             if(i === 1) return `<div class="adslide ad-chat" data-ad="${i}" data-od-id="ad-${i}" aria-label="${esc(a.t)}">
               <span class="cht-ph">${phImg(x.v3, x.initial, x.name, "", "50% 12%")}${liveVid(x, "50% 12%")}</span>
@@ -3906,12 +3935,12 @@ function balanceRows(cost){
 /* 她的私密视频：玩久了（亲密度升级）自动解锁，或用积分提前解锁 */
 const CLIP_RULE = [ { lv:1, cost:0 }, { lv:2, cost:150 }, { lv:3, cost:200 }, { lv:4, cost:300 }, { lv:4, cost:300 } ];
 function clipsOf(g){
-  const V = k => `assets/video/girl-${g.id}-${k}.mp4`;
+  const V = k => `assets/video/girl-${g.id}-${k}.mp4?v=2`;
   const L = {
     bunny:  [["招牌兔女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边防晒", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
     neko:   [["招牌猫女郎", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["夜色街拍", V("v-night"), g.img2]],
     maid:   [["招牌女仆", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["咖啡厅约会", V("v-img"), g.img], ["派对香槟", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]],
-    summer: [["酒店比基尼", g.video, g.v3], ["海边比基尼", g.bkv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
+    summer: [["酒店比基尼", g.video, g.v3], ["泳池比基尼", g.bkv, g.bikini], ["海边度假", g.sunv, g.sun], ["咖啡厅约会", V("v-img"), g.img], ["夜店派对", V("v-lounge"), g.lounge], ["清晨睡衣", V("v-x"), g.x]]
   }[g.id] || [["招牌", g.video, g.v3]];
   return L.map(([t, src, poster], i) => ({ i, t, src, poster, ...CLIP_RULE[Math.min(i, CLIP_RULE.length - 1)] }));
 }
@@ -4242,7 +4271,7 @@ const SOON  = GAMES.filter(g => !g.live);
 function popPout(g, from){
   const r = from.getBoundingClientRect(), el = document.createElement("div");
   el.className = "pout"; el.setAttribute("aria-hidden", "true");
-  el.innerHTML = `<img src="assets/img/pout-${g.id}.webp" onerror="this.onerror=null;this.src='${g.v3}'" alt=""><i><img src="assets/icons/g/lips.webp" alt=""></i>`;
+  el.innerHTML = `<img src="assets/img/pout-${g.id}.webp?v=2" onerror="this.onerror=null;this.src='${g.v3}'" alt=""><i><img src="assets/icons/g/lips.webp" alt=""></i>`;
   el.style.left = (r.left + r.width / 2) + "px"; el.style.top = r.top + "px";
   document.querySelectorAll(".pout").forEach(x => x.remove());
   document.body.appendChild(el); setTimeout(() => el.remove(), 2700);
