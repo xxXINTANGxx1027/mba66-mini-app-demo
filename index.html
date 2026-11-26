@@ -2913,7 +2913,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v59";
+const APP_VER = "v60";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -7865,8 +7865,9 @@ function drawCoach(){
   const step = COACH[coachI];
   const el = $(step.sel);
   const host = $("#phone").getBoundingClientRect();
-  if(el){ const r0 = el.getBoundingClientRect();          // 目标在首屏下面时先滚进画面，否则提示卡会跑到屏幕外
-    if(r0.top < host.top || r0.bottom > host.bottom - 90) el.scrollIntoView({ block:"center" }); }
+  const stg = $("#stage");                                // 只滚内容区：scrollIntoView 会连外框一起推上去
+  if(el && stg.contains(el)){ const r0 = el.getBoundingClientRect(), sr = stg.getBoundingClientRect();
+    if(r0.top < sr.top || r0.bottom > sr.bottom) stg.scrollTop += r0.top - sr.top - (sr.height - r0.height) / 2; }
   let ring = "";
   let cardPos = "top:120px";
   if(el){

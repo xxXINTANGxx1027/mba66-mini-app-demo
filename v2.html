@@ -3047,7 +3047,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v64";
+const APP_VER = "v66";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3208,6 +3208,8 @@ function migrateGirls(s){
   delete s.chats; delete s.chatXp; delete s.extra;   /* 聊天与每日计分局都已下线 */
 }
 let S = load();
+/* demo：每次打开链接都从 Play Girl 前台开始（同一个分页里刷新不会被踢出去） */
+try { if(!sessionStorage.getItem("pgIn")){ S.registered = false; S.trial = 0; } } catch(e){ S.registered = false; S.trial = 0; }
 function load(){
   let s;
   try { s = JSON.parse(localStorage.getItem(KEY)); } catch(e){ s = null; }
@@ -3861,6 +3863,7 @@ function pgGate(why){
   sh.querySelector("#pgQuick").onclick = () => enter(sh.querySelector("#pgNick").value.trim());   // demo：不用填资料直接进
   function enter(nick){
     S.registered = true; if(nick) S.nick = nick; save(); closeSheet();
+    try { sessionStorage.setItem("pgIn", "1"); } catch(e){}
     const w = document.createElement("div"); w.className = "pg-welcome";
     w.innerHTML = `<img src="assets/logo/logo-hg.png" alt="MBA66"><b>欢迎加入${nick ? "，" + esc(nick) : ""}</b><small>正在进入会员专区…</small><i><u></u></i>`;
     document.body.appendChild(w);
@@ -8372,8 +8375,9 @@ function drawCoach(){
   const step = COACH[coachI];
   const el = $(step.sel);
   const host = $("#phone").getBoundingClientRect();
-  if(el){ const r0 = el.getBoundingClientRect();          // 目标在首屏下面时先滚进画面，否则提示卡会跑到屏幕外
-    if(r0.top < host.top || r0.bottom > host.bottom - 90) el.scrollIntoView({ block:"center" }); }
+  const stg = $("#stage");                                // 只滚内容区：scrollIntoView 会连外框一起推上去
+  if(el && stg.contains(el)){ const r0 = el.getBoundingClientRect(), sr = stg.getBoundingClientRect();
+    if(r0.top < sr.top || r0.bottom > sr.bottom) stg.scrollTop += r0.top - sr.top - (sr.height - r0.height) / 2; }
   let ring = "";
   let cardPos = "top:120px";
   if(el){
