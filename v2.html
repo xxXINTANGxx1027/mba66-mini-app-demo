@@ -3047,7 +3047,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v66";
+const APP_VER = "v67";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3208,8 +3208,8 @@ function migrateGirls(s){
   delete s.chats; delete s.chatXp; delete s.extra;   /* 聊天与每日计分局都已下线 */
 }
 let S = load();
-/* demo：每次打开链接都从 Play Girl 前台开始（同一个分页里刷新不会被踢出去） */
-try { if(!sessionStorage.getItem("pgIn")){ S.registered = false; S.trial = 0; } } catch(e){ S.registered = false; S.trial = 0; }
+/* demo：每次打开（含刷新）都是全新用户，从 Play Girl 前台开始；网址带 ?keep 才保留进度（测试用） */
+if(!/[?&]keep\b/.test(location.search)){ try { localStorage.removeItem(KEY); } catch(e){} S = load(); }
 function load(){
   let s;
   try { s = JSON.parse(localStorage.getItem(KEY)); } catch(e){ s = null; }
@@ -3863,7 +3863,6 @@ function pgGate(why){
   sh.querySelector("#pgQuick").onclick = () => enter(sh.querySelector("#pgNick").value.trim());   // demo：不用填资料直接进
   function enter(nick){
     S.registered = true; if(nick) S.nick = nick; save(); closeSheet();
-    try { sessionStorage.setItem("pgIn", "1"); } catch(e){}
     const w = document.createElement("div"); w.className = "pg-welcome";
     w.innerHTML = `<img src="assets/logo/logo-hg.png" alt="MBA66"><b>欢迎加入${nick ? "，" + esc(nick) : ""}</b><small>正在进入会员专区…</small><i><u></u></i>`;
     document.body.appendChild(w);
