@@ -2913,7 +2913,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v58";
+const APP_VER = "v59";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -7865,13 +7865,15 @@ function drawCoach(){
   const step = COACH[coachI];
   const el = $(step.sel);
   const host = $("#phone").getBoundingClientRect();
+  if(el){ const r0 = el.getBoundingClientRect();          // 目标在首屏下面时先滚进画面，否则提示卡会跑到屏幕外
+    if(r0.top < host.top || r0.bottom > host.bottom - 90) el.scrollIntoView({ block:"center" }); }
   let ring = "";
   let cardPos = "top:120px";
   if(el){
     const r = el.getBoundingClientRect();
     const t = r.top - host.top, l = r.left - host.left;
     ring = `<div class="ring" style="left:${l - 6}px;top:${t - 6}px;width:${r.width + 12}px;height:${r.height + 12}px"></div>`;
-    cardPos = (t > host.height * 0.5) ? `bottom:${host.height - t + 18}px` : `top:${t + r.height + 18}px`;
+    cardPos = (t > host.height * 0.5) ? `bottom:${Math.max(16, host.height - t + 18)}px` : `top:${Math.min(t + r.height + 18, host.height - 260)}px`;
   }
   $("#coach").innerHTML = `${el ? ring : `<div class="mask"></div>`}
     <div class="cc" style="${cardPos}">
