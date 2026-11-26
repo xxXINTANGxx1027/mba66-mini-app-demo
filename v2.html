@@ -3047,7 +3047,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v62";
+const APP_VER = "v63";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3849,19 +3849,24 @@ function pgGate(why){
       <label class="xm-f"><span>昵称</span><input id="pgNick" maxlength="12" placeholder="想让她怎么叫你"></label>
       <label class="pg-agree"><input type="checkbox" id="pgAgree" checked> 我已年满 18 岁，并同意用户协议</label>
       <p class="sm" style="color:var(--tx2)">演示版：资料只存在这台手机，不会发送到任何地方。</p></div>`,
-    foot:`<button class="btn btn-pri btn-w" id="pgReg" data-free>${ico("i-sparkle")}注册并进入</button>`
+    foot:`<button class="btn btn-pri btn-w" id="pgReg" data-free>${ico("i-sparkle")}注册并进入</button>
+      <button class="btn btn-gh btn-w" id="pgQuick" data-free style="margin-top:9px">${ico("i-user")}演示账号 · 直接登录</button>`
   });
   sh.querySelector("#pgReg").onclick = () => {
     const tel = sh.querySelector("#pgTel").value.replace(/\D/g, ""), nick = sh.querySelector("#pgNick").value.trim();
     if(tel.length < 8){ toast("请填写手机号码", "i-user"); sh.querySelector("#pgTel").focus(); return; }
     if(!sh.querySelector("#pgAgree").checked){ toast("请先确认年满 18 岁", "i-user"); return; }
+    enter(nick);
+  };
+  sh.querySelector("#pgQuick").onclick = () => enter(sh.querySelector("#pgNick").value.trim());   // demo：不用填资料直接进
+  function enter(nick){
     S.registered = true; if(nick) S.nick = nick; save(); closeSheet();
     const w = document.createElement("div"); w.className = "pg-welcome";
     w.innerHTML = `<img src="assets/logo/logo-hg.png" alt="MBA66"><b>欢迎加入${nick ? "，" + esc(nick) : ""}</b><small>正在进入会员专区…</small><i><u></u></i>`;
     document.body.appendChild(w);
     setTimeout(() => { w.classList.add("out"); location.hash = "#home"; render(); if(!S.coached) setTimeout(() => { try { startCoach(); } catch(e){} }, 500); }, 1700);
     setTimeout(() => w.remove(), 2300);
-  };
+  }
 }
 /* 未注册时：除了标了 data-free 的，点任何按钮 / 链接都弹注册 */
 document.addEventListener("click", e => {
