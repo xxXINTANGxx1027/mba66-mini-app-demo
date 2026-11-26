@@ -2984,6 +2984,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 <div id="backdrop" aria-hidden="true"></div>
 <div id="bd-brand">
   <img id="bd-logo" src="assets/logo/logo-hg.png" alt="MBA66" onerror="this.style.display='none'">
+  <span id="bd-pg" class="pg-logo" style="display:none;font-size:30px"><b>Play</b><i>Girl</i></span>
   <div id="bd-rule"></div>
   <div id="bd-note">娱乐小程序 · 可点击演示<br>Entertainment Mini App Demo</div>
 </div>
@@ -3047,7 +3048,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v67";
+const APP_VER = "v68";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3890,12 +3891,12 @@ ROUTES.front = { view(){
           <span class="pg-tags">${d.tag.split("·").map(t => `<i>${esc(t.trim())}</i>`).join("")}<i class="free">前 ${PG_FREE} 集免费</i></span>
           <u>${ico("i-play")}免费看第 1 集</u></span>
       </a>
-      <div class="pg-sec"><b>选集</b><small>共 ${d.eps.length} 集 · 第 ${PG_FREE + 1} 集起注册解锁</small></div>
-      <div class="pg-eps">${d.eps.map((t, i) => { const k = i + 1, free = k <= PG_FREE;
-        return `<a class="pg-ep ${free ? "" : "lk"}" href="#pg/${k}" ${free ? "data-free" : ""}><b>${String(k).padStart(2, "0")}</b><span>${esc(t)}</span><em>${free ? "免费" : ico("i-lock") + "注册"}</em></a>`; }).join("")}</div>
       <div class="pg-sec"><b>互动小游戏</b><small>${S.trial ? "试玩已用完 · 注册继续玩" : "不用注册，先免费玩 1 局"}</small></div>
       <div class="pg-games">${LIVE.map(gm => `<a class="pg-gm" href="#game/${gm.id}" ${S.trial ? "" : "data-free"}>
         <span class="ph"><img src="${girl(gm.cover.gid || "summer").v3}" alt="" loading="lazy"></span><b>${esc(gm.name)}</b><em>${S.trial ? ico("i-lock") + "注册" : "免费试玩"}</em></a>`).join("")}</div>
+      <div class="pg-sec"><b>选集</b><small>共 ${d.eps.length} 集 · 第 ${PG_FREE + 1} 集起注册解锁</small></div>
+      <div class="pg-eps">${d.eps.map((t, i) => { const k = i + 1, free = k <= PG_FREE;
+        return `<a class="pg-ep ${free ? "" : "lk"}" href="#pg/${k}" ${free ? "data-free" : ""}><b>${String(k).padStart(2, "0")}</b><span>${esc(t)}</span><em>${free ? "免费" : ico("i-lock") + "注册"}</em></a>`; }).join("")}</div>
       <div class="pg-sec"><b>注册后还能玩</b><small>会员专区</small></div>
       <div class="pg-more">
         ${[["她在等你", "4 位 AI 女友，陪你聊天、换装", girl("bunny").v3], ["更多 AI 短剧", "全部剧集随便看，每周上新", girl("neko").v3], ["圣诞祝福视频", "和她一起出镜，发给朋友", girl("maid").v3]]
@@ -3941,6 +3942,8 @@ function render(){
   { const cv = document.getElementById("clipView"); if(cv && cv.classList.contains("on")){ const vv = cv.querySelector("video"); if(vv) vv.pause(); cv.classList.remove("on"); cv.innerHTML = ""; } }
   current = parse();
   if(!S.registered && !PG_OK.includes(current.name)) current = { name:"front", args:[] };
+  $("#bd-logo").style.display = S.registered ? "" : "none"; $("#bd-pg").style.display = S.registered ? "none" : "";
+  $("#bd-note").innerHTML = S.registered ? "娱乐小程序 · 可点击演示<br>Entertainment Mini App Demo" : "AI 短剧 · 互动游戏<br>AI Drama &amp; Games";
   const r = ROUTES[current.name];
   const out = r.view(...current.args);
   $("#bar").className = out.ghost ? "ghost" : "";
