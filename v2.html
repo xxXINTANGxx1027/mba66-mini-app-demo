@@ -2959,6 +2959,25 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .pg-welcome u{display:block;height:100%;width:0;background:linear-gradient(90deg,#FFEA6B,#FFC400);animation:pgLoad 1.6s ease-in-out forwards}
 .pg-welcome.out{opacity:0}
 @keyframes pgLoad{to{width:100%}}
+
+/* v62 前台：免费试玩一局 */
+.pg-games{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 18px}
+.pg-gm{display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;min-width:0}
+.pg-gm .ph{width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.06)}
+.pg-gm img{width:100%;height:100%;object-fit:cover;display:block}
+.pg-gm b{font-size:12px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.pg-gm em{font-style:normal;font-size:10.5px;color:#FF8FC0;display:flex;align-items:center;gap:2px}
+.pg-gm em .ic{width:11px;height:11px}
+.pg-trialend{display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px 22px}
+.pg-trialend .ph{width:132px;height:132px;border-radius:50%;overflow:hidden;border:2px solid #FF6FAE}
+.pg-trialend b{font-size:22px;color:#fff;margin-top:14px}
+.pg-trialend p{font-size:14px;color:rgba(255,255,255,.75);margin:8px 0 18px;line-height:1.55}
+
+/* v62 圣诞：放上你的照片 */
+.xm-me{display:flex;align-items:center;gap:12px;margin:14px 0;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.05);border:1px dashed rgba(255,215,140,.45);cursor:pointer}
+.xm-up{width:56px;height:56px;border-radius:12px;overflow:hidden;flex:0 0 auto;display:grid;place-items:center;background:rgba(215,25,47,.25)}
+.xm-up img{width:100%;height:100%;object-fit:cover}.xm-up .ic{width:26px;height:26px}
+.xm-me b{font-size:14px}.xm-me small{display:block;font-size:11.5px;color:var(--tx2);margin-top:2px}
 </style>
 </head>
 <body>
@@ -3028,7 +3047,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v61";
+const APP_VER = "v62";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3819,13 +3838,13 @@ function watchVids(){
 /* ============================================================
    v2 · 干净版前台「Play Girl」：未注册只能看短剧前 2 集，点其他任何东西都弹注册
    ============================================================ */
-const PG_FREE = 2, PG_OK = ["front", "pg", "greet", "join"];
+const PG_FREE = 2, PG_OK = ["front", "pg", "greet", "join", "game"];
 const pgLogo = `<span class="pg-logo"><b>Play</b><i>Girl</i></span>`;
 function pgGate(why){
   const sh = sheet({
     title:"注册 Play Girl", sub:why || "注册后解锁全部剧集和会员专区",
     body:`<div class="pg-reg">
-      <ul class="pg-perks"><li>${ico("i-film")}全部 AI 短剧随便看</li><li>${ico("i-heart")}专属女友陪你聊天、玩游戏</li><li>${ico("i-gift")}注册即送 800 积分，每天打卡领更多</li></ul>
+      <ul class="pg-perks"><li>${ico("i-film")}全部 AI 短剧随便看</li><li>${ico("i-heart")}专属女友陪你聊天、玩游戏</li><li>${ico("i-game")}互动小游戏不限次数</li></ul>
       <label class="xm-f"><span>手机号码</span><input id="pgTel" type="tel" inputmode="tel" maxlength="15" placeholder="例如 012-345 6789"></label>
       <label class="xm-f"><span>昵称</span><input id="pgNick" maxlength="12" placeholder="想让她怎么叫你"></label>
       <label class="pg-agree"><input type="checkbox" id="pgAgree" checked> 我已年满 18 岁，并同意用户协议</label>
@@ -3854,7 +3873,7 @@ document.addEventListener("click", e => {
 ROUTES.front = { view(){
   const d = DRAMAS[0];
   return {
-    flush:true, ghost:true, tab:"home",
+    flush:true, ghost:true, noTabs:true,
     bar:`${pgLogo}<button class="pg-login" data-free id="pgLogin">登录 / 注册</button>`,
     html:`<section class="pg">
       <a class="pg-hero" href="#pg/1" data-free data-od-id="pg-hero">
@@ -3867,12 +3886,15 @@ ROUTES.front = { view(){
       <div class="pg-sec"><b>选集</b><small>共 ${d.eps.length} 集 · 第 ${PG_FREE + 1} 集起注册解锁</small></div>
       <div class="pg-eps">${d.eps.map((t, i) => { const k = i + 1, free = k <= PG_FREE;
         return `<a class="pg-ep ${free ? "" : "lk"}" href="#pg/${k}" ${free ? "data-free" : ""}><b>${String(k).padStart(2, "0")}</b><span>${esc(t)}</span><em>${free ? "免费" : ico("i-lock") + "注册"}</em></a>`; }).join("")}</div>
+      <div class="pg-sec"><b>互动小游戏</b><small>${S.trial ? "试玩已用完 · 注册继续玩" : "不用注册，先免费玩 1 局"}</small></div>
+      <div class="pg-games">${LIVE.map(gm => `<a class="pg-gm" href="#game/${gm.id}" ${S.trial ? "" : "data-free"}>
+        <span class="ph"><img src="${girl(gm.cover.gid || "summer").v3}" alt="" loading="lazy"></span><b>${esc(gm.name)}</b><em>${S.trial ? ico("i-lock") + "注册" : "免费试玩"}</em></a>`).join("")}</div>
       <div class="pg-sec"><b>注册后还能玩</b><small>会员专区</small></div>
       <div class="pg-more">
-        ${[["她在等你", "4 位专属女友，陪聊陪玩", girl("bunny").v3], ["亲密游戏", "赢积分、解锁私密视频", girl("neko").v3], ["积分福利", "打卡送积分，换周边礼品", girl("maid").v3]]
+        ${[["她在等你", "4 位 AI 女友，陪你聊天、换装", girl("bunny").v3], ["更多 AI 短剧", "全部剧集随便看，每周上新", girl("neko").v3], ["圣诞祝福视频", "和她一起出镜，发给朋友", girl("maid").v3]]
           .map(([t, s2, img]) => `<a class="pg-card" href="#girls">${phImg(img, "", t, "", "50% 15%")}<span><b>${t}</b><small>${s2}</small></span><i>${ico("i-lock")}</i></a>`).join("")}
       </div>
-      <button class="btn btn-pri btn-w pg-cta" id="pgCta">${ico("i-sparkle")}注册解锁全部 · 送 800 积分</button>
+      <button class="btn btn-pri btn-w pg-cta" id="pgCta">${ico("i-sparkle")}免费注册 · 解锁全部</button>
     </section>`,
     after(root){ $("#pgLogin").onclick = () => pgGate("注册 / 登录后解锁全部剧集"); }
   };
@@ -4387,7 +4409,7 @@ ROUTES.girl = { view(id){
     </section>
     <div class="stg-act gd-act" data-od-id="girl-actions">
       <button data-gd="gift">${ico("i-rose")}<b>送礼</b><small>${PRICE.gift} 积分</small></button>
-      <a href="#wardrobe">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
+      <a href="#wardrobe/${g.id}">${ico("i-shirt")}<b>换装</b><small>衣柜</small></a>
       <a href="#games">${ico("i-game")}<b>陪她玩</b><small>亲密游戏</small></a>
       <button data-gd="bikini">${ico("i-bikini")}<b>比基尼</b><small>看她</small></button>
     </div>
@@ -4411,7 +4433,7 @@ ROUTES.girl = { view(id){
       <section class="sec">
         <div class="sec-h"><h2 class="h2">她的空间</h2></div>
         <div style="display:flex;flex-direction:column;gap:9px">
-          <a class="lrow" href="#wardrobe">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">${TIERS.length} 套造型 · 已解锁 ${TIERS.filter(t => ownTier(g.id, t.k)).length}</div></div><span class="cv">${ico("i-next")}</span></a>
+          <a class="lrow" href="#wardrobe/${g.id}">${ico("i-shirt")}<div class="row-m">换装与场景<div class="row-s">${TIERS.length} 套造型 · 已解锁 ${TIERS.filter(t => ownTier(g.id, t.k)).length}</div></div><span class="cv">${ico("i-next")}</span></a>
           <a class="lrow" href="#videos">${ico("i-play")}<div class="row-m">视频收藏<div class="row-s">${ownsVid ? "已解锁 " + g.name + " 的问候短片" : "未解锁"}</div></div><span class="cv">${S.owned.vid.length}/${GIRLS.length}${ico("i-next")}</span></a>
           <a class="lrow" href="#games">${ico("i-game")}<div class="row-m">陪她玩亲密游戏<div class="row-s">${LIVE.length} 个游戏 · 每局都计分</div></div><span class="cv">${ico("i-next")}</span></a>
         </div>
@@ -4496,8 +4518,8 @@ const ACTS = [
   { id:"cheer", name:"庆祝", en:"Celebrate", icon:"i-star",    say:"庆祝" }
 ];
 
-ROUTES.wardrobe = { view(){
-  const g = girl();
+ROUTES.wardrobe = { view(id){
+  const g = girl(id);
   const cur = wornTier(g.id);
   const OUT = TIERS.map(t => ({ k:t.k, t:t.t, price:t.price, img:t.img(g), own:ownTier(g.id, t.k) }));
   return {
@@ -5055,10 +5077,13 @@ ROUTES.game = { view(id){
     return { tab:"home", bar:barBack("即将推出"), html:`<div class="empty"><p class="sm">这个游戏还在路上，敬请期待。</p>
       <a class="tbtn" href="#games" style="display:inline-block;margin-top:8px">回到亲密游戏</a></div>` };
   }
+  const trial = !S.registered;
   return {
-    tab:"home",
-    bar:barBack(gm.name, "", `<div style="margin-left:auto">${ptLink()}</div>`),
-    html:`<div id="gameHost">${gameIntro(gm)}</div>`,
+    tab:"home", noTabs:trial,
+    bar:trial ? `<button class="ibtn hit" data-free onclick="nav('#front')" aria-label="返回">${ico("i-back")}</button>
+      <div class="row-m"><div class="bar-t">${esc(gm.name)} · 免费试玩</div></div>${pgLogo}`
+      : barBack(gm.name, "", `<div style="margin-left:auto">${ptLink()}</div>`),
+    html:`<div id="gameHost" ${trial ? "data-free" : ""}>${gameIntro(gm)}</div>`,
     after(){ const b = $("#go"); if(b) b.onclick = () => startGame(gm); },
     leave(){ stopGame(); }
   };
@@ -5078,18 +5103,18 @@ function gameIntro(gm){
           <p class="sm" style="margin-top:4px;color:rgba(255,255,255,.85)">${esc(gm.hook)}</p>
         </div>
       </div>
-      <div style="padding:14px 16px 16px">
+      ${!S.registered ? `<p class="sm" style="padding:12px 16px 14px;color:var(--tx2)">免费试玩 1 局 · 注册后不限次数</p>` : `<div style="padding:14px 16px 16px">
         ${tierBar(gm.id)}
         <div style="margin-top:12px">${bondBar(g.id)}</div>
         <div class="row" style="border-top:1px solid var(--line-2)">
           <div class="row-m"><div class="row-t">这个游戏的最好成绩</div>
             <div class="row-s">已玩 ${rec.plays || 0} 局 · 累计段位分 ${rec.xp || 0}</div></div>
           <b class="big" style="font-size:19px;color:var(--gold-2)">${rec.best || 0}</b></div>
-      </div>
+      </div>`}
     </div>
     <button class="btn btn-pri btn-w claim" id="go" style="margin-top:14px" data-od-id="game-start">
-      ${ico("i-game")}开始游戏 · 本局计分</button>
-    <a class="btn btn-gh btn-w" href="#games" style="margin-top:9px">换个游戏</a>
+      ${ico("i-game")}${S.registered ? "开始游戏 · 本局计分" : "开始试玩"}</button>
+    <a class="btn btn-gh btn-w" href="${S.registered ? "#games" : "#front"}" style="margin-top:9px">${S.registered ? "换个游戏" : "回到首页"}</a>
   </section>`;
 }
 
@@ -5105,6 +5130,10 @@ function stopGame(){
 }
 let settled = false;          /* 一局只能结算一次：超时与手动结束可能同时触发 */
 function startGame(gm){
+  if(!S.registered){                 /* 未注册只能玩 1 局 */
+    if(S.trial) return pgGate("免费试玩已用完，注册后继续和她玩");
+    S.trial = gm.id; save();
+  }
   stopGame();
   settled = false;
   curGame = gm.id;
@@ -5924,6 +5953,16 @@ function gameFinish(gm, { score, scored, earned, detail }){
   settled = true;
   stopGame();
   const g = girl();
+  if(!S.registered){
+    $("#gameHost").innerHTML = `<section class="pg-trialend" data-od-id="trial-end">
+      <span class="ph">${phImg(outfitImg(g), g.initial, g.name, "", "50% 14%")}</span>
+      <b>你拿了 ${score} 分！</b><p>${esc(g.name)}：「才一局就要走了？注册一下，我们继续玩～」</p>
+      <button class="btn btn-pri btn-w" id="trialReg">${ico("i-sparkle")}免费注册 · 继续玩</button>
+      <a class="btn btn-gh btn-w" href="#front" style="margin-top:9px">回到首页看剧</a></section>`;
+    $("#trialReg").onclick = () => pgGate("注册后游戏不限次数");
+    setTimeout(() => pgGate("试玩结束！注册后继续和她玩"), 900);
+    return;
+  }
   /* 基础分 → 段位加成 → 双倍卡，三段分开展示 */
   const T0 = gTier(gm.id);
   const base = earned;
@@ -7926,6 +7965,7 @@ function xmPlayer(cv, cfg){
   v.src = xmVid(g); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.crossOrigin = "anonymous";
   const poster = new Image(); poster.src = xmImg(g);
   const logo = new Image(); logo.src = "assets/logo/logo-hg.png";
+  const me = new Image(); if(cfg.me) me.src = cfg.me;     // 用户照片只在本机合成，不进分享链接
   const flakes = Array.from({ length:70 }, () => ({ x:Math.random() * W, y:Math.random() * H, r:1.5 + Math.random() * 3.5, s:.6 + Math.random() * 1.6, d:Math.random() * 6 }));
   const lines = xmLines(cfg), en = cfg.lang === "en";
   let t0 = performance.now(), raf = 0, alive = true;
@@ -7938,7 +7978,34 @@ function xmPlayer(cv, cfg){
   }
   function cover(img, iw, ih){
     const k = Math.max(W / iw, H / ih), w = iw * k, h = ih * k;
-    ctx.drawImage(img, (W - w) / 2, (H - h) * .25, w, h);
+    ctx.drawImage(img, 0, (H - h) * .25, w, h);           // 贴左边画 → 她站到画面右侧，给拍立得让位
+  }
+  function polaroid(t){
+    const a = fade(t, .4, 1.1); if(!a) return;
+    const pw = W * .44, ph = pw * 1.2, x = W * .05, y = H * .25, pad = pw * .06, side = pw - pad * 2;
+    ctx.save(); ctx.globalAlpha = a; ctx.translate(x + pw / 2, y + ph / 2); ctx.rotate(-.07); ctx.scale(.9 + .1 * a, .9 + .1 * a);
+    ctx.translate(-pw / 2, -ph / 2);
+    ctx.shadowColor = "rgba(0,0,0,.45)"; ctx.shadowBlur = 24; ctx.fillStyle = "#FFFDF7"; ctx.fillRect(0, 0, pw, ph); ctx.shadowBlur = 0;
+    if(me.complete && me.naturalWidth){
+      const k = Math.max(side / me.naturalWidth, side / me.naturalHeight), w = me.naturalWidth * k, h = me.naturalHeight * k;
+      ctx.save(); ctx.beginPath(); ctx.rect(pad, pad, side, side); ctx.clip();
+      ctx.drawImage(me, pad + (side - w) / 2, pad + (side - h) * .3, w, h); ctx.restore();
+    } else {
+      const gr = ctx.createLinearGradient(0, pad, 0, pad + side); gr.addColorStop(0, "#7A1020"); gr.addColorStop(1, "#2A0710");
+      ctx.fillStyle = gr; ctx.fillRect(pad, pad, side, side);
+      ctx.fillStyle = "rgba(255,255,255,.9)"; ctx.textAlign = "center"; ctx.font = `800 ${side * .42}px "PingFang SC", sans-serif`;
+      ctx.fillText((cfg.from || "你").slice(0, 1).toUpperCase(), pad + side / 2, pad + side * .64);
+    }
+    // 圣诞帽
+    const hx = pad + side * .78, hy = pad + side * .04;
+    ctx.fillStyle = "#D7192F"; ctx.beginPath(); ctx.moveTo(hx - side * .2, hy + side * .06); ctx.quadraticCurveTo(hx + side * .05, hy - side * .32, hx + side * .26, hy - side * .12);
+    ctx.lineTo(hx + side * .2, hy + side * .06); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#FFFFFF"; ctx.fillRect(hx - side * .23, hy + side * .02, side * .46, side * .08);
+    ctx.beginPath(); ctx.arc(hx + side * .27, hy - side * .12, side * .055, 0, 7); ctx.fill();
+    // 名字
+    ctx.fillStyle = "#3A1418"; ctx.textAlign = "center"; ctx.font = `700 ${pw * .085}px "PingFang SC", sans-serif`;
+    ctx.fillText(`${cfg.from || (en ? "Me" : "我")} ♥ ${en ? (g.en || g.name) : g.name}`, pw / 2, pad + side + (ph - pad - side) * .62);
+    ctx.restore();
   }
   function draw(){
     if(!alive) return;
@@ -7954,6 +8021,7 @@ function xmPlayer(cv, cfg){
     ctx.fillStyle = "rgba(255,255,255,.85)";
     for(const f of flakes){ f.y += f.s; f.x += Math.sin((f.y + f.d * 50) / 40) * .6; if(f.y > H){ f.y = -5; f.x = Math.random() * W; }
       ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 7); ctx.fill(); }
+    polaroid(t);
     // 标题
     ctx.textAlign = "center"; ctx.shadowColor = "rgba(0,0,0,.6)"; ctx.shadowBlur = 12;
     ctx.globalAlpha = fade(t, .2, .9);
@@ -8010,9 +8078,12 @@ ROUTES.xmas = { view(){
   const head = `<div class="xm-steps">${steps.map((t, i) => `<span class="${i + 1 === XS.step ? "on" : i + 1 < XS.step ? "ok" : ""}"><i>${i + 1}</i>${t}</span>`).join("<u></u>")}</div>`;
   let body = "";
   if(XS.step === 1) body = `
-    <p class="xm-tip">选一位女友，她会穿上圣诞装为你的朋友送上祝福</p>
+    <p class="xm-tip">选一位女友，再放上你的照片，她会陪你一起出镜，给朋友送圣诞祝福</p>
     <div class="xm-girls">${GIRLS.map(x => `<button class="xm-g ${x.id === XS.g ? "on" : ""}" data-xg="${x.id}">
       ${phImg(xmImg(x), x.initial, x.name, "", "50% 18%")}<b>${esc(x.name)}</b>${x.id === XS.g ? `<i>${ico("i-heart")}</i>` : ""}</button>`).join("")}</div>
+    <label class="xm-me" data-od-id="xmas-me"><span class="xm-up">${XS.me ? `<img src="${XS.me}" alt="你的照片">` : ico("i-user")}</span>
+      <span class="row-m"><b>${XS.me ? "已放上你的照片" : "上传你的照片"}</b><small>${XS.me ? "点这里可以换一张" : "和她合成一段两个人的圣诞视频 · 照片只留在这台手机"}</small></span>
+      <span class="tbtn">${XS.me ? "换照片" : "选照片"}</span><input type="file" id="xmMe" accept="image/*" hidden></label>
     <button class="btn btn-pri btn-w" id="xmNext">下一步 · 写祝福</button>`;
   if(XS.step === 2){
     const pick = XS.lang === "en" ? XMAS_MSG.en : XMAS_MSG.zh;
@@ -8044,6 +8115,16 @@ ROUTES.xmas = { view(){
       const go = st => { XS.step = st; render(); };
       $$("[data-xg]", root).forEach(b => b.onclick = () => { XS.g = b.dataset.xg; render(); });
       const nx = $("#xmNext", root); if(nx) nx.onclick = () => go(2);
+      const up = $("#xmMe", root); if(up) up.onchange = () => {      // 缩到 480 方图再存，免得 data URL 太大
+        const f = up.files && up.files[0]; if(!f) return;
+        const im = new Image(); im.onload = () => {
+          const c = document.createElement("canvas"), n = 480, k = Math.max(n / im.width, n / im.height);
+          c.width = c.height = n; c.getContext("2d").drawImage(im, (n - im.width * k) / 2, (n - im.height * k) * .3, im.width * k, im.height * k);
+          XS.me = c.toDataURL("image/jpeg", .86); URL.revokeObjectURL(im.src); render(); toast("照片放好了", "i-heart");
+        };
+        im.onerror = () => toast("这张照片读不了，换一张试试", "i-user");
+        im.src = URL.createObjectURL(f);
+      };
       const keep = () => { const t = $("#xmTo", root), f = $("#xmFrom", root), c = $("#xmCustom", root);
         if(t) XS.to = t.value.trim(); if(f) XS.from = f.value.trim(); if(c) XS.custom = c.value.trim(); };
       $$("[data-xl]", root).forEach(b => b.onclick = () => { keep(); XS.lang = b.dataset.xl; render(); });
