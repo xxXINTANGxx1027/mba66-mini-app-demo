@@ -2983,6 +2983,10 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 .xm-stage .xm-aiv,.xm-greet .xm-aiv{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:16px;background:#000;display:block}
 .xm-stage .unmute{top:auto;right:auto;left:50%;bottom:64px;transform:translateX(-50%);white-space:nowrap}
 .xm-gen small{display:block;font-size:12px;color:rgba(255,255,255,.75);margin:6px 0 2px;text-align:center}
+
+/* v71 圣诞入口：前台横幅 + 首页快捷栏 */
+.pg-xm{margin:16px 18px 0;cursor:pointer}
+.stg-rail .stg-xm{color:#FFE7A6}.stg-rail .stg-xm svg{color:#FF5A5F}
 </style>
 </head>
 <body>
@@ -3053,7 +3057,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v70";
+const APP_VER = "v71";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3896,6 +3900,10 @@ ROUTES.front = { view(){
           <span class="pg-tags">${d.tag.split("·").map(t => `<i>${esc(t.trim())}</i>`).join("")}<i class="free">前 ${PG_FREE} 集免费</i></span>
           <u>${ico("i-play")}免费看第 1 集</u></span>
       </a>
+      <a class="xm-entry pg-xm" id="pgXm" role="button" tabindex="0" data-free>
+        <span class="xm-ev">${phImg(xmImg(girl("maid")), "", "", "", "50% 14%")}<video class="lv" src="${xmVid(girl("maid"))}" poster="${xmImg(girl("maid"))}" muted autoplay loop playsinline preload="metadata" onerror="this.remove()"></video></span>
+        <span class="xm-et"><em>限时 · 圣诞</em><b>圣诞祝福视频</b><small>放上你的照片，AI 生成你和她的圣诞合拍，发给朋友</small><u>${ico("i-lock")}注册后制作</u></span>
+      </a>
       <div class="pg-sec"><b>互动小游戏</b><small>${S.trial ? "试玩已用完 · 注册继续玩" : "不用注册，先免费玩 1 局"}</small></div>
       <div class="pg-games">${LIVE.map(gm => `<a class="pg-gm" href="#game/${gm.id}" ${S.trial ? "" : "data-free"}>
         <span class="ph"><img src="${girl(gm.cover.gid || "summer").v3}" alt="" loading="lazy"></span><b>${esc(gm.name)}</b><em>${S.trial ? ico("i-lock") + "注册" : "免费试玩"}</em></a>`).join("")}</div>
@@ -3909,7 +3917,8 @@ ROUTES.front = { view(){
       </div>
       <button class="btn btn-pri btn-w pg-cta" id="pgCta">${ico("i-sparkle")}免费注册 · 解锁全部</button>
     </section>`,
-    after(root){ $("#pgLogin").onclick = () => pgGate("注册 / 登录后解锁全部剧集"); }
+    after(root){ $("#pgLogin").onclick = () => pgGate("注册 / 登录后解锁全部剧集");
+      $("#pgXm").onclick = () => pgGate("注册后放上你的照片，AI 生成你和她的圣诞合拍视频"); }
   };
 }};
 ROUTES.pg = { view(epStr){
@@ -4025,6 +4034,7 @@ ROUTES.home = { view(){
       </a>
       <div class="stg-say" id="stgSay">${esc(g.line)}</div>
       <nav class="stg-rail" aria-label="快捷入口">
+        <a href="#xmas" class="stg-xm">${ico("i-sparkle")}<b>圣诞</b></a>
         <button data-stg="check">${ico("i-cal")}<b>打卡</b>${S.checkedIn ? "" : '<i class="rd"></i>'}</button>
         <a href="#games">${ico("i-game")}<b>游戏</b></a>
         <a href="#drama">${ico("i-film")}<b>剧集</b></a>
@@ -8448,6 +8458,7 @@ ROUTES.me = { view(){
    ============================================================ */
 const COACH = [
   { sel:'#tabs a[data-tab="girls"]', t:"先选一位 AI 女友", s:`${GIRLS.length} 位虚拟女友，造型和性格都不一样。随时可以更换，已解锁的内容不会消失。` },
+  { sel:'.stg-xm', t:"限时：圣诞祝福视频", s:"放上你的照片，AI 生成你和她一起出镜的圣诞视频，她会开口说祝福，可以直接发给朋友。" },
   { sel:'[data-od-id="home-checkin"]', t:"每天打卡攒积分", s:`打卡 +${RULES.checkin}，亲密游戏每局都计分，单局最多 +${RULES.gameMax}，段位越高倍率越高。` },
   { sel:'#tabs a[data-tab="rewards"]', t:"两套数值，各管各的", s:`娱乐积分解锁内容：短剧单集 ${PRICE.ep}、礼物 ${PRICE.gift}、场景 ${PRICE.bg}、造型 ${TIERS[1].price}–${TIERS[4].price}，也能在「我的」兑换会员福利。亲密经验只累积，升到 Lv.4 解锁她的专属故事。` }
 ];
