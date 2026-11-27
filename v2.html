@@ -2992,6 +2992,16 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 button.xm-me{width:100%;text-align:left;color:inherit;font:inherit}
 .xm-me .tbtn{white-space:nowrap;flex:none}
 .xm-me .xm-up img{object-position:50% 20%}
+
+/* v74 圣诞分享：4 个按钮平均分满一行 */
+.xm-share{grid-template-columns:repeat(4,1fr) !important;gap:8px !important;margin:14px 0 12px}
+.xm-share .shbtn{min-width:0;padding:12px 2px 10px;gap:6px;font-size:11.5px;font-weight:600;white-space:nowrap;letter-spacing:-.1px}
+.xm-share .shbtn i{width:44px;height:44px;margin:0 auto}
+
+/* v74 模板视频上的祝福字卡 */
+.xm-vw{position:relative;width:100%}
+.xm-ov{position:absolute;inset:0;width:100%;height:100%;border-radius:16px;pointer-events:none}
+.xm-vw+.unmute,.xm-stage+.unmute{position:relative;top:auto;bottom:auto;left:auto;right:auto;transform:none;display:flex;width:max-content;margin:0 auto 12px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -3062,7 +3072,7 @@ button.xm-me{width:100%;text-align:left;color:inherit;font:inherit}
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v73";
+const APP_VER = "v74";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -3909,9 +3919,6 @@ ROUTES.front = { view(){
         <span class="xm-ev">${phImg(xmImg(girl("maid")), "", "", "", "50% 14%")}<video class="lv" src="${xmVid(girl("maid"))}" poster="${xmImg(girl("maid"))}" muted autoplay loop playsinline preload="metadata" onerror="this.remove()"></video></span>
         <span class="xm-et"><em>限时 · 圣诞</em><b>圣诞祝福视频</b><small>放上你的照片，AI 生成你和她的圣诞合拍，发给朋友</small><u>${ico("i-lock")}注册后制作</u></span>
       </a>
-      <div class="pg-sec"><b>互动小游戏</b><small>${S.trial ? "试玩已用完 · 注册继续玩" : "不用注册，先免费玩 1 局"}</small></div>
-      <div class="pg-games">${LIVE.map(gm => `<a class="pg-gm" href="#game/${gm.id}" ${S.trial ? "" : "data-free"}>
-        <span class="ph"><img src="${girl(gm.cover.gid || "summer").v3}" alt="" loading="lazy"></span><b>${esc(gm.name)}</b><em>${S.trial ? ico("i-lock") + "注册" : "免费试玩"}</em></a>`).join("")}</div>
       <div class="pg-sec"><b>选集</b><small>共 ${d.eps.length} 集 · 第 ${PG_FREE + 1} 集起注册解锁</small></div>
       <div class="pg-eps">${d.eps.map((t, i) => { const k = i + 1, free = k <= PG_FREE;
         return `<a class="pg-ep ${free ? "" : "lk"}" href="#pg/${k}" ${free ? "data-free" : ""}><b>${String(k).padStart(2, "0")}</b><span>${esc(t)}</span><em>${free ? "免费" : ico("i-lock") + "注册"}</em></a>`; }).join("")}</div>
@@ -7982,6 +7989,14 @@ const XMAS_MSG = {
 };
 const xmVid = g => `assets/video/xmas-${g.id}.mp4`, xmImg = g => `assets/img/xmas-${g.id}.webp`;
 let XS = null;
+const xmTpl = g => `assets/video/xmas-ai-${g.id}.mp4`;      // 用演示照片预先生成好的 AI 合拍（无字卡）
+function xmCard(v, cfg){                                   // 在视频上盖一层祝福字卡（包一层，字卡贴着视频）
+  const w = document.createElement("div"); w.className = "xm-vw"; v.before(w); w.appendChild(v);
+  xmOverlay(cfg).then(src => { const im = new Image(); im.className = "xm-ov"; im.alt = ""; im.src = src; w.insertBefore(im, v.nextSibling); });
+  const u = document.createElement("button"); u.className = "unmute"; u.innerHTML = `${ico("i-mute")}点击听她说`;
+  u.onclick = () => { v.muted = false; v.play().catch(() => {}); u.remove(); };
+  (w.closest(".xm-stage") || w).after(u);                  // 放在视频下面，不挡字卡（圣诞页的视频框会裁掉框外的东西）
+}
 const XM_DEMO = "assets/img/xmas-demo-me.jpg";              // 演示用的「你的照片」，点一下就拿它去生成
 const b64e = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const b64d = t => { try { return JSON.parse(decodeURIComponent(escape(atob(t.replace(/-/g, "+").replace(/_/g, "/"))))); } catch(e){ return null; } };
@@ -8210,8 +8225,9 @@ ROUTES.xmas = { view(){
         const quick = () => { let pct = 0; const tk = setInterval(() => { pct += 7; bar.style.width = Math.min(100, pct) + "%";
           if(pct >= 100){ clearInterval(tk); gen.classList.add("done"); xmP = xmPlayer(cv, XS); toast("圣诞祝福生成好了！", "i-sparkle"); } }, 90); };
         const showAi = () => {                     // 换成 AI 视频（带声音）
-          const v = document.createElement("video"); Object.assign(v, { src:XS.ai.blobUrl, loop:true, muted:true, autoplay:true, playsInline:true, controls:true });
+          const v = document.createElement("video"); Object.assign(v, { src:XS.ai.blobUrl, loop:true, muted:true, autoplay:true, playsInline:true, controls:!XS.ai.tpl });
           v.className = "xm-aiv"; v.setAttribute("playsinline", ""); cv.replaceWith(v); gen.classList.add("done"); v.play().catch(() => {});
+          if(XS.ai.tpl) return xmCard(v, XS);
           const u = document.createElement("button"); u.className = "unmute"; u.innerHTML = `${ico("i-mute")}点击听她说`;
           u.onclick = () => { v.muted = false; v.play().catch(() => {}); u.remove(); }; v.after(u);
         };
@@ -8238,8 +8254,18 @@ ROUTES.xmas = { view(){
             }
           }
         };
+        const tpl = () => {                        // 演示：照片是固定的，视频预先生成好，几秒出片
+          const T = $("#xmGenT", root), S2 = $("#xmGenS", root), tips = ["把你和她放进同一个画面", "布置圣诞树和雪景", "让她开口说祝福", "盖上祝福字卡"];
+          T.textContent = "AI 正在生成你们俩的圣诞视频…"; let k = 0;
+          const tk = setInterval(() => { k++; bar.style.width = Math.min(100, k * 4) + "%"; S2.textContent = tips[Math.min(3, Math.floor(k / 7))];
+            if(k < 25) return; clearInterval(tk); if(!root.isConnected || XS.step !== 3) return;
+            const src = xmTpl(girl(XS.g)); XS.ai = { tpl:true, blobUrl:src, url:new URL(src, location.href).href };
+            showAi(); toast("AI 圣诞视频生成好了！", "i-sparkle"); }, 120);
+        };
+        // shortcut: 演示一律用模板视频；接真人照片时把 tpl() 换回 aiGen()（Mac 上的 xmas-ai 后台）
         if(XS.ai) showAi();
-        else if(XS.me) aiGen().then(ok => { if(!ok) quick(); }).catch(e => { if(root.isConnected){ toast("AI 现在有点忙，先给你做了快速版", "i-sparkle"); quick(); } });
+        else if(XS.me) tpl();
+        else if(false) aiGen().then(ok => { if(!ok) quick(); }).catch(e => { if(root.isConnected){ toast("AI 现在有点忙，先给你做了快速版", "i-sparkle"); quick(); } });
         else quick();
         const link = () => `${location.origin}${location.pathname}?gt=${b64e({ g:XS.g, to:XS.to, from:XS.from, lang:XS.lang, msg:XS.msg, custom:XS.custom, av:XS.ai ? XS.ai.url : "" })}#greet`;
         const txt = () => `${XS.from || "我"} 送你一段圣诞祝福 🎄 Merry Christmas!`;
@@ -8257,7 +8283,7 @@ ROUTES.xmas = { view(){
           shareDone({ wa:"已打开 WhatsApp", tg:"已打开 Telegram", fb:"已打开 Facebook" }[k]);
         });
         $("#xmSave", root).onclick = async () => {
-          if(XS.ai){ const a = document.createElement("a"); a.href = XS.ai.blobUrl; a.download = `圣诞祝福-${girl(XS.g).name}-AI.mp4`;
+          if(XS.ai){ const a = document.createElement("a"); a.href = XS.ai.blobUrl; a.download = `圣诞祝福-${girl(XS.g).name}-AI.mp4`;   // 模板版保存的是不带字卡的视频
             document.body.appendChild(a); a.click(); a.remove(); return toast("视频已保存", "i-up"); }
           if(!xmP) return toast("还在生成，稍等一下", "i-sparkle");
           const b = $("#xmSave", root); b.disabled = true; b.lastChild.textContent = "正在录制视频…（约 7 秒）";
@@ -8294,6 +8320,7 @@ ROUTES.greet = { view(){
       if(!cfg.av) return xmP = xmPlayer(cv, cfg);
       const v = document.createElement("video"); Object.assign(v, { src:cfg.av, loop:true, muted:true, autoplay:true, playsInline:true, controls:true });
       v.className = "xm-aiv"; v.setAttribute("playsinline", ""); v.onerror = () => { v.replaceWith(cv); xmP = xmPlayer(cv, cfg); }; cv.replaceWith(v);
+      if(/xmas-ai-/.test(cfg.av)){ v.controls = false; xmCard(v, cfg); }
     },
     leave(){ if(xmP){ xmP.stop(); xmP = null; } }
   };
