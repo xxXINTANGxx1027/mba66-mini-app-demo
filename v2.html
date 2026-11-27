@@ -2981,7 +2981,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 /* v69 AI 圣诞视频 */
 .xm-stage .xm-aiv,.xm-greet .xm-aiv{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:16px;background:#000;display:block}
-.xm-stage{position:relative}.xm-stage .unmute{position:absolute;left:50%;bottom:64px;transform:translateX(-50%)}
+.xm-stage .unmute{top:auto;right:auto;left:50%;bottom:64px;transform:translateX(-50%);white-space:nowrap}
 .xm-gen small{display:block;font-size:12px;color:rgba(255,255,255,.75);margin:6px 0 2px;text-align:center}
 </style>
 </head>
@@ -3053,7 +3053,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v69";
+const APP_VER = "v70";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
