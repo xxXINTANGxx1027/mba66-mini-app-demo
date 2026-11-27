@@ -3072,7 +3072,7 @@ button.xm-me{width:100%;text-align:left;color:inherit;font:inherit}
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v75";
+const APP_VER = "v76";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -8529,6 +8529,7 @@ function drawCoach(){
 function endCoach(finished){
   $("#coach").classList.remove("on"); $("#coach").setAttribute("aria-hidden","true"); $("#coach").innerHTML = "";
   S.coached = true; save();
+  $("#stage").scrollTo({ top:0, behavior:"smooth" });       // 引导中途滚到了打卡，结束后回到她的大图
   if(finished && !S.coachXp){
     S.coachXp = true; save();
     reward("完成新手引导", 0, XPR.coach);   // bumpBonds 已就地刷新进度条，不要再 render
