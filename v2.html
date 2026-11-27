@@ -3072,7 +3072,7 @@ button.xm-me{width:100%;text-align:left;color:inherit;font:inherit}
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v74";
+const APP_VER = "v75";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -8002,7 +8002,7 @@ const b64e = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(
 const b64d = t => { try { return JSON.parse(decodeURIComponent(escape(atob(t.replace(/-/g, "+").replace(/_/g, "/"))))); } catch(e){ return null; } };
 function xmLines(cfg){
   const zh = cfg.custom || XMAS_MSG.zh[cfg.msg], en = XMAS_MSG.en[cfg.msg];
-  return cfg.lang === "zh" ? [zh] : cfg.lang === "en" ? [cfg.custom || en] : [zh, en];
+  return cfg.custom ? [cfg.custom] : cfg.lang === "zh" ? [zh] : cfg.lang === "en" ? [en] : [zh, en];   // 自己写的只有一句，不配默认英文
 }
 /* 在 canvas 上播放祝福；record=true 时录成视频文件 */
 function xmPlayer(cv, cfg){
@@ -8168,7 +8168,7 @@ ROUTES.xmas = { view(){
     <div class="xm-girls">${GIRLS.map(x => `<button class="xm-g ${x.id === XS.g ? "on" : ""}" data-xg="${x.id}">
       ${phImg(xmImg(x), x.initial, x.name, "", "50% 18%")}<b>${esc(x.name)}</b>${x.id === XS.g ? `<i>${ico("i-heart")}</i>` : ""}</button>`).join("")}</div>
     <button class="xm-me" id="xmDemo" data-od-id="xmas-me"><span class="xm-up"><img src="${XM_DEMO}" alt="演示照片"></span>
-      <span class="row-m"><b>用这张照片 · 一键制作</b><small>演示版直接用这张照片，AI 生成你们俩一起出镜的圣诞视频，约 1–3 分钟</small></span>
+      <span class="row-m"><b>用这张照片 · 一键制作</b><small>演示版直接用这张照片，马上看到你们俩一起出镜的圣诞视频</small></span>
       <span class="tbtn">制作</span></button>
     <button class="btn btn-pri btn-w" id="xmNext">下一步 · 写祝福</button>`;
   if(XS.step === 2){
@@ -8183,7 +8183,7 @@ ROUTES.xmas = { view(){
   }
   if(XS.step === 3) body = `
     <div class="xm-stage"><canvas id="xmC" width="720" height="1280"></canvas>
-      <div class="xm-gen" id="xmGen"><b id="xmGenT">正在为你生成圣诞祝福…</b><small id="xmGenS"></small><i><u id="xmBar"></u></i></div></div>
+      <div class="xm-gen ${XS.me ? "done" : ""}" id="xmGen"><b id="xmGenT">正在为你生成圣诞祝福…</b><small id="xmGenS"></small><i><u id="xmBar"></u></i></div></div>
     <div class="shrow sho-row xm-share">
       <button class="shbtn" data-xs="wa"><i class="so-wa">${ico("i-chat")}</i>WhatsApp</button>
       <button class="shbtn" data-xs="tg"><i class="so-tg">${ico("i-send")}</i>Telegram</button>
@@ -8254,13 +8254,8 @@ ROUTES.xmas = { view(){
             }
           }
         };
-        const tpl = () => {                        // 演示：照片是固定的，视频预先生成好，几秒出片
-          const T = $("#xmGenT", root), S2 = $("#xmGenS", root), tips = ["把你和她放进同一个画面", "布置圣诞树和雪景", "让她开口说祝福", "盖上祝福字卡"];
-          T.textContent = "AI 正在生成你们俩的圣诞视频…"; let k = 0;
-          const tk = setInterval(() => { k++; bar.style.width = Math.min(100, k * 4) + "%"; S2.textContent = tips[Math.min(3, Math.floor(k / 7))];
-            if(k < 25) return; clearInterval(tk); if(!root.isConnected || XS.step !== 3) return;
-            const src = xmTpl(girl(XS.g)); XS.ai = { tpl:true, blobUrl:src, url:new URL(src, location.href).href };
-            showAi(); toast("AI 圣诞视频生成好了！", "i-sparkle"); }, 120);
+        const tpl = () => {                        // 演示：视频是现成的，直接播，不演生成过程
+          const src = xmTpl(girl(XS.g)); XS.ai = { tpl:true, blobUrl:src, url:new URL(src, location.href).href }; showAi();
         };
         // shortcut: 演示一律用模板视频；接真人照片时把 tpl() 换回 aiGen()（Mac 上的 xmas-ai 后台）
         if(XS.ai) showAi();
