@@ -2986,7 +2986,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 /* v71 圣诞入口：前台横幅 + 首页快捷栏 */
 .pg-xm{margin:16px 18px 0;cursor:pointer}
-.stg-rail .stg-xm{color:#FFE7A6}.stg-rail .stg-xm svg{color:#FF5A5F}
+.stg-rail .stg-xm{color:#FFE7A6}.stg-rail img.xmi{padding:0 !important;width:42px !important;height:42px !important;object-fit:cover;object-position:50% 12%;border:2px solid #E8303A;box-sizing:border-box}
 </style>
 </head>
 <body>
@@ -3057,7 +3057,7 @@ img.gi{object-fit:contain;display:inline-block;vertical-align:middle;filter:drop
 
 <script>
 /* 自动更新：GitHub Pages 会缓存页面约 10 分钟；发现线上有新版就换个地址重新打开，避免看到旧版 */
-const APP_VER = "v71";
+const APP_VER = "v72";
 (function(){
   if(location.protocol === "file:") return;
   fetch(location.pathname + "?vchk=" + Date.now(), { cache:"no-store" }).then(r => r.text()).then(t => {
@@ -4034,7 +4034,7 @@ ROUTES.home = { view(){
       </a>
       <div class="stg-say" id="stgSay">${esc(g.line)}</div>
       <nav class="stg-rail" aria-label="快捷入口">
-        <a href="#xmas" class="stg-xm">${ico("i-sparkle")}<b>圣诞</b></a>
+        <a href="#xmas" class="stg-xm"><img class="ic xmi" src="${xmImg(g)}" alt="" draggable="false"><b>圣诞</b></a>
         <button data-stg="check">${ico("i-cal")}<b>打卡</b>${S.checkedIn ? "" : '<i class="rd"></i>'}</button>
         <a href="#games">${ico("i-game")}<b>游戏</b></a>
         <a href="#drama">${ico("i-film")}<b>剧集</b></a>
